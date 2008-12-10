@@ -1,0 +1,17 @@
+Verzeichnisse:
+
+/opt/zpub/repos/zpub
+	zpub repository (skripte, doku), Kundenunabhängig
+/opt/zpub/zpub
+	checkout für produktivbetrieb
+
+/opt/zpub/duva
+	Alles DUVA-Spezfifisches
+/opt/zpub/duva/repos/style
+	Stylesheets (in Unterverzeichnissen) samt Bildern
+/opt/zpub/duva/repos/source
+	XML-Quellen (in Unterverzeichnissen) samt Bildern
+
+Installation:
+ * subversion libapache2-svn fop wine
+

@@ -4,14 +4,24 @@ Verzeichnisse:
 	zpub repository (skripte, doku), Kundenunabhängig
 /opt/zpub/zpub
 	checkout für produktivbetrieb
+/opt/zpub/tools
+	unversioned tools (fop-hyph)
 
 /opt/zpub/duva
 	Alles DUVA-Spezfifisches
-/opt/zpub/duva/repos/style
+/opt/zpub/duva/repos/style (repository)
+/opt/zpub/duva/style       (working copy)
 	Stylesheets (in Unterverzeichnissen) samt Bildern
-/opt/zpub/duva/repos/source
+	.../<stylename>/<fo|html|htmlhelp>.xsl
+/opt/zpub/duva/repos/source (repository)
+/opt/zpub/duva/source       (working copy)
 	XML-Quellen (in Unterverzeichnissen) samt Bildern
+	.../<dokumentname>/<dokumentname>.xml
 
 Installation:
- * subversion libapache2-svn fop wine
+Pakete: subversion libapache2-svn fop wine
+
+wine hhtmlhelp.exe
+
+
 

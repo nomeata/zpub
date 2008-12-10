@@ -19,9 +19,10 @@ Verzeichnisse:
 	.../<dokumentname>/<dokumentname>.xml
 
 Installation:
-Pakete: subversion libapache2-svn fop wine
+Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip libpaper1
 
 wine hhtmlhelp.exe
-
+wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
+bash ./htmlhelp.sh
 
 

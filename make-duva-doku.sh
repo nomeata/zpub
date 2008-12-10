@@ -28,19 +28,18 @@ function makehtmlhelp {
 	test -d "$outdir" || mkdir -p "$outdir"
 	cd "$outdir"
 	xsltproc					\
-		--stringparam htmlhelp.chm "$1.chm"	\
-		--stringparam htmlhelp.hpp "$1.hpp"	\
-		--stringparam htmlhelp.hpc "$1.hpc"	\
-		--stringparam htmlhelp.hhk "$1.hhk"	\
-		 $CUST/style/$STYLE/htmlhelp.xsl $CUST/source/$DOC/DOCNAME.xml
-	
+		--stringparam htmlhelp.chm "$DOCNAME.chm"	\
+		--stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
+		--stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
+		 $CUST/style/$STYLE/htmlhelp.xsl $CUST/source/$DOC/$DOCNAME.xml
+
 	mkdir -p images 
-	cp -v /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -vr $CUST/source/$DOC/images/* images/
-	cp -vr $CUST/style/$STYLE//htmlhelp-shared/* .
+	cp -r /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+	cp -r $CUST/source/$DOC/images/* images/
+	cp -r $CUST/style/$STYLE/htmlhelp-shared/* .
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
-	test -e "$DOCNAME.chm" && find ! -name "DOCNAME.chm" -delete
-	mv "$DOCNAME.chm" ..
+	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
+	mv "$DOCNAME.chm" ../
 	cd ..
 	rmdir "$outdir"
 }
@@ -78,7 +77,7 @@ function makepdf {
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
 	
-	fop -xml $CUST/source/$DOC/DOCNAME.xml -xsl $CUST/style/$STYLE/fo.xsl -pdf $DOCNAME.pdf
+	fop -xml $CUST/source/$DOC/$DOCNAME.xml -xsl $CUST/style/$STYLE/fo.xsl -pdf $DOCNAME.pdf
 	#rm $1.fo
 }
 
@@ -92,11 +91,11 @@ do
 	DOC=$(basename $docpath)
 	DOCNAME=$(basename *.xml .xml)
 
-	echo Running zpub for $DOC/$DOCNAME.xml
-	echo (Customer $CUST, Style $STYLE)
+	echo "Running zpub for $DOC/$DOCNAME.xml"
+	echo "(Customer $CUST, Style $STYLE)"
 	echo
 
-	makehtmlhelp 
-	makehtml 
+#	makehtmlhelp 
+#	makehtml 
 	makepdf
 done

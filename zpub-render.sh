@@ -42,7 +42,6 @@ do
   fi
 done
 
-
 export SP_ENCODING=utf-8
 
 export CLASSPATH=$CLASSPATH:$ZPUB/tools/fop-hyph.jar
@@ -110,10 +109,13 @@ function makepdf {
 
 
 test -d "$OUTDIR"  || mkdir -p "$OUTDIR"
-test -d "$OUTDIR/source" && rm -rf "$OUTDIR/source"
+cd "$OUTDIR"
+exec &> >(tee zpub-render.log)
+
+test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
-svn export -r $REV "file://$ZPUB/$CUST/repos/source/$DOC" $OUTDIR/source
-cd "$OUTDIR/source"
+svn export -r $REV "file://$ZPUB/$CUST/repos/source/$DOC" source
+cd "source"
 DOCNAME=$(basename *.xml .xml)
 
 if [ ! -r "$DOCNAME.xml" ]

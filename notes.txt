@@ -13,8 +13,7 @@ Verzeichnisse:
 /opt/zpub/duva/style       (working copy)
 	Stylesheets (in Unterverzeichnissen) samt Bildern
 	.../<stylename>/<fo|html|htmlhelp>.xsl
-/opt/zpub/duva/repos/source (repository)
-/opt/zpub/duva/source       (working copy)
+/opt/zpub/duva/repos/source (repository, no working copy)
 	XML-Quellen (in Unterverzeichnissen) samt Bildern
 	.../<dokumentname>/<dokumentname>.xml
 

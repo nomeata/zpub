@@ -48,7 +48,7 @@ do
       rm "$ZPUB/spool/wip/$FILE"
     else
       echo "zpub-render.sh failed, job moved to spool/fail"
-      mv "$ZPUB/spool/wip/$FILE" "$ZPUB/spool/failed/$FILE"
+      mv "$ZPUB/spool/wip/$FILE" "$ZPUB/spool/fail/$FILE"
     fi
 
   fi

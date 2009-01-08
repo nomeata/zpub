@@ -32,7 +32,7 @@ Verzeichnisse:
 
 Installation:
 Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip
-        libpaper1 libsaxon-java sun-java6-jre
+        libpaper1 libsaxon-java sun-java6-jre libtemplate-perl
 
 wine hhtmlhelp.exe
 wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh

@@ -61,7 +61,7 @@ function makehtmlhelp {
 
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr $OUTDIR/source/$DOC/images/* images/
+	cp -flr $OUTDIR/source/images/* images/
 	cp -flr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete

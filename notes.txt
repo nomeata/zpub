@@ -6,6 +6,7 @@ Verzeichnisse:
 	checkout für produktivbetrieb
 /opt/zpub/tools
 	unversioned tools (fop-hyph)
+/opt/zpub/spool
 
 /opt/zpub/duva
 	Alles DUVA-Spezfifisches
@@ -16,6 +17,8 @@ Verzeichnisse:
 /opt/zpub/duva/repos/source (repository, no working copy)
 	XML-Quellen (in Unterverzeichnissen) samt Bildern
 	.../<dokumentname>/<dokumentname>.xml
+/opt/zpub/duva/conf
+	Konfigurationsdaten, etwa für apache
 
 Installation:
 Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip

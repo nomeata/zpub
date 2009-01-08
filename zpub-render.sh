@@ -110,6 +110,7 @@ function makepdf {
 
 test -d "$OUTDIR"  || mkdir -p "$OUTDIR"
 cd "$OUTDIR"
+echo $$ > zpub-render-in-progress
 exec &> >(tee zpub-render.log)
 
 test -d "source" && rm -rf "source"
@@ -129,6 +130,6 @@ makehtml
 #makepdf
 
 cd "$OUTDIR"
-
 echo "Successfully generated output, deleting source directory"
 rm -rf "$OUTDIR/source"
+rm -f zpub-render-in-progress

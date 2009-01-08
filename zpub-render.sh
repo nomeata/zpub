@@ -60,9 +60,9 @@ function makehtmlhelp {
 		 $ZPUB/$CUST/style/$STYLE/htmlhelp.xsl $OUTDIR/source/$DOCNAME.xml
 
 	mkdir -p images 
-	cp -r /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -r $OUTDIR/source/$DOC/images/* images/
-	cp -r $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
+	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+	cp -flr $OUTDIR/source/$DOC/images/* images/
+	cp -flr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 	mv "$DOCNAME.chm" ../
@@ -78,9 +78,9 @@ function makehtml {
 	xsltproc $ZPUB/$CUST/style/$STYLE/htmlhelp.xsl $OUTDIR/source/$DOCNAME.xml
 	
 	mkdir -p images 
-	cp -v /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -vr $OUTDIR/source/images/* images/
-	cp -vr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
+	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+	cp -flr $OUTDIR/source/images/* images/
+	cp -flr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
 	rm -f ../${DOCNAME}_html.zip
 	zip -r ../${DOCNAME}_html.zip .
 }

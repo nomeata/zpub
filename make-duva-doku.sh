@@ -11,8 +11,9 @@ CUST=$ZPUB/duva
 
 export SP_ENCODING=utf-8
 
-
-export CLASSPATH=$CLASSPATH:$ZPUB/tools/fop-hyph.jar:/usr/share/java/xalan2.jar:/usr/share/java/saxon.jar:/usr/share/java/saxon-6.5.5.jar
+export CLASSPATH=$CLASSPATH:$ZPUB/tools/fop-hyph.jar
+#export CLASSPATH=$CLASSPATH:$ZPUB/tools/fop-hyph.jar:/usr/share/java/xalan2.jar:/usr/share/java/saxon.jar:/usr/share/java/saxon-6.5.5.jar
+#export CLASSPATH=$CLASSPATH:$ZPUB/tools/fop-hyph.jar:/usr/share/java/xalan2.jar:/usr/share/java/saxon.jar
 
 # These variables are filled by the main
 # loop, and then used by the functions

@@ -7,6 +7,16 @@ Verzeichnisse:
 /opt/zpub/tools
 	unversioned tools (fop-hyph)
 /opt/zpub/spool
+	spool directory for new render jobs
+/opt/zpub/spool/new
+	new jobs are created here
+/opt/zpub/spool/todo
+	then moved here, to be picked up by the spooler
+/opt/zpub/spool/wip
+	who moves them here while working on it
+/opt/zpub/spool/fail
+	and then either delets them, or puts them here.
+	
 
 /opt/zpub/duva
 	Alles DUVA-Spezfifisches

@@ -4,8 +4,7 @@
 
 <ul>
 [% FOREACH doc IN documents %]
-[%# Assuming we are at URL "cust.zpub.de/" here %]
-	<li><a href="[% doc %]/">[% doc %]</a></li>
+	<li><a href="/[% doc %]/">[% doc %]</a></li>
 [% END %]
 </ul>
 [% doc = 0 # stupid non-local loop variables in TT %]

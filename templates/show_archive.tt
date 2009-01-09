@@ -1,0 +1,31 @@
+[% WRAPPER zpub_wrapper.tt
+	title = 'Archiv'
+%]
+
+<table>
+<tr>
+<th>Rev.</th><th>Autor</th><th>Datum</th>
+</tr>
+[% FOREACH revs %]
+<tr>
+<td rowspan="2">
+<a href="/[% doc %]/archive/[% revn %]">
+[% revn %]
+</a>
+</td>
+<td>
+[% info.author | html %]
+</td>
+<td>
+[% info.date | html %]
+</td>
+</tr>
+<tr>
+<td colspan="2">
+[% info.log_msg | html %]
+</td>
+</tr>
+[% END %]
+</table>
+
+[% END %]

@@ -1,0 +1,24 @@
+[% WRAPPER zpub_wrapper.tt
+	title = "Archivierte Revision ${this_rev.revn}"
+%]
+
+<h2>Archivierte Änderung</h2>
+<p>
+Dateirevision Nr. [% this_rev.revn %], verwendete Stil-Datei "[% this_rev.style %]".
+</p>
+
+<p>Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: „[% this_rev.info.log_msg | html %]“.
+
+
+<h2>Erzeugte Dateien</h2>
+<ul>
+[% FOREACH files %]
+<li>
+    <a href="[% url %]">[% filename %]</a><br />
+    Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon %]<br />
+    [% UNLESS size == 'directory' %]Size: [% size %]<br/>[% END %]
+    Date: [% date %]
+</li>
+[% END %]
+</ul>
+[% END %]

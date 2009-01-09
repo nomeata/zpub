@@ -1,0 +1,83 @@
+[% WRAPPER zpub_wrapper.tt
+	title = 'Status'
+%]
+
+<h2>Wartende Aufträge</h2>
+[% IF jobs.todo.size %]
+<table>
+<tr>
+<th>Dokument</th><th>Rev.</th><th>Jobname</th>
+</tr>
+[% FOREACH jobs.todo %]
+<tr>
+<td>
+[% doc %]
+</td>
+<td>
+[% revn %]
+</td>
+<td>
+[% jobname %]
+</td>
+</tr>
+[% END %]
+</table>
+[% ELSE %]
+<it>keine wartenden Aufträge</it>
+[% END %]
+
+
+<h2>Aufträge in Bearbeitung</h2>
+[% IF jobs.wip.size %]
+<table>
+<tr>
+<th>Dokument</th><th>Rev.</th><th>Jobname</th>
+</tr>
+[% FOREACH jobs.wip %]
+<tr>
+<td>
+[% doc %]
+</td>
+<td>
+[% revn %]
+</td>
+<td>
+[% jobname %]
+</td>
+</tr>
+[% END %]
+</table>
+[% ELSE %]
+<it>keine Aufträge in Bearbeitung</it>
+[% END %]
+
+
+
+<h2>Fehlgeschlagende Aufträge</h2>
+[% IF jobs.fail.size %]
+<table>
+<tr>
+<th>Dokument</th><th>Rev.</th><th>Jobname</th>
+</tr>
+[% FOREACH jobs.fail %]
+<tr>
+<td>
+[% doc %]
+</td>
+<td>
+[% revn %]
+</td>
+<td>
+[% jobname %]
+</td>
+<td>
+<a href="/[% doc %]/archive/[% revn %]-[% style %]/zpub-render.log">Logdatei</a>
+</td>
+</tr>
+[% END %]
+</table>
+[% ELSE %]
+<it>keine fehlgeschlagende Aufträge</it>
+[% END %]
+
+[% END %]

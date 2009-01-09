@@ -17,8 +17,21 @@ use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 use File::stat;
 use Time::localtime;
+use SVN::SVNLook;
 
+#############
+# Utilities #
+#############
 
+sub lazy {
+    my $func = shift;
+    my @args = @_;
+    my $ret = undef;
+    return sub {
+	$ret ||= $func->(@args);
+	return $ret;
+    }
+}
 
 ############################
 # Data Retrieval functions #
@@ -35,6 +48,7 @@ sub collect_documents {
 
 
 # Returns a list of all documents of the customer
+# Each element has three 
 sub collect_revisions {
     my ($doc) = @_;
     
@@ -42,7 +56,10 @@ sub collect_revisions {
     for (glob "$ZPUB/$CUST/output/$doc/archive/*") {
 	if (-d $_) {
 	    if (m!$ZPUB/$CUST/output/$doc/archive/(\d+)-(.*)!) {
-		push @ret, [$1,$2];
+		push @ret, {revn => $1,
+                            style => $2,
+		            info => lazy(\&rev_info,$1)
+			    }
 	    } else {
 		die "Unmatchable file: $_";
 	    }
@@ -57,16 +74,20 @@ sub select_latest {
 
     my $ret;
     for my $rev (@revs) {
-	if (not defined $ret or $rev->[0] > $ret->[0]) {
+	if (not defined $ret or $rev->{revn} > $ret->{revn}) {
 	    $ret = $rev;
 	}
     }
     return $ret;
 }
 
+# Various pathnames
 sub revpath {
     my ($doc,$rev) = @_;
-    return "$ZPUB/$CUST/output/$doc/archive/".$rev->[0]."-".$rev->[1];
+    return "$ZPUB/$CUST/output/$doc/archive/".$rev->{revn}."-".$rev->{style};
+}
+sub repopath {
+    return "$ZPUB/$CUST/repos/source";
 }
 
 # Information about the files in a given revision of
@@ -99,7 +120,7 @@ sub collect_output {
 
 	my $date = ctime(stat($file)->mtime);
 
-	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,@$rev,$filename;
+	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$rev->{revn},$rev->{style},$filename;
 	
 	push @ret, {
 	    filename => $filename,	
@@ -112,6 +133,17 @@ sub collect_output {
     return \@ret;
 }
 
+# Given a revision number, returns the date, author and message
+# in a hash
+sub rev_info {
+    my ($doc,$revn) = @_;
+
+    my $look = SVN::SVNLook->new(repo => repopath(), cmd => '/usr/bin/svnlook');
+    my ($author, $date, $log_msg) = $look->info(revision => $revn);
+    return {date => $date,
+            author => $author,
+            log_msg => $log_msg}
+}
 ####################
 # Output functions #
 ####################

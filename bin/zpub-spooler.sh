@@ -42,7 +42,7 @@ do
     echo " OUTDIR: $OUTDIR"
 
     if
-      $ZPUB/zpub/zpub-render.sh "$CUST" "$REV" "$DOC" "$STYLE" "$OUTDIR"
+      $ZPUB/bin/zpub-render.sh "$CUST" "$REV" "$DOC" "$STYLE" "$OUTDIR"
     then
       echo "zpub-render.sh returned ok, job finished"
       rm "$ZPUB/spool/wip/$FILE"

@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>
+	zpub – 
+	[% IF doc %] [% doc %] – [% END %]
+	[% title %]
+</title>
+</head>
+<body>
+
+<ul class="navi">
+<li><a href="/">Dokumentenübersicht</a></li>
+[% IF doc %]
+<li><a href="/[% doc %]">Dokument „[% doc %]“</a></li>
+<li><a href="/[% doc %]/archive">Archiv</a></li>
+[% END %]
+<li><a href="/status">Status</a></li>
+</ul>
+
+<h1>[% title %]</h1>
+[% content %]
+</body>
+
+<!-- Current customer: [% cust %] -->
+</html>

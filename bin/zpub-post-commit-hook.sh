@@ -18,7 +18,7 @@ then
 fi
 
 CUST="$REPOS"
-CUST=${CUST/%repos\/source}
+CUST=${CUST/%\/repos\/source}
 CUST=${CUST/#"$ZPUB"\/}
 echo "Determined customer $CUST"
 

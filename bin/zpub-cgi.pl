@@ -167,7 +167,7 @@ sub collect_jobs {
 	    chomp (my @lines = <FILE>);
 	    close FILE;
 	    my $cust = shift @lines;
-	    next unless $cust == $CUST;
+	    next unless $cust eq $CUST;
 	    push @{$ret{$dir}}, {
 		jobname => $_,
 		revn    => shift @lines,
@@ -180,6 +180,17 @@ sub collect_jobs {
 	closedir DIR;
     }
     return \%ret;
+}
+
+# Returns jobs that are newer than the given document/revision
+sub newer_jobs {
+    my ($doc,$rev) = @_;
+
+    my $ret = collect_jobs();
+    for my $jobs (values %$ret) {
+	$jobs = [ grep { $_->{doc} eq $doc && $_->{revn} > $rev->{revn} } @$jobs ]
+    }
+    return $ret;
 }
 
 
@@ -212,12 +223,15 @@ sub show_overview {
 
     my $files = collect_output($doc, $rev);
 
+    my $newer_jobs = newer_jobs($doc,$rev);
+
     $tt->process('show_overview.tt', {
 	standard_vars(),
 	doc => $doc,
 	revs => [ @revs ],
 	this_rev => $rev,
 	files => $files,
+	newer_jobs => $newer_jobs,
     }) or die ("Error: ".$tt->error());
 }
 

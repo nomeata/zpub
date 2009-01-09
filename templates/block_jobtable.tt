@@ -1,0 +1,26 @@
+[% DEFAULT
+	show_logfile = 0
+%]
+<table>
+<tr>
+<th>Dokument</th><th>Rev.</th><th>Jobname</th>
+</tr>
+[% FOREACH jobs %]
+<tr>
+<td>
+[% doc %]
+</td>
+<td>
+[% revn %]
+</td>
+<td>
+[% jobname %]
+</td>
+[% IF show_logfile %]
+<td>
+<a href="/[% doc %]/archive/[% revn %]-[% style %]/zpub-render.log">Logdatei</a>
+</td>
+[% END %]
+</tr>
+[% END %]
+</table>

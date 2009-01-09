@@ -2,6 +2,33 @@
 	title = 'Übersicht'
 %]
 
+[% IF newer_jobs.fail.size OR newer_jobs.todo.size OR newer_jobs.wip.size %]
+<div>
+<h2>Achtung</h2>
+Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
+[% IF newer_jobs.fail.size %]
+<h3>Fehlgeschlagende Aufträge</h3>
+[% INCLUDE block_jobtable.tt
+	jobs = newer_jobs.fail
+	show_logfile = 1
+%]
+[% END %]
+[% IF newer_jobs.todo.size %]
+<h3>Wartende Aufträge</h3>
+[% INCLUDE block_jobtable.tt
+	jobs = newer_jobs.todo
+%]
+[% END %]
+[% IF newer_jobs.wip.size %]
+<h3>Aufträge in Bearbeitung</h3>
+[% INCLUDE block_jobtable.tt
+	jobs = newer_jobs.wip
+%]
+[% END %]
+
+</div>
+[% END %]
+
 <h2>Letze Änderung</h2>
 <p>
 Dateirevision Nr. [% this_rev.revn %], verwendete Stil-Datei "[% this_rev.style %]".

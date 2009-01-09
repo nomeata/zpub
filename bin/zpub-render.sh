@@ -57,12 +57,12 @@ function makehtmlhelp {
 		--stringparam htmlhelp.chm "$DOCNAME.chm"	\
 		--stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
 		--stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
-		 $ZPUB/$CUST/style/$STYLE/htmlhelp.xsl $OUTDIR/source/$DOCNAME.xml
+		 ../style/htmlhelp.xsl ../source/$DOCNAME.xml
 
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr $OUTDIR/source/images/* images/
-	cp -flr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
+	cp -flr ../source/images/* images/
+	cp -flr ../style/htmlhelp-shared/* .
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 	mv "$DOCNAME.chm" ../
@@ -75,12 +75,12 @@ function makehtml {
 
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
-	xsltproc $ZPUB/$CUST/style/$STYLE/htmlhelp.xsl $OUTDIR/source/$DOCNAME.xml
+	xsltproc ../style/htmlhelp.xsl ../source/$DOCNAME.xml
 	
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr $OUTDIR/source/images/* images/
-	cp -flr $ZPUB/$CUST/style/$STYLE/htmlhelp-shared/* .
+	cp -flr ../source/images/* images/
+	cp -flr ../style/htmlhelp-shared/* .
 	rm -f ../${DOCNAME}_html.zip
 	zip -r ../${DOCNAME}_html.zip .
 }
@@ -103,7 +103,7 @@ function makepdf {
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
 	
-	fop -xml $OUTDIR/source/$DOCNAME.xml -xsl $ZPUB/$CUST/style/$STYLE/fo.xsl -pdf $DOCNAME.pdf
+	fop -xml source/$DOCNAME.xml -xsl style/fo.xsl -pdf $DOCNAME.pdf
 	#rm $1.fo
 }
 
@@ -112,6 +112,10 @@ test -d "$OUTDIR"  || mkdir -p "$OUTDIR"
 cd "$OUTDIR"
 echo $$ > zpub-render-in-progress
 exec &> >(tee zpub-render.log)
+
+
+test -L "style" && rm -f "style"
+ln -s $ZPUB/$CUST/style/$STYLE style
 
 test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
@@ -132,4 +136,5 @@ makepdf
 cd "$OUTDIR"
 echo "Successfully generated output, deleting source directory"
 rm -rf "$OUTDIR/source"
+rm -f  "$OUTDIR/style"
 rm -f zpub-render-in-progress

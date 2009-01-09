@@ -39,13 +39,11 @@ sub lazy {
 
 # Returns a list of all documents of the customer
 sub collect_documents {
-    my @ret;
-    for (glob "$ZPUB/$CUST/output/*") {
-	push @ret, basename($_) if -d;
-    } 
-    return @ret;
+    opendir(DIR, "$ZPUB/$CUST/output/") || die "can't opendir $ZPUB/$CUST/output/: $!";
+    my @files = grep { (not /^\./) && -d "$ZPUB/$CUST/output/$_" } readdir(DIR);
+    closedir DIR;
+    return @files;
 }
-
 
 # Returns a list of all documents of the customer
 # Each element has three 
@@ -53,18 +51,17 @@ sub collect_revisions {
     my ($doc) = @_;
     
     my @ret;
-    for (glob "$ZPUB/$CUST/output/$doc/archive/*") {
-	if (-d $_) {
-	    if (m!$ZPUB/$CUST/output/$doc/archive/(\d+)-(.*)!) {
-		push @ret, {revn => $1,
-                            style => $2,
-		            info => lazy(\&rev_info,$1)
-			    }
-	    } else {
-		die "Unmatchable file: $_";
-	    }
+    opendir(DIR, "$ZPUB/$CUST/output/$doc/archive")
+	|| die "can't opendir $ZPUB/$CUST/output/$doc/archive: $!";
+    for (readdir(DIR)) {
+	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && /(\d+)-(.*)/) {
+	    push @ret, {revn => $1,
+			style => $2,
+			info => lazy(\&rev_info,$1)
+			}
 	}
     } 
+    closedir DIR;
     return @ret;
 }
 
@@ -75,6 +72,19 @@ sub select_latest {
     my $ret;
     for my $rev (@revs) {
 	if (not defined $ret or $rev->{revn} > $ret->{revn}) {
+	    $ret = $rev;
+	}
+    }
+    return $ret;
+}
+
+# Selects the given revision from a list of revisions
+sub select_rev {
+    my ($revn,@revs) = @_;
+
+    my $ret;
+    for my $rev (@revs) {
+	if ($revn == $rev->{revn}) {
 	    $ret = $rev;
 	}
     }
@@ -144,12 +154,44 @@ sub rev_info {
             author => $author,
             log_msg => $log_msg}
 }
+
+# Gathers information about jobs in the spooler
+sub collect_jobs {
+    my %ret;
+    
+    for my $dir (qw/fail todo wip/) {
+	$ret{$dir} = [];
+	opendir(DIR, "$ZPUB/spool/$dir") || die "can't opendir $ZPUB/spool/$dir: $!";
+	for (grep { (not /^\./) && -f "$ZPUB/spool/$dir/$_" } readdir(DIR)) {
+	    open FILE, "$ZPUB/spool/$dir/$_" or die "can't open $ZPUB/spool/$dir/$_: $!";
+	    chomp (my @lines = <FILE>);
+	    close FILE;
+	    my $cust = shift @lines;
+	    next unless $cust == $CUST;
+	    push @{$ret{$dir}}, {
+		jobname => $_,
+		revn    => shift @lines,
+		doc     => shift @lines,
+		style   => shift @lines,
+		outdir  => shift @lines,
+	    };
+	    die "Left over lines in job $_: @lines" if @lines;
+	}
+	closedir DIR;
+    }
+    return \%ret;
+}
+
+
 ####################
 # Output functions #
 ####################
 
 sub standard_vars {
-    return ( cust => $CUST );   
+    return (
+	cust => $CUST,
+	doc  => 0,
+     );   
 }
 
 # All documents for one customer
@@ -178,7 +220,48 @@ sub show_overview {
 	files => $files,
     }) or die ("Error: ".$tt->error());
 }
+
+# Archive list
+sub show_archive {
+    my ($doc) = @_;
+
+    my @revs = collect_revisions($doc);
+
+    $tt->process('show_archive.tt', {
+	standard_vars(),
+	doc => $doc,
+	revs => [ @revs ],
+    }) or die ("Error: ".$tt->error());
+}
+
+# Archived revision
+sub show_archived_rev {
+    my ($doc,$revn) = @_;
+
+    my @revs = collect_revisions($doc);
+
+    my $rev = select_rev($revn, @revs);
     
+    my $files = collect_output($doc, $rev);
+
+    $tt->process('show_archived_rev.tt', {
+	standard_vars(),
+	doc      => $doc,
+	revs     => \@revs,
+	this_rev => $rev,
+	files    => $files,
+    }) or die ("Error: ".$tt->error());
+}
+
+# Archived revision
+sub show_status {
+    my $jobs = collect_jobs();
+
+    $tt->process('show_status.tt', {
+	standard_vars(),
+	jobs	 => $jobs,
+    }) or die ("Error: ".$tt->error());
+}
 
 ################
 # Main routine #
@@ -201,11 +284,7 @@ $tt = Template->new({
 }) || die "$Template::ERROR\n";
 
 # Figure out what page to show
-unless (defined $q->param('doc')) {
-    # Show doc list
-    show_documents()
-} else {
-    
+if (defined $q->param('doc')) {
     # Show information about a specific document
     my $doc = $q->param('doc');    
     
@@ -213,10 +292,20 @@ unless (defined $q->param('doc')) {
 	die "Document $doc does not exist.\n";
     }
 
-    unless (defined $q->param('rev')) {
+    if (defined $q->param('archive')) { 
+	show_archive($doc);    
+    } elsif (defined $q->param('rev'))  {
+	my $rev = $q->param('rev');
+	show_archived_rev($doc, $rev);
+    } else {
 	# No specific revision requested, print overview page
 	show_overview($doc);
-    } else {
-	die 'Requested page unknown'
     }
+} elsif (defined $q->param('status')) {
+    # System status
+    show_status()
+} else {
+    # Show doc list
+    show_documents()
 }
+    

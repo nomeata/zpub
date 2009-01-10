@@ -1,0 +1,10 @@
+<ul>
+[% FOREACH files %]
+<li>
+    <a href="[% url %]">[% filename %]</a><br />
+    Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon %]<br />
+    [% UNLESS size == 'directory' %]Size: [% size %]<br/>[% END %]
+    Date: [% date %]
+</li>
+[% END %]
+</ul>

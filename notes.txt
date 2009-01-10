@@ -28,7 +28,11 @@ Verzeichnisse:
 	XML-Quellen (in Unterverzeichnissen) samt Bildern
 	.../<dokumentname>/<dokumentname>.xml
 /opt/zpub/duva/conf
-	System-Konfigurationsdaten, etwa für apache
+	System-Konfigurationsdaten
+/opt/zpub/duva/conf/apache2.conf
+	Apache-Konfiguration für diesen virtuellen Host
+/opt/zpub/duva/conf/admins
+	Benutzer mit Admin-Rechten (einer pro Zeile)
 /opt/zpub/duva/settings
 	zpub-Konfigurationsdaten, die der Kunde ändern darf
 	(Schreibrechte für www-data!)

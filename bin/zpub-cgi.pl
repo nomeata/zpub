@@ -7,7 +7,7 @@ use warnings;
 my $ZPUB = '/opt/zpub';
 
 # Global vars
-our ($CUST,$tt,$q);
+our ($CUST,$USER,$tt,$q);
 
 # Modules
 use Template;
@@ -198,12 +198,12 @@ sub newer_jobs {
 
 # Slurps the htpasswd file for the current customer
 sub read_htpasswd {
-	if ( -r "$ZPUB/$CUST/settings/htpasswd") {
-		return scalar(read_file("$ZPUB/$CUST/settings/htpasswd")
-			or die "Could not read htpasswd: $!")
-	} else {
-		return ""
-	}
+    if ( -r "$ZPUB/$CUST/settings/htpasswd") {
+	return scalar(read_file("$ZPUB/$CUST/settings/htpasswd")
+		or die "Could not read htpasswd: $!")
+    } else {
+	return ""
+    }
 }
 
 # Writes the htpasswd file for the current customer
@@ -211,6 +211,25 @@ sub write_htpasswd {
 	write_file("$ZPUB/$CUST/settings/htpasswd", \$_[0])
 			or die "Could not write htpasswd: $!";
 }
+
+# Returns a list of admin users
+sub read_admins {
+    if ( -r "$ZPUB/$CUST/settings/htpasswd") {
+	my @admins = read_file("$ZPUB/$CUST/conf/admins");
+	unless (@admins) { die "Could not read admins: $!" };
+	chomp(@admins);
+	return @admins;
+    } else {
+	return ()
+    }
+}
+
+# Is the current user an admin?
+sub is_admin {
+    $USER or die "zpub accessed without a user name\n";
+    return scalar(grep {$_ eq $USER} read_admins());
+}
+    
 
 ####################
 # Output functions #
@@ -220,7 +239,7 @@ sub standard_vars {
     return (
 	cust  => $CUST,
 	doc   => 0,
-	admin => 1,
+	admin => is_admin(),
      );   
 }
 
@@ -325,8 +344,10 @@ $q = new CGI;
 # Figure out what customer we are working for
 $CUST = $q->url_param('cust') or die 'Missing parameter "cust"'."\n";
 
-# Is this a POST?
+# Figure out the current user
+$USER = $q->remote_user();
 
+# Is this a POST?
 if ($q->request_method() eq "POST") {
     if (defined $q->url_param('admin')) {
 	if ($q->url_param('admin') eq 'passwd') {

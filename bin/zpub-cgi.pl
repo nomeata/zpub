@@ -226,7 +226,7 @@ sub read_admins {
 
 # Is the current user an admin?
 sub is_admin {
-    $USER or die "zpub accessed without a user name\n";
+    $USER or die "zpub accessed without an user name\n";
     return scalar(grep {$_ eq $USER} read_admins());
 }
     

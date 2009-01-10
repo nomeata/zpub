@@ -60,7 +60,7 @@ sub collect_revisions {
 	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && /(\d+)-(.*)/) {
 	    push @ret, {revn => $1,
 			style => $2,
-			info => lazy(\&rev_info,$1)
+			info => lazy(\&rev_info,$doc,$1)
 			}
 	}
     } 

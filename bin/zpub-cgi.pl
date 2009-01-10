@@ -13,8 +13,11 @@ our ($CUST,$tt,$q);
 use Template;
 use Template::Constants qw( :debug );
 use File::Basename qw/dirname basename/;
+use File::Slurp;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
+$CGI::POST_MAX=1024 * 100;  # max 100K posts
+$CGI::DISABLE_UPLOADS = 1;  # no uploads
 use File::stat;
 use Time::localtime;
 use SVN::SVNLook;
@@ -193,6 +196,21 @@ sub newer_jobs {
     return $ret;
 }
 
+# Slurps the htpasswd file for the current customer
+sub read_htpasswd {
+	if ( -r "$ZPUB/$CUST/settings/htpasswd") {
+		return scalar(read_file("$ZPUB/$CUST/settings/htpasswd")
+			or die "Could not read htpasswd: $!")
+	} else {
+		return ""
+	}
+}
+
+# Writes the htpasswd file for the current customer
+sub write_htpasswd {
+	write_file("$ZPUB/$CUST/settings/htpasswd", \$_[0])
+			or die "Could not write htpasswd: $!";
+}
 
 ####################
 # Output functions #
@@ -200,8 +218,9 @@ sub newer_jobs {
 
 sub standard_vars {
     return (
-	cust => $CUST,
-	doc  => 0,
+	cust  => $CUST,
+	doc   => 0,
+	admin => 1,
      );   
 }
 
@@ -277,6 +296,24 @@ sub show_status {
     }) or die ("Error: ".$tt->error());
 }
 
+# Edit window for password editing
+sub show_htpasswd_edit {
+    my $htpasswd = read_htpasswd;
+    $tt->process('show_htpasswd_edit.tt', {
+	standard_vars(),
+	htpasswd => $htpasswd,
+    }) or die ("Error: ".$tt->error());
+}
+
+###########
+# Actions #
+###########
+
+# Edit window for password editing
+sub do_htpasswd_edit {
+    write_htpasswd($_[0]); 
+}
+
 ################
 # Main routine #
 ################
@@ -286,7 +323,27 @@ $q = new CGI;
 
 
 # Figure out what customer we are working for
-$CUST = $q->param('cust') or die 'Missing parameter "cust"\n';
+$CUST = $q->url_param('cust') or die 'Missing parameter "cust"'."\n";
+
+# Is this a POST?
+
+if ($q->request_method() eq "POST") {
+    if (defined $q->url_param('admin')) {
+	if ($q->url_param('admin') eq 'passwd') {
+	    if (not defined $q->param('htpasswd')) {
+		die 'Missing parameter "htpasswd"'."\n";
+	    }
+	    do_htpasswd_edit($q->param('htpasswd'));
+	} else {
+	    die "Unknown POST target\n";
+	}
+    } else {
+	die "Unknown POST target\n";
+    }
+
+    print $q->redirect($q->url(-absolute=>1));
+    exit;
+}
 
 # Set up headers
 print $q->header(-type=>'text/html', -charset=>'utf-8');
@@ -298,26 +355,33 @@ $tt = Template->new({
 }) || die "$Template::ERROR\n";
 
 # Figure out what page to show
-if (defined $q->param('doc')) {
+if (defined $q->url_param('doc')) {
     # Show information about a specific document
-    my $doc = $q->param('doc');    
+    my $doc = $q->url_param('doc');    
     
     unless (-d "$ZPUB/$CUST/output/$doc") {
 	die "Document $doc does not exist.\n";
     }
 
-    if (defined $q->param('archive')) { 
+    if (defined $q->url_param('archive')) { 
 	show_archive($doc);    
-    } elsif (defined $q->param('rev'))  {
-	my $rev = $q->param('rev');
+    } elsif (defined $q->url_param('rev'))  {
+	my $rev = $q->url_param('rev');
 	show_archived_rev($doc, $rev);
     } else {
 	# No specific revision requested, print overview page
 	show_overview($doc);
     }
-} elsif (defined $q->param('status')) {
+} elsif (defined $q->url_param('status')) {
     # System status
     show_status()
+} elsif (defined $q->url_param('admin'))  {
+    if ($q->url_param('admin') eq 'passwd') {
+	# Passwd Edit view
+	show_htpasswd_edit();
+    } else {
+	die "Unknown admin command\n"
+    }
 } else {
     # Show doc list
     show_documents()

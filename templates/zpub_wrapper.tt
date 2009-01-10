@@ -15,6 +15,9 @@
 <li><a href="/[% doc %]/archive">Archiv</a></li>
 [% END %]
 <li><a href="/status">Status</a></li>
+[% IF admin %]
+<li><a href="/admin/passwd">Benutzer</a></li>
+[% END %]
 </ul>
 
 <h1>[% title %]</h1>

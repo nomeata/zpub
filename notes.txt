@@ -28,12 +28,17 @@ Verzeichnisse:
 	XML-Quellen (in Unterverzeichnissen) samt Bildern
 	.../<dokumentname>/<dokumentname>.xml
 /opt/zpub/duva/conf
-	Konfigurationsdaten, etwa für apache
+	System-Konfigurationsdaten, etwa für apache
+/opt/zpub/duva/settings
+	zpub-Konfigurationsdaten, die der Kunde ändern darf
+	(Schreibrechte für www-data!)
+/opt/zpub/duva/settings/htpasswd
+	Apache-HTTP-Auth-Passwortdatei
 
 Installation:
 Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip
         libpaper1 libsaxon-java sun-java6-jre libtemplate-perl libsvn-svnlook-perl
-	apache2
+	apache2 libfile-slurp-perl
 
 wine hhtmlhelp.exe
 wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh

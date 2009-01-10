@@ -60,7 +60,7 @@ sub collect_revisions {
 	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && /(\d+)-(.*)/) {
 	    push @ret, {revn => $1,
 			style => $2,
-			info => lazy(\&rev_info,$doc,$1)
+			info => lazy(\&rev_info,$1)
 			}
 	}
     } 
@@ -149,7 +149,7 @@ sub collect_output {
 # Given a revision number, returns the date, author and message
 # in a hash
 sub rev_info {
-    my ($doc,$revn) = @_;
+    my ($revn) = @_;
 
     my $look = SVN::SVNLook->new(repo => repopath(), cmd => '/usr/bin/svnlook');
     my ($author, $date, $log_msg) = $look->info(revision => $revn);

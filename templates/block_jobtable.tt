@@ -1,9 +1,10 @@
 [% DEFAULT
 	show_logfile = 0
+	show_retry = 0
 %]
 <table>
 <tr>
-<th>Dokument</th><th>Rev.</th><th>Jobname</th>
+<th>Dokument</th><th>Rev.</th><th>Jobname</th><th>Autor</th><th>Datum</th>
 </tr>
 [% FOREACH jobs %]
 <tr>
@@ -14,11 +15,26 @@
 [% revn %]
 </td>
 <td>
+[% # Muss vielleicht nicht angezeigt werden %]
 [% jobname %]
+</td>
+<td>
+[% info.author %]
+</td>
+<td>
+[% info.date %]
 </td>
 [% IF show_logfile %]
 <td>
 <a href="/[% doc %]/archive/[% revn %]-[% style %]/zpub-render.log">Logdatei</a>
+</td>
+[% END %]
+[% IF show_retry AND admin %]
+<td>
+<form action="/status" method="POST">
+<input type="hidden" name="jobname" value="[% jobname %]"/>
+<input type="submit" name="retry" value="Erneut versuchen"/>
+</form>
 </td>
 [% END %]
 </tr>

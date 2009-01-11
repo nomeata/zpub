@@ -27,6 +27,7 @@
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.fail
 	show_logfile = 1
+	show_retry = 1
 %]
 [% ELSE %]
 <it>keine fehlgeschlagende Aufträge</it>

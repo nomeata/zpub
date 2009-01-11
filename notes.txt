@@ -33,11 +33,22 @@ Verzeichnisse:
 	Apache-Konfiguration für diesen virtuellen Host
 /opt/zpub/duva/conf/admins
 	Benutzer mit Admin-Rechten (einer pro Zeile)
+/opt/zpub/duva/conf/features
+	Aktivierte optionale zpub-features, ein Wort pro Zeile:
+	* final_approve: Admin darf eine Version als final markieren.
+                         Dazu muss es die Datei final_style geben.
+/opt/zpub/duva/conf/default_style
+	Standard-(Draft-)Stil
+/opt/zpub/duva/conf/final_style
+	Falls final_approve aktiviert ist: Final-Stil
 /opt/zpub/duva/settings
 	zpub-Konfigurationsdaten, die der Kunde ändern darf
 	(Schreibrechte für www-data!)
 /opt/zpub/duva/settings/htpasswd
 	Apache-HTTP-Auth-Passwortdatei
+/opt/zpub/duva/settings/final_rev/$DOC
+	Falls final_approve aktiviert ist: Die finale Revision des Dokuments
+        $DOC.
 
 Installation:
 Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip

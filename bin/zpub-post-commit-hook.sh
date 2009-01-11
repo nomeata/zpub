@@ -28,7 +28,7 @@ then
   exit 1
 fi
 
-STYLE=$(cd $ZPUB/$CUST/style; ls)
+STYLE=$(cat $ZPUB/$CUST/conf/default_style)
 if [ ! -d "$ZPUB/$CUST/style/$STYLE" ]
 then
   echo "Could not find style directory in $ZPUB/$CUST/style/$STYLE"  >&2

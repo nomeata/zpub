@@ -7,7 +7,7 @@ use warnings;
 my $ZPUB = '/opt/zpub';
 
 # Global vars
-our ($CUST,$USER,$tt,$q);
+our ($CUST,$USER,%SETTINGS,$tt,$q);
 
 # Modules
 use Template;
@@ -34,6 +34,12 @@ sub lazy {
 	$ret ||= $func->(@args);
 	return $ret;
     }
+}
+
+sub to_hash {
+    my %ret;
+    $ret{$_} = 1 for @_;
+    return \%ret;
 }
 
 ############################
@@ -65,7 +71,7 @@ sub collect_revisions {
 	}
     } 
     closedir DIR;
-    return @ret;
+    return  sort {$b->{revn} <=> $a->{revn}} @ret;
 }
 
 # Selects the latest revision from a list of revisions
@@ -165,20 +171,22 @@ sub collect_jobs {
     for my $dir (qw/fail todo wip/) {
 	$ret{$dir} = [];
 	opendir(DIR, "$ZPUB/spool/$dir") || die "can't opendir $ZPUB/spool/$dir: $!";
-	for (grep { (not /^\./) && -f "$ZPUB/spool/$dir/$_" } readdir(DIR)) {
-	    open FILE, "$ZPUB/spool/$dir/$_" or die "can't open $ZPUB/spool/$dir/$_: $!";
-	    chomp (my @lines = <FILE>);
-	    close FILE;
-	    my $cust = shift @lines;
+	for my $jobname (grep { (not /^\./) && -f "$ZPUB/spool/$dir/$_" } readdir(DIR)) {
+	    my (@lines) = read_file("$ZPUB/spool/$dir/$jobname");
+	    unless (@lines) {die "can't open $ZPUB/spool/$dir/$jobname: $!"};
+	    chomp (@lines);
+	    my ($cust,$revn,$doc,$style,$outdir) = @lines;
 	    next unless $cust eq $CUST;
+	    my $info = lazy(\&rev_info,$revn);
+
 	    push @{$ret{$dir}}, {
-		jobname => $_,
-		revn    => shift @lines,
-		doc     => shift @lines,
-		style   => shift @lines,
-		outdir  => shift @lines,
+		jobname => $jobname,
+		revn    => $revn,
+		doc     => $doc,
+		style   => $style,
+		outdir  => $outdir,
+		info    => $info,
 	    };
-	    die "Left over lines in job $_: @lines" if @lines;
 	}
 	closedir DIR;
     }
@@ -212,24 +220,46 @@ sub write_htpasswd {
 			or die "Could not write htpasswd: $!";
 }
 
-# Returns a list of admin users
-sub read_admins {
-    if ( -r "$ZPUB/$CUST/settings/htpasswd") {
-	my @admins = read_file("$ZPUB/$CUST/conf/admins");
-	unless (@admins) { die "Could not read admins: $!" };
-	chomp(@admins);
-	return @admins;
-    } else {
-	return ()
-    }
-}
-
 # Is the current user an admin?
 sub is_admin {
     $USER or die "zpub accessed without an user name\n";
-    return scalar(grep {$_ eq $USER} read_admins());
+    return $SETTINGS{admins}{$USER};
 }
     
+# Read Settings
+sub read_settings {
+    # Admins
+    if ( -f "$ZPUB/$CUST/settings/htpasswd") {
+	my @admins = read_file("$ZPUB/$CUST/conf/admins");
+	unless (@admins) { die "Could not read admins: $!" };
+	chomp(@admins);
+	$SETTINGS{admins} = to_hash(@admins);
+    } else {
+	$SETTINGS{admins} = {};
+    }
+    
+    # Enabled features
+    if ( -f "$ZPUB/$CUST/conf/features") {
+	my @features = read_file("$ZPUB/$CUST/conf/features");
+	unless (@features) { die "Could not read features: $!" };
+	chomp(@features);
+	$SETTINGS{features} = to_hash(@features);
+    } else {
+	$SETTINGS{features} = {};
+    }
+
+    # Default style
+    $SETTINGS{default_style} = read_file("$ZPUB/$CUST/conf/default_style")
+	or "Could not read default_style: $!";
+    chomp($SETTINGS{default_style});
+
+    # Final style
+    if ($SETTINGS{features}{final_approve}) {
+	$SETTINGS{final_style} = read_file("$ZPUB/$CUST/conf/final_style")
+	    or "Could not read final_style: $!";
+	chomp($SETTINGS{final_style});
+    }
+}
 
 ####################
 # Output functions #
@@ -237,9 +267,10 @@ sub is_admin {
 
 sub standard_vars {
     return (
-	cust  => $CUST,
-	doc   => 0,
-	admin => is_admin(),
+	cust     => $CUST,
+	doc      => 0,
+	admin    => is_admin(),
+	settings => \%SETTINGS,
      );   
 }
 
@@ -333,6 +364,42 @@ sub do_htpasswd_edit {
     write_htpasswd($_[0]); 
 }
 
+# Mark a revision as approved
+sub do_approve {
+    my ($doc, $revn) = @_;
+
+    write_file("$ZPUB/$CUST/settings/final_rev/$doc",$revn);
+
+    queue_job($revn,$doc,$SETTINGS{final_style});
+
+}
+
+# Queues a job, default output directory
+sub queue_job {
+    my ($revn, $doc, $style) = @_;
+    
+    my $outdir = revpath($doc,{ revn => $revn, style => $style});
+
+    my @time = localtime(time);
+    my $jobname = sprintf "%04d%02d%02d-%02d%02d%02d-%s.job", @time[5,4,3,2,1,0], $$;
+
+    write_file("$ZPUB/spool/new/$jobname",
+	(sprintf "%s\n%s\n%s\n%s\n%s\n", $CUST,$revn, $doc, $style, $outdir)) 
+	or die "Could not write to $ZPUB/spool/new/$jobname: $!\n";
+
+    rename("$ZPUB/spool/new/$jobname","$ZPUB/spool/todo/$jobname")
+	or die "Could not move job $ZPUB/spool/new/$jobname to $ZPUB/spool/todo/$jobname: $!\n";
+
+}
+
+sub do_retry {
+    my ($jobname) = @_;
+
+    rename("$ZPUB/spool/fail/$jobname","$ZPUB/spool/todo/$jobname")
+	or die "Could not move job $ZPUB/spool/fail/$jobname to $ZPUB/spool/todo/$jobname: $!\n";
+}
+
+
 ################
 # Main routine #
 ################
@@ -347,6 +414,9 @@ $CUST = $q->url_param('cust') or die 'Missing parameter "cust"'."\n";
 # Figure out the current user
 $USER = $q->remote_user();
 
+# Read the settings
+read_settings();
+
 # Is this a POST?
 if ($q->request_method() eq "POST") {
     if (defined $q->url_param('admin')) {
@@ -358,6 +428,27 @@ if ($q->request_method() eq "POST") {
 	} else {
 	    die "Unknown POST target\n";
 	}
+    } elsif (defined $q->url_param('doc')) {
+	my $doc = $q->url_param('doc');    
+	
+	unless (-d "$ZPUB/$CUST/output/$doc") {
+	    die "Document $doc does not exist.\n";
+	}
+
+	if (defined $q->param('approve')) {
+	    if (not defined $q->param('revn')) {
+		die 'Missing parameter "revn"'."\n";
+	    }
+	    do_approve($doc,$q->param('revn'));
+	} else {
+	    die "Unknown POST target\n";
+	}
+
+    } elsif (defined $q->param('retry')) {
+	if (not defined $q->param('jobname')) {
+	    die 'Missing parameter "jobname"'."\n";
+	}
+	do_retry($q->param('jobname'));
     } else {
 	die "Unknown POST target\n";
     }

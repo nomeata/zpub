@@ -4,8 +4,7 @@
 
 <table>
 <tr>
-<th>Rev.</th><th>Autor</th><th>Datum</th><th>Stil</th>
-</tr>
+<th>Rev.</th><th>Autor</th><th>Datum</th></tr>
 [% FOREACH revs %]
 <tr>
 <td rowspan="2">
@@ -19,19 +18,17 @@
 <td>
 [% info.date | html %]
 </td>
-<td>
-[% style %]
-</td>
 [% IF settings.features.exists('final_approve') AND admin %]
 <td>
 <form action="/[% doc %]/archive/" method="POST">
 <input type="hidden" name="revn" value="[% revn %]"/>
 <input type="submit" name="approve" value="Freigeben"/>
 </form>
+</td>
 [% END %]
 </tr>
 <tr>
-<td colspan="3">
+<td colspan="2">
 [% info.log_msg | html %]
 </td>
 </tr>

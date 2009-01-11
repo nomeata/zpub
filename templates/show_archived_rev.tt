@@ -1,15 +1,10 @@
 [% WRAPPER zpub_wrapper.tt
-	title = "Archivierte Revision ${this_rev.revn}"
+	title = "Archivierte Revision ${this_revs.0.revn}"
 %]
 
 <h2>Archivierte Änderung</h2>
-<p>
-Dateirevision Nr. [% this_rev.revn %], verwendete Stil-Datei "[% this_rev.style %]".
-</p>
 
-<p>Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: „[% this_rev.info.log_msg | html %]“.
-
-
-<h2>Erzeugte Dateien</h2>
-[% INCLUDE block_filelist.tt %]
+[% FOR this_rev IN this_revs %]
+[% INCLUDE block_rev.tt %]
+[% END %]
 [% END %]

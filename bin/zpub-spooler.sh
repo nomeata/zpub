@@ -45,7 +45,7 @@ do
       $ZPUB/bin/zpub-render.sh "$CUST" "$REV" "$DOC" "$STYLE" "$OUTDIR"
     then
       echo "zpub-render.sh returned ok, job finished"
-      rm "$ZPUB/spool/wip/$FILE"
+      rm -f "$ZPUB/spool/wip/$FILE"
     else
       echo "zpub-render.sh failed, job moved to spool/fail"
       mv "$ZPUB/spool/wip/$FILE" "$ZPUB/spool/fail/$FILE"

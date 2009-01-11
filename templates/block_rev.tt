@@ -1,0 +1,11 @@
+<p>
+Dateirevision Nr. [% this_rev.revn %].
+</p>
+
+<p>Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: „[% this_rev.info.log_msg | html %]“.
+
+[% FOREACH this_rev.styles %]
+<h3>Erzeugte Dateien (Stil [% style %])</h3>
+[% INCLUDE block_filelist.tt %]
+[% END %]
+

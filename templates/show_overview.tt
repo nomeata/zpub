@@ -29,14 +29,23 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 </div>
 [% END %]
 
-<h2>Letze Änderung</h2>
-<p>
-Dateirevision Nr. [% this_rev.revn %], verwendete Stil-Datei "[% this_rev.style %]".
+<h2>Neuste Revision</h2>
+[% IF final_rev %]
+[% IF final_rev.revn == this_rev.revn %]
+<p>Diese Revision wurde freigegeben, und kann im folgenden sowohl als Arbeitsversion als auch als finale Version betrachtet werden.</p>
+[% END %]
+
+[% IF final_rev.revn < this_rev.revn %]
+<p>Diese Revision ist neuer als die letzte <a href="/[% doc %]/archive/[% final_rev.revn %]">freigegebene Version.</a> 
+[% IF settings.features.exists('final_approve') AND admin %]
+<form action="#" method="POST">
+<input type="hidden" name="revn" value="[% this_rev.revn %]"/>
+<input type="submit" name="approve" value="Diese Version Freigeben"/>
+</form>
+[% END %]
 </p>
+[% END %]
+[% END %]
 
-<p>Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: „[% this_rev.info.log_msg | html %]“.
-
-
-<h2>Erzeugte Dateien</h2>
-[% INCLUDE block_filelist.tt %]
+[% INCLUDE block_rev.tt %]
 [% END %]

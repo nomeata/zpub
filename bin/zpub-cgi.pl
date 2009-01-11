@@ -21,6 +21,7 @@ $CGI::DISABLE_UPLOADS = 1;  # no uploads
 use File::stat;
 use Time::localtime;
 use SVN::SVNLook;
+use DateTime;
 
 #############
 # Utilities #
@@ -59,19 +60,25 @@ sub collect_documents {
 sub collect_revisions {
     my ($doc) = @_;
     
-    my @ret;
+    my %hash;
     opendir(DIR, "$ZPUB/$CUST/output/$doc/archive")
 	|| die "can't opendir $ZPUB/$CUST/output/$doc/archive: $!";
     for (readdir(DIR)) {
 	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && /(\d+)-(.*)/) {
-	    push @ret, {revn => $1,
-			style => $2,
-			info => lazy(\&rev_info,$1)
-			}
+	    $hash{$1} ||= {
+		    revn => $1,
+		    info  => lazy(\&rev_info,$1),
+		    styles => [],
+	    };
+
+	    push @{$hash{$1}{styles}}, {
+		style => $2,
+		files => lazy(\&collect_output, $doc, $1, $2),
+	    }
 	}
     } 
     closedir DIR;
-    return  sort {$b->{revn} <=> $a->{revn}} @ret;
+    return sort {$b->{revn} <=> $a->{revn}} (values %hash);
 }
 
 # Selects the latest revision from a list of revisions
@@ -87,23 +94,38 @@ sub select_latest {
     return $ret;
 }
 
-# Selects the given revision from a list of revisions
-sub select_rev {
-    my ($revn,@revs) = @_;
+# If final_approve is enabled, selects the final revision from a list of revisions
+sub select_final {
+    my ($doc,@revs) = @_;
 
-    my $ret;
+    my $final_revn = final_revision($doc);
+
     for my $rev (@revs) {
-	if ($revn == $rev->{revn}) {
-	    $ret = $rev;
+	if ($rev->{revn} == $final_revn) {
+	    return $rev;
 	}
     }
-    return $ret;
+    return 0;
+}
+
+
+# Selects the given revisions from a list of revisions
+sub select_revs {
+    my ($revn,@revs) = @_;
+
+    my @ret;
+    for my $rev (@revs) {
+	if ($revn == $rev->{revn}) {
+	    push @ret, $rev;
+	}
+    }
+    return \@ret;
 }
 
 # Various pathnames
 sub revpath {
-    my ($doc,$rev) = @_;
-    return "$ZPUB/$CUST/output/$doc/archive/".$rev->{revn}."-".$rev->{style};
+    my ($doc,$revn,$style) = @_;
+    return "$ZPUB/$CUST/output/$doc/archive/$revn-$style";
 }
 sub repopath {
     return "$ZPUB/$CUST/repos/source";
@@ -112,9 +134,9 @@ sub repopath {
 # Information about the files in a given revision of
 # a document
 sub collect_output {
-    my ($doc,$rev) = @_;
+    my ($doc,$revn,$style) = @_;
 
-    my $path = revpath($doc,$rev);
+    my $path = revpath($doc,$revn,$style);
 
     my @ret;
     for my $file (glob "$path/*") {
@@ -139,7 +161,7 @@ sub collect_output {
 
 	my $date = ctime(stat($file)->mtime);
 
-	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$rev->{revn},$rev->{style},$filename;
+	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$revn,$style,$filename;
 	
 	push @ret, {
 	    filename => $filename,	
@@ -199,7 +221,7 @@ sub newer_jobs {
 
     my $ret = collect_jobs();
     for my $jobs (values %$ret) {
-	$jobs = [ grep { $_->{doc} eq $doc && $_->{revn} > $rev->{revn} } @$jobs ]
+	$jobs = [ grep { $_->{doc} eq $doc && $_->{revn} >= $rev->{revn} } @$jobs ]
     }
     return $ret;
 }
@@ -261,6 +283,21 @@ sub read_settings {
     }
 }
 
+# If final_approve is enabled, this returns the approved
+# revision for the given document, or "undef" if there is none.
+sub final_revision {
+    my ($doc) = @_;
+
+    if ( -f "$ZPUB/$CUST/settings/final_rev/$doc") {
+	my $revn = read_file("$ZPUB/$CUST/settings/final_rev/$doc")
+	    or die "Coult not read $ZPUB/$CUST/settings/final_rev/$doc: $!\n";
+	chomp ($revn);
+	return $revn;
+    } else {
+	return
+    }
+}
+
 ####################
 # Output functions #
 ####################
@@ -290,7 +327,7 @@ sub show_overview {
 
     my $rev = select_latest(@revs);
 
-    my $files = collect_output($doc, $rev);
+    my $final_rev = $SETTINGS{features}{final_approve} ? select_final($doc,@revs) : 0;
 
     my $newer_jobs = newer_jobs($doc,$rev);
 
@@ -299,7 +336,7 @@ sub show_overview {
 	doc => $doc,
 	revs => [ @revs ],
 	this_rev => $rev,
-	files => $files,
+	final_rev => $final_rev,
 	newer_jobs => $newer_jobs,
     }) or die ("Error: ".$tt->error());
 }
@@ -323,16 +360,13 @@ sub show_archived_rev {
 
     my @revs = collect_revisions($doc);
 
-    my $rev = select_rev($revn, @revs);
+    my $this_revs = select_revs($revn, @revs);
     
-    my $files = collect_output($doc, $rev);
-
     $tt->process('show_archived_rev.tt', {
 	standard_vars(),
-	doc      => $doc,
-	revs     => \@revs,
-	this_rev => $rev,
-	files    => $files,
+	doc       => $doc,
+	revs      => \@revs,
+	this_revs => $this_revs,
     }) or die ("Error: ".$tt->error());
 }
 
@@ -368,7 +402,8 @@ sub do_htpasswd_edit {
 sub do_approve {
     my ($doc, $revn) = @_;
 
-    write_file("$ZPUB/$CUST/settings/final_rev/$doc",$revn);
+    write_file("$ZPUB/$CUST/settings/final_rev/$doc",$revn) 
+	or die "Coult not write $ZPUB/$CUST/settings/final_rev/$doc: $!\n";
 
     queue_job($revn,$doc,$SETTINGS{final_style});
 
@@ -380,8 +415,7 @@ sub queue_job {
     
     my $outdir = revpath($doc,{ revn => $revn, style => $style});
 
-    my @time = localtime(time);
-    my $jobname = sprintf "%04d%02d%02d-%02d%02d%02d-%s.job", @time[5,4,3,2,1,0], $$;
+    my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$.job");
 
     write_file("$ZPUB/spool/new/$jobname",
 	(sprintf "%s\n%s\n%s\n%s\n%s\n", $CUST,$revn, $doc, $style, $outdir)) 

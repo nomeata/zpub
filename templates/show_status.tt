@@ -30,7 +30,7 @@
 	show_retry = 1
 %]
 [% ELSE %]
-<it>keine fehlgeschlagende Aufträge</it>
+<it>keine fehlgeschlagenden Aufträge</it>
 [% END %]
 
 [% END %]

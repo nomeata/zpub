@@ -295,14 +295,7 @@ sub final_revision {
 sub read_subscribers {
     my ($doc) = @_;
 
-    return read_doc_setting($doc,"subscribers"); 
-}
-
-# Returns the list of mail notification subscribers
-sub subscribers {
-    my ($doc) = @_;
-
-    return read_doc_setting($doc,"subscribers"); 
+    return read_doc_setting($doc,"subscribers") || ''; 
 }
 
 # Reads a per-document settings file, returning undef if it does not exit
@@ -421,7 +414,7 @@ sub show_htpasswd_edit {
 # Edit window for subscribers editing
 sub show_subscribers_edit {
     my ($doc) = @_;
-    my $subscribers = read_subscribers($doc) || '';
+    my $subscribers = read_subscribers($doc);
     $tt->process('show_subscribers_edit.tt', {
 	standard_vars(),
 	subscribers => $subscribers,
@@ -446,6 +439,14 @@ sub do_approve {
     queue_job($revn,$doc,$SETTINGS{final_style});
 
 }
+
+# Set subscriber list
+sub do_set_subscribers {
+    my ($doc, $subscribers) = @_;
+
+    write_doc_setting($doc,"subscribers",$subscribers);
+}
+
 
 # Queues a job, default output directory
 sub queue_job {
@@ -491,7 +492,7 @@ read_settings();
 
 # Is this a POST?
 if ($q->request_method() eq "POST") {
-    if (defined $q->url_param('admin')) {
+    if (defined $q->param('set_htpasswd')) {
 	if ($q->url_param('admin') eq 'passwd') {
 	    if (not defined $q->param('htpasswd')) {
 		die 'Missing parameter "htpasswd"'."\n";
@@ -512,6 +513,11 @@ if ($q->request_method() eq "POST") {
 		die 'Missing parameter "revn"'."\n";
 	    }
 	    do_approve($doc,$q->param('revn'));
+	} elsif (defined $q->param('set_subscribers')) {
+	    if (not defined $q->param('subscribers')) {
+		die 'Missing parameter "subscribers"'."\n";
+	    }
+	    do_set_subscribers($doc,$q->param('subscribers'));
 	} else {
 	    die "Unknown POST target\n";
 	}
@@ -555,7 +561,7 @@ if (defined $q->url_param('doc')) {
     } elsif (defined $q->url_param('admin'))  {
 	if ($q->url_param('admin') eq 'subscribers') {
 	    # Subscribers Edit view
-	    show_subscribers_edit();
+	    show_subscribers_edit($doc);
 	} else {
 	    die "Unknown admin command\n"
 	}

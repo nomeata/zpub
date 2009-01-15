@@ -30,7 +30,17 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 [% END %]
 
 <h2>Neuste Revision</h2>
-[% IF final_rev %]
+[% IF settings.features.exists('final_approve') %]
+[% IF NOT final_rev %]
+<p>Es wurde bisher keine Revision freigegeben.</a> 
+[% IF settings.features.exists('final_approve') AND admin %]
+<form action="#" method="POST">
+<input type="hidden" name="revn" value="[% this_rev.revn %]"/>
+<input type="submit" name="approve" value="Diese Version Freigeben"/>
+</form>
+[% END %]
+</p>
+[% ELSE %]
 [% IF final_rev.revn == this_rev.revn %]
 <p>Diese Revision wurde freigegeben, und kann im folgenden sowohl als Arbeitsversion als auch als finale Version betrachtet werden.</p>
 [% END %]
@@ -44,6 +54,7 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 </form>
 [% END %]
 </p>
+[% END %]
 [% END %]
 [% END %]
 

@@ -288,14 +288,36 @@ sub read_settings {
 sub final_revision {
     my ($doc) = @_;
 
-    if ( -f "$ZPUB/$CUST/settings/final_rev/$doc") {
-	my $revn = read_file("$ZPUB/$CUST/settings/final_rev/$doc")
-	    or die "Coult not read $ZPUB/$CUST/settings/final_rev/$doc: $!\n";
-	chomp ($revn);
-	return $revn;
+    return read_doc_setting($doc,"final_rev"); 
+}
+
+# Returns the list of mail notification subscribers
+sub subscribers {
+    my ($doc) = @_;
+
+    return read_doc_setting($doc,"subscribers"); 
+}
+
+# Reads a per-document settings file, returning undef if it does not exit
+sub read_doc_setting {
+    my ($doc,$what) = @_;
+
+    if ( -f "$ZPUB/$CUST/settings/$what/$doc") {
+	my $ret = read_file("$ZPUB/$CUST/settings/$what/$doc")
+	    or die "Coult not read $ZPUB/$CUST/settings/$what/$doc: $!\n";
+	chomp ($ret);
+	return $ret;
     } else {
-	return
+	return undef
     }
+}
+
+# Write a per-document settings file
+sub write_doc_setting {
+    my ($doc,$what,$value) = @_;
+
+    write_file("$ZPUB/$CUST/settings/$what/$doc", $value)
+	    or die "Coult not write $ZPUB/$CUST/settings/$what/$doc: $!\n";
 }
 
 ####################
@@ -402,8 +424,7 @@ sub do_htpasswd_edit {
 sub do_approve {
     my ($doc, $revn) = @_;
 
-    write_file("$ZPUB/$CUST/settings/final_rev/$doc",$revn) 
-	or die "Coult not write $ZPUB/$CUST/settings/final_rev/$doc: $!\n";
+    write_doc_setting($doc,"final_rev",$revn);
 
     queue_job($revn,$doc,$SETTINGS{final_style});
 
@@ -413,7 +434,7 @@ sub do_approve {
 sub queue_job {
     my ($revn, $doc, $style) = @_;
     
-    my $outdir = revpath($doc,{ revn => $revn, style => $style});
+    my $outdir = revpath($doc, $revn, $style);
 
     my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$.job");
 

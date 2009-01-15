@@ -46,14 +46,14 @@ fi
 
 for DOC in $CHANGED_DOCS
 do
-  JOBNAME="$(date +%Y%m%d-%H%M%S-$$.job)"
-  cat > /opt/zpub/spool/new/$JOBNAME <<__END__
+  JOBNAME="$(date +%Y%m%d-%H%M%S-$$-$DOC.job)"
+  cat > /opt/zpub/spool/new/"$JOBNAME" <<__END__
 $CUST
 $REV
 $DOC
 $STYLE
 $ZPUB/$CUST/output/$DOC/archive/$REV-$STYLE
 __END__
-  mv /opt/zpub/spool/new/$JOBNAME /opt/zpub/spool/todo/$JOBNAME
+  mv /opt/zpub/spool/new/"$JOBNAME" /opt/zpub/spool/todo/"$JOBNAME"
 done
 

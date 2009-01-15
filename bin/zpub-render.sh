@@ -103,8 +103,12 @@ function makepdf {
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
 	
-	fop -xml source/$DOCNAME.xml -xsl style/fo.xsl -pdf $DOCNAME.pdf
-	#rm $1.fo
+	xsltproc style/fo.xsl source/$DOCNAME.xml > source/$DOCNAME.fo
+	fop -fo source/$DOCNAME.fo -pdf $DOCNAME.pdf
+	rm source/$DOCNAME.fo
+
+	# fop uses xalan, xalan has bugs
+	#fop -xml source/$DOCNAME.xml -xsl style/fo.xsl -pdf $DOCNAME.pdf
 }
 
 

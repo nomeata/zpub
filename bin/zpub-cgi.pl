@@ -13,17 +13,10 @@ our ($CUST,$USER,%SETTINGS,$tt,$q);
 # Modules
 use Template;
 use Template::Constants qw( :debug );
-use File::Basename qw/dirname basename/;
-use File::Slurp;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 $CGI::POST_MAX=1024 * 100;  # max 100K posts
 $CGI::DISABLE_UPLOADS = 1;  # no uploads
-use File::stat;
-use Time::localtime;
-use SVN::SVNLook;
-use DateTime;
-
 
 use lib "$ZPUB/bin/lib";
 use ZPub;

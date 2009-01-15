@@ -50,6 +50,7 @@ do
       echo "zpub-render.sh failed, job moved to spool/fail"
       mv "$ZPUB/spool/wip/$FILE" "$ZPUB/spool/fail/$FILE"
     fi
+    $ZPUB/bin/zpub-send-mail.pl "$CUST" "$REV" "$DOC" "$STYLE"
 
   fi
 done

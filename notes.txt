@@ -54,13 +54,13 @@ Verzeichnisse:
 /opt/zpub/duva/settings/final_rev/$DOC
 	Falls final_approve aktiviert ist: Die finale Revision des Dokuments
         $DOC.
-/opt/zpub/duva/settings/receips/$DOC
+/opt/zpub/duva/settings/subscribers/$DOC
 	Zu benachrichtigende Benutzer bei Änderungen
 
 Installation:
 Pakete: subversion libapache2-svn fop wine xsltproc docbook-xsl cabextract zip
         libpaper1 libsaxon-java sun-java6-jre libtemplate-perl libsvn-svnlook-perl
-	apache2 libfile-slurp-perl libdatetime-perl
+	apache2 libfile-slurp-perl libdatetime-perl libmime-lite-perl
 
 wine hhtmlhelp.exe
 wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
@@ -70,4 +70,4 @@ bash ./htmlhelp.sh
 TODO:
  * Dateigrößen und Datum human-readable
  * Aufträge löschen
-
+ * notifications@zpub.de einrichten

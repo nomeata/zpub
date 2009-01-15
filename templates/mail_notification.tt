@@ -1,0 +1,23 @@
+Hallo zpub-Anwender,
+
+es wurden Änderungen am Dokument [% doc %] gemacht:
+
+[% FOR this_rev IN this_revs %]
+Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: 
+[% this_rev.info.log_msg | html %]
+
+[% FOREACH this_rev.styles %]
+Erzeugte Dateien (Stil [% style %]):
+[% FOREACH files %]
+ * [% filename +%]
+   Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon +%]
+[% UNLESS size == 'directory' %]
+   Size: [% size +%]
+[% END %]
+   Date: [% date +%]
+   http://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]-[% style %]/[% filename +%]
+[% END %]
+
+[% END %]
+
+[% END %]

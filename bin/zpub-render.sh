@@ -26,7 +26,7 @@ DOC="$3"
 STYLE="$4"
 OUTDIR="$5"
 
-if [ -z "$CUST" -o -z "$REV" -o -z "$DOC" -o -z "$STYLE" -o -z "OUTDIR" ]
+if [ -z "$CUST" -o -z "$REV" -o -z "$DOC" -o -z "$STYLE" -o -z "$OUTDIR" ]
 then
   echo "Parameter list not complete."
   echo "$USAGE"

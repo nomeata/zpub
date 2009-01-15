@@ -1,3 +1,11 @@
+use File::Basename qw/dirname basename/;
+use File::Slurp;
+use File::stat;
+use Time::localtime;
+use SVN::SVNLook;
+use DateTime;
+
+
 #############
 # Utilities #
 #############

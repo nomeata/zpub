@@ -7,7 +7,7 @@ Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.inf
 [% this_rev.info.log_msg | html %]
 
 [% FOREACH this_rev.styles %]
-Erzeugte Dateien (Stil [% style %]):
+Erzeugte Dateien (Layout [% style %]):
 [% FOREACH files %]
  * [% filename +%]
    Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon +%]

@@ -10,9 +10,12 @@
 
 <ul class="navi">
 <li><a href="/">Dokumentenübersicht</a></li>
-[% IF doc %]
-<li><a href="/[% doc %]">Dokument „[% doc %]“</a></li>
+[% FOR doc IN documents%]
+<li><a href="/[% doc %]">Dokument „[% doc %]“</a>
+<ul>
 <li><a href="/[% doc %]/archive">Archiv</a></li>
+</ul>
+</li>
 [% END %]
 <li><a href="/status">Status</a></li>
 [% IF admin %]

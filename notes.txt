@@ -2,8 +2,12 @@ Verzeichnisse:
 
 /opt/zpub/repos/zpub
 	zpub repository (skripte, doku), Kundenunabhängig
-/opt/zpub/zpub
-	checkout für produktivbetrieb
+/opt/zpub/bin
+	skripte
+/opt/zpub/templates
+	Template-Toolkit Dateien
+/opt/zpub/static
+	Wird unter /static in den Webauftritt eingeblendet
 /opt/zpub/tools
 	unversioned tools (fop-hyph)
 /opt/zpub/spool
@@ -16,6 +20,7 @@ Verzeichnisse:
 	who moves them here while working on it
 /opt/zpub/spool/fail
 	and then either delets them, or puts them here.
+	
 	
 
 /opt/zpub/duva

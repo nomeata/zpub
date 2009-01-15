@@ -308,14 +308,14 @@ sub standard_vars {
 	doc      => 0,
 	admin    => is_admin(),
 	settings => \%SETTINGS,
+	documents => [ collect_documents() ],
      );   
 }
 
 # All documents for one customer
 sub show_documents {
     $tt->process('show_documents.tt', {
-	standard_vars(),
-	documents => [ collect_documents() ]
+	standard_vars()
     }) or die ("Error: ".$tt->error());
 }
 

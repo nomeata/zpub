@@ -291,6 +291,13 @@ sub final_revision {
     return read_doc_setting($doc,"final_rev"); 
 }
 
+# Returns the subscribers of the document
+sub read_subscribers {
+    my ($doc) = @_;
+
+    return read_doc_setting($doc,"subscribers"); 
+}
+
 # Returns the list of mail notification subscribers
 sub subscribers {
     my ($doc) = @_;
@@ -408,6 +415,16 @@ sub show_htpasswd_edit {
     $tt->process('show_htpasswd_edit.tt', {
 	standard_vars(),
 	htpasswd => $htpasswd,
+    }) or die ("Error: ".$tt->error());
+}
+
+# Edit window for subscribers editing
+sub show_subscribers_edit {
+    my ($doc) = @_;
+    my $subscribers = read_subscribers($doc) || '';
+    $tt->process('show_subscribers_edit.tt', {
+	standard_vars(),
+	subscribers => $subscribers,
     }) or die ("Error: ".$tt->error());
 }
 
@@ -535,6 +552,13 @@ if (defined $q->url_param('doc')) {
     } elsif (defined $q->url_param('rev'))  {
 	my $rev = $q->url_param('rev');
 	show_archived_rev($doc, $rev);
+    } elsif (defined $q->url_param('admin'))  {
+	if ($q->url_param('admin') eq 'subscribers') {
+	    # Subscribers Edit view
+	    show_subscribers_edit();
+	} else {
+	    die "Unknown admin command\n"
+	}
     } else {
 	# No specific revision requested, print overview page
 	show_overview($doc);

@@ -61,8 +61,8 @@ function makehtmlhelp {
 
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr ../source/images/* images/
 	cp -flr ../style/htmlhelp-shared/* .
+	test -d ../source/images/ && cp -flr ../source/images/* images/
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 	mv "$DOCNAME.chm" ../
@@ -79,8 +79,8 @@ function makehtml {
 	
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr ../source/images/* images/
 	cp -flr ../style/htmlhelp-shared/* .
+	test -d ../source/images/ && cp -flr ../source/images/* images/
 	rm -f ../${DOCNAME}_html.zip
 	zip -r ../${DOCNAME}_html.zip .
 }

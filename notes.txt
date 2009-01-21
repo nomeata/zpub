@@ -6,7 +6,7 @@ Verzeichnisse:
 	skripte
 /opt/zpub/templates
 	Template-Toolkit Dateien
-/opt/zpub/static
+/opt/zpub/templates/static
 	Wird unter /static in den Webauftritt eingeblendet
 /opt/zpub/tools
 	unversioned tools (fop-hyph)
@@ -71,3 +71,4 @@ TODO:
  * Dateigrößen und Datum human-readable
  * Aufträge löschen
  * notifications@zpub.de einrichten
+ * Stabiler “latest” link

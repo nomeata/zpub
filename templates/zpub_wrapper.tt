@@ -10,7 +10,7 @@
 </title>
 <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen, projection" />
 </head>
-<body>
+<body class="[% pagekind %]">
 
 <ul class="navi">
 <li><a href="/">Dokumentenübersicht</a></li>

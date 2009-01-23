@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = 'Status'
+	pagekind = 'status'
 %]
 
 <h2>Wartende Aufträge</h2>

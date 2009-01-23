@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = 'Dokumentenübersicht'
+	pagekind = "documents"
 %]
 
 <ul>

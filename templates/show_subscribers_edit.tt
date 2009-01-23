@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = 'Abonnenten'
+	pagekind = 'subscribers'
 %]
 
 <h2>Liste der Abonnenten der e-Mail-Benachrichtigung</h2>

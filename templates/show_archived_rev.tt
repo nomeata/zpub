@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = "Archivierte Revision ${this_revs.0.revn}"
+	pagekind = "archived_rev"
 %]
 
 <h2>Archivierte Änderung</h2>

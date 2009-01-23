@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = 'Archiv'
+	pagekind = "archive"
 %]
 
 <table>

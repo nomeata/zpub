@@ -1,5 +1,6 @@
 [% WRAPPER zpub_wrapper.tt
 	title = 'Übersicht'
+	pagekind = 'document'
 %]
 
 [% IF newer_jobs.fail.size OR newer_jobs.todo.size OR newer_jobs.wip.size %]

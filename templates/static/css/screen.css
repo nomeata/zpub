@@ -4,16 +4,14 @@
 	}
 
 body {
-	font-size: 1em; 
 	margin: 0; 
 	padding: 0; 
 	}
 
 .navi, 
 #main {
-	font-size: 1em; 
 	margin: 0; 
-	padding 40px; 
+	padding 1em; 
 	}
 
 .navi {
@@ -23,6 +21,6 @@ body {
 	}
 
 #main {
-	margin-left: 20em; 
+	margin-left: 23em; 
 	border: 1px solid silver; 
 	}

@@ -19,7 +19,7 @@
 <ul>
 <li><a href="/[% doc %]/archive">Archiv</a></li>
 [% IF admin %]
-<li><a href="/[% doc %]/admin/subscribers">Abonennten</a></li>
+<li><a href="/[% doc %]/admin/subscribers">Abonnenten</a></li>
 [% END %]
 </ul>
 </li>

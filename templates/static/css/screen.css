@@ -2,3 +2,16 @@
 * {
 	font-family: "MS Trebuchet", Arial, sans-serif; 
 	}
+
+
+
+#navi {
+	float: left; 
+	width: 20em; 
+	border: 1px solid silver; 
+	}
+
+#main {
+	margin-left: 20em; 
+	border: 1px solid silver; 
+	}

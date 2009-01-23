@@ -3,7 +3,16 @@
 	font-family: "MS Trebuchet", Arial, sans-serif; 
 	}
 
+body {
+	margin: 0; 
+	padding: 0; 
+	}
 
+.navi, 
+#main {
+	margin: 0; 
+	padding 40px; 
+	}
 
 .navi {
 	float: left; 

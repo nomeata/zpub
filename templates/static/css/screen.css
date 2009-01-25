@@ -76,7 +76,7 @@ h1 {
 	border-style: solid;
 	border-color: silver; 
 	}
-#navi ul {
+#navi ul ul {
 	border-width: 0;
 	}
 #navi li, 
@@ -95,10 +95,10 @@ h1 {
 
 
 .status {
-	padding-left: 20px; 
+	padding-left: 26px; 
 	background: url(/static/icons/stock_mail-filters-apply.png) no-repeat 0 50%; 
 	}
 .user {	
-	padding-left: 20px; 
+	padding-left: 26px; 
 	background: url(/static/icons/system-users.png) no-repeat 0 50%; 
 	}

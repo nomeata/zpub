@@ -72,9 +72,12 @@ h1 {
 	padding: 0; 
 	}
 #navi ul {
-	border-width: 1px;
+	border-width: 1px 1px 0 1px;
 	border-style: solid;
-	border-color: blue; 
+	border-color: silver; 
+	}
+#navi ul {
+	border-width: 0;
 	}
 #navi li, 
 #navi a {
@@ -84,8 +87,18 @@ h1 {
 	border-bottom: 1px solid silver; 
 	}
 #navi li a {
-	padding: 2px 5px; 
+	padding: 0.4em 5px 0.4em 1em; 
 	}
 #navi li li a {
-	padding: 1px 5px 1px 15px; 
+	padding: 0.2em 5px 0.2em 2em; 
+	}
+
+
+.status {
+	padding-left: 20px; 
+	background: url(/static/icons/stock_mail-filters-apply.png) no-repeat 0 50%; 
+	}
+.user {	
+	padding-left: 20px; 
+	background: url(/static/icons/system-users.png) no-repeat 0 50%; 
 	}

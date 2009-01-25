@@ -8,13 +8,48 @@ body {
 	padding: 0; 
 	}
 
-.navi, 
+h1, 
+#header p {
+	font-family: Georgia; 
+	padding: 0; 
+	border-style: solid; 
+	border-color: #cccccc; 
+	}
+h1 em {
+	font-family: Georgia; 
+	font-size: 1em; 
+	line-height: 1em;
+	}
+h1 {
+	font-size: 2em; 
+	line-height: 2em; 
+	margin: 2em 0;
+	float: left; 
+	width: 10%;
+	border-width: 1px 1px 1px 0;
+	margin-left: -1px; 
+	padding-left: 10%; 
+	padding-right: 5%; 
+	}
+#header p {	
+	font-size: 1em; 
+	line-height: 4em; 
+	margin: 4em 0;
+	float: left; 
+	width: 60%; 
+	border-width: 1px 0 1px 0;
+	padding-left: 5%; 
+	padding-right: 10%; 
+	}
+
+
+#navi, 
 #main {
 	margin: 0; 
 	padding 1em; 
 	}
 
-.navi {
+#navi {
 	float: left; 
 	width: 20em; 
 	border: 1px solid silver; 
@@ -23,4 +58,21 @@ body {
 #main {
 	margin-left: 23em; 
 	border: 1px solid silver; 
+	}
+
+
+
+#navi * {
+	margin: 0;
+	padding: 0; 
+	}
+#navi li, 
+#navi a {
+	display: block; 
+	}
+#navi li a {
+	padding: 2px 5px; 
+	}
+#navi li li a {
+	padding: 1px 5px 1px 15px; 
 	}

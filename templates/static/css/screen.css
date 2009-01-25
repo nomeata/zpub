@@ -115,13 +115,13 @@ h1 {
 	}
 
 .chm {	
-	background-image: url(/static/icons/help-contents.png); 
+	list-style-image: url(/static/icons/help-contents.png); 
 	}
 .zip {	
-	background-image: url(/static/icons/media-zip.png); 
+	list-style-image: url(/static/icons/media-zip.png); 
 	}
 .pdf {	
-	background-image: url(/static/icons/stock_save-pdf.png); 
+	list-style-image: url(/static/icons/stock_save-pdf.png); 
 	}
 .htmldir {	
 	list-style-image: url(/static/icons/document-open.png); 

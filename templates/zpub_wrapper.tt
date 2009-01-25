@@ -13,7 +13,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#navi > li > .document").click(function () {
-	$(this).parent("li").children("ul").toggle();
+  	alert('bla');   
+//	$(this).parent("li").children("ul").toggle();
     });
 });
 </script>

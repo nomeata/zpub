@@ -90,10 +90,11 @@ h1 {
 	padding: 0.4em 5px 0.4em 1em; 
 	}
 #navi li li a {
-	padding: 0.2em 5px 0.2em 2em; 
+	padding: 0.1em 5px 0.1em 2em; 
 	}
 
-#navi a {
+#navi li a,
+#navi li li a {
 	background-repeat: no-repeat; 
 	background-position: 0 50%; 
 	padding-left: 26px; 

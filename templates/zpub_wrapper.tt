@@ -33,9 +33,9 @@
 </ul>
 </li>
 [% END %]
-<li><a href="/status">Status</a></li>
+<li><a class="status" href="/status">Status</a></li>
 [% IF admin %]
-<li><a href="/admin/passwd">Benutzer</a></li>
+<li><a class="user" href="/admin/passwd">Benutzer</a></li>
 [% END %]
 </ul>
 </div>

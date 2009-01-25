@@ -89,7 +89,7 @@ h1 {
 	padding: 0.4em 5px 0.4em 1em; 
 	border-bottom: 1px solid silver; 
 	}
-#navi li a.currentpage {
+#navi li a.current_page {
 	border-bottom: none; 
 	}
 #navi li li a {

@@ -102,3 +102,7 @@ h1 {
 	padding-left: 26px; 
 	background: url(/static/icons/system-users.png) no-repeat 0 50%; 
 	}
+.document {	
+	padding-left: 26px; 
+	background: url(/static/icons/document-properties.png) no-repeat 0 50%; 
+	}

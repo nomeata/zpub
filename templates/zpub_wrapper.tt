@@ -24,7 +24,7 @@
 <ul>
 <li><a href="/">Dokumentenübersicht</a></li>
 [% FOR doc IN documents%]
-<li><a href="/[% doc %]">Dokument „[% doc %]“</a>
+<li><a class="document" href="/[% doc %]">Dokument „[% doc %]“</a>
 <ul>
 <li><a href="/[% doc %]/archive">Archiv</a></li>
 [% IF admin %]

@@ -46,14 +46,14 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 [% END %]
 
 [% IF final_rev.revn < this_rev.revn %]
-<p>Diese Revision ist neuer als die letzte <a href="/[% doc %]/archive/[% final_rev.revn %]">freigegebene Version.</a> 
+<p>Diese Revision ist neuer als die letzte <a href="/[% doc %]/archive/[% final_rev.revn %]">freigegebene Version.</p> 
 [% IF settings.features.exists('final_approve') AND admin %]
-<form action="#" method="POST">
+<form action="#" method="post">
 <input type="hidden" name="revn" value="[% this_rev.revn %]"/>
 <input type="submit" name="approve" value="Diese Version Freigeben"/>
 </form>
 [% END %]
-</p>
+
 [% END %]
 [% END %]
 [% END %]

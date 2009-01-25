@@ -32,24 +32,32 @@ $(document).ready(function(){
 
 <hr />
 
+[% MACRO link(class,href,text) BLOCK -%]
+<a class="[% class =%]
+          [% IF href == this_page %]current_page[% ELSE -%]
+		  [%- IF this_page.startswith(href)  %]super_page[% END -%]
+		  [%- IF href.startswith(this_page) %]sub_page[% END -%]
+	  [%- END %]" href="[% href %]">[% text %]</a>
+[% END %]
+
 <div id="navi"> 
 <ul>
-<li><a class="overview" href="/">Dokumentenübersicht</a></li>
+<li>[% link("overview","/","Dokumentenübersicht") %]</li>
 [% FOR doc IN documents%]
-<li><a class="document" href="/[% doc %]">Dokument „[% doc %]“</a>
+<li>[% link("document","/$doc/","Dokument „$doc“") %]
 [% IF this_page.startswith("/$doc/") %]
 <ul>
-<li><a href="/[% doc %]/archive">Archiv</a></li>
+<li>[% link("","/$doc/archive/","Archiv")%]</li>
 [% IF admin %]
-<li><a href="/[% doc %]/admin/subscribers">Abonnenten</a></li>
+<li>[% link("","/$doc/subscribers/","Abonnenten")%]</li>
 [% END %]
 </ul>
 [% END %]
 </li>
 [% END %]
-<li><a class="status" href="/status">Status</a></li>
+<li>[% link("status","/status/","Status")%]</li>
 [% IF admin %]
-<li><a class="user" href="/admin/passwd">Benutzer</a></li>
+<li>[% link("user","/admin/passwd/","Benutzer")%]</li>
 [% END %]
 </ul>
 </div>

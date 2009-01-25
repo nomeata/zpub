@@ -1,6 +1,7 @@
 
 * {
 	font-family: "MS Trebuchet", Arial, sans-serif; 
+	font-family: Georgia, "Times New Roman", serif; 
 	}
 
 body {
@@ -16,7 +17,7 @@ hr {
 
 h1, 
 #header p {
-	font-family: Georgia; 
+	font-family: Georgia, "Times New Roman", serif; 
 	padding: 0; 
 	border-style: solid; 
 	border-color: #cccccc; 

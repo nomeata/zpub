@@ -15,13 +15,17 @@ hr {
 	clear: both; 
 	}
 
-h1, 
-#header p {
-	font-family: Georgia, "Times New Roman", serif; 
-	padding: 0; 
+#header {
+	border-width: 1px 0; 
 	border-style: solid; 
 	border-color: #cccccc; 
 	}
+#header, 
+#header * {
+	margin: 0; 
+	padding: 0; 
+	}
+
 h1 em {
 	font-style: italic; 
 	font-size: 1em; 
@@ -30,21 +34,12 @@ h1 em {
 h1 {
 	font-size: 2em; 
 	line-height: 2em; 
-	margin: 1em 0;
 	float: left; 
 	width: 22em;
-	border-width: 1px 1px 1px 0;
-	margin-left: -1px; 
-	padding-left: 10%; 
-	padding-right: 5%; 
 	}
 #header p {	
 	font-size: 1em; 
 	line-height: 4em; 
-	margin: 2em 0; 
-	border-width: 1px 0 1px 0;
-	padding-left: 5%; 
-	padding-right: 10%; 
 	}
 
 

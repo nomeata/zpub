@@ -18,9 +18,10 @@
 	<p>Zentrales Dokumentationssystem</p>
 </div>
 
+<hr />
 
-
-<ul id="navi">
+<div id="navi"> 
+<ul>
 <li><a href="/">Dokumentenübersicht</a></li>
 [% FOR doc IN documents%]
 <li><a href="/[% doc %]">Dokument „[% doc %]“</a>
@@ -37,11 +38,14 @@
 <li><a href="/admin/passwd">Benutzer</a></li>
 [% END %]
 </ul>
+</div>
 
 <div id="main">
 <h2>[% title %]</h2>
 [% content %]
 </div>
+
+<hr />
 
 <!--
 <div  id="footer">

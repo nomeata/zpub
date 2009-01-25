@@ -52,7 +52,7 @@ h1 {
 
 #main {
 	margin: 0; 
-	padding 1em; 
+	padding: 1em; 
 	}
 
 #navi {
@@ -96,8 +96,8 @@ h1 {
 #navi li a,
 #navi li li a {
 	background-repeat: no-repeat; 
-	background-position: 0 50%; 
-	padding-left: 26px; 
+	background-position: 5px 50%; 
+	padding-left: 30px; 
 	}
 
 .overview {

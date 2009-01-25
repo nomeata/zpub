@@ -77,7 +77,7 @@ h1 {
 	border-color: silver; 
 	}
 #navi ul ul {
-	display: none; 
+	//display: none; 
 	border-width: 0;
 	}
 #navi li, 

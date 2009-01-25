@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen, projection" />
 <script type="text/javascript" src="/static/js/jquery-1.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.linkicons.js"></script>
+<!--
 <script type="text/javascript">
 $(document).ready(function(){
     $(".document").click(function () {
@@ -19,6 +20,7 @@ $(document).ready(function(){
     });
 });
 </script>
+-->
 </head>
 <body class="[%- pagekind -%]_wrapper">
 
@@ -35,12 +37,14 @@ $(document).ready(function(){
 <li><a class="overview" href="/">Dokumentenübersicht</a></li>
 [% FOR doc IN documents%]
 <li><a class="document" href="/[% doc %]">Dokument „[% doc %]“</a>
+[% IF this_page.startswith("/$doc/") %]
 <ul>
 <li><a href="/[% doc %]/archive">Archiv</a></li>
 [% IF admin %]
 <li><a href="/[% doc %]/admin/subscribers">Abonnenten</a></li>
 [% END %]
 </ul>
+[% END %]
 </li>
 [% END %]
 <li><a class="status" href="/status">Status</a></li>

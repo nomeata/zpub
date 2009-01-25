@@ -27,6 +27,7 @@ use ZPub;
 
 sub standard_vars {
     return (
+	this_page=> $q->script_name(),
 	cust     => $CUST,
 	doc      => 0,
 	admin    => is_admin(),
@@ -244,6 +245,12 @@ $tt = Template->new({
     INCLUDE_PATH => "$ZPUB/templates",
     DEBUG => DEBUG_UNDEF,
 }) || die "$Template::ERROR\n";
+
+$tt->context->define_vmethod('SCALAR','startswith',sub {
+		my ($what,$with) = @_;
+		return (substr ($what,0,length($with)) eq $with);
+	});
+	
 
 # Figure out what page to show
 if (defined $q->url_param('doc')) {

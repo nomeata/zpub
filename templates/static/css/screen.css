@@ -93,7 +93,7 @@ h1 {
 	border-bottom-width: 0px; 
 	}
 
-.filelist a, 
+
 #navi li a,
 #navi li li a {
 	background-repeat: no-repeat; 
@@ -124,6 +124,6 @@ h1 {
 	background-image: url(/static/icons/stock_save-pdf.png); 
 	}
 .htmldir {	
-	background-image: url(/static/icons/document-open.png); 
+	list-style-image: url(/static/icons/document-open.png); 
 	}	
 

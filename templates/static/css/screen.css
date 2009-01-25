@@ -15,17 +15,18 @@ hr {
 	clear: both; 
 	}
 
-#header {
-	border-width: 1px 0; 
-	border-style: solid; 
-	border-color: #cccccc; 
-	}
+
 #header, 
 #header * {
 	margin: 0; 
 	padding: 0; 
 	}
-
+#header {
+	margin: 1em 0;
+	border-width: 1px 0; 
+	border-style: solid; 
+	border-color: #cccccc; 
+	}
 h1 em {
 	font-style: italic; 
 	font-size: 1em; 
@@ -35,7 +36,9 @@ h1 {
 	font-size: 2em; 
 	line-height: 2em; 
 	float: left; 
-	width: 11em;
+	width: 10em;
+	padding-right: 1em; 
+	text-align: right; 
 	
 	border-width: 0 1px 0 0; 
 	border-style: solid; 

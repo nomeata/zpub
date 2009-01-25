@@ -77,20 +77,20 @@ h1 {
 	border-color: silver; 
 	}
 #navi ul ul {
+	display: none; 
 	border-width: 0;
 	}
 #navi li, 
 #navi a {
 	display: block; 
 	}
-#navi a {
-	border-bottom: 1px solid silver; 
-	}
 #navi li a {
 	padding: 0.4em 5px 0.4em 1em; 
+	border-bottom: 1px solid silver; 
 	}
 #navi li li a {
 	padding: 0.1em 5px 0.1em 2em; 
+	border-bottom-width: 0px; 
 	}
 
 #navi li a,

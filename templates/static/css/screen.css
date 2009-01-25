@@ -93,6 +93,7 @@ h1 {
 	border-bottom-width: 0px; 
 	}
 
+.filelist a, 
 #navi li a,
 #navi li li a {
 	background-repeat: no-repeat; 
@@ -112,3 +113,17 @@ h1 {
 .document {	
 	background-image: url(/static/icons/document-properties.png); 
 	}
+
+.chm {	
+	background-image: url(/static/icons/help-contents.png); 
+	}
+.zip {	
+	background-image: url(/static/icons/media-zip.png); 
+	}
+.pdf {	
+	background-image: url(/static/icons/stock_save-pdf.png); 
+	}
+.htmldir {	
+	background-image: url(/static/icons/document-open.png); 
+	}	
+	

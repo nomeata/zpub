@@ -9,7 +9,7 @@
 [% FOREACH revs %]
 <tr>
 <td rowspan="2">
-<a href="/[% doc %]/archive/[% revn %]">
+<a href="/[% doc %]/archive/[% revn %]/">
 [% revn %]
 </a>
 </td>

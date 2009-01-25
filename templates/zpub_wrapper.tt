@@ -49,7 +49,7 @@ $(document).ready(function(){
 <ul>
 <li>[% link("","/$doc/archive/","Archiv")%]</li>
 [% IF admin %]
-<li>[% link("","/$doc/subscribers/","Abonnenten")%]</li>
+<li>[% link("","/$doc/admin/subscribers/","Abonnenten")%]</li>
 [% END %]
 </ul>
 [% END %]

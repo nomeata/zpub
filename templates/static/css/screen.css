@@ -58,7 +58,6 @@ h1 {
 #navi {
 	float: left; 
 	width: 20em; 
-	border: 1px solid silver; 
 	}
 
 #main {
@@ -71,6 +70,11 @@ h1 {
 #navi * {
 	margin: 0;
 	padding: 0; 
+	}
+#navi ul {
+	border-width: 1px;
+	border-style: solid;
+	border-color: blue; 
 	}
 #navi li, 
 #navi a {

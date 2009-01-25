@@ -85,11 +85,18 @@ hr {
 #navi a {
 	display: block; 
 	}
+#navi a {
+	text-decoration: none; 
+	}
+#navi a:hover {
+	text-decoration: underline; 
+	}
 #navi li a {
 	padding: 0.4em 5px 0.4em 1em; 
 	border-top: 1px solid silver; 
 	}
 #navi li a.current_page {
+	background-color: #DCDCDC; 
 	}
 #navi li li a {
 	padding: 0.1em 5px 0.1em 2em; 

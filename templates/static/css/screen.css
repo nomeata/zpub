@@ -30,7 +30,7 @@ h1 em {
 h1 {
 	font-size: 2em; 
 	line-height: 2em; 
-	margin: 2em 0;
+	margin: 1em 0;
 	float: left; 
 	width: 10%;
 	border-width: 1px 1px 1px 0;
@@ -41,7 +41,7 @@ h1 {
 #header p {	
 	font-size: 1em; 
 	line-height: 4em; 
-	margin: 4em 0;
+	margin: 2em 0;
 	float: left; 
 	width: 60%; 
 	border-width: 1px 0 1px 0;
@@ -93,16 +93,21 @@ h1 {
 	padding: 0.2em 5px 0.2em 2em; 
 	}
 
+#navi a {
+	background-repeat: no-repeat; 
+	background-position: 0 50%; 
+	padding-left: 26px; 
+	}
 
 .status {
-	padding-left: 26px; 
-	background: url(/static/icons/stock_mail-filters-apply.png) no-repeat 0 50%; 
+	background-image: url(/static/icons/help-about.png); 
+	}
+.status {
+	background-image: url(/static/icons/stock_mail-filters-apply.png); 
 	}
 .user {	
-	padding-left: 26px; 
-	background: url(/static/icons/system-users.png) no-repeat 0 50%; 
+	background-image: url(/static/icons/system-users.png); 
 	}
 .document {	
-	padding-left: 26px; 
-	background: url(/static/icons/document-properties.png) no-repeat 0 50%; 
+	background-image: url(/static/icons/document-properties.png); 
 	}

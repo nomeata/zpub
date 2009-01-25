@@ -22,7 +22,7 @@
 
 <div id="navi"> 
 <ul>
-<li><a href="/">Dokumentenübersicht</a></li>
+<li><a class="overview" href="/">Dokumentenübersicht</a></li>
 [% FOR doc IN documents%]
 <li><a class="document" href="/[% doc %]">Dokument „[% doc %]“</a>
 <ul>

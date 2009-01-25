@@ -16,7 +16,7 @@
     });
 </script>
 </head>
-<body class="[% pagekind %]">
+<body class="[%- pagekind -%]_wrapper">
 
 
 <div id="header">

@@ -1,4 +1,4 @@
-<ul>
+<ul class="filelist">
 [% FOREACH files %]
 <li>
     <a href="[% url %]">[% filename %]</a><br />

@@ -20,7 +20,11 @@ $(document).ready(function(){
     });
 });
 </script>
+<<<<<<< .mine
+/-->
+=======
 -->
+>>>>>>> .r98
 </head>
 <body class="[%- pagekind -%]_wrapper">
 

@@ -74,7 +74,7 @@ h1 {
 	padding: 0; 
 	}
 #navi ul {
-	border-width: 1px 1px 0 1px;
+	border-width: 0px 1px 1px 1px;
 	border-style: solid;
 	border-color: silver; 
 	}
@@ -87,10 +87,9 @@ h1 {
 	}
 #navi li a {
 	padding: 0.4em 5px 0.4em 1em; 
-	border-bottom: 1px solid silver; 
+	border-top: 1px solid silver; 
 	}
 #navi li a.current_page {
-	border-bottom: none; 
 	}
 #navi li li a {
 	padding: 0.1em 5px 0.1em 2em; 

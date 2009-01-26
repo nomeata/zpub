@@ -161,8 +161,8 @@ h3 {
 .warning {
 	margin: 1em 0;
 	border: 1px solid #ECECEC; 
-	padding: 5px 10px 5px 30px; 
-	background: #FFCE9F url(/static/icons/dialog-warning.png) no-repeat 5px 5px; 
+	padding: 5px 10px 5px 36px; 
+	background: #FFE1CC url(/static/icons/dialog-warning.png) no-repeat 1em 5px; 
 	}
 .warning p {
 	margin: 0 0 0.5em 0; 

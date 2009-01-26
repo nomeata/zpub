@@ -127,13 +127,13 @@ hr {
 .chm {	
 	list-style-image: url(/static/icons/help-contents.png); 
 	}
-.zip {	
+.html-zip {	
 	list-style-image: url(/static/icons/media-zip.png); 
 	}
 .pdf {	
 	list-style-image: url(/static/icons/stock_save-pdf.png); 
 	}
-.htmldir {	
+.html-dir {	
 	list-style-image: url(/static/icons/document-open.png); 
 	}	
 

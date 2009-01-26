@@ -137,3 +137,13 @@ hr {
 	list-style-image: url(/static/icons/document-open.png); 
 	}	
 
+
+
+h2 {
+	margin-top: -1em; 
+	margin-left: -1em; 
+	padding-top: 1em; 
+	padding-left: 1em; 
+
+	background-color: #DCDCDC; 
+	}

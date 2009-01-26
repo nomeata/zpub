@@ -53,18 +53,16 @@ hr {
 
 
 #main {
-	margin: 0; 
-	padding: 1em; 
+	padding: 40px; 
+	margin-left: 23em; 
+	border: 1px solid silver; 
 	}
+
+
 
 #navi {
 	float: left; 
 	width: 20em; 
-	}
-
-#main {
-	margin-left: 23em; 
-	border: 1px solid silver; 
 	}
 
 
@@ -140,10 +138,11 @@ hr {
 
 
 h2 {
-	margin-top: -1em; 
-	margin-left: -1em; 
-	padding-top: 1em; 
-	padding-left: 1em; 
+	margin-top: -40px; 
+	margin-left: -40px;
+	margin-right: -40px;  
+	padding-top: 40px; 
+	padding-left: 40px; 
 
 	background-color: #DCDCDC; 
 	}

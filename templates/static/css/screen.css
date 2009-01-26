@@ -137,12 +137,20 @@ hr {
 
 
 
-h2 {
-	margin-top: -40px; 
+h2, 
+h3 {
+	
 	margin-left: -40px;
 	margin-right: -40px;  
-	padding-top: 40px; 
 	padding-left: 40px; 
+	}
 
+h2 {
+	padding-top: 40px; 
+	margin-top: -40px; 
 	background-color: #DCDCDC; 
+	}
+
+h3 {
+	background-color: #ECECEC; 
 	}

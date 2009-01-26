@@ -158,14 +158,26 @@ h3 {
 	background-color: #ECECEC; 
 	}
 
-.warning {
+.warning, 
+.tip {
 	margin: 1em 0;
 	border: 1px solid #ECECEC; 
 	padding: 5px 10px 5px 36px; 
+	}
+.warning {
 	background: #FFE6D6 url(/static/icons/dialog-warning.png) no-repeat 5px 1em; 
 	}
-.warning p {
+.tip {
+	background: #ECECEC url(/static/icons/dialog-information.png) no-repeat 5px 1em; 
+	}
+.warning p,
+.tip p {
 	margin: 0 0 0.5em 0; 
+	}
+	
+.syntax_sample {
+	font-family: monospace; 
+	color: #0000A3; 
 	}
 
 table {

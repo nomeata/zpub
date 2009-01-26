@@ -2,8 +2,8 @@
 [% FOREACH files %]
 <li class="[% type %]">
     <a href="[% url %]">[% filename %]</a><br />
-    [% UNLESS size == 'directory' %]Size: [% size %]<br/>[% END %]
-    Date: [% date %]
+    [% UNLESS size == 'directory' %]Größe: [% size %]<br/>[% END %]
+    Datum: [% date %]
 </li>
 [% END %]
 </ul>

@@ -2,7 +2,7 @@
 [% FOREACH files %]
 <li class="[% type %]">
     <a href="[% url %]">[% filename %]</a><br />
-    [% UNLESS size == 'directory' %]Größe: [% size %]<br/>[% END %]
+    [% UNLESS size == 'directory' %]Dateigröße: [% size %]<br/>[% END %]
     Datum: [% date %]
 </li>
 [% END %]

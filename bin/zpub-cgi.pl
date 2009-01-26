@@ -19,6 +19,7 @@ $CGI::POST_MAX=1024 * 100;  # max 100K posts
 $CGI::DISABLE_UPLOADS = 1;  # no uploads
 
 use lib "$ZPUB/bin/lib";
+use Number::Bytes::Human qw(format_bytes);
 use ZPub;
 
 ####################
@@ -170,8 +171,20 @@ sub queue_job {
 sub do_retry {
     my ($jobname) = @_;
 
+    die "Strange \$jobname: $jobname\n" unless $jobname =~ m/^[a-zA-Z0-9\._-]+$/;
+
     rename("$ZPUB/spool/fail/$jobname","$ZPUB/spool/todo/$jobname")
 	or die "Could not move job $ZPUB/spool/fail/$jobname to $ZPUB/spool/todo/$jobname: $!\n";
+}
+
+sub do_remove_job {
+    my ($state,$jobname) = @_;
+
+    die "Strange \$state: $state\n" unless $state =~ m/^[a-z]+$/;
+    die "Strange \$jobname: $jobname\n" unless $jobname =~ m/^[a-zA-Z0-9\._-]+$/;
+
+    unlink("$ZPUB/spool/$state/$jobname")
+	or die "Could not delete job $ZPUB/spool/$state/$jobname: $!\n";
 }
 
 
@@ -229,6 +242,14 @@ if ($q->request_method() eq "POST") {
 	    die 'Missing parameter "jobname"'."\n";
 	}
 	do_retry($q->param('jobname'));
+    } elsif (defined $q->param('remove')) {
+	if (not defined $q->param('jobname')) {
+	    die 'Missing parameter "jobname"'."\n";
+	}
+	if (not defined $q->param('state')) {
+	    die 'Missing parameter "state"'."\n";
+	}
+	do_remove_job($q->param('state'),$q->param('jobname'));
     } else {
 	die "Unknown POST target\n";
     }

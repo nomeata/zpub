@@ -68,7 +68,5 @@ bash ./htmlhelp.sh
 
 
 TODO:
- * Dateigrößen und Datum human-readable
- * Aufträge löschen
  * notifications@zpub.de einrichten
  * Stabiler “latest” link

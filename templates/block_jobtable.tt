@@ -1,6 +1,7 @@
 [% DEFAULT
 	show_logfile = 0
 	show_retry = 0
+	show_remove = 0
 %]
 <table>
 <tr>
@@ -31,9 +32,18 @@
 [% END %]
 [% IF show_retry AND admin %]
 <td>
-<form action="/status" method="POST">
+<form action="#" method="POST">
 <input type="hidden" name="jobname" value="[% jobname %]"/>
 <input type="submit" name="retry" value="Erneut versuchen"/>
+</form>
+</td>
+[% END %]
+[% IF show_remove AND admin %]
+<td>
+<form action="#" method="POST">
+<input type="hidden" name="jobname" value="[% jobname %]"/>
+<input type="hidden" name="state" value="[% state %]"/>
+<input type="submit" name="remove" value="Auftrag löschen"/>
 </form>
 </td>
 [% END %]

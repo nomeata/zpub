@@ -7,6 +7,8 @@
 [% IF jobs.todo.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.todo
+	state = 'todo'
+	show_remove = 1
 %]
 [% ELSE %]
 <it>keine wartenden Aufträge</it>
@@ -17,6 +19,7 @@
 [% IF jobs.wip.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.wip
+	state = 'wip'
 %]
 [% ELSE %]
 <it>keine Aufträge in Bearbeitung</it>
@@ -27,8 +30,10 @@
 [% IF jobs.fail.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.fail
+	state = 'fail'
 	show_logfile = 1
 	show_retry = 1
+	show_remove = 1
 %]
 [% ELSE %]
 <it>keine fehlgeschlagenden Aufträge</it>

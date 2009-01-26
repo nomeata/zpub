@@ -157,7 +157,9 @@ h3 {
 	background-color: #ECECEC; 
 	}
 
-
+table {
+	margin: 1em 0; 
+	}
 caption {
 	display: none; 
 	}
@@ -166,9 +168,13 @@ td {
 	text-align: left; 
 	}
 th {
+	padding-right: 2em; 
 	font-weight: bold; 
 	}
 .this_rev {
 	font-weight: bold; 
 	color: #0000A3; 
+	}
+.this_rev_log_msg {
+	font-style: italic; 
 	}

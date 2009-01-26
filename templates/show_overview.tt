@@ -5,7 +5,7 @@
 
 [% IF newer_jobs.fail.size OR newer_jobs.todo.size OR newer_jobs.wip.size %]
 <div>
-<h2>Achtung</h2>
+<h3>Achtung</h3>
 Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 [% IF newer_jobs.fail.size %]
 <h3>Fehlgeschlagende Aufträge</h3>
@@ -30,7 +30,7 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 </div>
 [% END %]
 
-<h2>Neuste Revision</h2>
+<h3>Neuste Revision</h3>
 [% IF settings.features.exists('final_approve') %]
 [% IF NOT final_rev %]
 <p>Es wurde bisher keine Revision freigegeben.</p> 

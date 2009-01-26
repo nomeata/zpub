@@ -3,7 +3,7 @@
 	pagekind = "archived_rev"
 %]
 
-<h2>Archivierte Änderung</h2>
+<h3>Archivierte Änderung</h3>
 
 [% FOR this_rev IN this_revs %]
 [% INCLUDE block_rev.tt %]

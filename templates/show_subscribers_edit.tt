@@ -3,7 +3,7 @@
 	pagekind = 'subscribers'
 %]
 
-<h2>Liste der Abonnenten der e-Mail-Benachrichtigung</h2>
+<h3>Liste der Abonnenten der e-Mail-Benachrichtigung</h3>
 <p>Bitte geben Sie die Empfänger der e-Mail-Benachrichtigungen in der Form <tt>Otto Mustermann &lt;otto@mustermann.de&gt;, Karla Musterfrau &lt;karla@musterfrau.de&gt;</tt> in einer Zeile, durch Kommas getrennt, ein.
 </p>
 <form action="#" method="POST">

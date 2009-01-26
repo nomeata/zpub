@@ -158,6 +158,12 @@ h3 {
 	background-color: #ECECEC; 
 	}
 
+.warning {
+	border: 1px solid #ECECEC; 
+	padding: 5px 10px 5px 26px; 
+	background: transparent url(/static/icons/dialog-warning.png) no-repeat 5px 5px; 
+	}
+
 table {
 	margin: 1em 0; 
 	}

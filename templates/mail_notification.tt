@@ -3,7 +3,7 @@ Hallo zpub-Anwender,
 es wurden Änderungen am Dokument [% doc %] gemacht:
 
 [% FOR this_rev IN this_revs %]
-Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.info.date | html %] mit Kommentar: 
+Revision wurde erstellt von [% this_rev.info.author | html %]  [% this_rev.info.date | html %] mit Kommentar: 
 [% this_rev.info.log_msg | html %]
 
 [% FOREACH this_rev.styles %]

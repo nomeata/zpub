@@ -4,8 +4,20 @@ use File::stat;
 use Time::localtime;
 use SVN::SVNLook;
 use DateTime;
+use DateTime::Format::Strptime;
 
 use Number::Bytes::Human qw(format_bytes);
+use VorKurzem;
+
+my $strp_output = new VorKurzem;
+my $strp_ctime = new DateTime::Format::Strptime(
+			pattern     => '%a %b %d %T %Y',
+			time_zone   => 'Europe/Berlin',
+		);
+my $strp_svn = new DateTime::Format::Strptime(
+			pattern     => '%F %T %z',
+#			on_error    => 'croak'
+		);
 
 
 
@@ -145,7 +157,8 @@ sub collect_output {
 	if (-d $file) {$size = 'directory';}
         else          {$size = format_bytes(-s $file);}
 
-	my $date = ctime(stat($file)->mtime);
+	my $date = $strp_ctime->parse_datetime(ctime(stat($file)->mtime));
+	$date->set_formatter($strp_output);
 
 	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$revn,$style,$filename;
 	
@@ -167,6 +180,9 @@ sub rev_info {
 
     my $look = SVN::SVNLook->new(repo => repopath(), cmd => '/usr/bin/svnlook');
     my ($author, $date, $log_msg) = $look->info(revision => $revn);
+    $date =~ m/^(.*) \(.*\)$/;
+    $date = $strp_svn->parse_datetime($1) || die "Could not parse \"$date\"\n";
+    $date->set_formatter($strp_output);
     return {date => $date,
             author => $author,
             log_msg => $log_msg}

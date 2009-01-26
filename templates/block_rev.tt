@@ -1,8 +1,25 @@
-<p>
-Dateirevision Nr. <span class="this_rev">[% this_rev.revn %]</span>.
-</p>
 
-<p>Revision wurde erstellt von <span class="this_rev_author">[% this_rev.info.author | html %] [% this_rev.info.date | html %]</span> mit Kommentar: „<span class="this_rev_log_msg">[% this_rev.info.log_msg | html %]</span>“.
+<table>
+<caption>Revisionierung und Freigabe</caption>
+<tbody>
+<tr>
+<th>Dateirevision Nr.:</th>
+<td><span class="this_rev">[% this_rev.revn %]</span></td>
+</tr>
+<tr>
+<th>Erstellt von:<th>
+<td><span class="this_rev_author">[% this_rev.info.author | html %]</span></td>
+</tr
+<tr>
+<th>Erstellt am:</th>
+<td>[% this_rev.info.date | html %]</span></td>
+</tr>
+<tr>
+<th>Kommentar:</th>
+<td>„<span class="this_rev_log_msg">[% this_rev.info.log_msg | html %]</span>“</td>
+</tr>
+</tbody>
+</table>
 
 [% FOREACH this_rev.styles %]
 <h3>Erzeugte Dateien (Layout [% style %])</h3>

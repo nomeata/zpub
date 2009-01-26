@@ -5,6 +5,9 @@ use Time::localtime;
 use SVN::SVNLook;
 use DateTime;
 
+use Number::Bytes::Human qw(format_bytes);
+
+
 
 #############
 # Utilities #
@@ -140,7 +143,7 @@ sub collect_output {
 
 	my $size;
 	if (-d $file) {$size = 'directory';}
-        else          {$size = -s $file;}
+        else          {$size = format_bytes(-s $file);}
 
 	my $date = ctime(stat($file)->mtime);
 

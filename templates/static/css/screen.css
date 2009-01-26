@@ -146,11 +146,29 @@ h3 {
 	}
 
 h2 {
-	padding-top: 40px; 
+	padding-top: 20px;
+	padding-bottom: 5px;  
 	margin-top: -40px; 
 	background-color: #DCDCDC; 
 	}
 
 h3 {
+	padding: 5px 0; 
 	background-color: #ECECEC; 
+	}
+
+
+caption {
+	display: none; 
+	}
+th, 
+td {
+	text-align: left; 
+	}
+th {
+	font-weight: bold; 
+	}
+.this_rev {
+	font-weight: bold; 
+	color: #0000A3; 
 	}

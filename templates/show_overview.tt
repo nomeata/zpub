@@ -31,6 +31,7 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 [% END %]
 
 <h3>Neuste Revision</h3>
+
 [% IF settings.features.exists('final_approve') %]
 [% IF NOT final_rev %]
 <p>Es wurde bisher keine Revision freigegeben.</p> 

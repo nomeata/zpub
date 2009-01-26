@@ -7,7 +7,7 @@
 <td><span class="this_rev">[% this_rev.revn %]</span></td>
 </tr>
 <tr>
-<th>Erstellt von:<th>
+<th>Erstellt von:</th>
 <td><span class="this_rev_author">[% this_rev.info.author | html %]</span></td>
 </tr
 <tr>

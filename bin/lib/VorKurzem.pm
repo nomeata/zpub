@@ -41,7 +41,7 @@ sub new {
     return bless {
 	fallback =>
 		DateTime::Format::Strptime->new(
-			pattern     => 'am %d. %B %Y um %H:%M',
+			pattern     => '%d. %B %Y um %H:%M',
 			time_zone   => 'Europe/Berlin',
 		),
 	minute  =>	DateTime::Duration->new(minutes => 1),

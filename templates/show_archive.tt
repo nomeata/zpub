@@ -6,7 +6,11 @@
 <table>
 <thead>
 <tr>
-<th>Rev.</th><th>Autor</th><th>Datum</th></tr>
+<th>Rev.</th><th>Autor</th><th>Datum</th>
+[% IF settings.features.exists('final_approve') AND admin %]
+<th>Freigegeben</th>
+[% END %]
+</tr>
 </thead>
 <tbody>
 
@@ -24,16 +28,19 @@
 	[% info.date | html %]
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
-<td class="releasebutton">
 	[% IF revn == final_rev.revn %]
+	<td>
 	<img src="/static/icons/stock_mark.png" width="16" height="16"/>
+	</td>
 	[% ELSE %]
-	<form action="/[% doc %]/archive/" method="post">
-	<input type="hidden" name="revn" value="[% revn %]"/>
-	<input type="submit" name="approve" value="Freigeben"/>
-	</form>
+	<td/>
+	<td class="releasebutton">
+		<form action="/[% doc %]/archive/" method="post">
+		<input type="hidden" name="revn" value="[% revn %]"/>
+		<input type="submit" name="approve" value="Freigeben"/>
+		</form>
+	</td>
 	[% END %]
-</td>
 [% END %]
 </tr>
 <tr class="bottom">

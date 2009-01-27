@@ -3,9 +3,11 @@
 	pagekind = "documents"
 %]
 
+
+<p>Ihre über zpub.de vewalteten Dokumente sind im folgenden aufgelistet. Für nähere Informationen zu einem Dokument wählen Sie dieses bitte aus der folgenden Liste oder der Navigation aus.</p>
 <ul>
 [% FOREACH doc IN documents %]
-	<li><a href="/[% doc %]/">[% doc %]</a></li>
+	<li>Dokument <a href="/[% doc %]/"><span class="this_rev">[% doc %]</span></a></li>
 [% END %]
 </ul>
 [% doc = 0 # stupid non-local loop variables in TT %]

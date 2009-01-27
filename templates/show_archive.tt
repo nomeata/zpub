@@ -27,7 +27,7 @@
 <td class="releasebutton">
 	<form action="/[% doc %]/archive/" method="post">
 	<input type="hidden" name="revn" value="[% revn %]"/>
-	<input type="submit" class="freigeben" name="approve" value="Freigeben"/>
+	<input type="submit" name="approve" value="Freigeben"/>
 	</form>
 </td>
 [% END %]

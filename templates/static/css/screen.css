@@ -179,11 +179,7 @@ h3 {
 	font-family: monospace; 
 	color: #0000A3; 
 	}
-
-.freigeben {
-	padding-left: 26px; 
-	background: transparent url(/static/icons/stock_mark.png) no-repeat 5px 50%; 
-	}	
+	
 
 table {
 	margin: 1em 0; 
@@ -225,6 +221,8 @@ th {
 	border-width: 0 0 1px 0;
 	}
 .releasebutton {
-	text-align: center; 
+	text-align: left; 
+	padding-left: 26px; 
+	background: transparent url(/static/icons/stock_mark.png) no-repeat 5px 50%; 
 	}
 

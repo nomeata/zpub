@@ -9,34 +9,36 @@
 <th>Rev.</th><th>Autor</th><th>Datum</th></tr>
 </thead>
 <tbody>
+
 [% FOREACH revs %]
 <tr>
 <td rowspan="2">
-<a href="/[% doc %]/archive/[% revn %]/">
-[% revn %]
-</a>
+	<a href="/[% doc %]/archive/[% revn %]/">
+	[% revn %]
+	</a>
 </td>
 <td>
-[% info.author | html %]
+	[% info.author | html %]
 </td>
 <td>
-[% info.date | html %]
+	[% info.date | html %]
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
 <td>
-<form action="/[% doc %]/archive/" method="post">
-<input type="hidden" name="revn" value="[% revn %]"/>
-<input type="submit" name="approve" value="Freigeben"/>
-</form>
+	<form action="/[% doc %]/archive/" method="post">
+	<input type="hidden" name="revn" value="[% revn %]"/>
+	<input type="submit" name="approve" value="Freigeben"/>
+	</form>
 </td>
 [% END %]
 </tr>
-<tr>
+<tr style="border-width: 0; ">
 <td colspan="2">
-<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
+	<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
 </td>
 </tr>
 [% END %]
+
 </tbody>
 </table>
 

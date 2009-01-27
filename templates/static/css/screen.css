@@ -176,6 +176,8 @@ h3 {
 .tip {
 	background: #ECECEC url(/static/icons/dialog-information.png) no-repeat 5px 1em; 
 	}
+.warning h4, 
+.tip h4, 
 .warning p,
 .tip p {
 	margin: 0 0 0.5em 0; 

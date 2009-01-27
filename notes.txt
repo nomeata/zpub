@@ -68,5 +68,4 @@ bash ./htmlhelp.sh
 
 
 TODO:
- * notifications@zpub.de einrichten
  * Stabiler “latest” link

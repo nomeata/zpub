@@ -50,7 +50,7 @@ sub show_overview {
     
     my @revs = collect_revisions($doc);
 
-    my $rev = select_latest(@revs);
+    my $rev = select_latest_ok(@revs);
 
     my $final_rev = $SETTINGS{features}{final_approve} ? select_final($doc,@revs) : 0;
 
@@ -60,7 +60,7 @@ sub show_overview {
 	standard_vars(),
 	doc => $doc,
 	revs => [ @revs ],
-	this_rev => $rev,
+	this_rev => $rev || '',
 	final_rev => $final_rev,
 	newer_jobs => $newer_jobs,
     }) or die ("Error: ".$tt->error());

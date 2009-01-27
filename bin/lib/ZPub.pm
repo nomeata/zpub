@@ -54,7 +54,6 @@ sub collect_documents {
 }
 
 # Returns a list of all documents of the customer
-# Each element has three 
 sub collect_revisions {
     my ($doc) = @_;
     
@@ -67,6 +66,7 @@ sub collect_revisions {
 		    revn => $1,
 		    info  => lazy(\&rev_info,$1),
 		    styles => [],
+		    finished => ! -e "$ZPUB/$CUST/output/$doc/archive/$_/zpub-render-in-progress",
 	    };
 
 	    push @{$hash{$1}{styles}}, {
@@ -79,13 +79,13 @@ sub collect_revisions {
     return sort {$b->{revn} <=> $a->{revn}} (values %hash);
 }
 
-# Selects the latest revision from a list of revisions
-sub select_latest {
+# Selects the latest finished revision from a list of revisions
+sub select_latest_ok {
     my @revs = @_;
 
     my $ret;
     for my $rev (@revs) {
-	if (not defined $ret or $rev->{revn} > $ret->{revn}) {
+	if ($rev->{finished} and (not defined $ret or $rev->{revn} > $ret->{revn})) {
 	    $ret = $rev;
 	}
     }

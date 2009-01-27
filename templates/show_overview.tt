@@ -35,6 +35,7 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 </div>
 [% END %]
 
+[% IF this_rev %]
 <h3>Neuste Revision</h3>
 
 [% IF settings.features.exists('final_approve') %]
@@ -65,4 +66,9 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 [% END %]
 
 [% INCLUDE block_rev.tt %]
+
+[% ELSE # IF this_rev %]
+<h3>Neuste Revision</h3>
+<p>Es wurde noch keine Revision erfolgreich gebaut</p>
+[% END %]
 [% END %]

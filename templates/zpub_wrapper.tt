@@ -29,7 +29,7 @@
 [% END %]
 
 <div id="navi"> 
-<h2>Kunde: [% settings.cust_name %]</h2>
+<h2><span>Kunde:</span> [% settings.cust_name %]</h2>
 <ul>
 <li>[% link("overview","/","Dokumentenübersicht") %]</li>
 [% FOR doc IN documents%]

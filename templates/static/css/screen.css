@@ -72,6 +72,10 @@ hr {
 	padding-bottom: 5px;
 	color: red;  
 	}
+#navi h2 span {
+	color: white; 
+	font-size: 0.5em; 
+	}
 
 
 #navi, 

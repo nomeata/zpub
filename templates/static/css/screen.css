@@ -165,7 +165,7 @@ h3 {
 	padding: 5px 10px 5px 36px; 
 	}
 .warning {
-	background: #FFE6D6 url(/static/icons/dialog-warning.png) no-repeat 5px 1em; 
+	background: #FFE6D6 url(/static/icons/emblem-important.png) no-repeat 5px 1em; 
 	}
 .tip {
 	background: #ECECEC url(/static/icons/dialog-information.png) no-repeat 5px 1em; 

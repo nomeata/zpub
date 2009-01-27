@@ -50,7 +50,7 @@ sub collect_documents {
     opendir(DIR, "$ZPUB/$CUST/output/") || die "can't opendir $ZPUB/$CUST/output/: $!";
     my @files = grep { (not /^\./) && -d "$ZPUB/$CUST/output/$_" } readdir(DIR);
     closedir DIR;
-    return @files;
+    return sort @files;
 }
 
 # Returns a list of all documents of the customer

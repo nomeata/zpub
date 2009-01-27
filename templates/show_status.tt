@@ -45,7 +45,7 @@
 
 <h3>Systemstatus</h3>
 <ul>
-<li>Freier Speicher: [% sysstatus.df %]</li>
+<li>Freier Festplattenspeicher: [% sysstatus.df %]</li>
 </ul>
 
 [% END %]

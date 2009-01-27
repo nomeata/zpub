@@ -1,7 +1,7 @@
 <ul class="filelist">
 [% FOREACH files %]
 <li class="[% type %]">
-    <a href="[% url %]">[% filename %]</a><br />
+    <a href="[% url %]"><span class="this_rev">[% filename %]</span></a><br />
     [% UNLESS size == 'directory' %]Dateigröße: [% size %]<br/>[% END %]
     Datum: [% date %]
 </li>

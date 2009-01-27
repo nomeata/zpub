@@ -14,7 +14,7 @@
 <tr class="top">
 <td rowspan="2">
 	<a href="/[% doc %]/archive/[% revn %]/">
-	[% revn %]
+	<span class="this_rev">[% revn %]</span>
 	</a>
 </td>
 <td>

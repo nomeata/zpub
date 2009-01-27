@@ -33,7 +33,7 @@
 <ul>
 <li>[% link("overview","/","Dokumentenübersicht") %]</li>
 [% FOR doc IN documents%]
-<li>[% link("document","/$doc/","Dokument „$doc“") %]
+<li>[% link("document","/$doc/","Dokument <span class="this_rev">„$doc“</span>") %]
 [% IF this_page.startswith("/$doc/") %]
 <ul>
 <li>[% link("","/$doc/archive/","Archiv")%]</li>

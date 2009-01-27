@@ -3,6 +3,8 @@
 	pagekind = 'document'
 %]
 
+
+
 [% IF newer_jobs.fail.size OR newer_jobs.todo.size OR newer_jobs.wip.size %]
 <div class="warning">
 <h4>Achtung</h4>
@@ -31,6 +33,7 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 	jobs = newer_jobs.wip
 %]
 [% END %]
+
 
 [% END %]
 

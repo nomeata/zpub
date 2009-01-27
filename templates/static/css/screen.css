@@ -90,6 +90,7 @@ hr {
 	}
 #navi a:hover {
 	text-decoration: underline; 
+	background-color: #ECECEC; 
 	}
 #navi li a {
 	padding: 0.4em 5px 0.4em 1em; 

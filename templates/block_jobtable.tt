@@ -4,6 +4,7 @@
 	show_remove = 0
 %]
 <table>
+<tbody>
 <tr>
 <th>Dokument</th><th>Rev.</th><th>Jobname</th><th>Autor</th><th>Datum</th>
 </tr>
@@ -32,7 +33,7 @@
 [% END %]
 [% IF show_retry AND admin %]
 <td>
-<form action="#" method="POST">
+<form action="#" method="post">
 <input type="hidden" name="jobname" value="[% jobname %]"/>
 <input type="submit" name="retry" value="Erneut versuchen"/>
 </form>
@@ -40,7 +41,7 @@
 [% END %]
 [% IF show_remove AND admin %]
 <td>
-<form action="#" method="POST">
+<form action="#" method="post">
 <input type="hidden" name="jobname" value="[% jobname %]"/>
 <input type="hidden" name="state" value="[% state %]"/>
 <input type="submit" name="remove" value="Auftrag löschen"/>
@@ -49,4 +50,5 @@
 [% END %]
 </tr>
 [% END %]
+</tbody>
 </table>

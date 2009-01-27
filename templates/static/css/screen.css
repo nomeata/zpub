@@ -171,10 +171,10 @@ h3 {
 	padding: 5px 10px 5px 36px; 
 	}
 .warning {
-	background: #FFE6D6 url(/static/icons/emblem-important.png) no-repeat 5px 5px; 
+	background: #FFE6D6 url(/static/icons/emblem-important.png) no-repeat 5px 8px; 
 	}
 .tip {
-	background: #ECECEC url(/static/icons/dialog-information.png) no-repeat 5px 5px; 
+	background: #ECECEC url(/static/icons/dialog-information.png) no-repeat 5px 8px; 
 	}
 .warning h4, 
 .tip h4, 
@@ -213,6 +213,24 @@ th {
 	}
 
 
+table {
+	border-collapse: collapse; 
+	border-spacing: 2px 5px; 
+	width: 100%; 
+	}
+tr {
+	border-width: 1px 0; 
+	border-style: solid; 
+	border-color: #ECECEC; 
+	}
+tr.top {
+	border-width: 1px 0 0 0;
+	}
+tr.bottom {
+	border-width: 0 0 1px 0;
+	}
+	
+/*
 .archive_wrapper table {
 	border-collapse: collapse; 
 	border-spacing: 2px 5px; 
@@ -229,6 +247,7 @@ th {
 .archive_wrapper tr.bottom {
 	border-width: 0 0 1px 0;
 	}
+*/
 .releasebutton {
 	text-align: left; 
 	padding-left: 26px; 

@@ -33,7 +33,7 @@
 </tr>
 <tr>
 <td colspan="2">
-[% info.log_msg | html %]
+<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
 </td>
 </tr>
 [% END %]

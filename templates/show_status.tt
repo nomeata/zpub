@@ -43,4 +43,9 @@
 </div>
 [% END %]
 
+<h3>Systemstatus</h3>
+<ul>
+<li>Freier Speicher: [% sysstatus.df %]</li>
+</ul>
+
 [% END %]

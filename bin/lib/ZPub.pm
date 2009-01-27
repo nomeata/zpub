@@ -5,6 +5,8 @@ use Time::localtime;
 use SVN::SVNLook;
 use DateTime;
 use DateTime::Format::Strptime;
+use Filesys::Df;
+
 
 use Number::Bytes::Human qw(format_bytes);
 use VorKurzem;
@@ -325,6 +327,14 @@ sub write_doc_setting {
 
     write_file("$ZPUB/$CUST/settings/$what/$doc", $value)
 	    or die "Coult not write $ZPUB/$CUST/settings/$what/$doc: $!\n";
+}
+
+# Get various system statistics
+sub collect_sysstatus {
+    my $ret = {};
+    my $ref = df("$ZPUB/$CUST/output",1);
+    $ret->{df} = format_bytes($ref->{bavail});
+    return $ret;
 }
 
 1;

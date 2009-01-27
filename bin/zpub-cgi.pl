@@ -102,9 +102,12 @@ sub show_archived_rev {
 sub show_status {
     my $jobs = collect_jobs();
 
+    my $sysstatus = collect_sysstatus(); 
+
     $tt->process('show_status.tt', {
 	standard_vars(),
 	jobs	 => $jobs,
+	sysstatus => $sysstatus,
     }) or die ("Error: ".$tt->error());
 }
 

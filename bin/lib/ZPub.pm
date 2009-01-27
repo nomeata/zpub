@@ -252,6 +252,11 @@ sub is_admin {
     
 # Read Settings
 sub read_settings {
+    # Customer Name
+    $SETTINGS{cust_name} = read_file("$ZPUB/$CUST/conf/cust_name")
+	or "Could not read cust_name: $!";
+    chomp($SETTINGS{cust_name});
+    
     # Admins
     if ( -f "$ZPUB/$CUST/settings/htpasswd") {
 	my @admins = read_file("$ZPUB/$CUST/conf/admins");

@@ -25,15 +25,19 @@
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
 <td class="releasebutton">
+	[% IF revn == final_rev.revn %]
+	<img src="/static/icons/stock_mark.png" width="16" height="16"/>
+	[% ELSE %]
 	<form action="/[% doc %]/archive/" method="post">
 	<input type="hidden" name="revn" value="[% revn %]"/>
 	<input type="submit" name="approve" value="Freigeben"/>
 	</form>
+	[% END %]
 </td>
 [% END %]
 </tr>
 <tr class="bottom">
-<td colspan="2">
+<td colspan="3">
 	<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
 </td>
 </tr>

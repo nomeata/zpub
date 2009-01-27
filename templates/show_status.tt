@@ -3,7 +3,7 @@
 	pagekind = 'status'
 %]
 
-<h3>Wartende Aufträge</h3>
+<h4>Wartende Aufträge</h4>
 [% IF jobs.todo.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.todo
@@ -15,7 +15,7 @@
 [% END %]
 
 
-<h3>Aufträge in Bearbeitung</h3>
+<h4>Aufträge in Bearbeitung</h4>
 [% IF jobs.wip.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.wip
@@ -27,7 +27,7 @@
 
 
 <div class="warning">
-<h3>Fehlgeschlagende Aufträge</h3>
+<h4>Fehlgeschlagende Aufträge</h4>
 [% IF jobs.fail.size %]
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.fail

@@ -32,7 +32,6 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 %]
 [% END %]
 
-</div>
 [% END %]
 
 [% IF this_rev %]

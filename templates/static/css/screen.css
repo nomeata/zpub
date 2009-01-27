@@ -209,6 +209,13 @@ th {
 	width: 100%; 
 	}
 .archive_wrapper tr {
+	border-width: 1px 0; 
 	border-style: solid; 
 	border-color: #ECECEC; 
+	}
+.archive_wrapper tr.top {
+	border-width: 1px 0 0 0;
+	}
+.archive_wrapper tr.bottom {
+	border-width: 0 0 1px 0;
 	}

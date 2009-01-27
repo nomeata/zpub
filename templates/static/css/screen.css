@@ -164,8 +164,10 @@ h3 {
 
 .warning, 
 .tip {
-	margin: 1em 0;
-	border: 1px solid #ECECEC; 
+	margin: 1em -40px;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #ECECEC; 
 	padding: 5px 10px 5px 36px; 
 	}
 .warning {

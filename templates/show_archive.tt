@@ -28,7 +28,7 @@
 	[% info.date | html %]
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
-	[% IF revn == final_rev.revn %]
+	[% IF final_rev AND revn == final_rev.revn %]
 	<td>
 	<img src="/static/icons/stock_mark.png" width="16" height="16"/>
 	</td>

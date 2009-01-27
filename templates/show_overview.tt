@@ -71,4 +71,5 @@ Folgende neueren Revisionen sind noch nicht erfolgreich gebaut:
 <h3>Neuste Revision</h3>
 <p>Es wurde noch keine Revision erfolgreich gebaut</p>
 [% END %]
-[% END %]
+
+[% END # Wrapper %]

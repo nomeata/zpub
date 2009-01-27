@@ -26,6 +26,7 @@
 [% END %]
 
 
+<div class="warning">
 <h3>Fehlgeschlagende Aufträge</h3>
 [% IF jobs.fail.size %]
 [% INCLUDE block_jobtable.tt
@@ -35,8 +36,11 @@
 	show_retry = 1
 	show_remove = 1
 %]
+</div>
 [% ELSE %]
-<it>keine fehlgeschlagenden Aufträge</it>
+<div class="tip">
+<p>keine fehlgeschlagenden Aufträge</p>
+</div>
 [% END %]
 
 [% END %]

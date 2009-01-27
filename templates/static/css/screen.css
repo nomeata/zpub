@@ -194,6 +194,9 @@ h3 {
 	margin: 0 0 0.5em 0; 
 	padding: 0 0 0.5em 0;
 	}
+.warning tr {
+	border-color: white; 
+	}
 	
 .syntax_sample {
 	font-family: monospace; 

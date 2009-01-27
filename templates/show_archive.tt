@@ -11,7 +11,7 @@
 <tbody>
 
 [% FOREACH revs %]
-<tr>
+<tr style="border-width: 1px 0 0 0; ">
 <td rowspan="2">
 	<a href="/[% doc %]/archive/[% revn %]/">
 	[% revn %]
@@ -32,7 +32,7 @@
 </td>
 [% END %]
 </tr>
-<tr style="border-width: 0; ">
+<tr style="border-width: 0 0 1px 0; ">
 <td colspan="2">
 	<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
 </td>

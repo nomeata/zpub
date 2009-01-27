@@ -76,6 +76,7 @@ hr {
 	border-width: 0px 1px 1px 1px;
 	border-style: solid;
 	border-color: silver; 
+	margin-bottom: 5px; 
 	}
 #navi ul ul {
 	border-width: 0;

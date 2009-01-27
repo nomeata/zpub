@@ -24,10 +24,10 @@
 	[% info.date | html %]
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
-<td>
+<td class="releasebutton">
 	<form action="/[% doc %]/archive/" method="post">
 	<input type="hidden" name="revn" value="[% revn %]"/>
-	<input type="submit" name="approve" value="Freigeben"/>
+	<input type="submit" class="freigeben" name="approve" value="Freigeben"/>
 	</form>
 </td>
 [% END %]

@@ -9,7 +9,7 @@
 <tr>
 <th>Erstellt von:</th>
 <td><span class="this_rev_author">[% this_rev.info.author | html %]</span></td>
-</tr
+</tr>
 <tr>
 <th>Erstellt am:</th>
 <td>[% this_rev.info.date | html %]</span></td>

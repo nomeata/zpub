@@ -4,8 +4,11 @@
 %]
 
 <table>
+<thead>
 <tr>
 <th>Rev.</th><th>Autor</th><th>Datum</th></tr>
+</thead>
+<tbody>
 [% FOREACH revs %]
 <tr>
 <td rowspan="2">
@@ -21,7 +24,7 @@
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
 <td>
-<form action="/[% doc %]/archive/" method="POST">
+<form action="/[% doc %]/archive/" method="post">
 <input type="hidden" name="revn" value="[% revn %]"/>
 <input type="submit" name="approve" value="Freigeben"/>
 </form>
@@ -34,6 +37,7 @@
 </td>
 </tr>
 [% END %]
+</tbody>
 </table>
 
 [% END %]

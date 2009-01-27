@@ -201,3 +201,8 @@ th {
 .this_rev_log_msg {
 	font-style: italic; 
 	}
+
+
+.archive_wrapper table {
+	width: 100%; 
+	}

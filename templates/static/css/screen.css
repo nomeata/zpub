@@ -67,8 +67,9 @@ hr {
 	}
 #navi h2 {
 	margin-top: 0; 
-	padding-bottom: 0; 
-	padding-top: 0; 
+	padding-left: 1em; 
+	padding-top: 10px;
+	padding-bottom: 5px; 
 	}
 
 

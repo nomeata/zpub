@@ -6,6 +6,7 @@ use SVN::SVNLook;
 use DateTime;
 use DateTime::Format::Strptime;
 use Filesys::Df;
+use Sys::CpuLoad;
 
 
 use Number::Bytes::Human qw(format_bytes);
@@ -332,8 +333,12 @@ sub write_doc_setting {
 # Get various system statistics
 sub collect_sysstatus {
     my $ret = {};
+
     my $ref = df("$ZPUB/$CUST/output",1);
     $ret->{df} = format_bytes($ref->{bavail});
+
+    $ret->{load} = join ", ",Sys::CpuLoad::load();
+
     return $ret;
 }
 

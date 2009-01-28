@@ -36,7 +36,7 @@ then
 fi
 
 
-CHANGED_DOCS=$(svnlook -r $REV changed "$REPOS" |cut -c 5-|cut -d/ -f1|sort -u)
+CHANGED_DOCS=$(svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u)
 
 if [ -z "$CHANGED_DOCS" ]
 then

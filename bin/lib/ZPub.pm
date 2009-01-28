@@ -250,7 +250,7 @@ sub write_htpasswd {
 # Is the current user an admin?
 sub is_admin {
     $USER or die "zpub accessed without an user name\n";
-    return $SETTINGS{admins}{$USER};
+    return exists $SETTINGS{admins}{$USER};
 }
     
 # Read Settings

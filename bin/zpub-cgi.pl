@@ -3,9 +3,14 @@
 use strict;
 use warnings;
 
+
 # Constants
 our $ZPUB;
 BEGIN { $ZPUB = '/opt/zpub'; }
+
+# We are german (and like UTF8)!
+$ENV{LANG}="de_DE.utf8";
+
 
 # Global vars
 our ($CUST,$USER,%SETTINGS,$tt,$q);

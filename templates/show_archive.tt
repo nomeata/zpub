@@ -35,7 +35,7 @@
 	[% ELSE %]
 	<td/>
 	<td class="releasebutton">
-		<form action="/[% doc %]/archive/" method="post">
+		<form action="#" method="post">
 		<input type="hidden" name="revn" value="[% revn %]"/>
 		<input type="submit" name="approve" value="Freigeben"/>
 		</form>

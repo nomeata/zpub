@@ -1,0 +1,8 @@
+/* ie 6 hacks */
+
+#navi, 
+#main, 
+#navi li, 
+#navi a {
+	zoom: 1; 
+	}

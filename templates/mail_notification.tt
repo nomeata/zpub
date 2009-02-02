@@ -14,7 +14,6 @@ Erzeugte Dateien (Layout [% style %]):
 [% UNLESS size == 'directory' %]
    Size: [% size +%]
 [% END %]
-   Date: [% date +%]
    http://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]-[% style %]/[% filename +%]
 [% END %]
 

@@ -24,7 +24,7 @@
 [% info.author %]
 </td>
 <td>
-[% info.date %]
+[% info.date.relative %]
 </td>
 [% IF show_logfile %]
 <td>

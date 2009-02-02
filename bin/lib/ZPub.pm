@@ -15,9 +15,12 @@ use Sys::CpuLoad;
 
 
 use Number::Bytes::Human qw(format_bytes);
-use VorKurzem;
 
-my $strp_output = new VorKurzem;
+my $strp_absolute = new DateTime::Format::Strptime(
+			pattern     => '%e. %B %Y um %H:%M',
+			time_zone   => 'Europe/Berlin',
+			locale      => 'de',
+		);
 my $strp_ctime = new DateTime::Format::Strptime(
 			pattern     => '%a %b %d %T %Y',
 			time_zone   => 'Europe/Berlin',
@@ -166,7 +169,7 @@ sub collect_output {
         else          {$size = format_bytes(-s $file);}
 
 	my $date = $strp_ctime->parse_datetime(ctime(stat($file)->mtime));
-	$date->set_formatter($strp_output);
+	$date->set_formatter($strp_absolute);
 
 	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$revn,$style,$filename;
 	
@@ -190,7 +193,7 @@ sub rev_info {
     my ($author, $date, $log_msg) = $look->info(revision => $revn);
     $date =~ m/^(.*) \(.*\)$/;
     $date = $strp_svn->parse_datetime($1) || die "Could not parse \"$date\"\n";
-    $date->set_formatter($strp_output);
+    $date->set_formatter($strp_absolute);
     return {date => $date,
             author => $author,
             log_msg => $log_msg}

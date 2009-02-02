@@ -26,6 +26,7 @@ $CGI::DISABLE_UPLOADS = 1;  # no uploads
 use lib "$ZPUB/bin/lib";
 use Number::Bytes::Human qw(format_bytes);
 use ZPub;
+use VorKurzem;
 
 ####################
 # Output functions #
@@ -278,9 +279,15 @@ $tt = Template->new({
     DEBUG => DEBUG_UNDEF,
 }) || die "$Template::ERROR\n";
 
+my $strp_relative = new VorKurzem;
+
 $tt->context->define_vmethod('SCALAR','startswith',sub {
 		my ($what,$with) = @_;
 		return (substr ($what,0,length($with)) eq $with);
+	});
+$tt->context->define_vmethod('HASH','relative',sub {
+		my ($what) = @_;
+		return $strp_relative->format_datetime($what);
 	});
 	
 

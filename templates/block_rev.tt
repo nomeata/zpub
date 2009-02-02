@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <th>Erstellt am:</th>
-<td>[% this_rev.info.date | html %]</td>
+<td>[% this_rev.info.date.relative | html %]</td>
 </tr>
 <tr>
 <th>Kommentar:</th>

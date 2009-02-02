@@ -3,7 +3,7 @@
 <li class="[% type %]">
     <a href="[% url %]"><span class="this_rev">[% filename %]</span></a><br />
     [% UNLESS size == 'directory' %]Dateigröße: [% size %]<br/>[% END %]
-    Datum: [% date %]
+    Datum: [% date.relative %]
 </li>
 [% END %]
 </ul>

@@ -19,7 +19,6 @@ use Number::Bytes::Human qw(format_bytes);
 my $strp_absolute = new DateTime::Format::Strptime(
 			pattern     => '%e. %B %Y um %H:%M',
 			time_zone   => 'Europe/Berlin',
-			locale      => 'de',
 		);
 my $strp_ctime = new DateTime::Format::Strptime(
 			pattern     => '%a %b %d %T %Y',
@@ -170,6 +169,7 @@ sub collect_output {
 
 	my $date = $strp_ctime->parse_datetime(ctime(stat($file)->mtime));
 	$date->set_formatter($strp_absolute);
+	$date->set_locale('de_DE');
 
 	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$revn,$style,$filename;
 	
@@ -194,6 +194,8 @@ sub rev_info {
     $date =~ m/^(.*) \(.*\)$/;
     $date = $strp_svn->parse_datetime($1) || die "Could not parse \"$date\"\n";
     $date->set_formatter($strp_absolute);
+    $date->set_locale('de_DE');
+
     return {date => $date,
             author => $author,
             log_msg => $log_msg}

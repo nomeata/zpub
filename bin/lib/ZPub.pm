@@ -1,3 +1,8 @@
+use warnings;
+use strict;
+
+use vars qw/$ZPUB $CUST $USER %SETTINGS/;
+
 use File::Basename qw/dirname basename/;
 use File::Slurp;
 use File::stat;
@@ -196,7 +201,7 @@ sub collect_jobs {
     my %ret;
     
     for my $dir (qw/fail todo wip/) {
-	$ret{$dir} = [];
+	my @list;
 	opendir(DIR, "$ZPUB/spool/$dir") || die "can't opendir $ZPUB/spool/$dir: $!";
 	for my $jobname (grep { (not /^\./) && -f "$ZPUB/spool/$dir/$_" } readdir(DIR)) {
 	    my (@lines) = read_file("$ZPUB/spool/$dir/$jobname");
@@ -206,7 +211,7 @@ sub collect_jobs {
 	    next unless $cust eq $CUST;
 	    my $info = lazy(\&rev_info,$revn);
 
-	    push @{$ret{$dir}}, {
+	    push @list, {
 		jobname => $jobname,
 		revn    => $revn,
 		doc     => $doc,
@@ -215,6 +220,8 @@ sub collect_jobs {
 		info    => $info,
 	    };
 	}
+    	@list = sort {$b->{revn} <=> $a->{revn}} @list;
+	$ret{$dir} = \@list;;
 	closedir DIR;
     }
     return \%ret;

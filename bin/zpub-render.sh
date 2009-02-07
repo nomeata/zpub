@@ -75,11 +75,11 @@ function makehtml {
 
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
-	xsltproc ../style/htmlhelp.xsl ../source/$DOCNAME.xml
+	xsltproc ../style/html.xsl ../source/$DOCNAME.xml
 	
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr ../style/htmlhelp-shared/* .
+	#cp -flr ../style/html-shared/* .
 	test -d ../source/images/ && rsync -r ../source/images/ images/
 	rm -f ../${DOCNAME}_html.zip
 	zip -r ../${DOCNAME}_html.zip .
@@ -133,9 +133,9 @@ then
   exit 1
 fi
 
-makehtmlhelp 
+#makehtmlhelp 
 makehtml 
-makepdf
+#makepdf
 
 cd "$OUTDIR"
 echo "Successfully generated output, deleting source directory"

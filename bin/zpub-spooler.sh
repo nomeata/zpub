@@ -51,6 +51,6 @@ do
       mv "$ZPUB/spool/wip/$FILE" "$ZPUB/spool/fail/$FILE"
     fi
     $ZPUB/bin/zpub-send-mail.pl "$CUST" "$REV" "$DOC" "$STYLE"
-
+    $ZPUB/bin/zpub-link-latest.pl "$CUST" "$REV" "$DOC" "$STYLE"
   fi
 done

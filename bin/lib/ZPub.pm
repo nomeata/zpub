@@ -67,27 +67,47 @@ sub collect_documents {
 sub collect_revisions {
     my ($doc) = @_;
     
-    my %hash;
+    my @list;
     opendir(DIR, "$ZPUB/$CUST/output/$doc/archive")
 	|| die "can't opendir $ZPUB/$CUST/output/$doc/archive: $!";
     for (readdir(DIR)) {
-	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && /(\d+)-(.*)/) {
-	    $hash{$1} ||= {
-		    revn => $1,
-		    info  => lazy(\&rev_info,$1),
+	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && $_ =~ /^\d+$/){
+	    my $revn = $_;
+	    my %rev = (
+		    revn => $revn,
+		    info  => lazy(\&rev_info,$revn),
 		    styles => [],
-		    finished => ! -e "$ZPUB/$CUST/output/$doc/archive/$_/zpub-render-in-progress",
-	    };
-
-	    push @{$hash{$1}{styles}}, {
-		style => $2,
-		files => lazy(\&collect_output, $doc, $1, $2),
+		    finished => 0,
+	    );
+	    opendir(SDIR, "$ZPUB/$CUST/output/$doc/archive/$revn")
+		|| die "can't opendir: $ZPUB/$CUST/output/$doc/archive/$revn $!";
+	    for (readdir(SDIR)) {
+		if (-d "$ZPUB/$CUST/output/$doc/archive/$revn/$_" && (substr $_,0,1) ne "."){
+		    my $style = $_;
+		    push @{$rev{styles}}, {
+			style => $style,
+			files => lazy(\&collect_output, $doc, $revn, $style),
+		    };
+		    if (! -e "$ZPUB/$CUST/output/$doc/archive/$revn/$style/zpub-render-in-progress") {
+			$rev{finished}++;
+		    }
+		}
 	    }
+	    closedir SDIR;
+	    push @list, \%rev;
 	}
     } 
     closedir DIR;
-    return sort {$b->{revn} <=> $a->{revn}} (values %hash);
+    return sort {$b->{revn} <=> $a->{revn}} @list;
 }
+
+# Filters out the revs with a given style
+sub select_with_style {
+    my ($style, @revs) = @_;	
+
+    return grep {$_->{"style"} eq $style} @_;
+}
+    
 
 # Selects the latest finished revision from a list of revisions
 sub select_latest_ok {
@@ -133,7 +153,7 @@ sub select_revs {
 # Various pathnames
 sub revpath {
     my ($doc,$revn,$style) = @_;
-    return "$ZPUB/$CUST/output/$doc/archive/$revn-$style";
+    return "$ZPUB/$CUST/output/$doc/archive/$revn/$style";
 }
 sub repopath {
     return "$ZPUB/$CUST/repos/source";
@@ -171,7 +191,7 @@ sub collect_output {
 	$date->set_formatter($strp_absolute);
 	$date->set_locale('de_DE');
 
-	my $url = sprintf "/%s/archive/%d-%s/%s", $doc,$revn,$style,$filename;
+	my $url = sprintf "/%s/archive/%d/%s/%s", $doc,$revn,$style,$filename;
 	
 	push @ret, {
 	    filename => $filename,	
@@ -269,7 +289,7 @@ sub is_admin {
 sub read_settings {
     # Customer Name
     $SETTINGS{cust_name} = read_file("$ZPUB/$CUST/conf/cust_name")
-	or "Could not read cust_name: $!";
+	or die "Could not read cust_name: $!";
     chomp($SETTINGS{cust_name});
     
     # Admins
@@ -294,13 +314,13 @@ sub read_settings {
 
     # Default style
     $SETTINGS{default_style} = read_file("$ZPUB/$CUST/conf/default_style")
-	or "Could not read default_style: $!";
+	or die "Could not read default_style: $!";
     chomp($SETTINGS{default_style});
 
     # Final style
     if ($SETTINGS{features}{final_approve}) {
 	$SETTINGS{final_style} = read_file("$ZPUB/$CUST/conf/final_style")
-	    or "Could not read final_style: $!";
+	    or die "Could not read final_style: $!";
 	chomp($SETTINGS{final_style});
     }
 }

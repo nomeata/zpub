@@ -14,7 +14,7 @@ Erzeugte Dateien (Layout [% style %]):
 [% UNLESS size == 'directory' %]
    Size: [% size +%]
 [% END %]
-   http://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]-[% style %]/[% filename +%]
+   http://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
 [% END %]
 
 [% END %]

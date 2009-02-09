@@ -52,7 +52,7 @@ $CUST
 $REV
 $DOC
 $STYLE
-$ZPUB/$CUST/output/$DOC/archive/$REV-$STYLE
+$ZPUB/$CUST/output/$DOC/archive/$REV/$STYLE
 __END__
   mv /opt/zpub/spool/new/"$JOBNAME" /opt/zpub/spool/todo/"$JOBNAME"
 done

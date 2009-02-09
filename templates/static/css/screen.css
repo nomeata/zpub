@@ -66,11 +66,12 @@ hr {
 	width: 20em; 
 	}
 #navi h2 {
-	margin-top: 0; 
+	margin: 0; 
 	padding-left: 5px; 
 	padding-top: 10px;
 	padding-bottom: 5px;
-	color: #960a00;  
+	color: #960a00; 
+	background-color: silver;  
 	}
 #navi h2 span {
 	color: white; 

@@ -133,9 +133,9 @@ then
   exit 1
 fi
 
-#makehtmlhelp 
+makehtmlhelp 
 makehtml 
-#makepdf
+makepdf
 
 cd "$OUTDIR"
 echo "Successfully generated output, deleting source directory"

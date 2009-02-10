@@ -1,8 +1,13 @@
 <ul class="filelist">
 [% FOREACH files %]
 <li class="[% type %]">
-    <a href="[% url %]"><span class="this_rev">[% filename %]</span></a><br />
-    [% UNLESS size == 'directory' %]Dateigröße: [% size %]<br/>[% END %]
+    <a href="[% url %]"><span class="this_rev">[% filename %]</span></a>
+    [[% IF type == 'chm' %]Windows-Hilfedatei
+    [%- ELSIF type == 'pdf' %]PDF-Datei
+    [%- ELSIF type == 'html-dir' %]Online-Vorschau
+    [%- ELSIF type == 'html-zip' %]Webseite in ZIP-Archiv
+    [%- END -%]
+    [%- UNLESS size == 'directory' %], [% size %][% END %]]<br/>
     Datum: [% date.relative %]
 </li>
 [% END %]

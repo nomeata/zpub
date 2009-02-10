@@ -5,6 +5,7 @@
 
 <h3>Liste der Abonnenten der e-Mail-Benachrichtigung</h3>
 
+[% IF admin %]
 <div class="tip">
 <p>Bitte geben Sie die Empfänger der e-Mail-Benachrichtigungen in der Form <span class="syntax_sample">Otto Mustermann &lt;otto@mustermann.de&gt;, Karla Musterfrau &lt;karla@musterfrau.de&gt;</span> in einer Zeile, durch Kommas getrennt, ein.</p>
 </div>
@@ -15,5 +16,14 @@
 <input type="submit" value="Speichern" name="set_subscribers"/>
 <input type="reset" value="Zurücksetzen"/>
 </form>
+
+[% ELSE %]
+<p>
+Bei Änderungen am Dokument [% doc %] werden benachrichtigt:
+</p>
+<p>
+[% subscribers | html %]
+</p>
+[% END %]
 
 [% END %]

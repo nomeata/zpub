@@ -38,9 +38,7 @@
 [% IF this_page.startswith("/$doc/") %]
 <ul>
 <li>[% link("","/$doc/archive/","Archiv")%]</li>
-[% IF admin %]
-<li>[% link("","/$doc/admin/subscribers/","Abonnenten")%]</li>
-[% END %]
+<li>[% link("","/$doc/subscribers/","Abonnenten")%]</li>
 </ul>
 [% END %]
 </li>

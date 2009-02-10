@@ -127,11 +127,12 @@ sub show_htpasswd_edit {
 }
 
 # Edit window for subscribers editing
-sub show_subscribers_edit {
+sub show_subscribers {
     my ($doc) = @_;
     my $subscribers = read_subscribers($doc);
-    $tt->process('show_subscribers_edit.tt', {
+    $tt->process('show_subscribers.tt', {
 	standard_vars(),
+	doc => $doc,
 	subscribers => $subscribers,
     }) or die ("Error: ".$tt->error());
 }
@@ -219,6 +220,8 @@ read_settings();
 
 # Is this a POST?
 if ($q->request_method() eq "POST") {
+    unless (is_admin()) { die "This action requires admin priviliges\n" }
+
     if (defined $q->param('set_htpasswd')) {
 	if ($q->url_param('admin') eq 'passwd') {
 	    if (not defined $q->param('htpasswd')) {
@@ -305,13 +308,9 @@ if (defined $q->url_param('doc')) {
     } elsif (defined $q->url_param('rev'))  {
 	my $rev = $q->url_param('rev');
 	show_archived_rev($doc, $rev);
-    } elsif (defined $q->url_param('admin'))  {
-	if ($q->url_param('admin') eq 'subscribers') {
-	    # Subscribers Edit view
-	    show_subscribers_edit($doc);
-	} else {
-	    die "Unknown admin command\n"
-	}
+    } elsif (defined $q->url_param('subscribers'))  {
+	# Subscribers Edit view
+	show_subscribers($doc);
     } else {
 	# No specific revision requested, print overview page
 	show_overview($doc);
@@ -320,6 +319,7 @@ if (defined $q->url_param('doc')) {
     # System status
     show_status()
 } elsif (defined $q->url_param('admin'))  {
+    unless (is_admin()) { die "You need admin priviliges to view this page.\n" };
     if ($q->url_param('admin') eq 'passwd') {
 	# Passwd Edit view
 	show_htpasswd_edit();

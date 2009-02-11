@@ -21,9 +21,9 @@
 <p>
 Bei Änderungen am Dokument [% doc %] werden benachrichtigt:
 </p>
-<p>
-[% subscribers | html %]
-</p>
+<ul>
+<li>[% subscribers | html %]</li>
+</ul>
 [% END %]
 
 [% END %]

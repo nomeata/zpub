@@ -21,9 +21,15 @@
 <p>
 Bei Änderungen am Dokument [% doc %] werden benachrichtigt:
 </p>
+
+[% IF subscribers %]
 <ul>
 <li>[% subscribers | html %]</li>
 </ul>
+[% ELSE %]
+<p style="font-style: italic; ">Für dieses Dokument sind noch keine Abnonnenten definiert.</p>
+[% END %]
+
 [% END %]
 
 [% END %]

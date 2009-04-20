@@ -30,7 +30,7 @@
 [% IF settings.features.exists('final_approve') AND admin %]
 	[% IF final_rev AND revn == final_rev.revn %]
 	<td rowspan="2">
-	<img src="/static/icons/stock_mark.png" width="16" height="16"/>
+	<img src="/static/icons/stock_mark.png" width="16" height="16" style="margin: 0 auto; display: block; "/>
 	</td>
 	[% ELSE %]
 	<td rowspan="2" class="releasebutton">

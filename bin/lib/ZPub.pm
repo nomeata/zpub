@@ -12,6 +12,7 @@ use DateTime;
 use DateTime::Format::Strptime;
 use Filesys::Df;
 use Sys::CpuLoad;
+use File::Glob qw/:glob/;
 
 
 use Number::Bytes::Human qw(format_bytes);
@@ -167,7 +168,7 @@ sub collect_output {
     my $path = revpath($doc,$revn,$style);
 
     my @ret;
-    for my $file (glob "$path/*") {
+    for my $file (bsd_glob("$path/*")) {
 	my $filename = basename($file);
 	my $type;
 	if      ($filename =~ /\.chm$/) {

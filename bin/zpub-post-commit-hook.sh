@@ -11,6 +11,8 @@ ZPUB=/opt/zpub
 REPOS="$1"
 REV="$2"
 
+export LANG=de_DE.utf8
+
 if [ -z "$REPOS" -o -z "$REV" ]
 then
   echo "Unexpected arguments to $0: $*" >&2

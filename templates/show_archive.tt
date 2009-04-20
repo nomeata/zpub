@@ -44,7 +44,7 @@
 [% END %]
 </tr>
 <tr class="bottom">
-<td colspan="3">
+<td colspan="2">
 	<span class="this_rev_log_msg">„[% info.log_msg | html %]“</span>
 </td>
 </tr>

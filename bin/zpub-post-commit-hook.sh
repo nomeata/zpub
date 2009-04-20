@@ -36,16 +36,10 @@ then
 fi
 
 
-CHANGED_DOCS=$(svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u)
-
-if [ -z "$CHANGED_DOCS" ]
-then
-  echo "WARNING: Could not detect any changed documents" >&2
-fi
-
-for DOC in $CHANGED_DOCS
+svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u|
+while read DOC
 do
-  JOBNAME="$(date +%Y%m%d-%H%M%S-$$-$DOC.job)"
+  JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC.job"|tr -c A-Za-z0-9_\\n- _)"
   cat > /opt/zpub/spool/new/"$JOBNAME" <<__END__
 $CUST
 $REV

@@ -57,7 +57,7 @@ function makehtmlhelp {
 		--stringparam htmlhelp.chm "$DOCNAME.chm"	\
 		--stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
 		--stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
-		 ../style/htmlhelp.xsl ../source/$DOCNAME.xml
+		 ../style/htmlhelp.xsl ../source/"$DOCNAME.xml"
 
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
@@ -75,7 +75,7 @@ function makehtml {
 
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
-	xsltproc ../style/html.xsl ../source/$DOCNAME.xml
+	xsltproc ../style/html.xsl ../source/"$DOCNAME.xml"
 	
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
@@ -103,12 +103,12 @@ function makepdf {
 	test -d "$outdir"|| mkdir -p "$outdir"
 	cd "$outdir"
 	
-	xsltproc style/fo.xsl source/$DOCNAME.xml > source/$DOCNAME.fo
-	fop -fo source/$DOCNAME.fo -pdf $DOCNAME.pdf
-	rm source/$DOCNAME.fo
+	xsltproc style/fo.xsl source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
+	fop -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
+	rm source/"$DOCNAME.fo"
 
 	# fop uses xalan, xalan has bugs
-	#fop -xml source/$DOCNAME.xml -xsl style/fo.xsl -pdf $DOCNAME.pdf
+	#fop -xml source/"$DOCNAME.xml" -xsl style/fo.xsl -pdf "$DOCNAME.pdf"
 }
 
 
@@ -125,7 +125,7 @@ test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
 svn export -r $REV "file://$ZPUB/$CUST/repos/source/$DOC" source
 cd "source"
-DOCNAME=$(basename *.xml .xml)
+DOCNAME="$(basename *.xml .xml)"
 
 if [ ! -r "$DOCNAME.xml" ]
 then

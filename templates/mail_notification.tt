@@ -9,26 +9,23 @@ Revision wurde erstellt von [% this_rev.info.author | html %] am [% this_rev.inf
 [% FOREACH this_rev.styles %]
 Erzeugte Dateien (Layout [% style %]):
 [% FOREACH files %]
- * [% filename +%] (Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon +%], 
+ * [% filename +%] (Datei-Typ: [% type # sollte natürlich hübscher sein, eventuell ein icon -%] 
 [%- UNLESS size == 'directory' -%]
-   Size: [%- size +%]
-[%- END %]
-   http://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
-[% END %]
+, Size: [% size -%]
+[%- END %])
+   https://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
+[% END -%]
 
-[% END %]
-
-[% END %]
-
-________________________________________________________________________________
 Die aktuellste Version aller Ausgabeformate ist immer unter folgenden 
 Links abrufbar:
 
 * Online-Vorschau: 
-  <https://duva.zpub.de/[% doc %]/latest/handbuch/[% doc %]_html/>
+  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %]_html/
 * Windows-Hilfedatei (CHM): 
-  <https://duva.zpub.de/[% doc %]/latest/handbuch/[% doc %].chm>
+  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %].chm
 * PDF: 
-  <https://duva.zpub.de/[% doc %]/latest/handbuch/[% doc %].pdf>
+  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %].pdf
 * HTML (gezippt): 
-  <https://duva.zpub.de/[% doc %]/latest/handbuch/[% doc %]_html.zip>
+  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %]_html.zip
+[% END -%]
+[% END -%]

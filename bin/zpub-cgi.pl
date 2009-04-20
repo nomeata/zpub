@@ -290,7 +290,7 @@ $tt->context->define_vmethod('SCALAR','startswith',sub {
 	});
 $tt->context->define_vmethod('HASH','relative',sub {
 		my ($what) = @_;
-		return $strp_relative->format_datetime($what);
+		return Encode::encode('utf8',$strp_relative->format_datetime($what));
 	});
 	
 

@@ -258,7 +258,7 @@ sub newer_jobs {
 
     my $ret = collect_jobs();
     for my $jobs (values %$ret) {
-	$jobs = [ grep { $_->{doc} eq $doc && $_->{revn} >= $rev->{revn} } @$jobs ]
+	$jobs = [ grep { $_->{doc} eq $doc && $_->{revn} >= ($rev ? $rev->{revn} : -1) } @$jobs ]
     }
     return $ret;
 }

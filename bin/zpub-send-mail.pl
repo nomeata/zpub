@@ -63,5 +63,6 @@ my $msg = MIME::Lite->new(
         Subject  => "Changes to document $doc",
         Data     => $body
     );
+$msg->attr('content-type.charset' => 'UTF-8');
 
 $msg->send() or die "Could not send mail.\n";

@@ -40,8 +40,7 @@ CHANGED_DOCS=$(svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ 
 
 if [ -z "$CHANGED_DOCS" ]
 then
-  echo "ERROR: Could not detect any changed documents" >&2
-  exit 1
+  echo "WARNING: Could not detect any changed documents" >&2
 fi
 
 for DOC in $CHANGED_DOCS

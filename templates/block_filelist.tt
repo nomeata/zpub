@@ -1,7 +1,7 @@
 <ul class="filelist">
 [% FOREACH files %]
 <li class="[% type %]">
-    <a href="[% url %]"><span class="this_rev">[% filename %]</span></a>
+    <a target="_blank" href="[% url %]"><span class="this_rev">[% filename %]</span></a>
     [[% IF type == 'chm' %]Windows-Hilfedatei
     [%- ELSIF type == 'pdf' %]PDF-Datei
     [%- ELSIF type == 'html-dir' %]Online-Vorschau

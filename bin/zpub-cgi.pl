@@ -220,6 +220,8 @@ read_settings();
 
 # Is this a POST?
 if ($q->request_method() eq "POST") {
+    if ($CUST eq "demo") { die "Modifications to the demo instance are prohibited.\n" }
+
     unless (is_admin()) { die "This action requires admin priviliges\n" }
 
     if (defined $q->param('set_htpasswd')) {

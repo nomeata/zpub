@@ -22,31 +22,32 @@
 	state = 'wip'
 %]
 [% ELSE %]
-<it>keine Aufträge in Bearbeitung</it>
+	<it>keine Aufträge in Bearbeitung</it>
 [% END %]
 
 
-<div class="warning">
-<h4>Fehlgeschlagende Aufträge</h4>
+
 [% IF jobs.fail.size %]
-[% INCLUDE block_jobtable.tt
-	jobs = jobs.fail
-	state = 'fail'
-	show_logfile = 1
-	show_retry = 1
-	show_remove = 1
-%]
-</div>
+	<div class="warning">
+	<h4>Fehlgeschlagende Aufträge</h4>
+	[% INCLUDE block_jobtable.tt
+		jobs = jobs.fail
+		state = 'fail'
+		show_logfile = 1
+		show_retry = 1
+		show_remove = 1
+	%]
+	</div>
 [% ELSE %]
-<div class="tip">
-<p>keine fehlgeschlagenden Aufträge</p>
-</div>
+	<div class="tip">
+		<p>keine fehlgeschlagenden Aufträge</p>
+	</div>
 [% END %]
 
 <h3>Systemstatus</h3>
 <ul>
-<li>Freier Festplattenspeicher: [% sysstatus.df %]</li>
-<li>Systemlast: [% sysstatus.load %]</li>
+	<li>Freier Festplattenspeicher: [% sysstatus.df %]</li>
+	<li>Systemlast: [% sysstatus.load %]</li>
 </ul>
 
 [% END %]

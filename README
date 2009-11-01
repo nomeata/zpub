@@ -24,12 +24,20 @@ https://demo.zpub.de/zpub-Anleitung/latest/handbuch/zpub-Anleitung.pdf
 Lizenz
 ------
 
-© 2009 Joachim und Thomas Breitner
+zpub ist © 2009 Joachim und Thomas Breitner
 
 zpub ist Freie Software und unter der European Union Public License v1.1
 veröffentlicht. Sie finden die Lizenz in mehreren Sprachen auf
 http://ec.europa.eu/idabc/en/document/7774. Der deutsche Lizenztext wird in
 der Datei EUPL-1.1.pdf mit zpub vertrieben.
+
+Die Datei bin/lib/Number/Bytes/Human.pm ist © 2005-2007 by Adriano R. Ferreira
+und unterliegt folgender Lizenz:
+	This library is free software; you can redistribute it and/or modify it
+	under the same terms as Perl itself.
+
+Die Datei templates/static/js/jquery-1.3.1.min.js ist © 2009 John Resig und
+unterliegt den Bestimmungen der MIT-Lizenz (siehe http://docs.jquery.com/License).
 
 Quellcode
 ---------

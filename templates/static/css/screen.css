@@ -189,6 +189,9 @@ a.index {
 a.demo {
 	background-image: url(../icons/system-lock-screen.png); 
 	}
+a.source {
+	background-image: url(../icons/ascii.png); 
+	}
 a.contact {
 	background-image: url(../icons/contact-new.png); 
 	}

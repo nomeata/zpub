@@ -1,0 +1,181 @@
+Installation
+------------
+
+This installation instructions are not very polished yet. They should be
+sufficient to get you started, if you have some general knowledge about
+linux administration (e.g. directory permissions, apache configuration
+etc.). Any hints as to what ought to be improved are very welcome!
+
+These instructions assume a Debian lenny system, and that a specific user
+is created for zpub purposes. It is assumed that the source is unpacked in
+/opt/zpub.
+
+The following packages need to be installed via apt-get install:
+
+apache2
+cabextract
+docbook-xsl
+fop
+libapache2-svn
+libdatetime-perl
+libdatetime-format-
+libfile-slurp-perl
+strptime-perl-perl
+libfilesys-df-perl
+libmime-lite-perl
+libsys-cpuload-perl
+libpaper1
+libsaxon-java
+libsvn-svnlook-perl
+libtemplate-perl
+subversion
+sun-java6-jre
+wine
+xsltproc
+zip 
+
+The generation of windows help files requires the Microsoft HTML Help
+Workshop, which can be installed using these commands:
+$ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
+$ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
+$ bash ./htmlreg.sh
+If you skip this step, you should uncomment the call to "makhtmlhelp" in
+/opt/zpub/bin/zpub-render.sh.
+
+Create the directories /opt/zpub/spool/new, /opt/zpub/spool/wip,
+/opt/zpub/spool/done and /opt/zpub/spool/fail. These need be writeable by
+both the webserver and the zpub user (e.g. by belonging to the user
+www-data and the group zpub).
+
+As the dedicated zpub user, run /opt/zpub/bin/zpub-spooler.sh. This needs
+to run constantly, e.g. from an init script.
+
+This completes the setup for zpub. Now you need to create an instance. This
+is assumed to be called "demo" here.
+
+Create the directories
+/opt/zpub/demo
+/opt/zpub/demo/conf
+/opt/zpub/demo/output
+/opt/zpub/demo/repos
+/opt/zpub/demo/settings
+/opt/zpub/demo/settings/final_rev
+/opt/zpub/demo/settings/subscribers
+/opt/zpub/demo/style
+
+In the directory /opt/zpub/demo/conf, create the following plain text files: 
+  admin:         Contains the login names of users with admin rights
+  cust_name:     The name of the instane (e.g. "zpub-Demo")
+  default_style: The default xslt style sheet (e.g. "manual")
+  final_style:   The xslt style for approved documents (e.g. "manual_final")
+  features:      List of enabled features. Currently, just put
+                 "final_approve" in there.
+  
+In the directory /opt/zpub/demo/repos, create an SVN repository named
+"source", using svnadmin. The file
+/opt/zpub/demo/repos/source/hooks/post-commit needs to be a symbolic link
+to /opt/bin/zpub-post-commit-hook.sh.
+
+The files and directories in /opt/zpub/demo/settings need to be writable by
+the web server, as does the subversion repository.
+
+In the directories /opt/zpub/demo/style, create directories for the two
+styles (e.g. "manual" and "manual_final"). Both of these are expected to
+contain these files and directories:
+ * htmlhelp.xsl
+ * htmlhelp-shared/
+ * html.xsl
+ * html-shared/
+ * fo.xsl
+
+The xsl files can be links to the system-wide files
+/usr/share/xml/docbook/stylesheet/nwalsh/*/docbook.xsl, but more likely you
+will want to put real XSLT files there and import the global files, to
+make modifications.
+
+In /opt/zpub/demo/settings, create a apache password file using htpasswd.
+
+The apache configuration for the demo host is then:
+===================================================================
+<VirtualHost *:80>
+	ServerAdmin mail@joachim-breitner.de
+	ServerName demo.zpub.de
+	RedirectPermanent / https://demo.zpub.de/
+</VirtualHost>
+
+<VirtualHost *:443>
+	ServerAdmin mail@joachim-breitner.de
+	ServerName demo.zpub.de
+	DocumentRoot /opt/zpub/demo/output
+
+	# This needs to be repeated here, seems to be a bug in apache
+	SSLEngine on
+	SSLCertificateFile    /etc/apache2/ssl/fry.serverama.de.crt
+	SSLCertificateKeyFile /etc/apache2/ssl/fry.serverama.de.key
+
+	# For logfiles
+	<Files *.log>
+		AddDefaultCharset utf-8 
+	</Files>
+
+	RewriteEngine On
+	RewriteRule ^/$				/opt/zpub/bin/zpub-cgi.pl?cust=demo [L]
+	RewriteRule ^/status/$			/opt/zpub/bin/zpub-cgi.pl?cust=demo&status= [L]
+	RewriteRule ^/admin/passwd/$		/opt/zpub/bin/zpub-cgi.pl?cust=demo&admin=passwd [L]
+	RewriteRule ^/([^/]*)/$ 		/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1 [L]
+	RewriteRule ^/([^/]*)/archive/$		/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&archive= [L]
+	RewriteRule ^/([^/]*)/archive/(\d+)/$	/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&rev=$2 [L]
+	RewriteRule ^/([^/]*)/subscribers/$	/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&subscribers= [L]
+
+	<Directory /opt/zpub/bin/zpub-cgi.pl>
+		SetHandler cgi-script
+		Options +ExecCGI
+
+		AuthType Basic
+		AuthName "Demo zpub-Installation"
+		AuthUserFile /opt/zpub/demo/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+	Alias /static /opt/zpub/templates/static
+	<Directory /opt/zpub/templates/static>
+		Options FollowSymLinks
+		AllowOverride None
+		Order allow,deny
+		allow from all
+
+		AuthType Basic
+		AuthName "Demo zpub-Installation"
+		AuthUserFile /opt/zpub/demo/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+	<Directory /opt/zpub/demo/output/>
+		Options Indexes FollowSymLinks
+		AllowOverride None
+		Order allow,deny
+		allow from all
+
+		AuthType Basic
+		AuthName "Demo zpub-Installation"
+		AuthUserFile /opt/zpub/demo/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+ 	<Location /svn>
+ 		DAV svn
+ 		SVNPath /opt/zpub/demo/repos/source
+ 
+ 		AuthType Basic
+ 		AuthName "Demo zpub-Installation"
+ 		AuthUserFile /opt/zpub/demo/settings/htpasswd
+		<LimitExcept GET PROPFIND OPTIONS REPORT>
+			Require valid-user
+		</LimitExcept>
+ 	</Location>
+</VirtualHost>
+===================================================================
+
+Now, you should be able to check out the demo subversion repository, create
+a directory and a docbook file with file ending .xml therein, commit these
+and see the generated output in the web interface.

@@ -31,7 +31,7 @@ where
 '
 
 # validate!:
-# xmllint  --noout --xinclude  --postvalid ../duva-formgen-doku/formulargenerator.xml 
+# xmllint  --noout --xinclude  --postvalid xml-file.xml
 
 set -e
 

@@ -169,9 +169,7 @@ The apache configuration for the demo host is then:
  		AuthType Basic
  		AuthName "Demo zpub-Installation"
  		AuthUserFile /opt/zpub/demo/settings/htpasswd
-		<LimitExcept GET PROPFIND OPTIONS REPORT>
-			Require valid-user
-		</LimitExcept>
+		Require valid-user
  	</Location>
 </VirtualHost>
 ===================================================================

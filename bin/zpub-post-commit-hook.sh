@@ -58,14 +58,17 @@ fi
 svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u|
 while read DOC
 do
-  JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC.job"|tr -c A-Za-z0-9_\\n- _)"
-  cat > /opt/zpub/spool/new/"$JOBNAME" <<__END__
+  if [ "$DOC" != common ]
+  then
+    JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC.job"|tr -c A-Za-z0-9_\\n- _)"
+    cat > /opt/zpub/spool/new/"$JOBNAME" <<__END__
 $CUST
 $REV
 $DOC
 $STYLE
 $ZPUB/$CUST/output/$DOC/archive/$REV/$STYLE
 __END__
-  mv /opt/zpub/spool/new/"$JOBNAME" /opt/zpub/spool/todo/"$JOBNAME"
+    mv /opt/zpub/spool/new/"$JOBNAME" /opt/zpub/spool/todo/"$JOBNAME"
+  fi
 done
 

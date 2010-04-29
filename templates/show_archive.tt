@@ -43,7 +43,7 @@ under the Licence.
 	[% info.author | html %]
 </td>
 <td>
-	[% info.date | html %]
+	[% info.date | html_entity %]
 </td>
 [% IF settings.features.exists('final_approve') AND admin %]
 	[% IF final_rev AND revn == final_rev.revn %]

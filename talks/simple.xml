@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book lang="de">
+  <title>Ein einfaches Buch</title>
+  <chapter>
+    <title>Vorstellung</title>
+    <para>Hallo Welt!</para>
+    <warning><para>Dokument in Arbeit!
+       </para></warning>
+    <para>Ich hoffe es geht Ihnen
+       <emphasis>hervorragend</emphasis>.</para>
+  </chapter>
+  <chapter>
+    <title>Wiederholung</title>
+    <tip><para>Schreib doch mehr!</para></tip>
+    <para>Hallo nochmal, Welt!</para>
+  </chapter>
+</book>

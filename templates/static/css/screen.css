@@ -254,6 +254,11 @@ ol {
 .tip {
 	background: #ECECEC url(../icons/dialog-information.png) no-repeat 5px 8px; 
 	}
+.warning h3, 
+.tip h3 {
+	margin-left: -36px; 
+	margin-right: -10px;
+	}
 .warning h4, 
 .tip h4, 
 .warning p,

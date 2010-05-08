@@ -34,16 +34,10 @@ Erzeugte Dateien (Layout [% style %]):
    https://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
 [% END -%]
 
-Die aktuellste Version aller Ausgabeformate ist immer unter folgenden 
-Links abrufbar:
+Die aktuellste Version aller Ausgabeformate ist stets unter
+https://[% cust %].zpub.de/[% doc %]/
+abrufbar.
 
-* Online-Vorschau: 
-  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %]_html/
-* Windows-Hilfedatei (CHM): 
-  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %].chm
-* PDF: 
-  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %].pdf
-* HTML (gezippt): 
-  https://[% cust %].zpub.de/[% doc %]/latest/[% style %]/[% doc %]_html.zip
+
 [% END -%]
 [% END -%]

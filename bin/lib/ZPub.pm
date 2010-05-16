@@ -145,11 +145,12 @@ sub select_final {
     my ($doc,@revs) = @_;
 
     my $final_revn = final_revision($doc);
-
-    for my $rev (@revs) {
-	if ($rev->{revn} == $final_revn) {
-	    return $rev;
-	}
+    if (defined $final_revn) {
+        for my $rev (@revs) {
+            if ($rev->{revn} == $final_revn) {
+                return $rev;
+            }
+        }
     }
     return 0;
 }
@@ -228,9 +229,9 @@ sub rev_info {
     my ($revn) = @_;
 
     my $look = SVN::SVNLook->new(repo => repopath(), cmd => '/usr/bin/svnlook');
-    my ($author, $date, $log_msg) = $look->info(revision => $revn);
-    $date =~ m/^(.*) \(.*\)$/;
-    $date = $strp_svn->parse_datetime($1) || die "Could not parse \"$date\"\n";
+    my ($author, $raw_date, $log_msg) = $look->info(revision => $revn);
+    $raw_date =~ m/^(.*) \(.*\)$/;
+    my $date = $strp_svn->parse_datetime($1) || die "Could not parse date \"$raw_date\" of rev $revn in repo \"". repopath() . "\"\n";
     $date->set_formatter($strp_absolute);
     $date->set_locale('de_DE');
 

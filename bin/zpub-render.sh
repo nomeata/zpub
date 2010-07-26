@@ -76,7 +76,7 @@ function makehtmlhelp {
 
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	cp -flr ../style/htmlhelp-shared/* .
+	test -d ../style/htmlhelp-shared && cp -flr ../style/htmlhelp-shared/* .
 	test -d ../source/images/ && rsync -r ../source/images/ images/
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
@@ -94,7 +94,7 @@ function makehtml {
 	
 	mkdir -p images 
 	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	#cp -flr ../style/html-shared/* .
+	test -d ../style/html-shared && cp -flr ../style/html-shared/* .
 	test -d ../source/images/ && rsync -r ../source/images/ images/
 	rm -f ../${DOCNAME}_html.zip
 	zip -r ../${DOCNAME}_html.zip .
@@ -119,7 +119,9 @@ function makepdf {
 	cd "$outdir"
 	
 	xsltproc style/fo.xsl source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
-	fop -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
+	fopopts=""
+	test -e "style/fop.xconf" && fopopts="-c style/fop.xconf"
+	fop $fopopts -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
 	rm source/"$DOCNAME.fo"
 
 	# fop uses xalan, xalan has bugs

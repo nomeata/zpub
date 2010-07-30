@@ -74,8 +74,8 @@ function makehtmlhelp {
 		--stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
 		 ../style/htmlhelp.xsl ../source/"$DOCNAME.xml"
 
-	mkdir -p images 
-	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+	mkdir -p images style
+	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif style/
 	test -d ../style/htmlhelp-shared && cp -flr ../style/htmlhelp-shared/* .
 	test -d ../source/images/ && rsync -r ../source/images/ images/
 	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
@@ -92,8 +92,8 @@ function makehtml {
 	cd "$outdir"
 	xsltproc ../style/html.xsl ../source/"$DOCNAME.xml"
 	
-	mkdir -p images 
-	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+	mkdir -p images style
+	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif style/
 	test -d ../style/html-shared && cp -flr ../style/html-shared/* .
 	test -d ../source/images/ && rsync -r ../source/images/ images/
 	rm -f ../${DOCNAME}_html.zip

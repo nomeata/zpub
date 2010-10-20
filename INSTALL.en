@@ -51,19 +51,20 @@ As the dedicated zpub user, run /opt/zpub/bin/zpub-spooler.sh. This needs
 to run constantly, e.g. from an init script.
 
 This completes the setup for zpub. Now you need to create an instance. This
-is assumed to be called "demo" here.
+is assumed to be called "test" here -- choose a better name of your liking.
+Note that the name "demo" will cause the system to be read-only.
 
 Create the directories
-/opt/zpub/demo
-/opt/zpub/demo/conf
-/opt/zpub/demo/output
-/opt/zpub/demo/repos
-/opt/zpub/demo/settings
-/opt/zpub/demo/settings/final_rev
-/opt/zpub/demo/settings/subscribers
-/opt/zpub/demo/style
+/opt/zpub/test
+/opt/zpub/test/conf
+/opt/zpub/test/output
+/opt/zpub/test/repos
+/opt/zpub/test/settings
+/opt/zpub/test/settings/final_rev
+/opt/zpub/test/settings/subscribers
+/opt/zpub/test/style
 
-In the directory /opt/zpub/demo/conf, create the following plain text files: 
+In the directory /opt/zpub/test/conf, create the following plain text files: 
   admin:         Contains the login names of users with admin rights
   cust_name:     The name of the instane (e.g. "zpub-Demo")
   default_style: The default xslt style sheet (e.g. "manual")
@@ -71,15 +72,15 @@ In the directory /opt/zpub/demo/conf, create the following plain text files:
   features:      List of enabled features. Currently, just put
                  "final_approve" in there.
   
-In the directory /opt/zpub/demo/repos, create an SVN repository named
+In the directory /opt/zpub/test/repos, create an SVN repository named
 "source", using svnadmin. The file
-/opt/zpub/demo/repos/source/hooks/post-commit needs to be a symbolic link
+/opt/zpub/test/repos/source/hooks/post-commit needs to be a symbolic link
 to /opt/bin/zpub-post-commit-hook.sh.
 
-The files and directories in /opt/zpub/demo/settings need to be writable by
+The files and directories in /opt/zpub/test/settings need to be writable by
 the web server, as does the subversion repository.
 
-In the directories /opt/zpub/demo/style, create directories for the two
+In the directories /opt/zpub/test/style, create directories for the two
 styles (e.g. "manual" and "manual_final"). Both of these are expected to
 contain these files and directories:
  * htmlhelp.xsl
@@ -93,20 +94,20 @@ The xsl files can be links to the system-wide files
 will want to put real XSLT files there and import the global files, to
 make modifications.
 
-In /opt/zpub/demo/settings, create a apache password file using htpasswd.
+In /opt/zpub/test/settings, create a apache password file using htpasswd.
 
-The apache configuration for the demo host is then:
+The apache configuration for the test host is then:
 ===================================================================
 <VirtualHost *:80>
 	ServerAdmin mail@joachim-breitner.de
-	ServerName demo.zpub.de
-	RedirectPermanent / https://demo.zpub.de/
+	ServerName test.zpub.de
+	RedirectPermanent / https://test.zpub.de/
 </VirtualHost>
 
 <VirtualHost *:443>
 	ServerAdmin mail@joachim-breitner.de
-	ServerName demo.zpub.de
-	DocumentRoot /opt/zpub/demo/output
+	ServerName test.zpub.de
+	DocumentRoot /opt/zpub/test/output
 
 	# This needs to be repeated here, seems to be a bug in apache
 	SSLEngine on
@@ -119,13 +120,13 @@ The apache configuration for the demo host is then:
 	</Files>
 
 	RewriteEngine On
-	RewriteRule ^/$				/opt/zpub/bin/zpub-cgi.pl?cust=demo [L]
-	RewriteRule ^/status/$			/opt/zpub/bin/zpub-cgi.pl?cust=demo&status= [L]
-	RewriteRule ^/admin/passwd/$		/opt/zpub/bin/zpub-cgi.pl?cust=demo&admin=passwd [L]
-	RewriteRule ^/([^/]*)/$ 		/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1 [L]
-	RewriteRule ^/([^/]*)/archive/$		/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&archive= [L]
-	RewriteRule ^/([^/]*)/archive/(\d+)/$	/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&rev=$2 [L]
-	RewriteRule ^/([^/]*)/subscribers/$	/opt/zpub/bin/zpub-cgi.pl?cust=demo&doc=$1&subscribers= [L]
+	RewriteRule ^/$				/opt/zpub/bin/zpub-cgi.pl?cust=test [L]
+	RewriteRule ^/status/$			/opt/zpub/bin/zpub-cgi.pl?cust=test&status= [L]
+	RewriteRule ^/admin/passwd/$		/opt/zpub/bin/zpub-cgi.pl?cust=test&admin=passwd [L]
+	RewriteRule ^/([^/]*)/$ 		/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1 [L]
+	RewriteRule ^/([^/]*)/archive/$		/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&archive= [L]
+	RewriteRule ^/([^/]*)/archive/(\d+)/$	/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&rev=$2 [L]
+	RewriteRule ^/([^/]*)/subscribers/$	/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&subscribers= [L]
 
 	<Directory /opt/zpub/bin/zpub-cgi.pl>
 		SetHandler cgi-script
@@ -133,7 +134,7 @@ The apache configuration for the demo host is then:
 
 		AuthType Basic
 		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/demo/settings/htpasswd
+		AuthUserFile /opt/zpub/test/settings/htpasswd
 	        Require valid-user
 	</Directory>
 
@@ -146,11 +147,11 @@ The apache configuration for the demo host is then:
 
 		AuthType Basic
 		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/demo/settings/htpasswd
+		AuthUserFile /opt/zpub/test/settings/htpasswd
 	        Require valid-user
 	</Directory>
 
-	<Directory /opt/zpub/demo/output/>
+	<Directory /opt/zpub/test/output/>
 		Options Indexes FollowSymLinks
 		AllowOverride None
 		Order allow,deny
@@ -158,22 +159,22 @@ The apache configuration for the demo host is then:
 
 		AuthType Basic
 		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/demo/settings/htpasswd
+		AuthUserFile /opt/zpub/test/settings/htpasswd
 	        Require valid-user
 	</Directory>
 
  	<Location /svn>
  		DAV svn
- 		SVNPath /opt/zpub/demo/repos/source
+ 		SVNPath /opt/zpub/test/repos/source
  
  		AuthType Basic
  		AuthName "Demo zpub-Installation"
- 		AuthUserFile /opt/zpub/demo/settings/htpasswd
+ 		AuthUserFile /opt/zpub/test/settings/htpasswd
 		Require valid-user
  	</Location>
 </VirtualHost>
 ===================================================================
 
-Now, you should be able to check out the demo subversion repository, create
+Now, you should be able to check out the test subversion repository, create
 a directory and a docbook file with file ending .xml therein, commit these
 and see the generated output in the web interface.

@@ -20,14 +20,13 @@
 # Script to render a specific revision of a document
 
 USAGE='
-$ zpub-render.sh $CUST $REV $DOC $STYLE $OUTDIR
+$ zpub-render.sh $CUST $REV $DOC $STYLE
 
 where
- $CUST:   Basename of the customers directory in $ZPUB/
+ $CUST:   Basename of the customers directory in $ZPUB_INSTANCES/
  $REV:    SVN-Revision to render
  $DOC:    Document to render (subdirectory of repository)
- $STYLE:  Style to use (subdirectory of $ZPUB/CUST/style/$STLYE
- $OUTDIR: Directory to write to (will be created)
+ $STYLE:  Style to use (subdirectory of $ZPUB_INSTANCES/CUST/style/$STLYE
 '
 
 # validate!:
@@ -35,22 +34,30 @@ where
 
 set -e
 
-ZPUB=/opt/zpub
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
 
 CUST="$1"
 REV="$2"
 DOC="$3"
 STYLE="$4"
-OUTDIR="$5"
+OUTDIR="$ZPUB_INSTANCES/$CUST/output/$DOC/archive/$REV/$STYLE"
 
-if [ -z "$CUST" -o -z "$REV" -o -z "$DOC" -o -z "$STYLE" -o -z "$OUTDIR" ]
+if [ -z "$CUST" -o -z "$REV" -o -z "$DOC" -o -z "$STYLE" ]
 then
   echo "Parameter list not complete."
   echo "$USAGE"
   exit 1
 fi
 
-for dir in "$ZPUB/$CUST" "$ZPUB/$CUST/style/$STYLE" "$ZPUB/$CUST/repos/source";
+for dir in "$ZPUB_INSTANCES/$CUST" "$ZPUB_INSTANCES/$CUST/style/$STYLE" "$ZPUB_INSTANCES/$CUST/repos/source";
 do
   if [ ! -d "$dir" ]
   then
@@ -61,7 +68,7 @@ done
 
 export SP_ENCODING=utf-8
 
-export FOP_HYPHENATION_PATH=$ZPUB/tools/fop-hyph.jar
+export FOP_HYPHENATION_PATH=$ZPUB_SHARED/tools/fop-hyph.jar
 
 function makehtmlhelp {
 	outdir="$OUTDIR/htmlhelp-temp"
@@ -136,11 +143,11 @@ exec &> >(tee zpub-render.log)
 
 
 test -L "style" && rm -f "style"
-ln -s $ZPUB/$CUST/style/$STYLE style
+ln -s $ZPUB_INSTANCES/$CUST/style/$STYLE style
 
 test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
-svn export -r $REV "file://$ZPUB/$CUST/repos/source/$DOC" source
+svn export -r $REV "file://$ZPUB_INSTANCES/$CUST/repos/source/$DOC" source
 cd "source"
 DOCNAME="$(basename *.xml .xml)"
 

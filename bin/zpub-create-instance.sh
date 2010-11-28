@@ -1,0 +1,167 @@
+#!/bin/bash
+
+# Copyright 2009 Joachim Breitner
+# 
+# Licensed under the EUPL, Version 1.1 or – as soon they will be approved
+# by the European Commission – subsequent versions of the EUPL (the
+# "Licence"); you may not use this work except in compliance with the
+# Licence.
+# You may obtain a copy of the Licence at:
+# 
+# http://ec.europa.eu/idabc/eupl
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the Licence is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# Licence for the specific language governing permissions and limitations
+# under the Licence.
+
+
+# Script to create a new zpub instance
+
+set -e
+
+function tell () { echo "$@"; "$@"; }
+
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
+
+
+USAGE="Usage:
+
+$0 name 'Full Name' zpub.domain.com
+
+where
+ name:            Directory name of the instance in $ZPUB_INSTANCES
+ 'Full Name':     Name as shown in the web interface
+ zpub.domain.com: Hostname for this virtual host
+"
+
+CUST="$1"
+NAME="$2"
+HOSTNAME="$3"
+
+if [ -z "$CUST" -o -z "$NAME" -o -z "$HOSTNAME" ]
+then
+  echo "$USAGE"
+  exit 1
+fi
+
+if [ "$CUST" = "demo" ]
+then
+  echo "WARNING: The instance demo is reserved for read-only demonstrational instances!"
+fi
+
+if [ -d "$ZPUB_INSTANCES/$CUST" ]
+then
+  echo "ERROR: $ZPUB_INSTANCES/$CUST already exists."
+  exit 1
+fi
+
+mkdir -vp "$ZPUB_INSTANCES"/"$CUST"/{conf,output,repos,settings/{final_rev,subscribers},style}
+
+echo "Creating files in $ZPUB_INSTANCES/$CUST/conf/..."
+echo "$NAME" > "$ZPUB_INSTANCES/$CUST"/conf/cust_name
+echo final_approve > "$ZPUB_INSTANCES/$CUST"/conf/features
+echo '' > "$ZPUB_INSTANCES/$CUST"/conf/admin
+echo default > "$ZPUB_INSTANCES/$CUST"/conf/default_style
+echo final > "$ZPUB_INSTANCES/$CUST"/conf/final_style
+
+echo "Creating files in $ZPUB_INSTANCES/$CUST/settings/..."
+echo  > "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
+
+echo "Creating apache configuration file $ZPUB_INSTANCES/$CUST/settings/apache.conf"
+cat <<__END__ > $ZPUB_INSTANCES/$CUST/settings/apache.conf
+<VirtualHost *:80>
+	ServerAdmin root@$HOSTNAME
+	ServerName $HOSTNAME
+	RedirectPermanent / https://$HOSTNAME/
+</VirtualHost>
+
+<VirtualHost *:443>
+	ServerAdmin root@$HOSTNAME
+	ServerName $HOSTNAME
+	DocumentRoot $ZPUB_INSTANCES/$CUST/output
+
+	# This needs to be repeated here, seems to be a bug in apache
+	#SSLEngine on
+	#SSLCertificateFile    /etc/apache2/ssl/fry.serverama.de.crt
+	#SSLCertificateKeyFile /etc/apache2/ssl/fry.serverama.de.key
+
+	# For logfiles
+	<Files *.log>
+		AddDefaultCharset utf-8 
+	</Files>
+
+	RewriteEngine On
+	RewriteRule ^/$				$ZPUB_BIN/zpub-cgi.pl?cust=test [L]
+	RewriteRule ^/status/$			$ZPUB_BIN/zpub-cgi.pl?cust=test&status= [L]
+	RewriteRule ^/admin/passwd/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&admin=passwd [L]
+	RewriteRule ^/([^/]*)/$ 		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1 [L]
+	RewriteRule ^/([^/]*)/archive/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&archive= [L]
+	RewriteRule ^/([^/]*)/archive/(\d+)/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&rev=$2 [L]
+	RewriteRule ^/([^/]*)/subscribers/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&subscribers= [L]
+
+	<Directory $ZPUB_BIN/zpub-cgi.pl>
+		SetHandler cgi-script
+		Options +ExecCGI
+
+		AuthType Basic
+		AuthName "zpub-Installation $NAME"
+		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+	Alias /static $ZPUB_SHARED/templates/static
+	<Directory $ZPUB_SHARED/templates/static>
+		Options FollowSymLinks
+		AllowOverride None
+		Order allow,deny
+		allow from all
+
+		AuthType Basic
+		AuthName "Demo zpub-Installation"
+		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+	<Directory $ZPUB_INSTANCES/$CUST/output/>
+		Options Indexes FollowSymLinks
+		AllowOverride None
+		Order allow,deny
+		allow from all
+
+		AuthType Basic
+		AuthName "Demo zpub-Installation"
+		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
+	        Require valid-user
+	</Directory>
+
+ 	<Location /svn>
+ 		DAV svn
+ 		SVNPath $ZPUB_INSTANCES/$CUST/repos/source
+ 
+ 		AuthType Basic
+ 		AuthName "Demo zpub-Installation"
+ 		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
+		Require valid-user
+ 	</Location>
+</VirtualHost>
+__END__
+
+
+echo "Creating source SVN repository..."
+tell svnadmin create "$ZPUB_INSTANCES/$CUST/repos/source"
+tell ln -sf "$ZPUB_BIN/zpub-post-commit-hook.sh" "$ZPUB_INSTANCES/$CUST/repos/source/hooks/post-commit"
+
+echo
+echo \
+'Instance fully created. You still need to fill the style directory, add user
+names to the htpasswd file and the admins file and enable the apache configuration.'

@@ -22,8 +22,8 @@ use warnings;
 
 
 # Constants
-our $ZPUB;
-BEGIN { $ZPUB = '/opt/zpub'; }
+my $paths='Set by zpub-install.sh'
+require $paths;
 
 # We are german (and like UTF8)!
 $ENV{LANG}="de_DE.utf8";
@@ -40,7 +40,7 @@ use CGI::Carp qw(fatalsToBrowser);
 $CGI::POST_MAX=1024 * 100;  # max 100K posts
 $CGI::DISABLE_UPLOADS = 1;  # no uploads
 
-use lib "$ZPUB/bin/lib";
+use lib $ZPUB_PERLLIB;
 use Number::Bytes::Human qw(format_bytes);
 use ZPub;
 use VorKurzem;

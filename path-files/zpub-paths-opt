@@ -1,0 +1,10 @@
+# Path configuration for zpub.
+
+# This file is both sourced by shell and read by perl scripts, and therefore
+# has to stay very simple.
+
+ZPUB_ETC=/opt/zub/etc
+ZPUB_BIN=/opt/zpub/bin
+ZPUB_PERLIB=/opt/zpub/bin/lib
+ZPUB_SHARED=/opt/zpub
+ZPUB_INSTANCES=/opt/zpub

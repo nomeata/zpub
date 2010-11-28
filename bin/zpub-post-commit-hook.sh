@@ -23,7 +23,16 @@
 # and create appropriate zpub spooler jobs.
 #
 
-ZPUB=/opt/zpub
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
+
 
 REPOS="$1"
 REV="$2"

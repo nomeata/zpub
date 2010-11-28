@@ -31,8 +31,9 @@ use strict;
 use warnings;
 
 # Constants
-our $ZPUB;
-BEGIN { $ZPUB = '/opt/zpub'; }
+my $paths='Set by zpub-install.sh'
+require $paths;
+
 
 # Modules
 use Template;
@@ -40,7 +41,7 @@ use Template::Constants qw( :debug );
 
 use MIME::Lite;
 
-use lib "$ZPUB/bin/lib";
+use lib $ZPUB_PERLLIB;
 use ZPub;
 
 

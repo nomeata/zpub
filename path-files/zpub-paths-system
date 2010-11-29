@@ -2,9 +2,9 @@
 
 ZPUB_ETC=/etc/zub
 ZPUB_BIN=/usr/share/zpub/bin
-ZPUB_PERLIB=/usr/share/zpub/lib
+ZPUB_PERLLIB=/usr/share/zpub/lib
 ZPUB_SHARED=/usr/share/zpub
-ZPUB_INSTANCES=/srv/zpub
+ZPUB_INSTANCES=/var/lib/zpub
 ZPUB_SPOOL=/var/spool/zpub
 
 # User configuration 

@@ -16,6 +16,9 @@ case "$1" in
     chgrp zpub /var/spool/zpub/*
     chmod g+w /var/spool/zpub/*
 
+    echo 'Enabling apache modules required for zpub'
+    a2enmod ssl dav rewrite
+
   ;;
 esac
 

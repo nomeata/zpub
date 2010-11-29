@@ -8,6 +8,9 @@ case "$1" in
       deluser www-data zpub
       deluser --system zpub 2>/dev/null || true
     fi
+
+    echo 'These apache modules were enabled at installation time of zpub'
+    echo 'Please disable them manually if required: ssl dav rewrite'
   ;;
 esac
 

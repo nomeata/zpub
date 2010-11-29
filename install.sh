@@ -36,7 +36,7 @@ done
 
 for var in $dirs
 do
-  mkdir -pv "${!var}"
+  mkdir -pv "$DESTDIR""${!var}"
 done
 
 # Copy files

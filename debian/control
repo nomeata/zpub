@@ -10,7 +10,8 @@ Architecture: any
 Depends: ${misc:Depends},
  adduser,
  apache2.2-common,
- libapache2-svn
+ libapache2-svn,
+ lsb-base (>= 3.2-14)
 Description: collaborative DocBook editing server
  zpub is a server to collaboratively work on DocBook-based documentation.
  Editors modify the XML sources with their preferred editor and submit their

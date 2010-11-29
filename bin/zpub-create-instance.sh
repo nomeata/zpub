@@ -91,16 +91,11 @@ pdf
 #htmlhelp
 __END__
 
-echo "Making conf directory owned by and writable for group $ZPUB_GROUP"
-chgrp -R "$ZPUB_GROUP" "$ZPUB_INSTANCES/$CUST/conf"
-chmod -R g+w "$ZPUB_INSTANCES/$CUST/conf"
-
-
 echo "Symlinking plain style to $ZPUB_INSTANCES/$CUST/style/plain"
 ln -vs "$ZPUB_SHARED/styles/plain" "$ZPUB_INSTANCES/$CUST/style/plain"
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/settings/..."
-echo | tell_cat "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
+echo -n | tell_cat "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
 
 tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__ 
 <VirtualHost *:80>
@@ -183,7 +178,15 @@ ln -sv "$ZPUB_INSTANCES/$CUST/conf/apache.conf" "$ZPUB_ETC/apache.conf.d/$CUST.c
 
 echo "Creating source SVN repository..."
 tell svnadmin create "$ZPUB_INSTANCES/$CUST/repos/source"
+mkdir -v "$ZPUB_INSTANCES/$CUST/repos/source/dav"
 ln -svf "$ZPUB_BIN/zpub-post-commit-hook.sh" "$ZPUB_INSTANCES/$CUST/repos/source/hooks/post-commit"
+
+echo "Making settings and output directories and svn repository owned by and"
+echo "writable for group $ZPUB_GROUP."
+chgrp -c -R "$ZPUB_GROUP" "$ZPUB_INSTANCES/$CUST/settings" "$ZPUB_INSTANCES/$CUST/output" \
+            "$ZPUB_INSTANCES/$CUST/repos/source/"{db,dav}
+chmod -c -R g+w "$ZPUB_INSTANCES/$CUST/settings" "$ZPUB_INSTANCES/$CUST/output" \
+                "$ZPUB_INSTANCES/$CUST/repos/source/"{db,dav}
 
 echo
 echo \

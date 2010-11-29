@@ -1,0 +1,17 @@
+Source: zpub
+Section: text
+Priority: extra
+Maintainer: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7)
+Standards-version: 3.9.1
+
+Package: zpub
+Architecture: any
+Depends: ${misc:Depends}
+Description: collaborative DocBook editing server
+ zpub is a server to collaboratively work on DocBook-based documentation.
+ Editors modify the XML sources with their preferred editor and submit their
+ changes via Subversion. zpub renders the files centrally to various output
+ formats, optionally notifies other editors, provides an archive of all
+ previous revisions of the document, and supports a simple sign-off workflow.
+ The documentation and user interface is currently only available in German.

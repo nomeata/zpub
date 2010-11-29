@@ -7,7 +7,7 @@ Standards-version: 3.9.1
 
 Package: zpub
 Architecture: any
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, adduser
 Description: collaborative DocBook editing server
  zpub is a server to collaboratively work on DocBook-based documentation.
  Editors modify the XML sources with their preferred editor and submit their

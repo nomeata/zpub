@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+case "$1" in
+  configure)
+    if ! getent passwd zpub > /dev/null ; then
+      echo 'Adding system-user for zpub (v4)' 1>&2
+      adduser --system --group --quiet --home /var/lib/zpub \
+	--no-create-home --disabled-login zpub
+      adduser www-data zpub
+    fi
+
+    chgrp zpub /var/spool/zpub/*
+    chmod g+w /var/spool/zpub/*
+
+  ;;
+esac
+
+

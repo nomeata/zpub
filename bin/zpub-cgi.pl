@@ -22,8 +22,11 @@ use warnings;
 
 
 # Constants
+our ($ZPUB_PERLLIB, $ZPUB_INSTANCES, $ZPUB_SHARED, $ZPUB_SPOOL);
+BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
+}
 
 # We are german (and like UTF8)!
 $ENV{LANG}="de_DE.utf8";
@@ -189,12 +192,12 @@ sub queue_job {
 
     my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$.job");
 
-    write_file("$ZPUB/spool/new/$jobname",
+    write_file("$ZPUB_SPOOL/new/$jobname",
 	(sprintf "%s\n%s\n%s\n%s\n%s\n", $CUST,$revn, $doc, $style, $outdir)) 
-	or die "Could not write to $ZPUB/spool/new/$jobname: $!\n";
+	or die "Could not write to $ZPUB_SPOOL/new/$jobname: $!\n";
 
-    rename("$ZPUB/spool/new/$jobname","$ZPUB/spool/todo/$jobname")
-	or die "Could not move job $ZPUB/spool/new/$jobname to $ZPUB/spool/todo/$jobname: $!\n";
+    rename("$ZPUB_SPOOL/new/$jobname","$ZPUB_SPOOL/todo/$jobname")
+	or die "Could not move job $ZPUB_SPOOL/new/$jobname to $ZPUB_SPOOL/todo/$jobname: $!\n";
 
 }
 
@@ -203,8 +206,8 @@ sub do_retry {
 
     die "Strange \$jobname: $jobname\n" unless $jobname =~ m/^[a-zA-Z0-9\._-]+$/;
 
-    rename("$ZPUB/spool/fail/$jobname","$ZPUB/spool/todo/$jobname")
-	or die "Could not move job $ZPUB/spool/fail/$jobname to $ZPUB/spool/todo/$jobname: $!\n";
+    rename("$ZPUB_SPOOL/fail/$jobname","$ZPUB_SPOOL/todo/$jobname")
+	or die "Could not move job $ZPUB_SPOOL/fail/$jobname to $ZPUB_SPOOL/todo/$jobname: $!\n";
 }
 
 sub do_remove_job {
@@ -213,8 +216,8 @@ sub do_remove_job {
     die "Strange \$state: $state\n" unless $state =~ m/^[a-z]+$/;
     die "Strange \$jobname: $jobname\n" unless $jobname =~ m/^[a-zA-Z0-9\._-]+$/;
 
-    unlink("$ZPUB/spool/$state/$jobname")
-	or die "Could not delete job $ZPUB/spool/$state/$jobname: $!\n";
+    unlink("$ZPUB_SPOOL/$state/$jobname")
+	or die "Could not delete job $ZPUB_SPOOL/$state/$jobname: $!\n";
 }
 
 
@@ -253,7 +256,7 @@ if ($q->request_method() eq "POST") {
     } elsif (defined $q->url_param('doc')) {
 	my $doc = $q->url_param('doc');    
 	
-	unless (-d "$ZPUB/$CUST/output/$doc") {
+	unless (-d "$ZPUB_INSTANCES/$CUST/output/$doc") {
 	    die "Document $doc does not exist.\n";
 	}
 
@@ -297,7 +300,7 @@ print $q->header(-type=>'text/html', -charset=>'utf-8');
 
 # Set up TT
 $tt = Template->new({
-    INCLUDE_PATH => "$ZPUB/templates",
+    INCLUDE_PATH => "$ZPUB_SHARED/templates",
     DEBUG => DEBUG_UNDEF,
 }) || die "$Template::ERROR\n";
 
@@ -318,7 +321,7 @@ if (defined $q->url_param('doc')) {
     # Show information about a specific document
     my $doc = $q->url_param('doc');    
     
-    unless (-d "$ZPUB/$CUST/output/$doc") {
+    unless (-d "$ZPUB_INSTANCES/$CUST/output/$doc") {
 	die "Document $doc does not exist.\n";
     }
 

@@ -1,11 +1,12 @@
 # Path configuration for zpub.
 
-# This file is both sourced by shell and read by perl scripts, and therefore
-# has to stay very simple.
-
 ZPUB_ETC=/tmp/zpub/etc
 ZPUB_BIN=/tmp/zpub/bin
 ZPUB_PERLLIB=/tmp/zpub/bin/lib
 ZPUB_SHARED=/tmp/zpub
 ZPUB_INSTANCES=/tmp/zpub
 ZPUB_SPOOL=/tmp/zpub/spool
+
+# User configuration 
+ZPUB_USER=jojo
+ZPUB_GROUP=adm

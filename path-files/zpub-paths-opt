@@ -8,3 +8,8 @@ ZPUB_BIN=/opt/zpub/bin
 ZPUB_PERLIB=/opt/zpub/bin/lib
 ZPUB_SHARED=/opt/zpub
 ZPUB_INSTANCES=/opt/zpub
+ZPUB_SPOOL=/opt/zpub/spool
+
+# User configuration 
+ZPUB_USER=zpub
+ZPUB_GROUP=zpub

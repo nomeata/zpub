@@ -21,18 +21,20 @@
 # $ zpub-send-mail.pl $CUST $REV $DOC $STYLE $OUTDIR
 # 
 # where (same as zpub-render.sh)
-#  $CUST:   Basename of the customers directory in $ZPUB/
+#  $CUST:   Basename of the customers directory in $ZPUB_INSTANCES/
 #  $REV:    SVN-Revision to render
 #  $DOC:    Document to render (subdirectory of repository)
-#  $STYLE:  Style to use (subdirectory of $ZPUB/CUST/style/$STLYE
-#  $OUTDIR: Directory to write to (will be created)
+#  $STYLE:  Style to use (subdirectory of $ZPUB_INSTANCES/CUST/style/$STLYE
 
 use strict;
 use warnings;
 
 # Constants
+our ($ZPUB_PERLLIB,$ZPUB_INSTANCES);
+BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
+}
 
 
 # Modules
@@ -57,8 +59,8 @@ my $rev = select_latest_ok(@revisions);
 
 if ($rev) {
 	printf "Adding symlink to revision %d.\n", $rev->{revn};
-	my $to = sprintf "$ZPUB/$CUST/output/%s/archive/%d", $doc,$rev->{revn};
-	my $from = sprintf "$ZPUB/$CUST/output/%s/latest", $doc,$rev->{revn};
+	my $to = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/archive/%d", $doc,$rev->{revn};
+	my $from = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/latest", $doc,$rev->{revn};
 
 	if  (-l $from) {
 		unlink $from or die "Could not remove old symlink $from\n";

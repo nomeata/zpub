@@ -66,78 +66,16 @@ do
   fi
 done
 
+# These are set here, and not in zpub-render-html.sh, to keep the latter script
+# independent of a full zpub installation.
 export SP_ENCODING=utf-8
-
 export FOP_HYPHENATION_PATH=$ZPUB_SHARED/tools/fop-hyph.jar
 
-function makehtmlhelp {
-	outdir="$OUTDIR/htmlhelp-temp"
-	
-	test -d "$outdir" || mkdir -p "$outdir"
-	cd "$outdir"
-	xsltproc					\
-		--stringparam htmlhelp.chm "$DOCNAME.chm"	\
-		--stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
-		--stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
-		 ../style/htmlhelp.xsl ../source/"$DOCNAME.xml"
-
-	mkdir -p images
-	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-	test -d ../style/htmlhelp-shared && cp -flr ../style/htmlhelp-shared/* .
-	test -d ../source/images/ && rsync -r ../source/images/ images/
-	wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
-	test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
-	mv "$DOCNAME.chm" ../
-	cd ..
-	rmdir "$outdir"
-}
-
-function makehtml {
-	outdir="$OUTDIR/${DOCNAME}_html"
-
-	test -d "$outdir"|| mkdir -p "$outdir"
-	cd "$outdir"
-	xsltproc ../style/html.xsl ../source/"$DOCNAME.xml"
-	
-	mkdir -p images style
-	cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.png style/
-	test -d ../style/html-shared && cp -flr ../style/html-shared/* .
-	test -d ../source/images/ && rsync -r ../source/images/ images/
-	rm -f ../${DOCNAME}_html.zip
-	zip -r ../${DOCNAME}_html.zip .
-}
-
-
-#function makertf {
-#	test -d output/rtf || mkdir output/rtf
-#	rm -f output/rtf/*
-##	test -d images |  mv images images.DISABLED
-#	xsltproc $DUVASHARED/duva-shared-rtf.xsl $1.xml > output/rtf/$1.fo
-#	fop output/rtf/$1.fo -rtf output/rtf/$1.rtf
-##	mv images.DISABLED images
-#}
-
-
-
-function makepdf {
-	outdir="$OUTDIR"
-	
-	test -d "$outdir"|| mkdir -p "$outdir"
-	cd "$outdir"
-	
-	xsltproc style/fo.xsl source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
-	fopopts=""
-	test -e "style/fop.xconf" && fopopts="-c style/fop.xconf"
-	fop $fopopts -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
-	rm source/"$DOCNAME.fo"
-
-	# fop uses xalan, xalan has bugs
-	#fop -xml source/"$DOCNAME.xml" -xsl style/fo.xsl -pdf "$DOCNAME.pdf"
-}
-
-
+# Create and enter output directory
 test -d "$OUTDIR"  || mkdir -p "$OUTDIR"
 cd "$OUTDIR"
+
+# Redirect output to logfile
 echo $$ > zpub-render-in-progress
 exec &> >(tee zpub-render.log)
 
@@ -148,18 +86,20 @@ ln -s $ZPUB_INSTANCES/$CUST/style/$STYLE style
 test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
 svn export -r $REV "file://$ZPUB_INSTANCES/$CUST/repos/source/$DOC" source
-cd "source"
-DOCNAME="$(basename *.xml .xml)"
 
-if [ ! -r "$DOCNAME.xml" ]
-then
-  echo "Could not find document source ($DOCNAME)"
-  exit 1
-fi
-
-makehtmlhelp 
-makehtml 
-makepdf
+while read format 
+do
+  if [ -n "$format" -a "${format:0:1}" != "#" ]
+  then
+    if [ -x "$ZPUB_BIN/zpub-render-$format.sh" ]
+    then
+      "$ZPUB_BIN/zpub-render-$format.sh" 
+    else
+      echo "ERROR: No renderer for format $format found!"
+      exit 1
+    fi
+  fi
+done < "$ZPUB_INSTANCES/$CUST/conf/formats"
 
 cd "$OUTDIR"
 echo "Successfully generated output, deleting source directory"

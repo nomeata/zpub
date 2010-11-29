@@ -18,7 +18,8 @@ use warnings;
 
 use strict;
 
-use vars qw/$ZPUB $CUST $USER %SETTINGS/;
+our ($ZPUB_INSTANCES, $ZPUB_SPOOL);
+our ($CUST,$USER,%SETTINGS);
 
 use File::Basename qw/dirname basename/;
 use File::Slurp;
@@ -75,8 +76,8 @@ sub to_hash {
 
 # Returns a list of all documents of the customer
 sub collect_documents {
-    opendir(DIR, "$ZPUB/$CUST/output/") || die "can't opendir $ZPUB/$CUST/output/: $!";
-    my @files = grep { (not /^\./) && -d "$ZPUB/$CUST/output/$_" } readdir(DIR);
+    opendir(DIR, "$ZPUB_INSTANCES/$CUST/output/") || die "can't opendir $ZPUB_INSTANCES/$CUST/output/: $!";
+    my @files = grep { (not /^\./) && -d "$ZPUB_INSTANCES/$CUST/output/$_" } readdir(DIR);
     closedir DIR;
     return sort @files;
 }
@@ -86,10 +87,10 @@ sub collect_revisions {
     my ($doc) = @_;
     
     my @list;
-    opendir(DIR, "$ZPUB/$CUST/output/$doc/archive")
-	|| die "can't opendir $ZPUB/$CUST/output/$doc/archive: $!";
+    opendir(DIR, "$ZPUB_INSTANCES/$CUST/output/$doc/archive")
+	|| die "can't opendir $ZPUB_INSTANCES/$CUST/output/$doc/archive: $!";
     for (readdir(DIR)) {
-	if (-d "$ZPUB/$CUST/output/$doc/archive/$_" && $_ =~ /^\d+$/){
+	if (-d "$ZPUB_INSTANCES/$CUST/output/$doc/archive/$_" && $_ =~ /^\d+$/){
 	    my $revn = $_;
 	    my %rev = (
 		    revn => $revn,
@@ -97,16 +98,16 @@ sub collect_revisions {
 		    styles => [],
 		    finished => 0,
 	    );
-	    opendir(SDIR, "$ZPUB/$CUST/output/$doc/archive/$revn")
-		|| die "can't opendir: $ZPUB/$CUST/output/$doc/archive/$revn $!";
+	    opendir(SDIR, "$ZPUB_INSTANCES/$CUST/output/$doc/archive/$revn")
+		|| die "can't opendir: $ZPUB_INSTANCES/$CUST/output/$doc/archive/$revn $!";
 	    for (readdir(SDIR)) {
-		if (-d "$ZPUB/$CUST/output/$doc/archive/$revn/$_" && (substr $_,0,1) ne "."){
+		if (-d "$ZPUB_INSTANCES/$CUST/output/$doc/archive/$revn/$_" && (substr $_,0,1) ne "."){
 		    my $style = $_;
 		    push @{$rev{styles}}, {
 			style => $style,
 			files => lazy(\&collect_output, $doc, $revn, $style),
 		    };
-		    if (! -e "$ZPUB/$CUST/output/$doc/archive/$revn/$style/zpub-render-in-progress") {
+		    if (! -e "$ZPUB_INSTANCES/$CUST/output/$doc/archive/$revn/$style/zpub-render-in-progress") {
 			$rev{finished}++;
 		    }
 		}
@@ -172,10 +173,10 @@ sub select_revs {
 # Various pathnames
 sub revpath {
     my ($doc,$revn,$style) = @_;
-    return "$ZPUB/$CUST/output/$doc/archive/$revn/$style";
+    return "$ZPUB_INSTANCES/$CUST/output/$doc/archive/$revn/$style";
 }
 sub repopath {
-    return "$ZPUB/$CUST/repos/source";
+    return "$ZPUB_INSTANCES/$CUST/repos/source";
 }
 
 # Information about the files in a given revision of
@@ -246,10 +247,10 @@ sub collect_jobs {
     
     for my $dir (qw/fail todo wip/) {
 	my @list;
-	opendir(DIR, "$ZPUB/spool/$dir") || die "can't opendir $ZPUB/spool/$dir: $!";
-	for my $jobname (grep { (not /^\./) && -f "$ZPUB/spool/$dir/$_" } readdir(DIR)) {
-	    my (@lines) = read_file("$ZPUB/spool/$dir/$jobname");
-	    unless (@lines) {die "can't open $ZPUB/spool/$dir/$jobname: $!"};
+	opendir(DIR, "$ZPUB_SPOOL/$dir") || die "can't opendir $ZPUB_SPOOL/$dir: $!";
+	for my $jobname (grep { (not /^\./) && -f "$ZPUB_SPOOL/$dir/$_" } readdir(DIR)) {
+	    my (@lines) = read_file("$ZPUB_SPOOL/$dir/$jobname");
+	    unless (@lines) {die "can't open $ZPUB_SPOOL/$dir/$jobname: $!"};
 	    chomp (@lines);
 	    my ($cust,$revn,$doc,$style,$outdir) = @lines;
 	    next unless $cust eq $CUST;
@@ -284,8 +285,8 @@ sub newer_jobs {
 
 # Slurps the htpasswd file for the current customer
 sub read_htpasswd {
-    if ( -r "$ZPUB/$CUST/settings/htpasswd") {
-	return scalar(read_file("$ZPUB/$CUST/settings/htpasswd")
+    if ( -r "$ZPUB_INSTANCES/$CUST/settings/htpasswd") {
+	return scalar(read_file("$ZPUB_INSTANCES/$CUST/settings/htpasswd")
 		or die "Could not read htpasswd: $!")
     } else {
 	return ""
@@ -294,7 +295,7 @@ sub read_htpasswd {
 
 # Writes the htpasswd file for the current customer
 sub write_htpasswd {
-	write_file("$ZPUB/$CUST/settings/htpasswd", \$_[0])
+	write_file("$ZPUB_INSTANCES/$CUST/settings/htpasswd", \$_[0])
 			or die "Could not write htpasswd: $!";
 }
 
@@ -307,13 +308,13 @@ sub is_admin {
 # Read Settings
 sub read_settings {
     # Customer Name
-    $SETTINGS{cust_name} = read_file("$ZPUB/$CUST/conf/cust_name")
+    $SETTINGS{cust_name} = read_file("$ZPUB_INSTANCES/$CUST/conf/cust_name")
 	or die "Could not read cust_name: $!";
     chomp($SETTINGS{cust_name});
     
     # Admins
-    if ( -f "$ZPUB/$CUST/settings/htpasswd") {
-	my @admins = read_file("$ZPUB/$CUST/conf/admins");
+    if ( -f "$ZPUB_INSTANCES/$CUST/settings/htpasswd") {
+	my @admins = read_file("$ZPUB_INSTANCES/$CUST/conf/admins");
 	unless (@admins) { die "Could not read admins: $!" };
 	chomp(@admins);
 	$SETTINGS{admins} = to_hash(@admins);
@@ -322,8 +323,8 @@ sub read_settings {
     }
     
     # Enabled features
-    if ( -f "$ZPUB/$CUST/conf/features") {
-	my @features = read_file("$ZPUB/$CUST/conf/features");
+    if ( -f "$ZPUB_INSTANCES/$CUST/conf/features") {
+	my @features = read_file("$ZPUB_INSTANCES/$CUST/conf/features");
 	unless (@features) { die "Could not read features: $!" };
 	chomp(@features);
 	$SETTINGS{features} = to_hash(@features);
@@ -332,13 +333,13 @@ sub read_settings {
     }
 
     # Default style
-    $SETTINGS{default_style} = read_file("$ZPUB/$CUST/conf/default_style")
+    $SETTINGS{default_style} = read_file("$ZPUB_INSTANCES/$CUST/conf/default_style")
 	or die "Could not read default_style: $!";
     chomp($SETTINGS{default_style});
 
     # Final style
     if ($SETTINGS{features}{final_approve}) {
-	$SETTINGS{final_style} = read_file("$ZPUB/$CUST/conf/final_style")
+	$SETTINGS{final_style} = read_file("$ZPUB_INSTANCES/$CUST/conf/final_style")
 	    or die "Could not read final_style: $!";
 	chomp($SETTINGS{final_style});
     }
@@ -363,9 +364,9 @@ sub read_subscribers {
 sub read_doc_setting {
     my ($doc,$what) = @_;
 
-    if ( -f "$ZPUB/$CUST/settings/$what/$doc") {
-	my $ret = read_file("$ZPUB/$CUST/settings/$what/$doc")
-	    or die "Coult not read $ZPUB/$CUST/settings/$what/$doc: $!\n";
+    if ( -f "$ZPUB_INSTANCES/$CUST/settings/$what/$doc") {
+	my $ret = read_file("$ZPUB_INSTANCES/$CUST/settings/$what/$doc")
+	    or die "Coult not read $ZPUB_INSTANCES/$CUST/settings/$what/$doc: $!\n";
 	chomp ($ret);
 	return $ret;
     } else {
@@ -377,15 +378,15 @@ sub read_doc_setting {
 sub write_doc_setting {
     my ($doc,$what,$value) = @_;
 
-    write_file("$ZPUB/$CUST/settings/$what/$doc", $value)
-	    or die "Coult not write $ZPUB/$CUST/settings/$what/$doc: $!\n";
+    write_file("$ZPUB_INSTANCES/$CUST/settings/$what/$doc", $value)
+	    or die "Coult not write $ZPUB_INSTANCES/$CUST/settings/$what/$doc: $!\n";
 }
 
 # Get various system statistics
 sub collect_sysstatus {
     my $ret = {};
 
-    my $ref = df("$ZPUB/$CUST/output",1);
+    my $ref = df("$ZPUB_INSTANCES/$CUST/output",1);
     $ret->{df} = format_bytes($ref->{bavail});
 
     $ret->{load} = join ", ",Sys::CpuLoad::load();

@@ -18,21 +18,23 @@
 
 
 # Script to mail commit information 
-# $ zpub-send-mail.pl $CUST $REV $DOC $STYLE $OUTDIR
+# $ zpub-send-mail.pl $CUST $REV $DOC $STYLE
 # 
 # where (same as zpub-render.sh)
-#  $CUST:   Basename of the customers directory in $ZPUB/
+#  $CUST:   Basename of the customers directory in $ZPUB_INSTANCES/
 #  $REV:    SVN-Revision to render
 #  $DOC:    Document to render (subdirectory of repository)
-#  $STYLE:  Style to use (subdirectory of $ZPUB/CUST/style/$STLYE
-#  $OUTDIR: Directory to write to (will be created)
+#  $STYLE:  Style to use (subdirectory of $ZPUB_INSTANCES/$CUST/style/$STLYE
 
 use strict;
 use warnings;
 
 # Constants
+our ($ZPUB_PERLLIB, $ZPUB_SHARED);
+BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
+}
 
 # Modules
 use Template;
@@ -55,7 +57,7 @@ my $subscribers = read_subscribers($doc);
 unless ($subscribers) {exit 0;}
 
 my $tt = Template->new({
-    INCLUDE_PATH => "$ZPUB/templates",
+    INCLUDE_PATH => "$ZPUB_SHARED/templates",
     DEBUG => DEBUG_UNDEF,
     POST_CHOMP => 1,
 }) || die "$Template::ERROR\n";

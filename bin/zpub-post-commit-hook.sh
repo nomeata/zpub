@@ -47,19 +47,19 @@ fi
 
 CUST="$REPOS"
 CUST=${CUST/%\/repos\/source}
-CUST=${CUST/#"$ZPUB"\/}
+CUST=${CUST/#"$ZPUB_INSTANCES"\/}
 echo "Determined customer $CUST"
 
-if [ ! -d "$ZPUB/$CUST" ]
+if [ ! -d "$ZPUB_INSTANCES/$CUST" ]
 then
-  echo "ERROR: $ZPUB/$CUST is not a directory" >&2
+  echo "ERROR: $ZPUB_INSTANCES/$CUST is not a directory" >&2
   exit 1
 fi
 
-STYLE=$(cat $ZPUB/$CUST/conf/default_style)
-if [ ! -d "$ZPUB/$CUST/style/$STYLE" ]
+STYLE=$(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
+if [ ! -d "$ZPUB_INSTANCES/$CUST/style/$STYLE" ]
 then
-  echo "Could not find style directory in $ZPUB/$CUST/style/$STYLE"  >&2
+  echo "Could not find style directory in $ZPUB_INSTANCES/$CUST/style/$STYLE"  >&2
   exit 1
 fi
 
@@ -70,14 +70,13 @@ do
   if [ "$DOC" != common ]
   then
     JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC.job"|tr -c A-Za-z0-9_\\n- _)"
-    cat > /opt/zpub/spool/new/"$JOBNAME" <<__END__
+    cat > $ZPUB_SPOOL/new/"$JOBNAME" <<__END__
 $CUST
 $REV
 $DOC
 $STYLE
-$ZPUB/$CUST/output/$DOC/archive/$REV/$STYLE
 __END__
-    mv /opt/zpub/spool/new/"$JOBNAME" /opt/zpub/spool/todo/"$JOBNAME"
+    mv $ZPUB_SPOOL/new/"$JOBNAME" $ZPUB_SPOOL/todo/"$JOBNAME"
   fi
 done
 

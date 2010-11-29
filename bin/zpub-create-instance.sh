@@ -22,6 +22,7 @@
 set -e
 
 function tell () { echo "$@"; "$@"; }
+function tell_cat () { echo "Writing $1"; cat > "$1"; }
 
 ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
 
@@ -33,6 +34,17 @@ fi
 
 . $ZPUB_PATHS
 
+if ! getent passwd "$ZPUB_USER" >/dev/null 
+then
+  echo "User $ZPUB_USER (defined in \$ZPUB_USER) does not exist"
+  exit 1
+fi
+
+if ! getent group "$ZPUB_GROUP" >/dev/null 
+then
+  echo "User $ZPUB_GROUP (defined in \$ZPUB_GROUP) does not exist"
+  exit 1
+fi
 
 USAGE="Usage:
 
@@ -68,17 +80,29 @@ fi
 mkdir -vp "$ZPUB_INSTANCES"/"$CUST"/{conf,output,repos,settings/{final_rev,subscribers},style}
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/conf/..."
-echo "$NAME" > "$ZPUB_INSTANCES/$CUST"/conf/cust_name
-echo final_approve > "$ZPUB_INSTANCES/$CUST"/conf/features
-echo '' > "$ZPUB_INSTANCES/$CUST"/conf/admin
-echo default > "$ZPUB_INSTANCES/$CUST"/conf/default_style
-echo final > "$ZPUB_INSTANCES/$CUST"/conf/final_style
+echo "$NAME" | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/cust_name
+echo final_approve | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/features
+echo '' | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/admins
+echo plain | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/default_style
+echo plain | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/final_style
+tell_cat "$ZPUB_INSTANCES/$CUST"/conf/formats <<__END__
+html
+pdf
+#htmlhelp
+__END__
+
+echo "Making conf directory owned by and writable for group $ZPUB_GROUP"
+chgrp -R "$ZPUB_GROUP" "$ZPUB_INSTANCES/$CUST/conf"
+chmod -R g+w "$ZPUB_INSTANCES/$CUST/conf"
+
+
+echo "Symlinking plain style to $ZPUB_INSTANCES/$CUST/style/plain"
+ln -vs "$ZPUB_SHARED/styles/plain" "$ZPUB_INSTANCES/$CUST/style/plain"
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/settings/..."
-echo  > "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
+echo | tell_cat "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
 
-echo "Creating apache configuration file $ZPUB_INSTANCES/$CUST/settings/apache.conf"
-cat <<__END__ > $ZPUB_INSTANCES/$CUST/settings/apache.conf
+tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__ 
 <VirtualHost *:80>
 	ServerAdmin root@$HOSTNAME
 	ServerName $HOSTNAME
@@ -90,10 +114,7 @@ cat <<__END__ > $ZPUB_INSTANCES/$CUST/settings/apache.conf
 	ServerName $HOSTNAME
 	DocumentRoot $ZPUB_INSTANCES/$CUST/output
 
-	# This needs to be repeated here, seems to be a bug in apache
-	#SSLEngine on
-	#SSLCertificateFile    /etc/apache2/ssl/fry.serverama.de.crt
-	#SSLCertificateKeyFile /etc/apache2/ssl/fry.serverama.de.key
+	Include $ZPUB_ETC/apache-ssl.conf
 
 	# For logfiles
 	<Files *.log>
@@ -104,10 +125,10 @@ cat <<__END__ > $ZPUB_INSTANCES/$CUST/settings/apache.conf
 	RewriteRule ^/$				$ZPUB_BIN/zpub-cgi.pl?cust=test [L]
 	RewriteRule ^/status/$			$ZPUB_BIN/zpub-cgi.pl?cust=test&status= [L]
 	RewriteRule ^/admin/passwd/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&admin=passwd [L]
-	RewriteRule ^/([^/]*)/$ 		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1 [L]
-	RewriteRule ^/([^/]*)/archive/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&archive= [L]
-	RewriteRule ^/([^/]*)/archive/(\d+)/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&rev=$2 [L]
-	RewriteRule ^/([^/]*)/subscribers/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=$1&subscribers= [L]
+	RewriteRule ^/([^/]*)/$ 		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1 [L]
+	RewriteRule ^/([^/]*)/archive/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&archive= [L]
+	RewriteRule ^/([^/]*)/archive/(\d+)/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&rev=\$2 [L]
+	RewriteRule ^/([^/]*)/subscribers/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&subscribers= [L]
 
 	<Directory $ZPUB_BIN/zpub-cgi.pl>
 		SetHandler cgi-script
@@ -156,10 +177,13 @@ cat <<__END__ > $ZPUB_INSTANCES/$CUST/settings/apache.conf
 </VirtualHost>
 __END__
 
+echo "Symlinking apache configuration at $ZPUB_ETC/apache.conf.d/$CUST.conf"
+ln -sv "$ZPUB_INSTANCES/$CUST/conf/apache.conf" "$ZPUB_ETC/apache.conf.d/$CUST.conf" 
+
 
 echo "Creating source SVN repository..."
 tell svnadmin create "$ZPUB_INSTANCES/$CUST/repos/source"
-tell ln -sf "$ZPUB_BIN/zpub-post-commit-hook.sh" "$ZPUB_INSTANCES/$CUST/repos/source/hooks/post-commit"
+ln -svf "$ZPUB_BIN/zpub-post-commit-hook.sh" "$ZPUB_INSTANCES/$CUST/repos/source/hooks/post-commit"
 
 echo
 echo \

@@ -1,0 +1,2 @@
+/etc/zpub/apache.conf /etc/apache2/sites-enabled/zpub-instances 
+/usr/share/zpub/bin/zpub-create-instance.sh /usr/sbin/zpub-create-instance 

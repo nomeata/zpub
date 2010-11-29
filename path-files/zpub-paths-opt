@@ -3,7 +3,7 @@
 # This file is both sourced by shell and read by perl scripts, and therefore
 # has to stay very simple.
 
-ZPUB_ETC=/opt/zub/etc
+ZPUB_ETC=/opt/zpub/etc
 ZPUB_BIN=/opt/zpub/bin
 ZPUB_PERLLIB=/opt/zpub/bin/lib
 ZPUB_SHARED=/opt/zpub

@@ -1,6 +1,6 @@
 # Path configuration for zpub, FSH conformant settings
 
-ZPUB_ETC=/etc/zub
+ZPUB_ETC=/etc/zpub
 ZPUB_BIN=/usr/share/zpub/bin
 ZPUB_PERLLIB=/usr/share/zpub/lib
 ZPUB_SHARED=/usr/share/zpub

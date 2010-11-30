@@ -5,16 +5,18 @@
 usage="$0 <zpub-paths>
 This file is to be called from the extracted zpub sources or the git
 repository. As a parameter, it expects a file specifying the ZPUB paths. An
-environment variable of DESTDIR may be set and is prepended to all paths. "
+environment variable of DESTDIR may be set and is prepended to all paths.
+See INSTALL.en for more information."
 
 paths="$1"
-shift
 
-if ! [ -e "$paths" ]
+if ! [ -r "$paths" ]
 then
   echo "$usage"
   exit 1
 fi
+
+shift
 
 . $paths
 

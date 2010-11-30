@@ -1,19 +1,16 @@
 Installation
+============
+
+Zpub comes in ready-to-install packages for Debian-based distribution. If
+possible, use these packages and ignore the next two sections and continue
+reading with section "creating instances".
+
+Dependencies
 ------------
 
-This installation instructions are not very polished yet. They should be
-sufficient to get you started, if you have some general knowledge about
-linux administration (e.g. directory permissions, apache configuration
-etc.). Any hints as to what ought to be improved are very welcome!
-
-These instructions assume a Debian lenny system, and that a specific user
-is created for zpub purposes. It is assumed that the source is unpacked in
-/opt/zpub.
-
-The following packages need to be installed via apt-get install:
+Zpub requires the following packages to run (Debian package names):
 
 apache2
-cabextract
 docbook-xsl
 fop
 libapache2-svn
@@ -29,152 +26,71 @@ libsaxon-java
 libsvn-svnlook-perl
 libtemplate-perl
 subversion
-sun-java6-jre
-wine
 xsltproc
 zip 
 
-The generation of windows help files requires the Microsoft HTML Help
-Workshop, which can be installed using these commands:
+If you also want to generate htmlhelp output, you need the packages
+
+wine
+cabextract
+
+and install htmlhelp using the commands:
 $ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
 $ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
 $ bash ./htmlreg.sh
-If you skip this step, you should uncomment the call to "makhtmlhelp" in
-/opt/zpub/bin/zpub-render.sh.
 
-Create the directories /opt/zpub/spool/new, /opt/zpub/spool/wip,
-/opt/zpub/spool/done and /opt/zpub/spool/fail. These need be writeable by
-both the webserver and the zpub user (e.g. by belonging to the user
-www-data and the group zpub).
+Installation
+------------
+
+For manual installation, the install.sh script is provided. It expects as a
+parameter a path file, as provided in the path-files/ subdirectory. These
+specify where the various components of zpub should be installed. In the
+following, we assume an installation into /opt/zpub using the path file
+path-files/zpub-paths-opt.
+
+It is recommended to create a special zpub user. The directories within
+/opt/zpub/spool needs to be writable by both this zpub user and the user the
+webserver runs as. Therefore, it is recommended to create a zpub group with
+these two users and make the spool directories owned and writable by this group.
 
 As the dedicated zpub user, run /opt/zpub/bin/zpub-spooler.sh. This needs
 to run constantly, e.g. from an init script.
+
+The file /opt/zpub/etc/apache.conf needs to be included in the apache
+configuration.
+
+Creating instances
+------------------
 
 This completes the setup for zpub. Now you need to create an instance. This
 is assumed to be called "test" here -- choose a better name of your liking.
 Note that the name "demo" will cause the system to be read-only.
 
-Create the directories
-/opt/zpub/test
-/opt/zpub/test/conf
-/opt/zpub/test/output
-/opt/zpub/test/repos
-/opt/zpub/test/settings
-/opt/zpub/test/settings/final_rev
-/opt/zpub/test/settings/subscribers
-/opt/zpub/test/style
+Call the script /opt/zpub/bin/zpub-create-instance.sh (or the program
+zpub-create-instance if you use the Debian packages) with three parameters:
+ * The directory name of the instance (test)
+ * A more readable name for the instance (Test Inc.)
+ * The hostname for the virtual host (zpub.test.example.com)
 
-In the directory /opt/zpub/test/conf, create the following plain text files: 
-  admin:         Contains the login names of users with admin rights
-  cust_name:     The name of the instane (e.g. "zpub-Demo")
-  default_style: The default xslt style sheet (e.g. "manual")
-  final_style:   The xslt style for approved documents (e.g. "manual_final")
-  features:      List of enabled features. Currently, just put
-                 "final_approve" in there.
-  
-In the directory /opt/zpub/test/repos, create an SVN repository named
-"source", using svnadmin. The file
-/opt/zpub/test/repos/source/hooks/post-commit needs to be a symbolic link
-to /opt/bin/zpub-post-commit-hook.sh.
+This creates the directory /opt/zpub/test and fills it with default values. To
+be able to log in you need to enter user names and passwords in the file
+/opt/zpub/test/settings/htpasswd using the htpasswd tool and list at least one
+of these users in the file /opt/zpub/test/conf/admins
 
-The files and directories in /opt/zpub/test/settings need to be writable by
-the web server, as does the subversion repository.
+The script makes sure that the files and directories in /opt/zpub/test/settings,
+/opt/zpub/test/output and the subversion directory is writable by the zpub
+group which was configured in the paths file.
 
-In the directories /opt/zpub/test/style, create directories for the two
-styles (e.g. "manual" and "manual_final"). Both of these are expected to
-contain these files and directories:
- * htmlhelp.xsl
- * htmlhelp-shared/
- * html.xsl
- * html-shared/
- * fo.xsl
+You need to restart apache to be able to use the new instance.
 
-The xsl files can be links to the system-wide files
-/usr/share/xml/docbook/stylesheet/nwalsh/*/docbook.xsl, but more likely you
-will want to put real XSLT files there and import the global files, to
-make modifications.
+Customizing
+-----------
 
-In /opt/zpub/test/settings, create a apache password file using htpasswd.
+You can put new styles in subdirectories of /opt/zpub/test/style and enable them
+by putting the directory name in /opt/zpub/test/conf/default_style and
+../final_style.
 
-The apache configuration for the test host is then:
-===================================================================
-<VirtualHost *:80>
-	ServerAdmin mail@joachim-breitner.de
-	ServerName test.zpub.de
-	RedirectPermanent / https://test.zpub.de/
-</VirtualHost>
-
-<VirtualHost *:443>
-	ServerAdmin mail@joachim-breitner.de
-	ServerName test.zpub.de
-	DocumentRoot /opt/zpub/test/output
-
-	# This needs to be repeated here, seems to be a bug in apache
-	SSLEngine on
-	SSLCertificateFile    /etc/apache2/ssl/fry.serverama.de.crt
-	SSLCertificateKeyFile /etc/apache2/ssl/fry.serverama.de.key
-
-	# For logfiles
-	<Files *.log>
-		AddDefaultCharset utf-8 
-	</Files>
-
-	RewriteEngine On
-	RewriteRule ^/$				/opt/zpub/bin/zpub-cgi.pl?cust=test [L]
-	RewriteRule ^/status/$			/opt/zpub/bin/zpub-cgi.pl?cust=test&status= [L]
-	RewriteRule ^/admin/passwd/$		/opt/zpub/bin/zpub-cgi.pl?cust=test&admin=passwd [L]
-	RewriteRule ^/([^/]*)/$ 		/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1 [L]
-	RewriteRule ^/([^/]*)/archive/$		/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&archive= [L]
-	RewriteRule ^/([^/]*)/archive/(\d+)/$	/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&rev=$2 [L]
-	RewriteRule ^/([^/]*)/subscribers/$	/opt/zpub/bin/zpub-cgi.pl?cust=test&doc=$1&subscribers= [L]
-
-	<Directory /opt/zpub/bin/zpub-cgi.pl>
-		SetHandler cgi-script
-		Options +ExecCGI
-
-		AuthType Basic
-		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/test/settings/htpasswd
-	        Require valid-user
-	</Directory>
-
-	Alias /static /opt/zpub/templates/static
-	<Directory /opt/zpub/templates/static>
-		Options FollowSymLinks
-		AllowOverride None
-		Order allow,deny
-		allow from all
-
-		AuthType Basic
-		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/test/settings/htpasswd
-	        Require valid-user
-	</Directory>
-
-	<Directory /opt/zpub/test/output/>
-		Options Indexes FollowSymLinks
-		AllowOverride None
-		Order allow,deny
-		allow from all
-
-		AuthType Basic
-		AuthName "Demo zpub-Installation"
-		AuthUserFile /opt/zpub/test/settings/htpasswd
-	        Require valid-user
-	</Directory>
-
- 	<Location /svn>
- 		DAV svn
- 		SVNPath /opt/zpub/test/repos/source
- 
- 		AuthType Basic
- 		AuthName "Demo zpub-Installation"
- 		AuthUserFile /opt/zpub/test/settings/htpasswd
-		Require valid-user
- 	</Location>
-</VirtualHost>
-===================================================================
-
-Now, you should be able to check out the test subversion repository, create
-a directory and a docbook file with file ending .xml therein, commit these
-and see the generated output in the web interface.
+Now, you should be able to check out the test subversion repository from
+https://zpub.test.example.com/svn , create a directory and a docbook file with
+file ending .xml therein, commit and see the generated output in the web
+interface.

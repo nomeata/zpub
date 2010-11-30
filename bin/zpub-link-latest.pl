@@ -41,8 +41,6 @@ require $paths;
 use Template;
 use Template::Constants qw( :debug );
 
-use MIME::Lite;
-
 use lib $ZPUB_PERLLIB;
 use ZPub;
 

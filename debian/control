@@ -8,10 +8,33 @@ Standards-version: 3.9.1
 Package: zpub
 Architecture: any
 Depends: ${misc:Depends},
+ subversion,
+# Create zpub user:
  adduser,
- apache2.2-common,
+# Apache files
+ apache2,
  libapache2-svn,
- lsb-base (>= 3.2-14)
+# Snakeoil certificate:
+ ssl-cert,
+# For Initscript: 
+ lsb-base (>= 3.2-14),
+# We require the de_DE.utf8 locale
+ locales-all,
+# DocBook stuff:
+ xsltproc,
+ docbook-xsl,
+ zip,
+ fop,
+ rsync,
+# Perl libraries:
+ libtemplate-perl,
+ libfile-slurp-perl,
+ libsvn-svnlook-perl,
+ libdatetime-perl,
+ libdatetime-format-strptime-perl,
+ libfilesys-df-perl,
+ libsys-cpuload-perl,
+ libmime-lite-perl,
 Description: collaborative DocBook editing server
  zpub is a server to collaboratively work on DocBook-based documentation.
  Editors modify the XML sources with their preferred editor and submit their

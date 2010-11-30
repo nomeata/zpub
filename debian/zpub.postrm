@@ -2,6 +2,8 @@
 
 set -e
 
+#DEBHELPER#
+
 case "$1" in
   purge)
     if which deluser >/dev/null ; then
@@ -13,6 +15,4 @@ case "$1" in
     echo 'Please disable them manually if required: ssl dav rewrite'
   ;;
 esac
-
-#DEBHELPER#
 

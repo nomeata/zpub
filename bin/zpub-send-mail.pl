@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright 2009 Joachim Breitner
+# Copyright 2009,2010 Joachim Breitner
 # 
 # Licensed under the EUPL, Version 1.1 or – as soon they will be approved
 # by the European Commission – subsequent versions of the EUPL (the

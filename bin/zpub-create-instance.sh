@@ -117,13 +117,14 @@ tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__
 	</Files>
 
 	RewriteEngine On
-	RewriteRule ^/$				$ZPUB_BIN/zpub-cgi.pl?cust=test [L]
-	RewriteRule ^/status/$			$ZPUB_BIN/zpub-cgi.pl?cust=test&status= [L]
-	RewriteRule ^/admin/passwd/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&admin=passwd [L]
-	RewriteRule ^/([^/]*)/$ 		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1 [L]
-	RewriteRule ^/([^/]*)/archive/$		$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&archive= [L]
-	RewriteRule ^/([^/]*)/archive/(\d+)/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&rev=\$2 [L]
-	RewriteRule ^/([^/]*)/subscribers/$	$ZPUB_BIN/zpub-cgi.pl?cust=test&doc=\$1&subscribers= [L]
+	RewriteRule ^/$				$ZPUB_BIN/zpub-cgi.pl?cust=$CUST [L]
+	RewriteRule ^/backup/$CUST-zpub-svn.dump.gz$ $ZPUB_BIN/zpub-cgi.pl?cust=$CUST&backup= [L]
+	RewriteRule ^/status/$			$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&status= [L]
+	RewriteRule ^/admin/passwd/$		$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&admin=passwd [L]
+	RewriteRule ^/([^/]*)/$ 		$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&doc=\$1 [L]
+	RewriteRule ^/([^/]*)/archive/$		$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&doc=\$1&archive= [L]
+	RewriteRule ^/([^/]*)/archive/(\d+)/$	$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&doc=\$1&rev=\$2 [L]
+	RewriteRule ^/([^/]*)/subscribers/$	$ZPUB_BIN/zpub-cgi.pl?cust=$CUST&doc=\$1&subscribers= [L]
 
 	<Directory $ZPUB_BIN/zpub-cgi.pl>
 		SetHandler cgi-script

@@ -27,6 +27,7 @@ Depends: ${misc:Depends},
  fop,
  rsync,
 # Perl libraries:
+ libipc-run-perl,
  libtemplate-perl,
  libfile-slurp-perl,
  libsvn-svnlook-perl,

@@ -68,4 +68,15 @@ under the Licence.
 	<li>Systemlast: [% sysstatus.load %]</li>
 </ul>
 
+[% IF admin AND settings.features.exists('online_backup') %]
+<h3>Repository-Backup</h3>
+<p>
+Sie können ein vollständiges Backup des Quell-Repositories herunterladen: <a href="/backup/[% cust %]-zpub-svn.dump.gz">[% cust %]-zpub-svn.dump.gz</a>. Aus dieser kann mit dem folgenden Befehl ein SVN-Repository mit Ihren Daten erstellt werden:
+<pre>
+$ svnadmin create /pfad/zum/neuen/repository
+$ gzip -dc [% cust %]-zpub-svn.dump.gz | svnadmin load /pfad/zum/neuen/repository
+</pre>
+</p>
+[% END %]
+
 [% END %]

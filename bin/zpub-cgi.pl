@@ -38,6 +38,7 @@ our ($CUST,$USER,%SETTINGS,$tt,$q);
 # Modules
 use Template;
 use Template::Constants qw( :debug );
+use IPC::Run qw/run/;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 $CGI::POST_MAX=1024 * 100;  # max 100K posts
@@ -295,6 +296,17 @@ if ($q->request_method() eq "POST") {
     exit;
 }
 
+# Non-HTML-Pages here
+
+if (defined $q->url_param('backup')) {
+    unless (is_admin()) { die "You need admin priviliges to view this page.\n" };
+    unless ($SETTINGS{features}{online_backup}) { die "The backup feature is not enabled.\n" };
+
+    print $q->header(-type=>'application/x-gzip');
+    run (['svnadmin', 'dump', '--quiet', repopath], '|', [ "gzip" ], \*STDOUT);
+    exit;
+}
+
 # Set up headers
 print $q->header(-type=>'text/html', -charset=>'utf-8');
 
@@ -352,4 +364,3 @@ if (defined $q->url_param('doc')) {
     # Show doc list
     show_documents()
 }
-    

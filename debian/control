@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 7)
 Standards-version: 3.9.1
 
 Package: zpub
-Architecture: any
+Architecture: all
 Depends: ${misc:Depends},
  subversion,
 # Create zpub user:

@@ -24,6 +24,8 @@
 
 set -e
 
+echo "Running $(basename $0)..."
+
 if [ ! -d style -o ! -d source ]
 then
   echo "This script needs to be run the output directory, and expects"
@@ -59,3 +61,5 @@ test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 mv "$DOCNAME.chm" ../
 cd ..
 rmdir "$outdir"
+
+echo "$(basename $0) is done."

@@ -24,6 +24,8 @@
 
 set -e
 
+echo "Running $(basename $0)..."
+
 if [ ! -d style -o ! -d source ]
 then
   echo "This script needs to be run the output directory, and expects"
@@ -46,3 +48,5 @@ fopopts=""
 test -e "style/fop.xconf" && fopopts="-c style/fop.xconf"
 fop $fopopts -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
 rm source/"$DOCNAME.fo"
+
+echo "$(basename $0) is done."

@@ -24,6 +24,8 @@
 
 set -e
 
+echo "Running $(basename $0)..."
+
 if [ ! -d style -o ! -d source ]
 then
   echo "This script needs to be run the output directory, and expects"
@@ -43,4 +45,6 @@ cd ..
 
 opts=""
 test -e "style/epub.css" && opts="--css style/epub.css"
-dbtoepub $opts --stylesheet style/epub.xsl --output "$DOCNAME.epub" source/"$DOCNAME.xml"
+dbtoepub $opts --verbose --stylesheet style/epub.xsl --output "$DOCNAME.epub" source/"$DOCNAME.xml"
+
+echo "$(basename $0) is done."

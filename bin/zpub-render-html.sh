@@ -24,6 +24,8 @@
 
 set -e
 
+echo "Running $(basename $0)..."
+
 if [ ! -d style -o ! -d source ]
 then
   echo "This script needs to be run the output directory, and expects"
@@ -54,3 +56,4 @@ test -d ../source/images/ && rsync -r ../source/images/ images/
 rm -f ../${DOCNAME}_html.zip
 zip -r ../${DOCNAME}_html.zip .
 
+echo "$(basename $0) is done."

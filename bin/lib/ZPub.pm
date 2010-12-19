@@ -192,6 +192,8 @@ sub collect_output {
 	my $type;
 	if      ($filename =~ /\.chm$/) {
 	    $type = 'chm';
+	} elsif ($filename =~ /\.epub$/) {
+	    $type = 'epub';
 	} elsif ($filename =~ /\.pdf$/) {
 	    $type = 'pdf';
 	} elsif ($filename =~ /_html\.zip$/) {

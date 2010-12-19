@@ -179,6 +179,9 @@ hr {
 .pdf {	
 	list-style-image: url(/static/icons/stock_save-pdf.png); 
 	}
+.epub {	
+	list-style-image: url(/static/icons/epub.png); 
+	}
 .html-dir {	
 	list-style-image: url(/static/icons/document-open.png); 
 	}

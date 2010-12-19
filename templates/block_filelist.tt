@@ -22,6 +22,7 @@ under the Licence.
     <a target="_blank" href="[% url %]"><span class="this_rev">[% filename %]</span></a>
     [[% IF type == 'chm' %]Windows-Hilfedatei
     [%- ELSIF type == 'pdf' %]PDF-Datei
+    [%- ELSIF type == 'epub' %]EPUB-Datei
     [%- ELSIF type == 'html-dir' %]Online-Vorschau
     [%- ELSIF type == 'html-zip' %]Webseite in ZIP-Archiv
     [%- END -%]

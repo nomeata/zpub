@@ -36,6 +36,8 @@ Depends: ${misc:Depends},
  libfilesys-df-perl,
  libsys-cpuload-perl,
  libmime-lite-perl,
+Recommends:
+ dbtoepub,
 Description: collaborative DocBook editing server
  zpub is a server to collaboratively work on DocBook-based documentation.
  Editors modify the XML sources with their preferred editor and submit their

@@ -89,6 +89,7 @@ tell_cat "$ZPUB_INSTANCES/$CUST"/conf/formats <<__END__
 html
 pdf
 #htmlhelp
+#epub
 __END__
 
 echo "Symlinking plain style to $ZPUB_INSTANCES/$CUST/style/plain"

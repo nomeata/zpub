@@ -16,145 +16,43 @@ Licence for the specific language governing permissions and limitations
 under the Licence.
 */
 
-* {
-	font-family: Georgia, "Times New Roman", serif;   
-	margin: 0; 
-	padding: 0;
-	font-size: 1em; 
-	}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,hr,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,address{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;font-size:inherit;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}legend{color:#000;}pre,code,kbd,samp,tt{font-family:monospace;line-height:100%;}em{font-style:italic;}strong{font-weight:bold;}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 body {
+	font-family: Georgia, "Times New Roman", serif;   
 	font-size: 0.94em;
 	line-height: 160%;
 	}
 	
 
 hr {
-	border: none; 
-	border-top: 1px solid #cccccc; 
+	height: 1px; 
 	clear: both;
+	visibility: hidden;
 	}
 
 
-#header, 
-#header * {
-	margin: 0; 
-	padding: 0; 
+p, 
+ul, 
+ol {
+	outline: 0px solid blue; 
+	max-width: 50em; 
 	}
-#header {
-	margin: 1em 0;
-	border-width: 1px 0; 
-	border-style: solid; 
-	border-color: #cccccc; 
+pre {
+	max-width: 59.5em; 
 	}
-#header h1 em {
-	color: gray; 
-	font-style: italic; 
-	font-size: 1em; 
-	line-height: 1em;
+table {
+	max-width: 65em;
 	}
-#header h1 {
-	font-size: 2em; 
-	line-height: 2em; 
-	float: left; 
-	width: 10em;
-	padding: 0 1em 0 0; 
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+	
+.cite {
 	text-align: right; 
-	
-	border-width: 0 1px 0 0; 
-	border-style: solid; 
-	border-color: #cccccc; 
-	}
-#header p {	
-	font-size: 1em; 
-	line-height: 4em; 
-	margin-left: 24em; 
 	}
 
 
-#navi, 
-#main { 
-	margin-top: 1em; 
-	}
-
-#main {
-	padding: 40px; 
-	margin-left: 23em; 
-	margin-bottom: 1em; 
-	border: 1px solid silver; 
-	}
-#footer {
-	}
-#footer ul {
-	margin-top: 0; 
-	margin-bottom: 0; 
-	padding: 0; 
-	list-style-type: none; 
-	}
-	
-
-
-#navi {
-	float: left; 
-	width: 20em; 
-	}
-#navi h2 {
-	margin: 0; 
-	padding-left: 5px; 
-	padding-top: 10px;
-	padding-bottom: 5px;
-	color: #960a00; 
-	background-color: silver;  
-	}
-#navi h2 span {
-	color: white; 
-	font-size: 0.75em; 
-	}
-
-
-#navi * {
-	margin: 0;
-	padding: 0; 
-	}
-#navi ul {
-	border-width: 0px 1px 1px 1px;
-	border-style: solid;
-	border-color: silver; 
-	margin-bottom: 5px; 
-	}
-#navi ul ul {
-	border-width: 0;
-	}
-#navi li, 
-#navi a {
-	display: block; 
-	}
-#navi a {
-	text-decoration: none; 
-	}
-#navi a:hover {
-	text-decoration: underline; 
-	background-color: #ECECEC; 
-	}
-#navi li a {
-	padding: 0.4em 5px 0.4em 1em; 
-	border-top: 1px solid silver; 
-	}
-#navi li a.current_page {
-	background-color: #DCDCDC; 
-	}
-#navi li li a {
-	padding: 0.1em 5px 0.1em 2em; 
-	border-top-width: 0px; 
-	}
-
-
-#navi li a,
-#navi li li a {
-	background-repeat: no-repeat; 
-	background-position: 5px 50%; 
-	padding-left: 30px; 
-	}
 
 
 .overview {
@@ -210,8 +108,8 @@ h6 {
 	margin-bottom: 0.5em; 
 	}	
 
-h2 {	font-size: 1.3em; }
-h3 {	font-size: 1.05em; }
+h2 {	font-size: 1.2em; }
+h3 {	font-size: 1.1em; }
 h4 {	font-size: 1em; }
 h5 {	font-size: 1em; }
 h6 {	font-size: 1em; }	
@@ -219,16 +117,17 @@ h6 {	font-size: 1em; }
 
 h2, 
 h3 {
-	
+	font-weight: bold; 	
 	margin-left: -40px;
 	margin-right: -40px;  
-	padding: 0.5em 0.5em 0.2em 40px; 
+	padding: 0.45em 0.5em 0.2em 40px; 
 	}
 
 h2 {
 	color: white;
 	margin-top: -40px; 
 	background-color: #DCDCDC; 
+	border-bottom: 1px solid silver;
 	}
 
 h3 {
@@ -241,6 +140,15 @@ p {
 ul,
 ol {
 	margin: 0.5em 1em 1em 1em; 
+	}
+ul {
+	list-style-type: disc; 
+	}
+
+pre {
+	border: 1px solid silver; 
+	padding: 0.5em;
+	font-size: 1.1em;
 	}
 
 .warning, 
@@ -292,6 +200,7 @@ caption {
 th, 
 td {
 	text-align: left; 
+	vertical-align: top; 
 	}
 th {
 	padding-right: 2em; 
@@ -325,28 +234,119 @@ tr.bottom {
 
 
 
-/*
-.archive_wrapper table {
-	border-collapse: collapse; 
-	border-spacing: 2px 5px; 
-	width: 100%; 
-	}
-.archive_wrapper tr {
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+#header {
+	margin: 1em 0;
 	border-width: 1px 0; 
 	border-style: solid; 
-	border-color: #ECECEC; 
+	border-color: #cccccc; 
 	}
-.archive_wrapper tr.top {
-	border-width: 1px 0 0 0;
+#header h1 {
+	font-size: 2em; 
+	font-weight: bold; 
+	line-height: 2em; 
+	float: left; 
+	width: 10em;
+	padding: 0 1em 0 0; 
+	text-align: right; 
+
+	border-width: 0 1px 0 0; 
+	border-style: solid; 
+	border-color: #cccccc; 
 	}
-.archive_wrapper tr.bottom {
-	border-width: 0 0 1px 0;
+#header h1 em {
+	color: gray; 
+	font-style: italic; 
+	font-size: 1em; 
+	font-weight: bold; 
+	line-height: 1em;
 	}
-*/
-/*
-.releasebutton {
-	text-align: left; 
-	padding-left: 26px; 
-	background: transparent url(/static/icons/stock_mark.png) no-repeat 5px 50%; 
+#header h1 a {
+	color: black; 
 	}
-*/
+#header a {
+	text-decoration: none; 
+	}
+#header a:hover {
+	text-decoration: underline; 
+	}
+#header p {	
+	font-size: 1em; 
+	line-height: 4em; 
+	margin:0 0 0 24em; 
+	}
+
+
+#main {
+	padding: 40px; 
+	min-height: 10em;
+	margin-left: 22em; 
+	border-width: 1px 0 0 1px;
+	border-style: solid;
+	border-color: silver; 
+	}
+
+
+
+#navi {
+	border-top: 1px solid #cccccc; 
+	float: left; 
+	width: 22em; 
+	}
+#navi ul {
+	border-width: 0 0 0 0;
+	border-style: solid;
+	border-color: silver; 
+	margin: 0; 
+	}
+#navi li, 
+#navi li a {
+	display: block; 
+	}
+#navi li a {
+	text-decoration: none; 
+	padding: 0.4em 5px 0.4em 30px; 
+	border-bottom: 1px solid silver; 
+	background-color: white; 
+	background-repeat: no-repeat; 
+	background-position: 5px 50%; 
+	}
+#navi li a.current_page {
+	background-color: #DCDCDC; 
+	}
+#navi li a:hover {
+	text-decoration: underline; 
+	background-color: #ECECEC; 
+	}
+
+
+
+#footer {
+	border-top: 1px solid silver; 
+	}
+#footer ul {
+	margin-top: 0; 
+	margin-bottom: 0; 
+	padding: 0 0 1em 0; 
+	list-style-type: none; 
+
+	}
+#footer li {
+	display: block;  
+	}
+#footer span, 
+#footer a {
+	text-decoration: none; 
+	margin-left: 21em;
+	text-align: center;
+	display: block; 
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+	border-color: silver; 
+	padding: 0 0.5em;
+	width: 8em; 
+	}
+#footer span {
+	width: auto; 
+	}

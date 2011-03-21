@@ -21,26 +21,30 @@ under the Licence.
 	pagekind = 'status'
 %]
 
-<h4>Wartende Aufträge</h4>
 [% IF jobs.todo.size %]
+<h4>Wartende Aufträge</h4>
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.todo
 	state = 'todo'
 	show_remove = 1
 %]
 [% ELSE %]
-<it>keine wartenden Aufträge</it>
+	<div class="tip">
+		<p>keine wartenden Aufträge</p>
+	</div>
 [% END %]
 
 
-<h4>Aufträge in Bearbeitung</h4>
 [% IF jobs.wip.size %]
+<h4>Aufträge in Bearbeitung</h4>
 [% INCLUDE block_jobtable.tt
 	jobs = jobs.wip
 	state = 'wip'
 %]
 [% ELSE %]
-	<it>keine Aufträge in Bearbeitung</it>
+	<div class="tip">
+		<p>keine Aufträge in Bearbeitung</p>
+	</div>
 [% END %]
 
 
@@ -72,11 +76,11 @@ under the Licence.
 <h3>Repository-Backup</h3>
 <p>
 Sie können ein vollständiges Backup des Quell-Repositories herunterladen: <a href="/backup/[% cust %]-zpub-svn.dump.gz">[% cust %]-zpub-svn.dump.gz</a>. Aus dieser kann mit dem folgenden Befehl ein SVN-Repository mit Ihren Daten erstellt werden:
+</p>
 <pre>
 $ svnadmin create /pfad/zum/neuen/repository
 $ gzip -dc [% cust %]-zpub-svn.dump.gz | svnadmin load /pfad/zum/neuen/repository
 </pre>
-</p>
 [% END %]
 
 [% END %]

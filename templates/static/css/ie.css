@@ -18,9 +18,21 @@ under the Licence.
 
 /* ie 6/7 hacks */
 
-#navi, 
 #main, 
+#navi, 
+#navi ul, 
 #navi li, 
 #navi a {
 	zoom: 1; 
+	}
+
+#navi li, 
+#navi li a {
+	position: relative; 
+	vertical-align: top; 
+	}
+
+
+#main li {
+	margin-left: 1.5em; 
 	}

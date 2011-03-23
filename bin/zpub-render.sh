@@ -87,6 +87,20 @@ test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
 svn export -r $REV "file://$ZPUB_INSTANCES/$CUST/repos/source/$DOC" source
 
+# Check file with xmllint before proceeding
+cd "source"
+DOCNAME="$(basename *.xml .xml)"
+
+if [ ! -r "$DOCNAME.xml" ]
+then
+  echo "Could not find document source ($DOCNAME)"
+  exit 1
+fi
+cd ..
+
+echo "Running xmllint on the document source..."
+xmllint --noout source/"$DOCNAME.xml"
+
 while read format 
 do
   if [ -n "$format" -a "${format:0:1}" != "#" ]

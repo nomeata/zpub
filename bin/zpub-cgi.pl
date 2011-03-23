@@ -22,7 +22,7 @@ use warnings;
 
 
 # Constants
-our ($ZPUB_PERLLIB, $ZPUB_INSTANCES, $ZPUB_SHARED, $ZPUB_SPOOL);
+our ($ZPUB_PERLLIB, $ZPUB_INSTANCES, $ZPUB_SHARED, $ZPUB_SPOOL, $ZPUB_VERSION);
 BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
@@ -61,6 +61,7 @@ sub standard_vars {
 	admin    => is_admin(),
 	settings => \%SETTINGS,
 	documents => [ collect_documents() ],
+	zpub_version => $ZPUB_VERSION,
      );   
 }
 

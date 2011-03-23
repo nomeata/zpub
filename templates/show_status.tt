@@ -70,6 +70,7 @@ under the Licence.
 <ul>
 	<li>Freier Festplattenspeicher: [% sysstatus.df %]</li>
 	<li>Systemlast: [% sysstatus.load %]</li>
+	<li>Installierte zpub-Version: [% zpub_version %]</li>
 </ul>
 
 [% IF admin AND settings.features.exists('online_backup') %]

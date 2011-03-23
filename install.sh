@@ -41,6 +41,15 @@ do
   mkdir -pv "$DESTDIR""${!var}"
 done
 
+# Version number
+if [ -r VERSION ]
+then
+	VERSION="$(cat VERSION)"
+else
+	VERSION="$(git describe --tags)"
+fi
+echo "Installing zpub version $VERSION"
+
 # Copy files
 cp -v bin/*.sh bin/*.pl -t "$DESTDIR""$ZPUB_BIN"
 chmod -c +x "$DESTDIR""$ZPUB_BIN"/*.sh "$DESTDIR""$ZPUB_BIN"/*.pl
@@ -72,6 +81,11 @@ __END__
 # Create shell paths file
 paths_shell="$ZPUB_SHARED/paths.sh"
 cp -v "$paths" "$DESTDIR""$paths_shell"
+(
+  echo 
+  echo '# Version number of this installation'
+  echo "ZPUB_VERSION=\"$VERSION\""
+) >> "$DESTDIR""$paths_shell"
 
 # Create perl paths file
 paths_perl="$ZPUB_SHARED/paths.pl"
@@ -81,6 +95,7 @@ paths_perl="$ZPUB_SHARED/paths.pl"
   do
     echo "our \$$var = '${!var}';"
   done
+  echo "our \$ZPUB_VERSION = '${VERSION}';"
   echo '1;'
 ) > "$DESTDIR""$paths_perl"
 

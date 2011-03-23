@@ -179,6 +179,15 @@ sub repopath {
     return "$ZPUB_INSTANCES/$CUST/repos/source";
 }
 
+
+my %format_order = (
+	'pdf' => 1,
+	'epub' => 2,
+	'html-dir' => 3,
+	'html-zip' => 4,
+	'chm' => 5,
+);
+
 # Information about the files in a given revision of
 # a document
 sub collect_output {
@@ -223,6 +232,7 @@ sub collect_output {
 	    url => $url,
 	};
     }
+    @ret = sort { ($format_order{$a->{type}} || $a) cmp ($format_order{$b->{type}} || $b) } @ret;
     return \@ret;
 }
 

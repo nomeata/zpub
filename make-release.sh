@@ -17,3 +17,4 @@ git archive \
 	>  "../zpub_$1.orig.tar" 
 tar --file ../zpub_$1.orig.tar --append VERSION --transform "s,^,zpub-$1/," 
 gzip -9 --force "../zpub_$1.orig.tar" 
+rm VERSION

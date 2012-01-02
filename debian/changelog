@@ -1,3 +1,11 @@
+zpub (0.3-1) UNRELEASED; urgency=low
+
+  * New upstream release:
+    + epub support
+    + displays version in web interface
+
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 02 Jan 2012 12:55:50 +0100
+
 zpub (0.2-1) UNRELEASED; urgency=low
 
   * Initial release. 

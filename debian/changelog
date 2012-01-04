@@ -1,3 +1,9 @@
+zpub (0.3-2) UNRELEASED; urgency=low
+
+  * Depend on libxml2-utils for xmllint 
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 04 Jan 2012 16:53:42 +0100
+
 zpub (0.3-1) UNRELEASED; urgency=low
 
   * New upstream release:

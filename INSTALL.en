@@ -11,6 +11,7 @@ Dependencies
 Zpub requires the following packages to run (Debian package names):
 
 apache2
+libxml2-utils
 docbook-xsl
 fop
 libapache2-svn

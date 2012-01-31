@@ -54,8 +54,11 @@ use VorKurzem;
 ####################
 
 sub standard_vars {
+    my $this_page = $q->script_name();
+    # Strip a possible root path from the script name
+    $this_page =~ s/^\Q$SETTINGS{rootpath}\E//;
     return (
-	this_page=> $q->script_name(),
+	this_page=> $this_page,
 	cust     => $CUST,
 	doc      => 0,
 	admin    => is_admin(),

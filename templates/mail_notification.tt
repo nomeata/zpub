@@ -31,11 +31,11 @@ Erzeugte Dateien (Layout [% style %]):
 [%- UNLESS size == 'directory' -%]
 , Size: [% size -%]
 [%- END %])
-   https://[% cust %].zpub.de/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
+   https://[% settings.hostname %][% settings.rootpath %]/[% doc %]/archive/[% this_rev.revn %]/[% style %]/[% filename +%]
 [% END -%]
 
 Die aktuellste Version aller Ausgabeformate ist stets unter
-https://[% cust %].zpub.de/[% doc %]/
+https://[% settings.hostname %][% settings.rootpath %]/[% doc %]/
 abrufbar.
 
 

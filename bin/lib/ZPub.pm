@@ -222,7 +222,7 @@ sub collect_output {
 	$date->set_formatter($strp_absolute);
 	$date->set_locale('de_DE');
 
-	my $url = sprintf "/%s/archive/%d/%s/%s", $doc,$revn,$style,$filename;
+	my $url = sprintf "%s/%s/archive/%d/%s/%s", $SETTINGS{rootpath}, $doc,$revn,$style,$filename;
 	
 	push @ret, {
 	    filename => $filename,	
@@ -333,6 +333,30 @@ sub read_settings {
     } else {
 	$SETTINGS{admins} = {};
     }
+
+    # URL and root path
+    if ( -f "$ZPUB_INSTANCES/$CUST/conf/hostname") {
+	$SETTINGS{hostname} = read_file("$ZPUB_INSTANCES/$CUST/conf/hostname");
+	chomp($SETTINGS{hostname});
+    } else {
+	$SETTINGS{hostname} = "$CUST.zpub.de";
+    }
+
+    if ( -f "$ZPUB_INSTANCES/$CUST/conf/rootpath") {
+	$SETTINGS{rootpath} = read_file("$ZPUB_INSTANCES/$CUST/conf/rootpath");
+	chomp($SETTINGS{rootpath});
+	if ($SETTINGS{rootpath}) {
+	    unless ($SETTINGS{rootpath} =~ m'^/') {
+		die "Setting rootpath (\"$SETTINGS{rootpath}\") does not begin with a slash.\n"
+	    }
+	    if ($SETTINGS{rootpath} =~ m'/$') {
+		die "Setting rootpath (\"$SETTINGS{rootpath}\") must not end with a slash.\n"
+	    }
+	}
+    } else {
+	$SETTINGS{rootpath} = "";
+    }
+
     
     # Enabled features
     if ( -f "$ZPUB_INSTANCES/$CUST/conf/features") {

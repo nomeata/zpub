@@ -59,29 +59,29 @@ table {
 	background-image: url(../icons/help-about.png); 
 	}
 .status {
-	background-image: url(/static/icons/stock_mail-filters-apply.png); 
+	background-image: url(../icons/stock_mail-filters-apply.png); 
 	}
 .user {	
-	background-image: url(/static/icons/system-users.png); 
+	background-image: url(../icons/system-users.png); 
 	}
 .document {	
-	background-image: url(/static/icons/document-properties.png); 
+	background-image: url(../icons/document-properties.png); 
 	}
 
 .chm {	
-	list-style-image: url(/static/icons/help-contents.png); 
+	list-style-image: url(../icons/help-contents.png); 
 	}
 .html-zip {	
-	list-style-image: url(/static/icons/media-floppy.png); 
+	list-style-image: url(../icons/media-floppy.png); 
 	}
 .pdf {	
-	list-style-image: url(/static/icons/stock_save-pdf.png); 
+	list-style-image: url(../icons/stock_save-pdf.png); 
 	}
 .epub {	
-	list-style-image: url(/static/icons/epub.png); 
+	list-style-image: url(../icons/epub.png); 
 	}
 .html-dir {	
-	list-style-image: url(/static/icons/document-open.png); 
+	list-style-image: url(../icons/document-open.png); 
 	}
 
 a.index {

@@ -81,6 +81,7 @@ mkdir -vp "$ZPUB_INSTANCES"/"$CUST"/{conf,output,repos,settings/{final_rev,subsc
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/conf/..."
 echo "$NAME" | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/cust_name
+echo "$HOSTNAME" | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/hostname
 echo final_approve | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/features
 echo '' | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/admins
 echo plain | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/default_style

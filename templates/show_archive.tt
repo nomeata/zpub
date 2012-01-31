@@ -35,7 +35,7 @@ under the Licence.
 [% FOREACH revs %]
 <tr class="top">
 <td rowspan="2">
-	<a href="/[% doc %]/archive/[% revn %]/">
+	<a href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/">
 	<span class="this_rev">[% revn %]</span>
 	</a>
 </td>
@@ -48,7 +48,7 @@ under the Licence.
 [% IF settings.features.exists('final_approve') AND admin %]
 	[% IF final_rev AND revn == final_rev.revn %]
 	<td rowspan="2">
-	<img src="/static/icons/stock_mark.png" width="16" height="16" />
+	<img src="[% settings.rootpath %]/static/icons/stock_mark.png" width="16" height="16" />
 	</td>
 	[% ELSE %]
 	<td rowspan="2" class="releasebutton">

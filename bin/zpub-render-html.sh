@@ -50,7 +50,8 @@ cd "$outdir"
 xsltproc ../style/html.xsl ../source/"$DOCNAME.xml"
 
 mkdir -p images style
-cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.png style/
+# cp -l would be more efficient, but breaks across file systems
+cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.png style/
 test -d ../style/html-shared && rsync -r ../style/html-shared/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 rm -f ../${DOCNAME}_html.zip

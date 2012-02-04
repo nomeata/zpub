@@ -53,7 +53,8 @@ xsltproc --stringparam htmlhelp.chm "$DOCNAME.chm"	\
 	  ../style/htmlhelp.xsl ../source/"$DOCNAME.xml"
 
 mkdir -p images
-cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+# cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
 test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true

@@ -56,27 +56,30 @@ then
   exit 1
 fi
 
-STYLE=$(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
-if [ ! -d "$ZPUB_INSTANCES/$CUST/style/$STYLE" ]
-then
-  echo "Could not find style directory in $ZPUB_INSTANCES/$CUST/style/$STYLE"  >&2
-  exit 1
-fi
-
+for STYLE in $(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
+do
+  if [ ! -d "$ZPUB_INSTANCES/$CUST/style/$STYLE" ]
+  then
+    echo "Could not find style directory in $ZPUB_INSTANCES/$CUST/style/$STYLE"  >&2
+    exit 1
+  fi
+done
 
 svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u|
 while read DOC
 do
   if [ "$DOC" != common ]
   then
-    JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC.job"|tr -c A-Za-z0-9_\\n- _)"
-    cat > $ZPUB_SPOOL/new/"$JOBNAME" <<__END__
+    for STYLE in $(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
+    do
+      JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC-$STYLE.job"|tr -c A-Za-z0-9_\\n- _)"
+      cat > $ZPUB_SPOOL/new/"$JOBNAME" <<__END__
 $CUST
 $REV
 $DOC
 $STYLE
 __END__
-    mv $ZPUB_SPOOL/new/"$JOBNAME" $ZPUB_SPOOL/todo/"$JOBNAME"
+      mv $ZPUB_SPOOL/new/"$JOBNAME" $ZPUB_SPOOL/todo/"$JOBNAME"
+    done
   fi
 done
-

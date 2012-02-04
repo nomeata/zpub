@@ -177,8 +177,9 @@ sub do_approve {
 
     write_doc_setting($doc,"final_rev",$revn);
 
-    queue_job($revn,$doc,$SETTINGS{final_style});
-
+    for my $style (@{$SETTINGS{final_style}}) {
+        queue_job($revn,$doc,$style);
+    }
 }
 
 # Set subscriber list
@@ -195,7 +196,7 @@ sub queue_job {
     
     my $outdir = revpath($doc, $revn, $style);
 
-    my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$.job");
+    my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$-$style.job");
 
     write_file("$ZPUB_SPOOL/new/$jobname",
 	(sprintf "%s\n%s\n%s\n%s\n%s\n", $CUST,$revn, $doc, $style, $outdir)) 

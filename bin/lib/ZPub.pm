@@ -369,15 +369,17 @@ sub read_settings {
     }
 
     # Default style
-    $SETTINGS{default_style} = read_file("$ZPUB_INSTANCES/$CUST/conf/default_style")
+    my @styles = read_file("$ZPUB_INSTANCES/$CUST/conf/default_style")
 	or die "Could not read default_style: $!";
-    chomp($SETTINGS{default_style});
+    chomp(@styles);
+    $SETTINGS{default_style} = \@styles;
 
     # Final style
     if ($SETTINGS{features}{final_approve}) {
-	$SETTINGS{final_style} = read_file("$ZPUB_INSTANCES/$CUST/conf/final_style")
+    	my @styles = read_file("$ZPUB_INSTANCES/$CUST/conf/final_style")
 	    or die "Could not read final_style: $!";
-	chomp($SETTINGS{final_style});
+	chomp(@styles);
+	$SETTINGS{final_style} = \@styles;
     }
 }
 

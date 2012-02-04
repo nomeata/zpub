@@ -70,6 +70,35 @@ tell_cat "$DESTDIR""$ZPUB_ETC/apache.conf" <<__END__
 Include $ZPUB_ETC/apache.conf.d/*.conf
 __END__
 
+tell_cat "$DESTDIR""$ZPUB_ETC/apache-standalone.conf" <<__END__
+# This file can be used to run a test apache webserver on port 8888
+# using
+# /usr/sbin/apache2 -f $ZPUB_ETC/apache-standalone.conf
+Listen 127.0.0.1:8888
+LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
+LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so
+LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so
+LoadModule auth_basic_module /usr/lib/apache2/modules/mod_auth_basic.so
+LoadModule authn_file_module /usr/lib/apache2/modules/mod_authn_file.so
+LoadModule authz_user_module /usr/lib/apache2/modules/mod_authz_user.so
+LoadModule authz_default_module /usr/lib/apache2/modules/mod_authz_default.so
+LoadModule authz_host_module /usr/lib/apache2/modules/mod_authz_host.so
+LoadModule dav_module /usr/lib/apache2/modules/mod_dav.so
+LoadModule dav_svn_module /usr/lib/apache2/modules/mod_dav_svn.so
+LoadModule mime_module /usr/lib/apache2/modules/mod_mime.so
+LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
+LoadModule cgi_module /usr/lib/apache2/modules/mod_cgi.so
+
+ServerRoot /tmp
+TypesConfig /etc/mime.types
+ErrorLog /tmp/zpub-apache-error.log
+ServerName localhost
+User www-data
+Group www-data
+
+Include $ZPUB_ETC/apache.conf.d/*.conf
+__END__
+
 tell_cat "$DESTDIR""$ZPUB_ETC/apache-ssl.conf" <<__END__
 # This is the SSL configuration, as shared by all zpub instances
 SSLEngine on

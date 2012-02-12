@@ -30,7 +30,7 @@ use strict;
 use warnings;
 
 # Constants
-our ($ZPUB_PERLLIB, $ZPUB_SHARED);
+our ($ZPUB_PERLLIB, $ZPUB_SHARED, %SETTINGS);
 BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
@@ -47,6 +47,8 @@ use ZPub;
 
 
 our ($CUST,$revn,$doc,$style) = @ARGV;
+
+read_settings();
 
 if ( not $CUST or not $revn or not $doc or not $style )
 {
@@ -71,6 +73,7 @@ my $vars = {
         doc       => $doc,
         revs      => \@revs,
         this_revs => $this_revs,
+        settings => \%SETTINGS,
 	};
 
 my $body;

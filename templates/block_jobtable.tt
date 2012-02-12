@@ -46,7 +46,7 @@ under the Licence.
 </td>
 [% IF show_logfile %]
 <td>
-<a href="/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
+<a href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
 </td>
 [% END %]
 [% IF show_retry AND admin %]

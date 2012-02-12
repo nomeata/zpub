@@ -26,16 +26,16 @@ under the Licence.
 	[% IF doc %] [% doc %] – [% END %]
 	[% title %] | [% settings.cust_name %] | zpub.de
 </title>
-<link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen, projection" />
-<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="screen, projection" href="/static/css/ie.css" /><![endif]-->
-	<link rel="icon" type="image/png" href="/static/icons/favicon.png" />
+<link rel="stylesheet" href="[% settings.rootpath %]/static/css/screen.css" type="text/css" media="screen, projection" />
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="screen, projection" href="[% settings.rootpath %]/static/css/ie.css" /><![endif]-->
+	<link rel="icon" type="image/png" href="[% settings.rootpath %]/static/icons/favicon.png" />
 </head>
 <body class="[%- pagekind -%]_wrapper">
 
 
 <div id="header">
 	<h1>
-		<a href="./"><em>zpub</em>.de</a>
+		<a href="[% settings.rootpath %]/"><em>zpub</em>.de</a>
 	</h1>
 	<p>Zentrales Dokumentationssystem</p>
 </div>
@@ -47,7 +47,7 @@ under the Licence.
           [% IF href == this_page %]current_page[% ELSE -%]
 		  [%- IF this_page.startswith(href)  %]super_page[% END -%]
 		  [%- IF href.startswith(this_page) %]sub_page[% END -%]
-	  [%- END %]" href="[% href %]">[% text %]</a>
+	  [%- END %]" href="[% settings.rootpath %][% href %]">[% text %]</a>
 [% END %]
 
 <div id="navi"> 

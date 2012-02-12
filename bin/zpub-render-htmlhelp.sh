@@ -47,14 +47,33 @@ outdir="htmlhelp-temp"
 test -d "$outdir"|| mkdir -p "$outdir"
 cd "$outdir"
 
+STYLESHEET=""
+for path in ../style/htmlhelp/htmlhelp.xsl ../style/htmlhelp.xsl
+do
+  if [ -e "$path" ]
+  then
+    STYLESHEET="$path"
+    echo "Using stylesheet $path"
+    break
+  fi
+done 
+
+if [ -z "$STYLESHEET" ]
+then
+  echo "No stylesheet found at ../style/htmlhelp/htmlhelp.xsl"
+  exit 1
+fi
+
 xsltproc --stringparam htmlhelp.chm "$DOCNAME.chm"	\
 	 --stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
 	 --stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
-	  ../style/htmlhelp.xsl ../source/"$DOCNAME.xml"
+	  $STYLESHEET ../source/"$DOCNAME.xml"
 
 mkdir -p images
-cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+# cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
+cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
 test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
+test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
 test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete

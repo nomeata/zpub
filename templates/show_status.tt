@@ -70,12 +70,13 @@ under the Licence.
 <ul>
 	<li>Freier Festplattenspeicher: [% sysstatus.df %]</li>
 	<li>Systemlast: [% sysstatus.load %]</li>
+	<li>Installierte zpub-Version: [% zpub_version %]</li>
 </ul>
 
 [% IF admin AND settings.features.exists('online_backup') %]
 <h3>Repository-Backup</h3>
 <p>
-Sie können ein vollständiges Backup des Quell-Repositories herunterladen: <a href="/backup/[% cust %]-zpub-svn.dump.gz">[% cust %]-zpub-svn.dump.gz</a>. Aus dieser kann mit dem folgenden Befehl ein SVN-Repository mit Ihren Daten erstellt werden:
+Sie können ein vollständiges Backup des Quell-Repositories herunterladen: <a href="[% settings.rootpath %]/backup/[% cust %]-zpub-svn.dump.gz">[% cust %]-zpub-svn.dump.gz</a>. Aus dieser kann mit dem folgenden Befehl ein SVN-Repository mit Ihren Daten erstellt werden:
 </p>
 <pre>
 $ svnadmin create /pfad/zum/neuen/repository

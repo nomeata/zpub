@@ -22,7 +22,7 @@ use warnings;
 
 
 # Constants
-our ($ZPUB_PERLLIB, $ZPUB_INSTANCES, $ZPUB_SHARED, $ZPUB_SPOOL);
+our ($ZPUB_PERLLIB, $ZPUB_INSTANCES, $ZPUB_SHARED, $ZPUB_SPOOL, $ZPUB_VERSION);
 BEGIN {
 my $paths='Set by zpub-install.sh'
 require $paths;
@@ -54,13 +54,17 @@ use VorKurzem;
 ####################
 
 sub standard_vars {
+    my $this_page = $q->script_name();
+    # Strip a possible root path from the script name
+    $this_page =~ s/^\Q$SETTINGS{rootpath}\E//;
     return (
-	this_page=> $q->script_name(),
+	this_page=> $this_page,
 	cust     => $CUST,
 	doc      => 0,
 	admin    => is_admin(),
 	settings => \%SETTINGS,
 	documents => [ collect_documents() ],
+	zpub_version => $ZPUB_VERSION,
      );   
 }
 
@@ -173,8 +177,9 @@ sub do_approve {
 
     write_doc_setting($doc,"final_rev",$revn);
 
-    queue_job($revn,$doc,$SETTINGS{final_style});
-
+    for my $style (@{$SETTINGS{final_style}}) {
+        queue_job($revn,$doc,$style);
+    }
 }
 
 # Set subscriber list
@@ -191,7 +196,7 @@ sub queue_job {
     
     my $outdir = revpath($doc, $revn, $style);
 
-    my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$.job");
+    my $jobname = DateTime->now->strftime("%Y%m%d-%H%M%S-$$-$style.job");
 
     write_file("$ZPUB_SPOOL/new/$jobname",
 	(sprintf "%s\n%s\n%s\n%s\n%s\n", $CUST,$revn, $doc, $style, $outdir)) 

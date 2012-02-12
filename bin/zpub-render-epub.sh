@@ -43,8 +43,26 @@ then
 fi
 cd ..
 
+STYLESHEET=""
+for path in style/epub/epub.xsl style/epub.xsl
+do
+  if [ -e "$path" ]
+  then
+    STYLESHEET="$path"
+    echo "Using stylesheet $path"
+    break
+  fi
+done 
+
+if [ -z "$STYLESHEET" ]
+then
+  echo "No stylesheet found at style/epub/epub.xsl"
+  exit 1
+fi
+
 opts=""
 test -e "style/epub.css" && opts="--css style/epub.css"
-dbtoepub $opts --verbose --stylesheet style/epub.xsl --output "$DOCNAME.epub" source/"$DOCNAME.xml"
+test -e "style/epub/epub.css" && opts="--css style/epub/epub.css"
+dbtoepub $opts --verbose --stylesheet $STYLESHEET --output "$DOCNAME.epub" source/"$DOCNAME.xml"
 
 echo "$(basename $0) is done."

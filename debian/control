@@ -22,6 +22,7 @@ Depends: ${misc:Depends},
  locales-all,
 # DocBook stuff:
  xsltproc,
+ libxml2-utils,
  docbook-xsl,
  zip,
  fop,

@@ -47,12 +47,30 @@ outdir="${DOCNAME}_html"
 test -d "$outdir"|| mkdir -p "$outdir"
 cd "$outdir"
 
-xsltproc ../style/html.xsl ../source/"$DOCNAME.xml"
+STYLESHEET=""
+for path in ../style/html/html.xsl ../style/html.xsl
+do
+  if [ -e "$path" ]
+  then
+    STYLESHEET="$path"
+    echo "Using stylesheet $path"
+    break
+  fi
+done 
+
+if [ -z "$STYLESHEET" ]
+then
+  echo "No stylesheet found at ../style/html/html.xsl"
+  exit 1
+fi
+
+xsltproc $STYLESHEET ../source/"$DOCNAME.xml"
 
 mkdir -p images style
 # cp -l would be more efficient, but breaks across file systems
 cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.png style/
 test -d ../style/html-shared && rsync -r ../style/html-shared/ .
+test -d ../style/html/data && rsync -r ../style/html/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 rm -f ../${DOCNAME}_html.zip
 zip -r ../${DOCNAME}_html.zip .

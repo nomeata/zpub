@@ -43,9 +43,28 @@ then
 fi
 cd ..
 
-xsltproc style/fo.xsl source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
+STYLESHEET=""
+for path in style/pdf/fo.xsl style/fo.xsl
+do
+  if [ -e "$path" ]
+  then
+    STYLESHEET="$path"
+    echo "Using stylesheet $path"
+    break
+  fi
+done 
+
+if [ -z "$STYLESHEET" ]
+then
+  echo "No stylesheet found at style/pdf/fo.xsl"
+  exit 1
+fi
+
+
+xsltproc $STYLESHEET source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
 fopopts=""
 test -e "style/fop.xconf" && fopopts="-c style/fop.xconf"
+test -e "style/pdf/fop.xconf" && fopopts="-c style/pdf/fop.xconf"
 fop $fopopts -fo source/"$DOCNAME.fo" -pdf "$DOCNAME.pdf"
 rm source/"$DOCNAME.fo"
 

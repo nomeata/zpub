@@ -65,6 +65,10 @@ do
   fi
 done
 
+# The cache directory was introduced later; gracefully create it here.
+mkdir -p $ZPUB_INSTANCES/$CUST/cache
+svn ls -r $REV file://"$REPOS" | cut -d/ -f1 | fgrep -x -v common > $ZPUB_INSTANCES/$CUST/cache/documents
+
 svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1|sort -u|
 while read DOC
 do

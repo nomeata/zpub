@@ -92,6 +92,7 @@ LoadModule cgi_module /usr/lib/apache2/modules/mod_cgi.so
 ServerRoot /tmp
 TypesConfig /etc/mime.types
 ErrorLog /tmp/zpub-apache-error.log
+PidFile /tmp/zpub-apache.pid
 ServerName localhost
 User www-data
 Group www-data

@@ -132,6 +132,8 @@ paths_perl="$ZPUB_SHARED/paths.pl"
 tell perl -i -p -e 's!^ZPUB_PATHS=.*!ZPUB_PATHS="'"$paths_shell"'"!;' "$DESTDIR""$ZPUB_BIN"/*.sh
 tell perl -i -p -e 's!^my \$paths=.*!my \$paths="'"$paths_perl"'";!;' "$DESTDIR""$ZPUB_BIN"/*.pl
 
+echo
+echo
 echo "Installation finished. Make sure that $ZPUB_SPOOL is writeable by both
 the webserver and the user $ZPUB_USER, e.g. by adding the webserver user to
 group $ZPUB_GROUP, let this group own $ZPUB_SPOOL and make its subdirectories

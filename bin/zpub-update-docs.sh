@@ -65,18 +65,17 @@ svn co "file://$ZPUB_INSTANCES/$CUST/repos/source" "$co"
 for docdir in $ZPUB_SHARED/docs/*
 do
 	docname=$(basename $docdir)
+	# This can be switched to the logic in 3f9597488efc0bfff923241506753b4adcebd832
+	# once we do not have to support subversion before 1.7
 	if [ -e "$co/$docname" ]
 	then
-		#svn rm  "$co/$docname" 
-		rm -rf "$co/$docname"
+		svn rm  "$co/$docname"
 	fi
 
 	cp -r "$docdir" "$co/$docname" 
-	svn status $co | grep '^\!' | sed 's/! *//' | xargs -I% svn rm %
-	svn add --force "$co/$docname"
+	svn add "$co/$docname"
 	svn propset svn:keywords Id "$co/$docname"/*.xml
 done
 
 svn ci -m "Importing zpub documentation for version $VERSION" $co
 rm -rf $co
-echo "Done."

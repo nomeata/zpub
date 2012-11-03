@@ -4,7 +4,7 @@
 [ 
         <!ENTITY zpub "<application>zpub</application>">
         <!ENTITY cust "DEMO">
-        <!ENTITY cust-lowercase "demo">
+        <!ENTITY hostname "demo.zpub.de">
         <!ENTITY admin-name "Max Mustermann">
         <!ENTITY admin-email "max.mustermann@demo.zpub.de">
 ]>
@@ -356,7 +356,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       zu administrieren.</para>
       <note>
         <para>URL des Webinterfaces:</para>
-        <para><ulink url="https://&cust-lowercase;.zpub.de/">https://&cust-lowercase;.zpub.de/</ulink></para>
+        <para><ulink url="https://&hostname;/">https://&hostname;/</ulink></para>
         <para>Die Seiten des Webinterfaces werden bei jedem Aufruf generiert
         und beinhalten - sofern gerade aufgerufen oder aktualisiert - immer
         den aktuellen Stand. Werden relative Zeitangaben gemacht, so gelten
@@ -426,7 +426,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               
 			      <tip><title>Versionierung</title>
 				      <para>Jede via SVN<indexterm><primary>SVN</primary></indexterm> übertragene Änderung stößt auf dem <application>zpub</application>-Server eine Neugenerierung sämtlicher Ausgabeformate an. Die zu einer Version bzw. Revision erstellten Ausgabeformate werden dauerhaft abgespeichert, wobei sie weiterhin  verlinkt und abrufbar sind. Die Links beinhalten die Revisionsangaben und sind wie folgt aufgebaut: 
-				      <programlisting>https://&cust-lowercase;.zpub.de/zpub-Technik/archive/13<co linkends="linkrev-co" id="linkrev-co"/>/handbuch/zpub-Technik.pdf</programlisting>
+				      <programlisting>https://&hostname;/zpub-Technik/archive/13<co linkends="linkrev-co" id="linkrev-co"/>/handbuch/zpub-Technik.pdf</programlisting>
 				     <calloutlist>
 				        <callout arearefs="timeout-co">
 				          <para>Revisionsangabe</para>
@@ -436,7 +436,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
 				      
 				      
 				      <para>Um immer auf die aktuellste Dokumentrevision zuzugreifen, existiert ein <emphasis>latest</emphasis>-Link zu jedem Ausgabeformat:
-				      <programlisting>https://&cust-lowercase;.zpub.de/zpub-Technik/<emphasis role="strong">latest</emphasis>/handbuch/zpub-Technik.pdf</programlisting> Die Revisionsangabe ist durch <emphasis role="strong">latest</emphasis> ersetzt. Dieser Link kann, da er sich nicht ändert, z.B. für Bookmarks etc. verwendet werden.
+				      <programlisting>https://&hostname;/zpub-Technik/<emphasis role="strong">latest</emphasis>/handbuch/zpub-Technik.pdf</programlisting> Die Revisionsangabe ist durch <emphasis role="strong">latest</emphasis> ersetzt. Dieser Link kann, da er sich nicht ändert, z.B. für Bookmarks etc. verwendet werden.
 				      </para>
 				      
 			      </tip>
@@ -468,7 +468,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Dieser Punkt ist nur bei entsprechenden Rechten sichtbar.</para>
           <para>Listet alle Benutzer des Systems auf. Hier eingetragene
           Benutzerkennungen sind zum einen für die Anmeldung am Webfrontend
-          (die Seiten, die über <ulink url="https://&cust-lowercase;.zpub.de">http://&cust-lowercase;.zpub.de</ulink> erreichbar
+          (die Seiten, die über <ulink url="https://&hostname;">http://&hostname;</ulink> erreichbar
           sind) wie auch für die Nutzung des Versions-Verwaltungssystems
           gültig.</para>
         </section>
@@ -502,7 +502,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
     Dokuments auf eventuelle Konflikte hin.</para>
     <tip>
       <para>URL des Subversion-Repositories:</para>
-      <para><ulink url="https://&cust-lowercase;.zpub.de/svn/">https://&cust-lowercase;.zpub.de/svn/</ulink></para>
+      <para><ulink url="https://&hostname;/svn/">https://&hostname;/svn/</ulink></para>
     </tip>
     <tip>
       <para>Der TortoiseSVN-Client bindet sich als Windows
@@ -544,7 +544,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Commiten/Übertragen der der Änderungen an das zpub-&cust;-Repository</para>
         </listitem>
         <listitem>
-          <para>Das zpub-&cust;-Webinterface [<ulink url="https://&cust-lowercase;.zpub.de/">https://&cust-lowercase;.zpub.de/</ulink>] generiert
+          <para>Das zpub-&cust;-Webinterface [<ulink url="https://&hostname;/">https://&hostname;/</ulink>] generiert
           die aktuellen Ausgabedokumente (pdf, chm, html) und bildet
           grundlegende Daten zur Historie des Dokuments sowie dessen
           Freigabe-Status ab.</para>

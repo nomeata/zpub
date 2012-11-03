@@ -69,10 +69,10 @@ do
 	# once we do not have to support subversion before 1.7
 	if [ -e "$co/$docname" ]
 	then
-		svn rm  "$co/$docname"
+		svn rm "$co/$docname"
 	fi
 
-	cp -r "$docdir" "$co/$docname" 
+	rsync -r "$docdir"/ "$co/$docname" 
 	svn add "$co/$docname"
 	svn propset svn:keywords Id "$co/$docname"/*.xml
 done

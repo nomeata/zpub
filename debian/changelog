@@ -4,6 +4,7 @@ zpub (0.4-1) UNRELEASED; urgency=low
     + support for installation zpub in a subdirectory of the URL space
     + support for multiple styles in style_default, style_final
   * Depend on libxml2-utils for xmllint 
+  * Include zpub documentation in html and pdf form
 
  -- Joachim Breitner <nomeata@debian.org>  Mon, 20 Feb 2012 17:54:13 +0100
 

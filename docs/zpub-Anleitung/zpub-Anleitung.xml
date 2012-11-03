@@ -40,7 +40,7 @@
       <year>2009</year>
       <holder>zpub.de | Thomas und Joachim Breitner</holder>
     </copyright>
-    <releaseinfo>$Id: zpub-Anleitung.xml 30 2012-11-01 16:38:02Z demo $</releaseinfo>
+    <releaseinfo>$Id$</releaseinfo>
   </bookinfo>
   <preface>
     <title>Über zpub, das zentrale Dokumentationssystem</title>

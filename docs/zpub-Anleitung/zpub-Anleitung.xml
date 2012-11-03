@@ -1,0 +1,2524 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+               "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+[ 
+        <!ENTITY zpub "<application>zpub</application>">
+        <!ENTITY cust "DEMO">
+        <!ENTITY cust-lowercase "demo">
+        <!ENTITY admin-name "Max Mustermann">
+        <!ENTITY admin-email "max.mustermann@demo.zpub.de">
+]>
+<book lang="de">
+  <title>zpub - Redakteurhandbuch</title>
+
+<bookinfo>
+  <title>zpub - Redakteurhandbuch</title>
+<corpname>zpub.de</corpname>
+
+<authorgroup>
+<author>
+	<firstname>Thomas</firstname><surname>Breitner</surname>
+
+<address>
+<street>Musterstrasse 18</street>
+<postcode>79876</postcode> <city>Musterstadt</city>
+<country>Germany</country>
+
+<phone>Tel ++49 (0) 78 90 / 23 34 - 0</phone>
+<fax>Fax ++49 (0) 78 90 / 23 34 - 99</fax>
+
+<email>mail@zpub.de</email>
+<otheraddr><ulink url="http://zpub.de">http://zpub.de</ulink></otheraddr>
+</address>
+</author>
+</authorgroup>
+<edition>Dokumentation zu zpub</edition>
+<productnumber>Art. Nr.: XX/XXXXXX/XXXXX</productnumber>
+    <pubdate>2010</pubdate>
+    <copyright>
+      <year>2010</year>
+      <year>2009</year>
+      <holder>zpub.de | Thomas und Joachim Breitner</holder>
+    </copyright>
+    <releaseinfo>$Id: zpub-Anleitung.xml 30 2012-11-01 16:38:02Z demo $</releaseinfo>
+  </bookinfo>
+  <preface>
+    <title>Über zpub, das zentrale Dokumentationssystem</title>
+    <para>zpub bietet ein Redaktions- und Publikationssystem auf der Basis von
+    DocBook-XML.</para>
+    <figure>
+      <title>zpub-Aufbau</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/zpubstrukturfolie.png"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+    <para><application>zpub</application> bietet im Einzelnen:</para>
+    <itemizedlist>
+      <listitem>
+        <para>zentrale Dokument-Erstellung und Pflege</para>
+      </listitem>
+      <listitem>
+        <para>zpub benötigt auf Clientseite lediglich SVN-Zugriff und
+        einen geeigneten Editor für DocBook-XML-Dateien</para>
+      </listitem>
+      <listitem>
+        <para>strikte Trennung von Inhalt [DocBook-XML] und
+        Präsentation</para>
+      </listitem>
+      <listitem>
+        <para>automatische Generierung verschiedener Ausgabeformate:</para>
+        <itemizedlist>
+          <listitem>
+            <para>xhtml für Ihren Internet-Auftritt</para>
+          </listitem>
+          <listitem>
+            <para>pdf für druckfertige Handbücher</para>
+          </listitem>
+          <listitem>
+            <para>chm zur Integration in Ihre Windows-Anwendungen</para>
+          </listitem>
+          <listitem>
+            <para>rtf zur einfachen Weiterverarbeitung in anderen
+            Anwendung</para>
+          </listitem>
+          <listitem>
+            <para>jederzeit die aktuelle Versionen in allen Ausgabeformaten
+            verfügbar – sowie alle vorherigen Versionen</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Versionskontrolle via SVN</para>
+      </listitem>
+      <listitem>
+        <para>automatische Benachrichtigung von Gruppenmitgliedern</para>
+      </listitem>
+      <listitem>
+        <para>zpub setzt auf anerkannten Open Source-Projekten wie fop, xslt,
+        svn, apache etc. auf</para>
+      </listitem>
+    </itemizedlist>
+    <para><emphasis role="italic">zpub hilft, sich auf den Inhalt zu konzentrieren</emphasis>.</para>
+    <formalpara>
+      <title>Freie Software</title>
+      <para>zpub ist <emphasis role="bold">Freie Software</emphasis> und kann
+      kostenlos heruntergeladen, eingesetzt und verändert werden. </para>
+    </formalpara>
+    <formalpara>
+      <title>Lizenz</title>
+      <para><application>zpub.de</application> ist Freie Software und wird unter der <ulink url="http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1">European Union Public License v.1.1 </ulink>vertrieben.</para>
+    </formalpara>
+    <formalpara>
+      <title>Entwicklungsversion</title>
+      <para>
+
+Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <ulink url="http://gitorious.org/zpub">Gitorious</ulink>. </para>
+    </formalpara>
+    <para>Wir bieten Ihnen dazu eine Reihe von Dienstleistungen an:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Support: Wir helfen Ihnen, zpub erfolgreich auf- und
+        einzusetzen.</para>
+      </listitem>
+      <listitem>
+        <para>Entwicklung: Ihnen fehlt bei zpub noch ein Feature? Wir
+        entwickeln es für Sie.</para>
+      </listitem>
+      <listitem>
+        <para>Hosting: Wir betreiben Ihre zpub-Instanz auf unseren Servern. So
+        können Sie ohne große Investitionen und Verpflichtungen günstig in
+        zpub einsteigen.</para>
+      </listitem>
+    </itemizedlist>
+<!--<itemizedlist>
+  <listitem>
+    <para>zentrale Dokument-Erstellung und Pflege von Dokumenten</para>
+  </listitem>
+  <listitem>
+    <para>zpub benötigt auf der Redakteursseite lediglich SVN-Zugriff und
+        einen geeigneten Editor für DocBook-XML-Dateien</para>
+  </listitem>
+  <listitem>
+    <para>strikte Trennung von Inhalt [DocBook-XML] und
+        Präsentation</para>
+  </listitem>
+  <listitem>
+    <para>automatische Generierung verschiedener Ausgabeformate:</para>
+    <itemizedlist>
+      <listitem>
+        <para><command>xhtml</command> für Ihren Internet-Auftritt</para>
+      </listitem>
+      <listitem>
+        <para><command>pdf</command> für druckfertige Handbücher</para>
+      </listitem>
+      <listitem>
+        <para><command>chm</command> zur Integration in Ihre
+            Windows-Anwendungen</para>
+      </listitem>
+    </itemizedlist>
+  </listitem>
+  <listitem>
+    <para>jederzeit die aktuelle Versionen in allen Ausgabeformaten
+        verfügbar – sowie alle vorherigen Versionen</para>
+  </listitem>
+  <listitem>
+    <para>Versionskontrolle via SVN</para>
+  </listitem>
+  <listitem>
+    <para>automatische Benachrichtigung von Gruppenmitgliedern</para>
+  </listitem>
+  <listitem>
+    <para>zpub setzt auf anerkannten Open Source-Projekten wie
+        <application>fop</application>, <application>xslt</application>,
+        <application>svn</application>, <application>apache</application> etc.
+        auf</para>
+  </listitem>
+  <listitem>
+    <para>zpub kann als gehostete Lösung gemietet oder als direkt
+        einsetzbare virtuelle Maschine auf Ihrem Server erworben werden</para>
+  </listitem>
+</itemizedlist>-->    <section>
+      <title>Geschichte von zpub</title>
+      <para/>
+    </section>
+  </preface>
+  <preface>
+    <title>Systemvoraussetzungen</title>
+    <para>Auf Redakteursseite wird lediglich eine SVN-Client-Anwendung sowie
+    ein beliebiger Editor für Text- bzw. XML-Dateien benötigt.</para>
+    <para>Die Benutzerkennungen werden vom &cust;-zpub-Administrator
+    erstellt.</para>
+    <tip>
+      <para>Dieses Handbuch geht von einer Installation des Subversion-Clients
+      <ulink url="http://tortoisesvn.tigris.org/">TortoiseSVN</ulink> sowie
+      eines UTF-8-fähigen Texteditors bzw. des XML-Editors <ulink url="http://www.xmlmind.com/xmleditor/">XMLmind</ulink> aus und nutzt
+      diese für Beschreibungen und Abbildungen. Die Abbildungen beziehen sich
+      auf eine jeweils aktuelle Version der Softwarekomponenten. Zukünftige
+      Softwareversionen können daher unterschiedliche Menüs und Designs haben.
+      Beide genannten Softwareprojekte werden aktiv gepflegt, es sollten daher
+      immer die aktuellsten Versionen genutzt werden.</para>
+      <para>Je nach persönlich präferierter Arbeitsumgebung des Redakteurs
+      kann selbstverständlich auch eine andere Softwareausstattung genutzt
+      werden.</para>
+    </tip>
+    <note>
+      <para>Für das Editieren von DocBook-XML-Dokumenten hat sich der
+      inzwischen als Open Source-freigegebene XML-Editor <ulink url="http://www.syntext.com/products/serna-free/">Serna Free</ulink> von
+      <ulink url="http://www.syntext.com/">Syntext</ulink> ebenfalls bewährt.
+      Dieser bietet eine übersichtlichere Bedienoberfläche sowie
+      komfortableres Editieren.</para>
+      <para>Die bisherigen Erläuterungen zum XML-Editor XMLmind finden Sie in
+      diesem Handbuch nun im <link linkend="appendix_xmlmind">Anhang</link>.</para>
+    </note>
+    <warning>
+      <para>Das Webfrontend wie auch der SVN-Zugriff nutzen eine
+      SSL-verschlüsselte Verbindung. Diese ist mit einem eigenen Zertifikat,
+      welches von CA-Cert signiert ist, gesichert. Sollte das Root-Zertifikat
+      von CA-Cert nicht auf dem Rechner des Benutzers installiert sein, so
+      erscheint beim Zugriff auf die Webseiten des Frontends sowie bei dem
+      Zugriff auf das SVN-Repository eine Fehlermeldung, die auf ein
+      unbekanntes Zertifikat hinweist. In beiden Fällen soll das Zertifikat
+      dauerhaft akzeptiert werden, um sicher und komfortabel mit dem System zu
+      arbeiten.</para>
+    </warning>
+    <para>Im folgenden wird davon ausgegangen, dass auf Redakteursseite das
+    Betriebssystem Windows XP zum Einsatz kommt. Sämtliche Komponenten sind
+    auch für andere Betriebssysteme- und Versionen verfügbar.</para>
+  </preface>
+  <chapter>
+    <title>Installation der Client-Anwendungen</title>
+    <indexterm>
+      <primary>Installation</primary>
+    </indexterm>
+    <para>Für dieses Handbuch wird clientseitig von der Installation des
+    TortoiseSVN-Clients sowie des <ulink url="http://www.syntext.com/products/serna-free/">Syntext</ulink> Serna
+    Free XML-Editors ausgegangen.</para>
+
+
+
+    <section>
+    <title>Liste der Downloadlinks:</title>
+ 
+    <itemizedlist>
+
+  
+<listitem>
+<para>
+<ulink url="http://java.com/de/download/index.jsp">Oracle Java JRE 6</ulink>  (wird vom XML-Editor Syntext Serna Free benötigt)
+</para>
+</listitem>
+<listitem>
+<para>
+<ulink url="http://www.syntext.com/downloads/serna-free/">Syntext Serna Free</ulink>  (benötigt Oracle Java JRE)
+</para>
+</listitem>
+<listitem>
+<para>
+<ulink url="http://tortoisesvn.net/downloads.html">TortoiseSVN</ulink>  (Installation erfordert Neustart)
+</para>
+</listitem>
+<listitem>
+<para>
+<ulink url="http://tortoisesvn.net/downloads.html">TortoiseSVN (<emphasis>dt. Sprachpaket ("Language Pack")</emphasis>)</ulink> (nach obigem Neustart zu installieren, optional)
+</para>
+</listitem>
+<listitem>
+<para>
+<ulink url="http://notepad-plus-plus.org/download">Notepad++</ulink>  (<emphasis>Texteditor, optional</emphasis>)
+</para>
+</listitem>
+<listitem>
+<para>
+<ulink url="http://www.getpaint.net/download.html#download">Paint.NET</ulink>  (für das Bearbeiten von Abbildungen und Screenshots mit Ebenen; erfordert Microsoft .NET Framework 3.5,    <emphasis>einfache Grafikbearbeitung, optional</emphasis>)</para>
+</listitem>
+
+</itemizedlist>
+
+<note>
+<para>Es sollten immer die aktuellsten Versionen der Softwarepakete genutzt werden.</para>
+</note>
+
+<para>Sämtliche Downloads verlinken auf Versionen für das Betriebssystem <trademark>Windows</trademark> in der 32bit-Variante. Versionen für andere Betriebssysteme bzw. 64bit-Versionen existieren eventuell oder es existieren äquivalente Programme.</para>
+<para>Die genannten Programme sind entweder unter einer OpenSource-Lizenz veröffentlicht oder kostenfrei nutzbar.</para>
+
+</section>
+ 
+<section>
+      <title>Installation Subversion Client</title>
+      <indexterm>
+        <primary>Installation</primary>
+        <secondary>Installation Subversion Client</secondary>
+      </indexterm>
+      <para>Für dieses Handbuch wird beispielhaft mit dem Subversion Client
+      &quot;TortoiseSVN&quot; gearbeitet. Das Installationspaket zum Download befindet
+      sich auf der Projektseite <ulink url="http://tortoisesvn.net/downloads">http://tortoisesvn.net/downloads</ulink>.
+      Nach der Installation des korrekten Pakets muß der Rechner neu gestartet
+      werden. Der TortoiseSVN-Client wird als Windows Explorer-Erweiterung ins
+      System eingebunden.</para>
+      <para>Die Installation ist ausführlich auf den <ulink url="http://tortoisesvn.net/docs/release/TortoiseSVN_de/tsvn-intro-install.html#id547135">Projektseiten der Software</ulink> beschrieben.</para>
+      <para>Es existiert ein <ulink url="http://tortoisesvn.net/downloads.html">deutsches Sprachpaket</ulink> (32 Bit und 64 Bit) für diesen Subversion-Client. Es ist zu beachten,
+      dass die Versionsnummer des Tortoise-SVN-Clients sowie die
+      Versionsnummer des Sprachpakets identisch sind. Das Sprachpaket wird
+      nach erfolgreicher Installation des Tortoise-SVN-Clients installiert.
+      Die verfügbaren Sprachen können wie folgt aktiviert werden:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Rechtsklick</para>
+        </listitem>
+        <listitem>
+          <para>Kontextmenüeintrag &apos;TortoiseSVN&apos;</para>
+        </listitem>
+        <listitem>
+          <para>Kontextmenüeintrag &apos;Settings&apos;</para>
+        </listitem>
+        <listitem>
+          <para>Im erscheinenden Einstellungsdialog unter &apos;General&apos; -&gt;
+          &apos;Language&apos; die gewünschte Sprache aus dem Dropdown-Menü
+          auswählen</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Installation Syntext Serna Free XML-Editor</title>
+      <para>Der XML-Editor Serna Free von Syntext benötigt eine installierte Java Runtime Environment (JRE) von SUN, die kostenfrei heruntergeladen und genutzt werden kann: <ulink url="http://www.java.com/en/download/manual.jsp">Sun Java JRE Download</ulink>.</para>
+      <para>Nach Installation der JRE (oder bei schon vorhandener JRE) wird der XML-Editor installiert: <ulink url="http://www.syntext.com/downloads/serna-free/">Syntext Serna Free Download</ulink>.</para>
+    </section>
+  </chapter>
+  <chapter id="verwaltung_der_dokumente">
+    <title>Verwaltung der Dokumente</title>
+    <abstract>
+      <para><application>zpub</application> stellt eine einfach zu bedienende, grafische, browsergestützte Oberfläche für die im SVN verwalteten Dokumente zur Verfügung. Dabei kann die Historie eines Dokuments verfolgt werden, Änderungen können zeitlich und per Redakteur zugeordnet werden, Dokumente können freigegeben werden, Gruppen von Redakteuren gebildet werden, Ausgabeformate angesehen und heruntergeladen werden und der Status aktueller Ausgabegenerierungsprozesse angezeigt werden.</para>
+    </abstract>
+    <para>Das Webinterface von <application>zpub</application> hält je nach den Rechten des angemeldeten Benutzers
+    unterschiedliche Informationen und Funktionen parat. Bisher existieren
+    zwei Benutzerrollen:</para>
+    <orderedlist>
+      <listitem>
+        <para>Redakteure</para>
+        <para>Redakteure sind in der Lage, sämtlich relevanten Informationen
+        und Funktionen zum Verwalten und Einsehen der von Ihnen bearbeiteten
+        Dokumente zu nutzen.</para>
+      </listitem>
+      <listitem>
+        <para>Administratoren</para>
+        <para>Administratoren bekommen zusätzlich zu den Informationen und
+        Funktionen der Redakteure weitere Funktionen dargestellt. Diese
+        Funktionen sind in der folgenden Übersicht gekennzeichnet. Die
+        Zuordnung der Rollen geschieht über &admin-name;, <ulink url="mailto:&admin-email;">&admin-email;</ulink>.</para>
+      </listitem>
+    </orderedlist>
+    <section>
+      <title>Das Webinterface</title>
+      <para>Die Verwaltung von Dokumenten sowie die automatische Generierung
+      der Ausgabeformate geschieht serverseitig und ist über ein Webinterface
+      zu administrieren.</para>
+      <note>
+        <para>URL des Webinterfaces:</para>
+        <para><ulink url="https://&cust-lowercase;.zpub.de/">https://&cust-lowercase;.zpub.de/</ulink></para>
+        <para>Die Seiten des Webinterfaces werden bei jedem Aufruf generiert
+        und beinhalten - sofern gerade aufgerufen oder aktualisiert - immer
+        den aktuellen Stand. Werden relative Zeitangaben gemacht, so gelten
+        diese relativ zum Zeitpunkt des Seitenaufrufs bzw. der letzten
+        Aktualisierung.</para>
+      </note>
+      <tip>
+        <para>Das die Verbindung zu <application>zpub</application> läuft über eine verschlüsselte Verbindung. Das selbst-signierte SSL-Zertifikat muß akzeptiert und bestätigt werden.</para>
+      </tip>
+      <para>Das Webinterface bietet Funktionen zu den einzelnen Dokumenten wie
+      auch zur Administration des Systems.</para>
+
+      <para>Das Menü ist hierarchisch mit zwei Ebenen aufgebaut, wobei zu
+      jedem Dokument eine Unterebene existiert. Die Menüpunkte sind im
+      Folgenden erläutert (Übersicht):</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Dokumentübersicht</para>
+        </listitem>
+        <listitem>
+          <para>Dokument „Handbuch“</para>
+          <itemizedlist>
+            <listitem>
+              <para>Archiv</para>
+            </listitem>
+            <listitem>
+              <para>Abonnenten</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Status</para>
+        </listitem>
+        <listitem>
+          <para>Benutzer</para>
+        </listitem>
+      </itemizedlist>
+
+
+<section><title>Aufbau Webinterface</title>
+      <section>
+        <title>Dokumentübersicht</title>
+          <para>In der Dokumentübersicht werden die verwalteten Dokumente
+          aufgeführt. Die verwalteten Dokumente sind ebenfalls in der
+          Navigation vorhanden.</para>
+        </section>
+        <section>
+          <title>Dokument „Handbuch“</title>
+          <para>Die Übersicht über ein Dokument enthält Angaben über die
+          letzten Änderungen, den Status der Freigabe sowie die erzeugten
+          Ausgabeformate. Existieren zu einem Dokument Änderungen, die
+          aktueller sind als die letzte freigegebene Version, kann dieses
+          Dokument freigegeben werden.</para>
+          
+			<section>
+              <title>Archiv</title>
+              <para>Zu jedem Dokument existiert ein Archiv, welches in
+              tabellarischer Darstellung die Bearbeitungsschritte des Dokuments
+              mit Angaben zum jeweiligen Redakteur, der inhaltlichen Änderung,
+              des Änderungsdatums und des Freigabestatuses enthält. Die
+              Tabelle ist nach den laufenden Revisions-Nummern sortiert, die
+              auch in den Arbeitsversionen der Dokumente eingefügt sind.
+              Weiter können noch nicht freigegebene Revisionen hier
+              freigegeben werden.</para>
+              <para>Das Archiv beinhaltet alle Revisionen seit der Verwaltung der Dokumente mit <application>zpub</application>. Revisionen werden nicht gelöscht, die gesamte Historie bleibt erhalten und wird lediglich vom Speicherplatz auf dem <application>zpub</application>-Server begrenzt.</para>
+              
+			      <tip><title>Versionierung</title>
+				      <para>Jede via SVN<indexterm><primary>SVN</primary></indexterm> übertragene Änderung stößt auf dem <application>zpub</application>-Server eine Neugenerierung sämtlicher Ausgabeformate an. Die zu einer Version bzw. Revision erstellten Ausgabeformate werden dauerhaft abgespeichert, wobei sie weiterhin  verlinkt und abrufbar sind. Die Links beinhalten die Revisionsangaben und sind wie folgt aufgebaut: 
+				      <programlisting>https://&cust-lowercase;.zpub.de/zpub-Technik/archive/13<co linkends="linkrev-co" id="linkrev-co"/>/handbuch/zpub-Technik.pdf</programlisting>
+				     <calloutlist>
+				        <callout arearefs="timeout-co">
+				          <para>Revisionsangabe</para>
+				        </callout>
+				      </calloutlist>
+				      </para>
+				      
+				      
+				      <para>Um immer auf die aktuellste Dokumentrevision zuzugreifen, existiert ein <emphasis>latest</emphasis>-Link zu jedem Ausgabeformat:
+				      <programlisting>https://&cust-lowercase;.zpub.de/zpub-Technik/<emphasis role="strong">latest</emphasis>/handbuch/zpub-Technik.pdf</programlisting> Die Revisionsangabe ist durch <emphasis role="strong">latest</emphasis> ersetzt. Dieser Link kann, da er sich nicht ändert, z.B. für Bookmarks etc. verwendet werden.
+				      </para>
+				      
+			      </tip>
+            </section>
+            
+            <section>
+              <title>Abonnenten</title>
+              <para>Dieser Punkt ist nur bei entsprechenden Rechten
+              sichtbar.</para>
+              <para>Unter "Abonnenten" sind die Email-Adressen der Redakteure
+              einzutragen, die bei neuen Versionen dieses Dokuments per Email benachrichtigt
+              werden sollen. Die Benachrichtigungsemail enthält Angaben zum Redakteur, der die Änderung durchgeführt hat, den Zeitpunkt der Änderung sowie Links zu den generierten Ausgabeformaten.</para>
+            </section>
+        </section>
+
+        <section>
+          <title>Status</title>
+          <para>&quot;Status&quot; fasst Systemmeldungen sowie Meldungen der
+          automatischen Ausgabegenerierung zusammen. Die sogenannten
+          &quot;job&quot;-Angaben sind nach &quot;Wartenden Aufträgen&quot;, &quot;Aufträge in
+          Bearbeitung&quot; sowie &quot;Fehlgeschlagene Aufträge&quot; eingeordnet. Sollte
+          ein Auftrag fehlgeschlagen sein, so ist hier die Fehlermeldung
+          (&quot;Logdatei&quot;) einsehbar und es es werden Optionen zu einem erneuten
+          Versuch und des Löschens des Auftrages angeboten.</para>
+        </section>
+
+        <section id="wi_benutzer">
+          <title>Benutzer</title>
+          <para>Dieser Punkt ist nur bei entsprechenden Rechten sichtbar.</para>
+          <para>Listet alle Benutzer des Systems auf. Hier eingetragene
+          Benutzerkennungen sind zum einen für die Anmeldung am Webfrontend
+          (die Seiten, die über <ulink url="https://&cust-lowercase;.zpub.de">http://&cust-lowercase;.zpub.de</ulink> erreichbar
+          sind) wie auch für die Nutzung des Versions-Verwaltungssystems
+          gültig.</para>
+        </section>
+      </section>
+
+      <section>
+        <title>Freigabe von Dokumenten</title>
+        <para>Dokumente werden standardmäßig mit einem &quot;Draft&quot;-Wasserzeichen sowie Revisions-, Redakteursangaben und Zeitstempel versehen. Während ein Dokument also von einem Redakteur oder einer Redakteursgruppe &quot;in Bearbeitung&quot; ist, wird dies durch das Wasserzeichen kenntlich gemacht. Diese Dokumente (Revisionen) sind nur für den internen Gebrauch bestimmt. Erreicht ein Dokument einen <emphasis>finalen</emphasis> Stand (Revision), kann diese Revision <emphasis>freigegeben</emphasis> werden. Dies geschieht über die entsprechenden Buttons (auf der Dokumentseite sowie der zugehörigen Archiv-Seite). Dabei generiert <emphasis>freigeben</emphasis> die entsprechende Revision des Dokuments erneut - jedoch ohne das Wasserzeichen und die Revisionsmarkierungen.</para>
+      </section>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Nutzung von Subversion</title>
+    <indexterm>
+      <primary>Subversion</primary>
+      <secondary>Nutzung</secondary>
+    </indexterm>
+    <para>Die Arbeit über Subversion ermöglicht das gleichzeitige, verteilte
+    Arbeiten an einem Dokument. Änderungen werden ebenso wie die Dokumente
+    selber zentral verwaltet und versioniert. Weiter bietet Subversion die
+    Möglichkeit, ältere Zustände eines Dokuments einzusehen und gegebenenfalls
+    wiederherzustellen.</para>
+    <para>Mit dem Subversion-Client greift ein Redakteur auf die zentral
+    verwalteten Dokumente zu. Dabei wird mit lokalen Kopien der Dateien
+    gearbeitet. Nach Änderungen bzw. dem Editieren der Dokumente werden diese
+    wieder in das zentrale Subversion-Repository &apos;<emphasis>
+        <foreignphrase>commited</foreignphrase>
+      </emphasis>&apos; (&quot;übergeben&quot;).
+    Arbeiten mehrere Redakteure an einem Dokument, so weißt der
+    Subversion-Client beim &apos;<foreignphrase>commiten</foreignphrase>&apos; des
+    Dokuments auf eventuelle Konflikte hin.</para>
+    <tip>
+      <para>URL des Subversion-Repositories:</para>
+      <para><ulink url="https://&cust-lowercase;.zpub.de/svn/">https://&cust-lowercase;.zpub.de/svn/</ulink></para>
+    </tip>
+    <tip>
+      <para>Der TortoiseSVN-Client bindet sich als Windows
+      Explorer-Erweiterung im System ein. Seine Funktionalität stellt er beim
+      Rechtsklick auf eine Datei im Explorer zur Verfügung.</para>
+      <para>Das TortoiseSVN-Projekt pflegt eine gute, detaillierte und deutsche Dokumentation - siehe <ulink url="http://tortoisesvn.net/docs/release/TortoiseSVN_de/index.html"/>.</para>
+    </tip>
+    <warning>
+      <para>Wird ein SVN-Repository in eine lokale Kopie ausgescheckt, so
+      werden neben den eigentlichen Dokument-Quelldateien SVN-Systemdateien
+      und Ordner in der lokalen Kopie erstellt. Diese befinden sich in jedem
+      Ordner, der unter der Versionsverwaltung steht, als
+      <filename>.svn</filename>-Ordner. Diese Ordner, die als versteckte
+      Ordner gegebenenfalls nicht angezeigt werden, dürfen nicht manuell
+      verändert werden, da sie SVN-Verwaltungsdaten enthalten.</para>
+    </warning>
+	<para><application>TortoiseSVN</application> bietet eine Reihe nützlicher Funktion zum Verwalten der Dokumente sowie der Rückverfolgung von Änderungen, die über das <application>TortoiseSVN</application>-Kontextmenü zugänglich sind. Insbesondere ist die Log-Funktion und die Vergleichsversion für unterschiedliche Revisionen genannt.</para>
+    
+    <section>
+      <title>Kurzdarstellung eines kompletten Editiervorgangs</title>
+      <orderedlist>
+        <listitem>
+          <para>Erstellen eines lokalen Ordners (hier:
+          <filename>&cust;-Quelldateien</filename>), welcher die &cust;-Dokumente
+          enthalten soll (einmalig)</para>
+        </listitem>
+        <listitem>
+          <para>Auschecken (einmalig) bzw. Updaten des zpub-&cust;-Repositories
+          in dem soeben erstellten Ordner</para>
+        </listitem>
+        <listitem>
+          <para>Öffnen der gewünschten XML-Dokumentdatei mit dem
+          XML-Editor</para>
+        </listitem>
+        <listitem>
+          <para>Bearbeiten des Dokuments</para>
+        </listitem>
+        <listitem>
+          <para>Commiten/Übertragen der der Änderungen an das zpub-&cust;-Repository</para>
+        </listitem>
+        <listitem>
+          <para>Das zpub-&cust;-Webinterface [<ulink url="https://&cust-lowercase;.zpub.de/">https://&cust-lowercase;.zpub.de/</ulink>] generiert
+          die aktuellen Ausgabedokumente (pdf, chm, html) und bildet
+          grundlegende Daten zur Historie des Dokuments sowie dessen
+          Freigabe-Status ab.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Auschecken des SVN-Repositories</title>
+      <orderedlist>
+        <listitem>
+          <para>Erstellen eines leeren Ordners</para>
+        </listitem>
+        <listitem>
+          <para>Wechseln in den neuen Ordner</para>
+        </listitem>
+        <listitem>
+          <para>Rechtsklick, Auswahl des Kontextmenüpunkts &quot;SVN
+          auschecken...&quot;<figure>
+              <title>Screenshot: SVN auschecken...</title>
+              <screenshot>
+                <screeninfo>Screenshot: SVN auschecken...</screeninfo>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_auschecken.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+        </listitem>
+        <listitem>
+          <para>Im erscheinenden Dialog die URL zum &cust;-SVN-Repository
+          eintragen<figure>
+              <title>Screenshot: Projektarchiv</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/tsvn_auschecken-dialog.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+        </listitem>
+        <listitem>
+          <para>Zertifikatnachfrage mit &quot;Permanent akzeptieren&quot;
+          bestätigen<figure>
+              <title>Screenshot: SVN Zertifikatsabfrage</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_auschecken-zert.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+        </listitem>
+        <listitem>
+          <para>Anmeldedaten eingeben und um spätere Nachfragen zu umgehen
+          Option &quot;Anmeldedaten speichern&quot; aktivieren. <figure>
+              <title>Screenshot: SVN Anmeldedaten</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_auschecken-anmeldung.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+          <note>
+            <para>Die Benutzer müssen zuvor im Webinterface unter dem Punkt <link linkend="wi_benutzer">Benutzer</link>  angelegt werden. </para>
+          </note>
+          <para>Sobald der Anmeldedialog mit &quot;Ok&quot; bestätigt wird, beginnt das
+          Auschecken der Dateien im Repository in die lokale Kopie. Dies kann
+          einige Minuten dauern, auch ohne dass sich der Fortschrittsdialog
+          ändert.<figure>
+              <title>Screenshot: SVN ausgecheckt</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_auschecken-fertig.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+        </listitem>
+        <listitem>
+          <para>Nach dem ersten Auschecken ist eine lokale Kopie der
+          Quelldateien des entsprechenden Dokuments auf dem Redakteursrechner
+          vorhanden. Die Quelldateien setzen sich aus der DocBook-XML-Datei
+          des Dokuments sowie dem Ordner <filename>
+              <filename>images</filename>
+            </filename> zusammen.</para>
+          <para>TortoiseSVN ergänzt die Standard-Datei- und Ordner-Icons um
+          kleine Zusatzsymbole, die den aktuellen SVN-Status des
+          entsprechenden Elements darstellen. Nach einer Aktualisierung (s.o.)
+          sind die Dateien der lokalen Arbeitskopie und des SVN-Repositories
+          auf dem selben Stand, die lokale Kopie ist damit &quot;aktuell&quot; und wird
+          mit einem grünen Häkchen versehen.<figure>
+              <title>SVN-Symbol für aktuellen Ordner</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_uptodatefolder2.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure><figure>
+              <title>SVN - Symbol für aktuelle Datei</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata width="80%" fileref="images/tsvn_uptodatefiles.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure></para>
+        </listitem>
+        <listitem>
+          <para>Es liegt nun eine lokale Kopie aller Quelldateien vor. Diese
+          Dateien können - unabhängig von einer (Internet-) Verbindung zum
+          SVN-Server bearbeitet werden.</para>
+        </listitem>
+        <listitem>
+          <para>Für weitere Funktion des SVN-Clients nutzen Sie bitte die
+          Dokumentation des Herstellers, der installierten Hilfe zur Software
+          oder erforschen die Software über das umfangreiche Kontextmenü,
+          welches durch einen Rechtsklick auf eine SVN-verwaltete Datei/Ordner
+          erscheint.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Daten aktualisieren und übertragen</title>
+      <para>Vor jedem neuen Editiervorgang sollte die lokale Kopie des
+      SVN-Repositories auf den aktuellen Stand gebracht werden, es könnten
+      inzwischen Änderungen von anderen Redakteuren gemacht und übertragen
+      worden sein. Nach dem Editieren eines Dokuments wird dieses mit dem
+      TortoiseSVN-Client wieder in das zentrale SVN-Repository übertragen und
+      steht ab dann auch den anderen Redakteuren zur Verfügung.</para>
+      <para>Das Aktualisieren eines Dokuments - bzw. der Abgleich des lokalen
+      Dokuments mit dem Dokument auf dem SVN-Server - geschieht über einen
+      Rechtsklick auf die entsprechende Datei. Das aufklappende Kontextmenü
+      beinhaltet direkt die beiden grundlegendsten SVN-Aktionen &quot;SVN
+      aktualisieren&quot; und &quot;SVN übertragen...&quot;.</para>
+      <figure>
+        <title>TortoiseSVN Kontextmenü - Aktualisieren</title>
+        <screenshot>
+          <screeninfo/>
+          <mediaobject>
+            <imageobject>
+              <imagedata width="80%" fileref="images/tsvn_kontextmenue-1.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+      <para>Nach dem Ausführen des Befehls &quot;SVN Aktualisieren&quot; kann das
+      Dokument editiert werden. Im Anschluß an das Editieren ist die lokale,
+      aktuelle Version wieder auf den SVN-Server zu übertragen. Das Vorgehen
+      ist analog zum soeben beschriebenen &quot;aktualisieren&quot;, es ist lediglich
+      der Punkt &quot;SVN Übertragen...&quot; auszuwählen. Vor der Übertragung kann und
+      soll eine eigene, kurze Meldung zu den gemachten Änderungen angegeben
+      werden. Diese Meldung wird über die zpub.de-Webseite den angeschlossenen
+      Redakteuren veröffentlicht.</para>
+      <figure>
+        <title>SVN-Übertragungsmeldung</title>
+        <screenshot>
+          <screeninfo/>
+          <mediaobject>
+            <imageobject>
+              <imagedata width="80%" fileref="images/tsvn_commitmeldung.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+      <note>
+        <para>Es ist nützlich, &quot;oft und ausführlich&quot; zu übertragen, d.h. die eigenen Änderungen in kleinen, überschaubaren Einheiten zu übertragen und zu jeder Einheit eine gute, beschreibende Meldung anzugeben. Jede Übertragung von Änderungen erzeugt eine neue Revision, und das Versionsverwaltungssystem SVN operiert auf  Revisionen. Man kann zu alten Revisionen &quot;zurückspringen&quot;, man kann sich Änderungen zwischen beliebigen Revisionen anzeigen lassen, man kann der Historie der Revisionen anhand der &quot;sprechenden&quot;  Meldungen folgen. </para>
+        <para>Neben diesen technischen Möglichkeiten ist jedoch die &quot;zwischenmenschliche Nachvollziehbarkeit&quot; von Änderungen innerhalb einer Projekt-/Redakteursgruppe hervorzuheben. <application>zpub</application> hilft durch die Archiv-Ansicht, einen Überblick über die Historie eines Dokuments zu behalten:</para>
+      </note>
+      <figure>
+        <title>zpub: Archiv</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/zpub_archiv.png"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+    <section>
+      <title>SVN Konflikte</title>
+      <para>Über das Versionsverwaltungssystem SVN werden die Dokumente und zugehörigen Dateien etc. verwaltet: sie werden mit einer eindeutigen Revisions-Nummer, einem Zeitstempel und der Benutzerkennung versehen. Durch die zentrale Verwaltung der Dokumente auf dem SVN-Server, können mehrere Redakteure an den Dokumenten arbeiten. Der Workflow eines Redakteurs beginnt i.d.R. mit dem Aktualisieren seiner lokalen Kopie, dem Editieren und endet mit dem Übertragen der Änderungen an den SVN-Server. </para>
+      <para>Bearbeiten zwei Redakteure (hier: Hinz und Kunz) jeweils ihre privaten, lokalen Arbeitskopien (hier: Datei test.xml) und übertragen ihre Änderungen wieder an das SVN-Projektarchiv, können Konflikte entstehen: </para>
+      <para><orderedlist>
+          <listitem id="beschreibung_automatisch_aufloesbare_konflikte">
+            <para>Automatisch auflösbare Konflikte</para>
+            <para>Hinz editiert im ersten Kapitel und überträgt seine Änderungen. Kunz editiert im zweiten Kapitel und überträgt seine Änderungen. Bei dieser zweiten Übertragung erkennt SVN, dass sich inzwischen etwas an der Datei test.xml getan hat - die Änderungen von Hinz. Diese Änderungen aber in der Datei, die Kunz vorliegt, nicht enthalten sind. Daher fordert SVN Kunz auf, vor dem Übertragen zuerst die Datei test.xml seiner lokalen Arbeitskopie auf den aktuellen Stand zu bringen. Bei der Aktualisierung erkennt SVN, dass es Änderungen an zwei Stellen (Kapitel ein uns zwei) gibt, die nicht miteinander im Konflikt stehen und führt die Änderungen zusammen. In der Datei sind nun sowohl die Änderungen von Hinz im ersten Kapitel wie auch von Kunz im zweiten Kapitel vorhanden. Diese Datei kann nun Kunz an das SVN-Projektarchiv übermitteln, damit alle Beteiligten den neuen Stand zur Verfügung haben.</para>
+          </listitem>
+          <listitem>
+            <para>Manuell aufzulösende Konflikte</para>
+            <para>Hinz editiert den Abbildungstitel von Abbildung fünf. Kunz - der nichts von den Editiervorgängen von Hinz weiß - editiert ebenfalls den Abbildungstitel von Abbildung fünf. Hinz und Kunz übertragen ihre Änderungen an das SVN-Projektarchiv. Derjenige, der als zweiter (hier: Kunz) seine Änderungen übertragen will, wird vom SVN aufgefordert, seine lokale Datei zuerst auf den aktuellen Stand zu bringen, da diese ja die Änderungen des zuerst übertragenden Redakteurs (hier: Hinz) noch nicht enthält. Aktualisiert nun Kunz seine Datei, erkennt das SVN die Änderungen beider Redakteure an &quot;der selben Stelle&quot;. Dieser Konflikt kann nicht automatisch aufgelöst werden, hier muß ein intelligentes Wesen entscheiden, welcher Abbildungstitel denn nun der Richtige ist. Das SVN markiert die Datei als &quot;in Konflikt&quot; und überlässt das Auflösen des Konflikts Kunz. Allerdings unterstützt es Kunz, indem es ihm die entsprechende Stelle (Zeile) in der Datei sowie die beiden konkurrierenden Abbildungstitel anzeigt. Indem Kunz sich nun für einen der Abbildungstitel entscheidet, führt er die Dateien manuell zusammen. Die Datei ist nun nicht mehr &quot;in Konflikt&quot; und kann von Kunz an das SVN-Projektarchiv übertragen werden.</para>
+          </listitem>
+        </orderedlist></para>
+      <note>
+        <para>Das TortoiseSVN-Projekt pflegt eine eigenständige - auch auf Deutsch verfügbare - <ulink url=" http://tortoisesvn.net/docs/release/TortoiseMerge_de/index.html">Dokumentation</ulink> zu dem Programmmodul TortoiseMerge, welche detailliert auf Aspekte wie Revisionierung, Zusammenführen und Konflikte eingeht.</para>
+      </note>
+      <section>
+        <title>Konflikte manuell lösen</title>
+        <para>Konflikte in einem Dokument, die sich von SVN nicht automatisch auflösen lassen (siehe <link linkend="beschreibung_automatisch_aufloesbare_konflikte">voriges Kapitel</link> ), müssen vom Redakteur manuell gelöst werden. Der Redakteur wird beim Versuch, eine konfliktbehaftete Datei an das Projektarchiv zu übertragen mit einem Meldungsfenster über den Konflikt informiert. Dabei wird der Redakteur zuerst aufgefordert, seine Datei zu aktualisieren:<figure>
+            <title>SVN-Meldung: Datei veraltet</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata width="90%" fileref="images/tsvn_veraltet.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure></para>
+        <para>Die beanstandete Datei (hier: <code>Testdokument.xml</code>) ist demnach zuerst zu aktualisieren. Kann die Datei beim Aktualisieren nicht automatisch zusammengeführt werden, wird eine Konfliktmeldung ausgegeben. Über einen Rechtsklick auf die Konfliktmeldung und den Eintrag <menuchoice>
+            <guimenuitem>Konflikt bearbeiten</guimenuitem>
+          </menuchoice>  kann direkt das Programm TortoiseMerge aufgerufen werden:<figure>
+            <title>SVN-Meldung: Konflikt</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata width="80%" fileref="images/tsvn_aufforderung-konflikt-bearbeiten.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure></para>
+        <para>Es öffnet sich nun das Programm TortoiseMerge, welches in einer dreigeteilten Fensteransicht den Redakteur unterstützt, die konfligierenden Änderungen aufzulösen. In unserem Beispielfall sieht dies wie folgt aus:<figure id="abb_konfklikte_manuell_aufloesen">
+            <title>TortoiseMerge: Konflikte manuell auflösen</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/tsvn_tmerge.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure></para>
+        <para>Die dreigeteilte Fensteransicht beinhaltet oben links den Bereich für &quot;Deren&quot; Datei, links oben für &quot;Meine&quot; Datei sowie unten das Ergebnis der zusammengeführten Datei. Die konfliktbehaftete Zeile ist in &quot;Deren&quot; wie in &quot;Meiner&quot; Datei rot hervorgehoben. Weder in &quot;Deren&quot; noch in &quot;Meiner&quot; Datei kann editiert werden - hier kann man sich über einen Rechtsklick auf die Konfliktzeile lediglich dafür entscheiden, welche Version der Zeile man als Lösung betrachtet. Kommt weder die Zeile aus &quot;Deren&quot; Datei, noch die korrespondierende Zeile aus &quot;Meiner&quot; Datei in Betracht, muß die Datei neu editiert/korrigiert werden. Dies geschieht im unteren Fensterteil &quot;Zusammengeführt&quot;. Im Beispiel (siehe <xref linkend="abb_konfklikte_manuell_aufloesen"/>) ist die Zeile ebenfalls rot hervorgehoben und - da keine automatische Zusammenführung möglich ist - mit Fragezeichen gefüllt. Diese Zeile (sowie die gesamte Datei)  kann nun editiert werden. Ist kein Konflikt mehr vorhanden, ist auch keine Zeile in der unteren Fensterzeile mehr rot eingefärbt. Die Datei kann nun gespeichert und &quot;als aufgelöst&quot; markiert werden. Dies geschieht über den Button <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/tsvn_button-konflikt-aufgeloest.png"/>
+            </imageobject>
+          </inlinemediaobject>.</para>
+      </section>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Editieren von Dokumenten</title>
+    <para>Im Folgenden wird von einem Workflow ausgegangen, in dem zuerst ein
+    neues, leeres Dokument als Vorlage verwendet und dann editiert
+    wird.</para>
+    <section>
+      <title>Kopieren der Vorlage als neues Dokument</title>
+      <para>Im Verzeichnis der zpub-Quelldokumente befindet sich eine minimale
+      Vorlage für ein neues Handbuch-Projekt im Verzeichnis
+      <filename>Handbuch-Vorlage</filename>. Diese Datei kann als
+      Ausgangspunkt für ein neues Projekt genutzt werden. Selbstverständlich
+      lassen sich auch vorhandene Handbücher als Vorlage nutzen. Die folgenden
+      Schritte führen zu einem neuen, leeren Dokument:</para>
+      <orderedlist>
+        <listitem>
+          <para>Exportieren des Vorlageordners:</para>
+          <para>Der Vorlageordner (hier:
+          <filename>Handbuch-Vorlage</filename>) wird über die SVN-Funktion
+          &apos;SVN versionierte Objekte hierher exportieren&apos; kopiert. Diese
+          Funktion steht beim klicken-und-ziehen mit der rechten Maustaste zur
+          Verfügung:</para>
+          <figure>
+            <title>Versionierte Dateien exportieren</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata width="80%" fileref="images/tsvn_versionierteexportieren.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        </listitem>
+        <listitem>
+          <para>Umbenennen von Verzeichnis und der XML-Datei</para>
+          <para>Beim Umbenennen müssen das Verzeichnis und die Handbuch-XML-Datei
+          nicht zwingend den selben Name besitzen. Bei der Benennung dürfen
+          keine Sonderzeichen wie Umlaute, Leerzeichen etc. verwendet
+          werden.</para>
+          <note>
+            <para>Der Verzeichnisname und der Dateiname der XML-Datei müssen nicht übereinstimmen - zweckmäßig ist dies jedoch. Der Verzeichnisname wird für die Benennung des Projekts auf der zpub-Webseite genutzt, der Dateiname für die Benennung der Ausgabeformate. </para>
+          </note>
+        </listitem>
+        <listitem>
+          <para>Verzeichnisse und Dateien via SVN dem zentralen Repository
+          hinzufügen.</para>
+          <para>Dies geschieht über den Eintrag &apos;SVN hinzufügen&apos; im
+          Kontextmenü von TortoiseSVN beim Rechtsklick auf das neue Verzeichnis. Es werden automatisch rekursiv alle Dateien/Unterverzeichnisse des Verzeichnisses hinzugefügt.</para>
+        </listitem>
+        <listitem id="svneigenschaftenimportieren" xreflabel="SVN-Eigenschaften importieren">
+          <para>SVN-Eigenschaften importieren</para>
+          <para>Die benötigten Eigenschaften liegen vorkonfiguriert in
+          Dateiform vor und müssen lediglich noch importiert werden. Dies
+          geschieht über das Kontextmenü (Rechtsklick) der XML-Datei im neuen
+          Verzeichnis. Hier sind die folgenden Punkte auszuwählen: <menuchoice>
+              <guimenu>TortoiseSVN</guimenu>
+              <guimenuitem>Eigenschaften</guimenuitem>
+            </menuchoice>. In diesem Dialog ist über den Button
+          <guibutton>Import...</guibutton> die Datei
+          &apos;<filename>SVN-Eigenschaften für XML-Dateien.svnprops</filename>&apos; zu
+          importieren, die sich im Oberverzeichnis der Handbücher
+          befindet.</para>
+          <figure>
+            <title>SVN-Eigenschaften importieren</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata width="80%" fileref="images/tsvn_importsvneigenschaften.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        </listitem>
+        <listitem>
+          <para>Handbuch editieren und/oder Verzeichnisse/Dateien via SVN ins
+          zentrale Repository übertragen.</para>
+          <para>Dies geschieht über den Eintrag &apos;SVN übertragen&apos; im 
+          Kontextmenü des neuen Verzeichnisses.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>DocBook-Struktur</title>
+      <para>Die Quelldateien der &cust;-zpub-Dokumente sind XML-Dateien, die dem
+      DocBook-Standard entsprechen. Sie können mit jedem beliebigen,
+      UTF-8-fähigen Texteditor bearbeitet werden. Ob die Bearbeitung mit einem
+      einfachen Editor oder einem speziellen XML-Editor geschieht, ist dem
+      Redakteur sowie der technischen Ausstattung der Redakteurs-Rechner
+      überlassen. Der hier vorgestellte Editor von <ulink url="http://www.syntext.com/">Syntext</ulink> stellt einen Mittelweg
+      dar, der die Vorteile beider Verfahren vereint und dem Redakteur die
+      technische Seite des XML-Dialekts abnimmt.</para>
+      <para>Eine umfassende Dokumentation von Syntext Serna Free ist auf der
+      <ulink url="http://www.syntext.com/support/documentation/">Herstellerseite</ulink>
+      zu finden.</para>
+      <para>Im Folgenden wird der Editor vereinfacht Serna genannt.</para>
+      <para>Bei der Arbeit an einem DocBook-Dokument hilft es, wenn man sich
+      über die interne Struktur eines DocBook-Dokuments im Klaren ist. Ein
+      DocBook-Dokument ist streng hierarchisch in einer Baumstruktur
+      aufgebaut. Jeder Knoten entspricht einem DocBook-Tag, also einer Art
+      Anweisung, um was für eine Art von Information es sich beim Inhalt
+      dieses Knotens handelt. Soll nun neuer Inhalt eingefügt werden, so muss
+      zuerst ein dem Inhalt entsprechender Knoten eingefügt werden. Die
+      folgende Abbildung zeigt den Aufbau eines DocBook-Dokuments auf erster
+      Ebene:</para>
+      <figure>
+        <title>DocBook-Baumansicht</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/xml_treeview.png"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      <para>Um die inhaltliche Ebene zu demonstrieren, ist der
+      <sgmltag>title</sgmltag>-Tag ausgeklappt. Der
+      <sgmltag>#text</sgmltag>-Platzhalter nimmt den tatsächlichen Inhalt auf
+      - in diesem Falle den Titel dieses Buches/Dokuments.</para>
+    </section>
+    <section>
+      <title>Arbeiten mit Serna Free</title>
+      <para>Das Editieren von DocBook-Dokumenten ähnelt dem gewohnten
+      Editieren mit einer Textverarbeitung: Texte können eingefügt, geändert,
+      kopiert, gelöscht, verschoben werden. Es existieren jedoch einige
+      grundlegende Unterschiede:<itemizedlist>
+          <listitem>
+            <para>Es werden nur Inhalte bearbeitet, keine
+            Formatierungen</para>
+          </listitem>
+          <listitem>
+            <para>Es existieren Beschränkungen, welcher Inhalt wo vorkommen
+            kann oder muß</para>
+          </listitem>
+          <listitem>
+            <para>Inhalte werden mit Tags &quot;ausgezeichnet&quot;, welche den
+            auszuzeichnenden Inhalt möglichst gut beschreiben.</para>
+          </listitem>
+          <listitem>
+            <para>Es können z.B. auch nicht mehrere aufeinanderfolgende
+            Leerzeichen eingegeben werden. Auch existieren keine Tabulatoren
+            oder sonstige Möglichkeiten zur Definition von selbst
+            grundlegenden Formatierungen.</para>
+          </listitem>
+          <listitem>
+            <para>Die Taste <keycap>Enter</keycap> bewirkt nicht einen
+            gewöhnlichen Zeilenumbruch, sondern fügt ein neues Absatz-Element 
+            (<code>para</code>) ein.</para>
+          </listitem>
+          <listitem>
+            <para>Einige Bereiche/Texte sind nicht direkt editierbar. So
+            werden z.B. die Verzeichnisse für den Inhalt, die Abbildungen, die
+            Nummerierung der Abbildungen und Kapitel etc. automatisch
+            vorgenommen.</para>
+          </listitem>
+        </itemizedlist></para>
+      <para>In vielen Fällen hilft der Editor, sich im Wald der DocBook-Tags
+      zurechtzufinden. Da der Editor nur valide Eingaben zulässt, bzw. nur
+      valide Dokumente bearbeitet, und dem Benutzer bei der Auswahl eines
+      passenden und validen DocBook-Tags unter die Arme greift, muß der
+      Anwender kein DocBook-Experte sein. Existieren bei der Eingabe mehrere
+      Möglichkeiten, mit welchem Element (DocBook-Tag) es &quot;weitergeht&quot;, so
+      stellt der Editor dem Benutzer auch nur die an dieser Stelle möglichen
+      Elemente zur Auswahl. Ist an dieser Stelle zwingend ein bestimmtes
+      Element nötig, so fordert der Editor offensiv zu einer Auswahl
+      aus:<figure>
+          <title>Element-Auswahl <code>choice/choose</code></title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/sf_element-choice.png"/>
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+      <para>Dokumente werden editiert, indem entweder der Inhalt von vorhanden
+      Tags bearbeitet wird, oder indem neue Tags mit neuem Inhalt dem Dokument
+      hinzugefügt werden. Die genannten &apos;Tags&apos; dienen dabei als Container -
+      entweder für tatsächlichen Inhalt oder für weitere Tags. Für ein
+      effizientes Bearbeiten von Dokumenten kann komfortabel im Tag-Baum eines
+      Dokumentes navigiert werden. Im Standardfall wird vorhandener Inhalt
+      editiert und erweitert - hierzu kann man, wie von anderen
+      Textverarbeitungssystemen gewohnt, an die gewünschte Textstelle klicken
+      und tippen. Der Editor zeigt zu jedem Element, welches den Focus
+      besitzt, zu welchem DocBook-Tag es in der Hierarchie gehört (der
+      entsprechende Pfad wird in der Fußzeile des Editors sowie in der
+      ContentMap bzw. TOC in der Seitenleiste angezeigt): <figure>
+          <title>Aktueller Knoten</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata width="80%" fileref="images/sf_aktuelleNode_hl.png"/>
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+      <para>In der Seitenleiste kann zwischen den Registerkarten
+      <guilabel>ContentMap</guilabel> und <guilabel>TOC </guilabel>umgeschaltet werden. In der Ansicht
+      <guilabel>ContentMap</guilabel> werden die XML-Knoten wie auch der
+      Inhalt hierarchisch dargestellt, in der Ansicht <guilabel>TOC</guilabel>
+      werden lediglich die Knoten mit eventuell vorhandenen
+      <code>&lt;title&gt;</code>-Tags dargestellt. In beiden Ansichten kann
+      komfortabel durch das Dokument navigiert werden, momentan nicht
+      benötigte Abschnitte können ein- bzw. aufgeklappt werden.</para>
+    </section>
+    <section>
+      <title>Praktisches</title>
+      <para>Ein schnelles und effizientes Editieren mit Serna Free wird durch
+      viele praktische Helfer unterstützt. <itemizedlist>
+          <listitem>
+            <para>Neues Element an aktueller Position einfügen: <keycombo>
+                <keysym>Strg + Enter</keysym>
+              </keycombo></para>
+          </listitem>
+          <listitem>
+            <para>Textfragment mit einem Element &quot;ummanteln&quot; (beispielsweise, um einen Begriff zu verlinken):  Text markieren und   <keysym>Strg + Enter</keysym> </para>
+          </listitem>
+          <listitem>
+            <para>Navigieren in den Elementen in der Edit-Ansicht:
+            <keysym>Cursor-Tasten</keysym>. Dabei wird das fokussierte Element
+            hervorgehoben.</para>
+          </listitem>
+          <listitem>
+            <para>Kommentare einfügen: <keycombo>
+                <keysym>Strg + I</keysym>
+              </keycombo>. Kommentare werden nicht publiziert und können somit
+            für eigene Anmerkungen oder Marker innerhalb des Dokuments genutzt
+            werden. Auch können durch Kommentare &quot;Diskussionen&quot; mit anderen
+            Redakteuren geführt werden. Sind Kommentare vorhanden, werden
+            diese mit einem Kommentar-Symbol <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="images/sf_symbol-comment.png"/>
+                </imageobject>
+              </inlinemediaobject>angezeigt. Ein Doppelklick auf das Symbol
+            öffnet ein Fenster mit dem Inhalt des Kommentars.</para>
+          </listitem>
+          <listitem>
+            <para>Inline-Content: Die Tastenkombination <keycombo>
+                <keysym>Strg + Enter</keysym>
+              </keycombo> öffnet das Auswahlfenster für ein neues Element an
+            der aktuellen Cursor-Position. Mit den Cursortasten kann direkt
+            ein Element ausgewählt und mit <keysym>Enter</keysym> bestätigt
+            werden. Die - falls vorhanden - in dieser Sitzung schon einmal
+            genutzten Elemente werden dabei zu Beginn der Element-Liste
+            dargestellt:<figure float="0">
+                <title>Dialog <guilabel>Insert Element</guilabel></title>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/sf_insert-element.png"/>
+                  </imageobject>
+                </mediaobject>
+              </figure>Hat man ein Inline-Element eingefügt, im Falle obiger
+            Abbildung einen Tastendruck beschrieben, so kann nach dem Ende des
+            Elements durch die Taste <keysym>Ende</keysym> wieder in das
+            ursprüngliche Element gewechselt werden. Dabei wird das
+            Inline-Element automatisch geschlossen
+            (<code>&lt;keycap&gt;...&lt;/keycap&gt;</code>).</para>
+          </listitem>
+          <listitem>
+            <para>Tastatur-Shortcuts</para>
+            <para>Eine Übersicht der Tastatur-Shortcuts finden Sie unter 
+   <menuchoice>
+                <guimenu>Help</guimenu>
+                <guimenuitem>Shortcut Keys...</guimenuitem>
+              </menuchoice>.</para>
+          </listitem>
+          <listitem>
+            <para>Abbildungen und Tabellen, die nicht in Verzeichnissen aufgeführt werden sollen</para>
+            <para>Abbildungen und Tabellen werden automatisch in den Abbildungs- und Tabellenverzeichnissen aufgeführt. Soll dies bei bei einzelnen Abbildungen/Tabellen nicht geschehen, so sind diese als <code>informalfigure</code> bzw. <code>informaltable</code> ausgezeichnet werden.</para>
+          </listitem>
+        </itemizedlist></para>
+      <section>
+        <title>Grafiken</title>
+        <para>Bei der Einbindung von Grafiken bzw. Screenshots sollte auf die folgenden Punkte geachtet werden:
+<variablelist>
+            <varlistentry>
+              <term>Größe/Dimensionen</term>
+              <listitem>
+                <para>Grafiken sollten nicht breiter als 550 Pixel sein. Gegebenenfalls können passende Ausschnitte gewählt werden, oder die Abbildung in einer Grafikbearbeitungssoftware skaliert werden.</para>
+                <para>Ist die Abbildung größer als der dafür zur Verfügung stehende Raum, wird - in der PDF-Ausgabe - die Grafik rechts und/oder unten abgeschnitten. Sollen auch größere Abbildungen unbeschnitten dargestellt werden, müssen diese entweder im Vorfeld mit einer Grafikbearbeitung skaliert werden, oder es wird das Attribut <code>width=&quot;X%&quot;</code> für das Element <code>&lt;imagedata&gt;</code> genutzt. Siehe auch <xref linkend="bsp_skalierungen"/></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Dateiformat</term>
+              <listitem>
+                <para>Bevorzugt wird das Dateiformat Portable Network Graphics (PNG) gewählt. Dies wird von dem von <application>zpub</application> genutzten fo-Formatierer <application>fop</application> nativ unterstützt, bietet &quot;echte&quot; Transparenz via Alphakanal und verlustfreie Kompression.</para>
+                <para>Weiter ist auch die gute Unterstützung von Scalable Vector Graphics (SVG, deutsch skalierbare Vektorgrafiken) zu nennen.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Auflösung</term>
+              <listitem>
+                <para>Wenn möglich sollten die Abbildungen und Screenshots in einer Auflösung von 96dpi vorliegen (sofern die Bildbearbeitung die Auflösung in die Grafikdatei einbettet), dies garantiert qualitativ beste Ergebnisse.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Screenshots</term>
+              <listitem>
+                <para>Screenshots können auf unterschiedlichste Weise erzeugt werden - über die Taste <keysym>Druck</keysym> beispielsweise wird der aktuelle Bildschirminhalt in der Zwischenablage gespeichert, über Programme wie <application>XnView</application> kann der Bildschirm- oder Fensterinhalt präziser erfasst und zumindest rudimentär bearbeitet werden.</para>
+                <para>Die Bildqualität von Screenshots wird durch eine Skalierung stark beeinträchtigt und sollte daher vermieden werden. Nicht-grafische Abbildungen wie Photos können dagegen relativ problemlos skaliert werden.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+</para>
+        <example id="bsp_skalierungen">
+          <title>Skalierungsbeispiele für Abbildungen</title>
+          <para>
+ <figure>
+              <title>Pixelleiste (unskaliert)</title>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="images/grafikdimensionen-pixelleiste.png"/>
+                </imageobject>
+              </mediaobject>
+            </figure>
+
+ <figure>
+              <title>Pixelleiste (Breite: 80%)</title>
+              <mediaobject>
+                <imageobject>
+                  <imagedata width="80%" fileref="images/grafikdimensionen-pixelleiste.png"/>
+                </imageobject>
+              </mediaobject>
+            </figure>
+
+ <figure>
+              <title>Pixelleiste (Breite: 10cm)</title>
+              <mediaobject>
+                <imageobject>
+                  <imagedata width="10cm" fileref="images/grafikdimensionen-pixelleiste.png"/>
+                </imageobject>
+              </mediaobject>
+            </figure>
+</para>
+        </example>
+      </section>
+      <section>
+        <title>Typografisches <footnote>
+            <para>
+Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und nicht der Formatierung. Daher sollten diese typographischen Elemente nur dort zum Einsatz kommen, wo es inhaltlich erforderlich ist - beispielsweise um Begrifflichkeiten oder Vorgänge zu betonen.
+</para>
+          </footnote></title>
+        <itemizedlist>
+          <listitem>
+            <para>Für kursiv gesetzten Text kann &lt;emphasis&gt;...&lt;/emphasis&gt; verwendet werden.</para>
+            <para>Ausgabebeispiel: <emphasis>Dieser Text ist &lt;emphasis&gt;.</emphasis></para>
+          </listitem>
+          <listitem>
+            <para>Für Text in Fettdruck kann &lt;emphasis role=&quot;strong&quot;&gt; ...&lt;/emphasis&gt; verwendet werden.</para>
+            <para>Ausgabebeispiel: <emphasis role="strong">Dieser Text ist fett gedruckt.</emphasis>.</para>
+          </listitem>
+          <listitem>
+            <para>Für Text in dicktengleicher Schrift bzw. Monospace-Schriften können, je nach inhaltlicher Anforderung, unterschiedliche Elemente verwendet werden. Beispielsweise:
+   <itemizedlist>
+                <listitem>
+                  <para>&lt;literal&gt;...&lt;/literal&gt;</para>
+                </listitem>
+                <listitem>
+                  <para>&lt;computeroutput&gt;...&lt;/computeroutput&gt;</para>
+                </listitem>
+                <listitem>
+                  <para>&lt;filename&gt;...&lt;/filename&gt;</para>
+                </listitem>
+                <listitem>
+                  <para>&lt;code&gt;...&lt;/code&gt;</para>
+                </listitem>
+                <listitem>
+                  <para>&lt;programlisting&gt;...&lt;/programlisting&gt; </para>
+                </listitem>
+              </itemizedlist>
+  </para>
+          </listitem>
+        </itemizedlist>
+        <para>Ein DocBook-Dokument enthält ausschließlich inhaltliches Markup und kein Markup zur Präsentation. Zeilen- und Seitenumbrüche werden daher im Stylesheet für das jeweilige Ausgabemedium berechnet. Zeilen- oder Seitenumbrüche können jedoch erzwungen werden: 
+        <variablelist>
+            <varlistentry>
+              <term>erzwungener Zeilenumbruch</term>
+              <listitem>
+                <para><code>&lt;?linebreak?&gt;</code></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>erzwungener Seitenumbruch</term>
+              <listitem>
+                <para><code>&lt;?hard-pagebreak?&gt;</code></para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+       </para>
+      </section>
+    </section>
+    <section>
+      <title>Arbeiten mit Elementen</title>
+      <para>Das DocBook-Dokument wird über DocBook-Elemente aufgebaut. Dabei werden drei Arten von Elementen unterschieden: <orderedlist>
+          <listitem>
+            <para>Strukturierende Elemente</para>
+            <para>Strukturierende Elemente geben den Aufbau bzw. die Gliederung und die Dokumentart des Dokuments wieder. Darunter fallen z.B. <code>book, chapter, glossary, index</code> usw. </para>
+          </listitem>
+          <listitem>
+            <para>Block-Elemente</para>
+            <para>Block-Elemente zeichnen den Inhalt aus und erzwingen i.d.R. einen Zeilenumbruch vor und nach dem Element. Darunter fallen bspw. <code>para, itemizedlist, figure</code> usw.</para>
+          </listitem>
+          <listitem>
+            <para>Inline-Elemente</para>
+            <para>Inline-Elemente &quot;fliessen mit dem Text&quot; und erzwingen keinen Zeilenumbruch. Ein <code>xref</code> oder <code>link</code> gehört beispielsweise dazu.</para>
+          </listitem>
+        </orderedlist></para>
+      <para>Beim Editieren muß der Redakteur den Text in adäquate DocBook-Elemente &quot;verpacken&quot; - dazu stehen eine fast unüberschaubare Menge an unterschiedlichen Elementen zur Verfügung. Eine Auflistung sämtlicher Elemente ist auf der <ulink url="http://www.docbook.org/tdg/en/html/part2.html">DocBook-Webseite</ulink>  untergebracht. </para>
+      <para>Von den über 400 gelisteten Elementen werden jedoch meist nur eine sehr viel geringere Anzahl für die eigenen Dokumentationen benötigt. In <xref linkend="docbook_elemente"/> wird die Verwendung und Bedeutung der wichtigsten Elemente erläutert.</para>
+      <section>
+        <title>Markup <emphasis>escapen</emphasis></title>
+        <note>
+          <para>
+ Soll DocBook- oder XML-Markup lediglich ausgegeben statt ausgewertet werden, so müssen Teile davon &quot;escaped&quot; werden. Beispielsweise die Zeichen, die ein DocBook-/XML-Element einleiten (<code>&lt;</code>) und beenden (<code>&gt;</code>), müssen als Entity notiert (<code>&lt;</code> sowie <code>&gt;</code>) werden, damit sie beim Generieren der Ausgabeformate auch &quot;buchstäblich&quot; ausgegeben werden.
+ </para>
+          <para>
+ Bei längeren Textpassagen, die eventuell XML-Markup enthalten, kann die gesamte Textpassage als <code>CDATA</code> markiert und escaped werden: 
+ <programlisting><![CDATA[<section>
+   <title>Beispiel CDATA</title>
+   <para>Die DocBook-Elemente dieses Abschnitts werden ausgegeben statt interpretiert.</para>
+</section>]]>   
+</programlisting>
+ </para>
+        </note>
+      </section>
+      <section>
+        <title><code>ID</code>s</title>
+        <para>Mit einer <code>id</code> kann ein eindeutiger Identifizierer innerhalb eines Dokument für ein Element vergeben werden. Über Links wie <code>link</code> oder <code>xref</code> können diese identifizierbaren Elemente angesprungen werden. Im Folgenden ein Quelltext-Beispiel:</para>
+        <example>
+          <title>Verlinkung von Elementen</title>
+          <programlisting><![CDATA[<section id="anker">
+   <title>Beispieltitel</title>
+   <para>Nullam consequat. Phasellus iaculis, urna non sodales pulvinar, tellus ligula
+    pellentesque mi, eu tempor nisl nisi non lectus. </para>
+    <para> Nam accumsan tincidunt elit. Suspendisse rutrum luctus nisi. Siehe auch <link linkend="anker">Linkziel</link>.</para>
+</section>]]></programlisting>
+        </example>
+      </section>
+      <section>
+        <title>Validieren</title>
+        <para><application>zpub</application> kann ausschließlich valide DocBook-XML-Dokumente gemäß der <glossterm linkend="Dokumenttypdefinition">DTD</glossterm> verarbeiten. Sollte der verwendete Editor nicht sicherstellen, dass nur valide Dokumente produziert werden, muß dies der Redakteur übernehmen. Hierfür stehen unterschiedliche Hilfsmittel bereit. Unter einem GNU/Linux-Betriebssystem beispielsweise via:
+ <screen>xmllint --noout  --postvalid <emphasis>Dateiname.xml</emphasis></screen>
+ </para>
+      </section>
+    </section>
+    <section>
+      <title>Wiederverwendbarer Inhalt</title>
+      <para>Für einige Text-/Dokumentfragmente bietet es sich eventuell an,
+      diese ausserhalb eines spezifischen Dokuments zu pflegen, da dieser
+      Inhalt in mehreren Dokumenten vorkommen soll und nur zentral an einer
+      Stelle gepflegt werden soll. So kann beispielsweise ein Glossar
+      verwaltet werden.</para>
+      <para>In zpub existiert auf oberster Verzeichnisebene der lokalen Arbeitskopie dazu das Verzeichnis <code>common</code>, dieses und sein Inhalt wird von zpub nicht weiterverarbeitet, es dient lediglich als Dateiablage für Redakteure. Sollen bspw. Inhalte aus der Datei <code>common/glossar.xml</code> in einem Handbuch genutzt werden, so obliegt es dem Redakteur, die Inhalte von <code>glossar.xml</code> in sein Handbuch an die entsprechende Stelle zu kopieren. </para>
+    </section>
+  </chapter>
+  <chapter>
+  <title>Ausgbeformate</title>
+  <para><application>zpub</application> generiert automatisch nach jedem SVN-commit die konfigurierten Ausgabeformat - z.B. PDF, XHTML, CHM und EPUB. Das Layout und Design der Ausgbeformate wird über Stylesheets bestimmt und kann individuell angepasst werden. So können die Dokumente beispielsweise mit dem eigenen Branding/Corporate Design versehen werden. Die Anpassungen werden im Verzeichnis <code>style/</code> der <application>zpub</application>-Instanz vorgenommen. </para>
+  </chapter>
+  <appendix id="docbook_elemente">
+    <title>DocBook-Elemente</title>
+    <abstract><title>DocBook-Elemente: Übersicht</title>
+    	<para>Dieser Anhang stellt einige der gebräuchlichsten DocBook-Elemente sowie der Eingabe mit <application>Serna Free</application> und im Quelltext vor.</para>
+
+
+      <para>
+      Die im Folgenden aufgelisteten DocBook-Tags werden bisher in den
+        &cust;-Dokumentationen verwendet und für diese Tags sind entsprechende
+        Stylesheetangaben für die unterschiedlichen Ausgabeformat hinterlegt.
+        Werden DocBook-Tags verwendet, für die noch keine Stylesheetangaben
+        festgelegt sind, so erscheinen - bzw. dessen Inhalte - in den
+        Ausgabeformaten in einer Standardformatierung. Es handelt sich um eine
+        Auswahl der wichtigsten Tags:
+        </para>
+        <para>
+        
+      <itemizedlist>
+        <listitem>
+          <para><sgmltag>book</sgmltag> - Definiert ein Buch; hier: ein
+            Dokument.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>preface</sgmltag> - Ein Vorwort. Kann nur direkt
+            für den <sgmltag>book</sgmltag>-Tag verwendet werden.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>chapter</sgmltag> - Ein Kapitel. Kapitel können
+            nicht verschachtelt werden. Sollen Kapitel weiter untergliedert
+            werden, so geschieht dies durch eine oder mehrere
+            <sgmltag>section</sgmltag>s.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>section</sgmltag> - Eine Unterteilung eines
+            Kapitels.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>title</sgmltag> - Ein Titel. Titel sind u.a. für
+            <sgmltag>chapter</sgmltag> und <sgmltag>section</sgmltag> sowie
+            Abbildungen, Tabellen etc. notwendig. Diese Titel erscheinen
+            ebenfalls in den generierten Verzeichnissen.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>para</sgmltag> - Ein Absatz. Der Standard-Tag für
+            Fließtext.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>itemizedlist</sgmltag> - Eine ungeordnete
+            (Bullet-)Liste.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>orderedlist</sgmltag> - Eine geordnete
+            (standardmäßig durchnummerierte) Liste.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>figure</sgmltag>, <sgmltag>screenshot</sgmltag>,
+            <sgmltag>figure</sgmltag>(<sgmltag>screenshot</sgmltag>) -
+            Abbildungen, Fotos, Screenshots u.ä. Siehe unten.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>table</sgmltag> - Eine Tabelle. Siehe unten.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>keycap</sgmltag>, <sgmltag>keysym</sgmltag> - Eine Taste.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>keycombo</sgmltag> - Eine Tastenkombination,
+            bestehend aus Tasten im <sgmltag>keycap</sgmltag> Tag.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>ulink</sgmltag> - Ein externer Link. Siehe
+            unten.</para>
+        </listitem>
+        <listitem>
+          <para><sgmltag>xref, link</sgmltag> - Ein interner Link. Siehe
+            unten.</para>
+        </listitem>
+      </itemizedlist>
+<!--<para>Eine komplette Auswahl aller Tags ist immer in der Seitenleiste
+        des Editors im Reiter &apos;Bearbeiten&apos; untergebracht. Hier werden - nach
+        Auswahl der Art des Bearbeitungs- bzw. Einfügungsmodus - die in dieser
+        Situation gültigen Tags aufgelistet.</para>-->    
+        </para>
+
+       </abstract>
+    <section>
+      <title>Kommentare</title>
+      <para>Kommentare im Sinne von XML-Kommentaren erscheinen nicht in den
+        Ausgabeformaten.</para>
+      <note>
+        <para>Kommentare im DocBook-Quelltext sind für die Zusammenarbeit mit anderen Redakteuren sowie für eigene Notizen im Dokument sinnvoll und zur Kommentierung wird ausdrücklich aufgerufen. Auf Quelltext-Ebene wird ein Kommentar in XML-Syntax <?linebreak?>(<code>&lt;!-- Kommentar /--&gt;</code> eingegeben.</para>
+      </note>
+    </section>
+    <section>
+      <title>Menüstrukturen <code>menuchoice</code></title>
+      <abstract>
+        <para>Das Navigieren in (verschachtelten) Menüs wird über entsprechende DocBook-Elemente abgebildet. Dabei kann auch ein eventuell vorhandener Tastatur-Shortcut angegeben werden.</para>
+      </abstract>
+      <itemizedlist>
+        <listitem>
+          <example>
+            <title><code>menuchoice</code> und <code>shortcut</code></title>
+            <para>Zum Ausdrucken des Dokuments wählen Sie 
+<menuchoice>
+                <shortcut>
+                  <keycombo>
+                    <keysym>Strg</keysym>
+                    <keysym>P</keysym>
+                  </keycombo>
+                </shortcut>
+                <guimenu>Datei</guimenu>
+                <guimenuitem>Drucken...</guimenuitem>
+              </menuchoice>.
+</para>
+          </example>
+        </listitem>
+        <listitem>
+          <formalpara>
+            <title>Quelltext</title>
+            <para>
+<screen><![CDATA[<para>Zum Ausdrucken des Dokuments wählen Sie 
+<menuchoice>
+  <shortcut>
+    <keycombo><keysym>Strg</keysym><keysym>P</keysym></keycombo>
+  </shortcut>
+  <guimenu>Datei</guimenu>
+  <guimenuitem>Drucken...</guimenuitem>
+</menuchoice>.
+</para>]]></screen>
+</para>
+          </formalpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Programmname <code>application</code> und Produktname <code>trademark</code></title>
+      <abstract>
+        <para>Programnamen und Produktnamen können mit den entsprechenden DocBook-Elementen ausgezeichnet werden.</para>
+      </abstract>
+      <itemizedlist>
+        <listitem>
+          <example>
+            <title>Produktbezeichnungen</title>
+            <para>Die Vorlagen-Dateien für den <application>Konfigurator</application> können mit <trademark>Microsoft Word</trademark> bearbeitet werden.</para>
+          </example>
+        </listitem>
+        <listitem>
+          <formalpara>
+            <title>Quelltext</title>
+            <para>
+<screen><![CDATA[<para>Die Vorlagen-Dateien für den <application>Konfigurator</application> können mit <trademark>Microsoft Word</trademark> bearbeitet werden.</para>]]></screen>
+</para>
+          </formalpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Glossar</title>
+      <abstract>
+        <para>Zur zentralen Erläuterung von Begrifflichkeiten kann ein Glossar angelegt werden.</para>
+      </abstract>
+      <para>Das Glossar besteht aus einem Bereich (<code>glossary</code>), das die Begrifflichkeiten und deren Erläuterung aufnimmt, sowie aus den Links im Dokument auf diese Erläuterungen.</para>
+      <para>Das Glossar ist aus den folgenden Elementen aufgebaut:</para>
+      <variablelist>
+        <title>Elemente eines Glossars</title>
+        <varlistentry>
+          <term>
+            <code>&lt;glossary&gt;</code>
+          </term>
+          <listitem>
+            <para>Container-Element für das Glossar. Normalerweise am Ende eines Dokuments.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <code>&lt;glossentry id=&quot;&quot;&gt;</code>
+          </term>
+          <listitem>
+            <para>Nimmt den eigentlichen Glossar-Begriff (<code>&lt;glossterm&gt;</code>) auf sowie die Beschreibung (<code>&lt;glossdef&gt;</code>) auf.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <code>&lt;glossterm id=&quot;&quot;&gt;</code>
+          </term>
+          <listitem>
+            <para>Verweist im Fließtext auf die Begriffserläuterung im Glossar. Über die <code>id</code> werden die Begriffe verlinkt.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <note>
+        <para>Um ein konsistentes Benennungsschema zu erhalten und mögliche Inferenzen mit anderen <code>id</code>s gering zu halten, können Glossar-<code>id</code>s mit einem Präfix wie <literal>&quot;gloss-&quot;</literal> versehen werden.</para>
+      </note>
+      <para>Das Glossar wird automatisch alphabetisch sortiert (dies kann über einen Stylesheet-Parameter definiert werden).</para>
+
+      <example>
+      <title>Quelltext-Beispiel: Glossar</title>
+      <formalpara><title>Verweis innerhalb des Dokuments auf den Glossareintrag:</title>
+      <para>
+<programlisting><![CDATA[<!-- ... -->
+<para>Grundlage bildet die <glossterm linkend="gloss_docbook">DocBook</glossterm>-Datei</para>
+<!-- ... -->]]></programlisting>
+
+</para>
+      </formalpara>
+      <formalpara><title>Definition des Glossareintrags im Glossar:</title>
+      <para>
+<programlisting><![CDATA[<!-- ... -->
+<glossary>
+<!-- ... -->
+<glossentry id="gloss_docbook">
+  <glossterm>DocBook</glossterm>
+  <glossdef>
+    <para>Definition von DocBook...</para>
+  </glossdef>
+</glossentry>
+<!-- ... -->
+<glossary>
+<!-- ... -->]]></programlisting>
+
+</para>
+      </formalpara>
+      </example>
+      <para>Grundlage bildet die <glossterm linkend="gloss_docbook">DocBook</glossterm>-Datei</para>
+    </section>
+    <section>
+      <title>callout</title>
+      <abstract>
+        <para>Callouts sind mit Positionszahlen und entsprechenden Erläuterungen versehende Bereiche in Grafiken oder Texten</para>
+      </abstract>
+      <programlisting>
+[boot loader]
+   timeout=30 <co linkends="timeout-co" id="timeout-co"/> 
+   default=multi(0)disk(0)rdisk(0)partition(1)\WINDOWS
+[operating systems] <co linkends="oslist-co" id="oslist-co"/> 
+   multi(0)disk(0)rdisk(0)partition(1)\WINDOWS=&quot;Microsoft Windows XP Professional&quot; /fastdetect /NoExecute=OptIn
+</programlisting>
+      <calloutlist>
+        <callout arearefs="timeout-co">
+          <para>
+Der <emphasis>timeout</emphasis>  definiert die Zeit bis zum automatischen booten des <literal>default</literal>-Eintrags, wenn mehrere Betriebssystemeinträge vorhanden sind.
+</para>
+        </callout>
+        <callout arearefs="oslist-co">
+          <para>
+Definiert die möglichen zu startenden Betriebssysteme.
+</para>
+        </callout>
+      </calloutlist>
+    </section>
+    <section>
+      <title>Fußnoten <code>footnote</code></title>
+      <example>
+        <title>Fußnoten-Beispiel</title>
+        <para>Maecenas eu ipsum. Praesent sed velit. Nullam
+    consequat<footnote>
+            <para>Hier wird lediglich Blindtext verwendet.</para>
+          </footnote>. Phasellus iaculis, urna non sodales pulvinar, tellus ligula
+    pellentesque mi, eu tempor nisl nisi non lectus.</para>
+      </example>
+      <variablelist>
+        <varlistentry>
+          <term>Quellcode</term>
+          <listitem>
+            <programlisting><![CDATA[<footnote>Fußnotentext</footnote>]]></programlisting>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+    <section>
+      <title>Indexterm <code>indexterm</code></title>
+      <para>Ein <code>Indexterm</code> defniniert einen Begriff, der im automatisch generierten Index am Ende des Dokuments (&quot;Stichwortverzeichnis&quot;) aufgeführt werden soll. Es können dabei auch Indexterme verschachtelt werden, um Zusammengehörigkeiten von Begrifflichkeiten herauszuarbeiten. Es sind dabei drei Ebenen möglich. Der Indexterm selber wird im Ausgabeformat nicht gerendert, er dient lediglich als Anker für den Begriff im Stichwortverzeichnis. Der <sgmltag>indexterm</sgmltag> erzeugt keine Ausgabe an der Stelle, an der er eingefügt wird, er wird quasi an einen vorhandenen Begriff, ein vorhandenes Kaptitel o.ä. angehängt (siehe folgendes Quellcode-Beispiel):</para>
+      
+
+<example>
+<title>indexterm Textbeispiel</title>
+<para>
+GNU ist das im Rahmen des GNU-Projekts<indexterm><primary>GNU</primary></indexterm> in Entwicklung befindliche, vollständig freie Betriebssystem. Die Bezeichnung ist ein rekursives Akronym von GNU’s Not Unix. Es wird mit dem Ziel entwickelt, eine vollständig freie Alternative für Unix zu bieten, und steht unter der GNU General Public License (GPL). GNU ist POSIX-kompatibel. Es besteht aus dem Mach<indexterm><primary>GNU</primary><secondary>Kernel</secondary><tertiary>Mach</tertiary></indexterm> Microkernel<indexterm><primary>GNU</primary><secondary>Kernel</secondary></indexterm>, den Services GNU Hurd und der weiteren Software<indexterm><primary>GNU</primary><secondary>GNU-Tools</secondary></indexterm> des GNU-Projekts.
+</para>
+</example>
+
+<example>
+        <title>Indexterm Quellcodebeispiel</title>
+        <para>
+	
+<programlisting>&lt;section&gt;
+&lt;title&gt;GNU&lt;/title&gt;
+&lt;para&gt;
+GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;/indexterm&gt;</emphasis> in Entwicklung befindliche, vollständig freie Betriebssystem. Die Bezeichnung ist ein rekursives Akronym von GNU’s Not Unix. Es wird mit dem Ziel entwickelt, eine vollständig freie Alternative für Unix zu bieten, und steht unter der GNU General Public License (GPL). GNU ist POSIX-kompatibel. Es besteht aus dem Mach<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;Kernel&lt;/secondary&gt;&lt;tertiary&gt;Mach&lt;/tertiary&gt;&lt;/indexterm&gt;</emphasis> Microkernel<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;Kernel&lt;/secondary&gt;&lt;/indexterm&gt;</emphasis>, den Services GNU Hurd und der weiteren Software<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;GNU-Tools&lt;/secondary&gt;&lt;/indexterm&gt;</emphasis> des GNU-Projekts.
+&lt;/para&gt;	
+&lt;/section&gt;</programlisting>
+		
+		</para>
+      </example>
+
+
+
+      <note>
+      <para>Für die Ausgabe siehe <xref linkend="index" />.</para>
+      </note>
+    </section>
+
+
+
+
+
+    <section id="sec_screenshot">
+      <title>Abbildung <code>figure</code></title>
+      <abstract>
+        <para>Abbildungen können &quot;generisch&quot; via <code>figure</code> oder - in den meisten Fällen spezifischer - über <code>screenshot</code> eingebunden werden.</para>
+      </abstract>
+
+
+      
+
+
+<section>
+<title>Einbindung via <code>figure</code></title>
+
+
+<figure id="fig_bsp">
+  <title>Abbildung <code>figure</code></title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/tortoise-msi.png"/>
+      </imageobject>
+    </mediaobject>
+</figure>
+
+
+
+<example>
+<title>Abbildung ohne Untertitel</title>
+<para>
+<programlisting><![CDATA[<figure>
+  <title>Abbildungstitel</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/dateiname.png"/>
+      </imageobject>
+    </mediaobject>
+</figure>]]></programlisting>
+</para>
+</example>
+</section>
+
+
+
+<section>
+<title>Einbindung via <code>figure</code> mit Untertitel (<code>caption</code>)</title>
+
+		<figure>
+                <title>Beispielabbildung mit Untertitel <code>figure</code> </title>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/tortoise-msi.png"/>
+                  </imageobject>
+                  <caption><para>Untertitel des Abbildung - caption</para></caption>
+                </mediaobject>
+
+              </figure>
+
+<example><title>Abbildung mit Untertitel (<code>caption</code>)</title>
+<para>
+<programlisting><![CDATA[<figure>
+  <title>Abbildungstitel</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/dateiname.png"/>
+    </imageobject>
+    <caption>
+      <para>Untertitel des Abbildung - caption</para>
+    </caption>
+  </mediaobject>
+</figure>]]></programlisting>
+</para>
+</example>
+
+</section>
+
+
+<section>
+<title>Einbindung via <code>screenshot</code></title>
+
+
+<figure id="fig-screenshot_bsp">
+<title>Screenshot-Titel</title>
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/tortoise-msi.png"/>
+      </imageobject>
+    </mediaobject>
+  </screenshot>
+</figure>
+
+
+
+<example><title>Screenshot</title>
+<para>
+<programlisting><![CDATA[<figure>
+<title>Screenshot-Titel</title>
+  <screenshot>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/dateiname.png"/>
+      </imageobject>
+    </mediaobject>
+  </screenshot>
+</figure>]]></programlisting>
+</para>
+</example>
+
+</section>
+
+
+    </section>
+    <section>
+      <title>Abbildung <code>inlinemediaobject</code></title>
+      <abstract>
+        <para>Abbildungen und Grafiken können auch <emphasis>inline</emphasis> genutzt werden, beispielsweise um Schaltflächen im Fließtext unterzubringen. Beispielsweise, um einen Button <inlinemediaobject><imageobject><imagedata fileref="images/xxe_button-table.png" /></imageobject></inlinemediaobject> zu beschreiben.</para>
+      </abstract>
+      <para>Per <code>inlinemediaobject</code> eingebundene Grafiken erhalten keinen Titel und werden in Verzeichnissen nicht aufgeführt.</para>
+      <example>
+        <title>
+          <code>inlinemediaobject</code>
+        </title>
+        <para>
+<programlisting><![CDATA[<inlinemediaobject>
+   <imageobject>
+      <imagedata fileref="images/dateiname.png"/>
+   </imageobject>
+</inlinemediaobject>]]></programlisting>
+     </para>
+      </example>
+    </section>
+
+
+
+
+
+  <section>
+    <title>Links</title>
+    <para>Für Verlinkungen in einem Docbook-Dokument stehen drei Möglichekiten zur Verfügung: 
+</para>
+    <orderedlist>
+      <listitem>
+        <para><code>xref</code>: dokumentinterne Verlinkung mit bei Bedarf automatisch generieretem Linktext</para>
+      </listitem>
+      <listitem>
+        <para><code>link</code>: Verlinkung</para>
+      </listitem>
+      <listitem>
+        <para><code>ulink</code>: Verlinkung auf externe URL</para>
+      </listitem>
+    </orderedlist>
+    <para>Für die Verlinkung auf andere Bereiche im selben Dokument ist der Zielbereich mit einer <code>id</code> zu identifizeren.</para>
+    <note>
+      <para>Die Verlinkung/Referenzierung hat sich in Docbook 5.0 gegenüber den bisherigen Docbook 4.5-Dokumenten (verwendet in zpub) geändert.</para>
+    </note>
+    <section>
+      <title><code>ID</code>s</title>
+      <para>Mit einer <code>id</code> kann ein eindeutiger Identifizierer innerhalb eines Dokument für ein Element vergeben werden. Über Links wie <code>link</code> oder <code>xref</code> können diese identifizierbaren Elemente angesprungen werden. Im Folgenden ein Quelltext-Beispiel:</para>
+      <example>
+        <title><code>ID</code>-Vergabe/Verlinkung von Elementen</title>
+        <programlisting><![CDATA[<section id="anker">
+  <title>Beispieltitel</title>
+  <para>Nullam consequat. Phasellus iaculis.</para>
+  <para> Nam accumsan tincidunt elit. Suspendisse rutrum luctus nisi. Siehe auch <link linkend="anker">Linkziel</link>.</para>
+</section>]]></programlisting>
+      </example>
+    </section>
+    <section>
+      <title>
+        <code>xref</code>
+      </title>
+      <para>Mit <code>xref</code> kann ohne die Angabe eines Linktexts auf einen mit einer <code>id</code> referenzierten Bereich verlinkt werden, wobei der Linktext aus dem Zielbereich (normalerweise dem <code>title</code>-Element generiert wird. Wird der Link für die PDF-Ausgabe generiert, wird dem Linktext noch die Seitenangabe der Zielseite hinten angestellt.</para>
+      <example>
+        <title><code>xref</code>-Vergabe/Verlinkung von Elementen</title>
+        <programlisting><![CDATA[<section id="anker">
+  <title>Beispieltitel</title>
+  <para>Nullam consequat. Phasellus iaculis.</para>
+  <para> Nam accumsan tincidunt elit. Suspendisse rutrum luctus nisi. Siehe auch <xref linkend="anker"/>.</para>
+</section>]]></programlisting>
+      </example>
+      <para>Der folgende Link ist im Quellcode als <code><![CDATA[<xref linkend="docbook_elemente"/>]]></code> angegeben, die Ausgabe dagegen sieht wie folgt aus: <xref linkend="docbook_elemente"/>. Noch ein Beispiellink: siehe auch <xref linkend="verwaltung_der_dokumente"/>. </para>
+    </section>
+    <section>
+      <title>
+        <code>link</code>
+      </title>
+      <para>Soll der Linktext nicht automatisch generiert werden, bietet sich das Element <code>link</code>  an. Es erwartet die Angabe einer <code>id</code> für das Linkziel und umschließt den zu verlinkenden Text: <programlisting>&lt;link linkend=&apos;ziel-id&apos;&gt;Linktext&lt;/link&gt;</programlisting></para>
+      <formalpara>
+        <title>Beispiel</title>
+        <para>Donec eu felis ac urna aliquam <link linkend="verwaltung_der_dokumente">ultrices pellentesque</link> non diam. Phasellus imperdiet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus auctor dui ac suscipit.</para>
+      </formalpara>
+    </section>
+    <section>
+      <title>
+        <code>ulink</code>
+      </title>
+      <para>Für die Verlinkung von externen Ressourcen wird mit <code>ulink</code> gearbeitet. <code>ulink</code> erwartet lediglich das Attribut <code>url</code> und umschließt den zu verlinkenden Text. Ist der zu verlinkende Text leer (<code>&lt;ulink url=&quot;...&quot;/&gt;</code> oder <code>&lt;ulink url=&quot;...&quot;&gt;&lt;/ulink&gt;</code>) wird die URL als Linktext ausgegeben.</para>
+      <formalpara>
+        <title>Beispiel</title>
+        <para>Donec eu felis ac <ulink url="http://www.zpub.de/de/">urna aliquam</ulink>  ultrices pellentesque non diam. Phasellus imper-
+diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus 
+<ulink url="http://www.breitnerundbreitner.de/"/> auctor dui ac suscipit.
+</para>
+      </formalpara>
+      <para>Wird die Ausgabe der URL im Fließtext unterdrückt, da ein individueller Linktext angegeben ist, wird die verlinkte URL in der PDF-Ausgabe als Fußnote dargestellt.</para>
+    </section>
+  </section>
+
+
+
+<!--
+    <section>
+      <title>Externer Link <code>ulink</code></title>
+      <indexterm>
+        <primary>Links</primary>
+        <secondary>Externer Link</secondary>
+      </indexterm>
+      <para>Lorem ipsum dolor sit amet, consectetur <ulink url="http://www.zpub.de/">www.zpub.de</ulink> adipiscing elit.
+      Curabitur sodales commodo leo. Maecenas eu ipsum.</para>
+      <example>
+      <title>Quellcodebeispiel <sgmltag>ulink</sgmltag></title>
+<para>
+<programlisting><![CDATA[<para>Lorem ipsum dolor sit amet, consectetur <ulink url="http://www.zpub.de/">www.zpub.de</ulink> adipiscing elit.
+      Curabitur sodales commodo leo. Maecenas eu ipsum.</para>
+]]></programlisting>
+</para>
+      </example>
+    </section>
+    <section>
+      <title>Interner Link <code>link</code>, <code>xref</code></title>
+      <indexterm>
+        <primary>Links</primary>
+        <secondary>Interner Link</secondary>
+      </indexterm>
+      <formalpara>
+        <title>Interner Link: individueller Linktext <code>link</code></title>
+        <para>Lorem ipsum dolor sit amet, consectetur <link linkend="fig_bsp">Beispielabbildung</link> adipiscing elit. Curabitur
+        sodales commodo leo. Maecenas eu ipsum. Praesent sed velit. Nullam
+        consequat.</para>
+      </formalpara>
+      <formalpara>
+        <title>Interner Link: generierter Linktext <code>xref</code></title>
+        <para>Phasellus iaculis, urna non sodales pulvinar, tellus ligula
+        pellentesque <xref linkend="fig_bsp"/> mi, eu tempor nisl nisi non
+        lectus. Nam accumsan tincidunt elit. Suspendisse rutrum luctus
+        nisi.</para>
+      </formalpara>
+    </section>
+/-->
+
+
+    <section>
+      <title>Geordnete Liste <code>orderedlist</code></title>
+      <indexterm>
+        <primary>Listen</primary>
+        <secondary>Geordnete Liste</secondary>
+      </indexterm>
+      <orderedlist>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section>
+      <title>Ungeordnete Liste <code>itemizedlist</code></title>
+      <indexterm>
+        <primary>Listen</primary>
+        <secondary>Ungeordnete Liste</secondary>
+      </indexterm>
+      <itemizedlist>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+        <listitem>
+          <para>Listenpunkt</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Warnungen <code>warning</code></title>
+      <warning>
+        <para>Cras ut tortor. Suspendisse semper libero nec massa. Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Praesent at purus.
+        Vivamus nulla magna, molestie vitae, adipiscing a, fermentum et,
+        lacus.</para>
+      </warning>
+    </section>
+    <section>
+      <title>Tipps <code>tip</code></title>
+      <tip>
+        <para>Mauris nec nisl sed metus sagittis lobortis. Aenean nunc magna,
+        bibendum sollicitudin, luctus id, posuere vel, neque. Cras malesuada
+        congue neque.</para>
+      </tip>
+    </section>
+    <section>
+      <title>Anmerkungen <code>note</code></title>
+      <note>
+        <para>Mauris nec nisl sed metus sagittis lobortis. Aenean nunc magna,
+        bibendum sollicitudin, luctus id, posuere vel, neque. Cras malesuada
+        congue neque.</para>
+      </note>
+      <note>
+        <title>Anmerkung mit Titel</title>
+        <para><code>note</code>, <code>tip</code> sowie <code>warning</code> können optional auch einen <code>title</code> enthalten.</para>
+      </note>
+    </section>
+    <section>
+      <title>Tabellen <code>table</code></title>
+      <abstract>
+        <para>Tabellen können auf zwei Arten definiert werden: nach dem HTML-Modell oder nach dem CALS-Modell.</para>
+      </abstract>
+      <formalpara>
+        <title>HTML-Tabelle</title>
+        <para>Tabellen nach dem HTML-Modell sind nach dem Schema <code>table - tr - td</code> aufgebaut:
+
+      <table tocentry="0">
+            <caption>Beispieltabelle (HTML-Tabelle):</caption>
+            <colgroup>
+              <col width="40%"/>
+              <col width="60%"/>
+            </colgroup>
+              <thead>
+                <tr>
+                  <th>Spaltentitel</th>
+                  <th>Spaltentitel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Test</td>
+                  <td>Test</td>
+                </tr>
+                <tr>
+                  <td>Test</td>
+                  <td>Test</td>
+                </tr>
+                <tr>
+                  <td>Test</td>
+                  <td>Test</td>
+                </tr>
+                <tr>
+                  <td>Test</td>
+                  <td>Test</td>
+                </tr>
+              </tbody>
+          </table>
+
+          
+      </para>
+      </formalpara>
+
+  <tip>
+  <para>Sollen bei der PDF-Ausgabe alternierende Hintergrundfarben für die Tabellenzeilen ausgegeben werden, ist für das <code>table</code>-Element das Attribut <code>tabstyle="striped"</code> anzugeben. Die HTML-Ausgabe verwendet in jedem Fall alternierende Hintergrundfarben.</para>
+  </tip>
+  
+    <table tabstyle="striped">
+<caption>Beispieltabelle mit alternierenden Zeilehintergrundfarben</caption>
+      <thead>
+        <tr>
+          <th>Labelname im G20/G21/G22-Befehl</th>
+          <th>Registerwert bei Programmausführung</th>
+          <th>Programmfortsetzung bei / Aufruf von UP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>G20$TOOL-%R5%-TEST$</td>
+          <td>R5 = 18</td>
+          <td>$TOOL-18-TEST$</td>
+        </tr>
+        <tr>
+          <td>G20$TOOL-%R5%-TEST$</td>
+          <td>R5 = 1444</td>
+          <td>$TOOL-1444-TEST$</td>
+        </tr>
+        <tr>
+          <td>G22E5$TOOL-%R5%-TEST$</td>
+          <td>R5 = 333</td>
+          <td>G98$TOOL-333-TEST$</td>
+        </tr>
+        <tr>
+          <td>G20$%R1004%$</td>
+          <td>R1004 = 18</td>
+          <td>$18$</td>
+        </tr>
+        <tr>
+          <td>G22$%R163%$</td>
+          <td>R163 = 15</td>
+          <td>G98$15$</td>
+        </tr>
+      </tbody>
+    </table>
+    <note>
+     <para>Die CSS-Regeln für die Tabellendarstellung in der HTML-Ausgabe werden von allen modernen Browsern korrekt ausgeführt. Lediglich Microsoft Internet Explorer bis zu Version 8 ist nicht in der Lage, bestimmte Regeln zu interpretieren.</para>
+     </note>
+
+      <formalpara>
+        <title>CALS-Tabelle</title>
+        <para>Tabellen nach dem CALS-Modell sind nach dem Schema <code>table - row - entry</code> aufgebaut:
+      <table>
+            <title>CALS-Tabelle</title>
+            <tgroup cols="2" colsep="1">
+              <colspec colnum="1" colname="c0"/>
+              <colspec colnum="2" colname="c1"/>
+              <thead>
+                <row>
+                  <entry>Spaltentitel</entry>
+                  <entry>Spaltentitel</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>Test</entry>
+                  <entry>Test</entry>
+                </row>
+                <row>
+                  <entry>Test</entry>
+                  <entry>Test</entry>
+                </row>
+                <row>
+                  <entry>Test</entry>
+                  <entry>Test</entry>
+                </row>
+                <row>
+                  <entry>Test</entry>
+                  <entry>Test</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+      </para>
+      </formalpara>
+    </section>
+  </appendix>
+  <appendix>
+    <title>Troubleshooting</title>
+    <section>
+      <title>Keine Verbindung zum SVN-Server</title>
+      <para>Sollte für die Internetverbindung ein Proxy notwendig sein, so ist
+      dieser auch im SVN-Client einzutragen:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Rechtsklick</para>
+        </listitem>
+        <listitem>
+          <para>Kontextmenüeintrag &apos;TortoiseSVN&apos;</para>
+        </listitem>
+        <listitem>
+          <para>Kontextmenüeintrag &apos;Settings&apos;/&apos;Einstellungen&apos;</para>
+        </listitem>
+        <listitem>
+          <para>Im erscheinenden Einstellungsdialog unter &apos;Network&apos;/&apos;Netzwerk&apos;
+          die korrekten Proxy-Einstellungen für Ihr Netzwerk vornehmen. Diese
+          Einstellungen erhalten Sie von Ihrem Netzwerk-Administrator/
+          EDV-Ansprechpartner.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Es wird keine Ausgabe erzeugt</title>
+      <para>Wenn nach dem Übertragen des Dokuments auf dem Webserver keine neue
+      Version generiert wird, kann das folgenden Grund haben:</para>
+      <para>Das Dokument ist nicht valide. Dies sollte nicht passieren, wenn
+      es mit einen XML-Editor wie XMLmind bearbeitet wurde. Bearbeiten es
+      dagegen mit einem generellen Text-Editor, können ungültige XML-Dateien
+      erzeugt werden – etwa wenn ein Tag nicht geschlossen wird. Die Logdatei
+      im Webfrontend enthält Angaben, wo in der Datei das Problem zu finden
+      ist.</para>
+    </section>
+    <section>
+      <title>Es fehlen Bilder in der Ausgabe</title>
+      <para>Es wurde ein Bild in das Dokument eingefügt, welches dann aber
+      nicht in der Ausgabe auftaucht. Dies kann vorkommen, wenn das Bild nicht
+      im vorgesehenen Ordner <filename>images</filename> gespeichert
+      wurde.</para>
+      <para>Ein weiterer Grund für ein fehlendes Bild ist, wenn vergessen
+      wurde, das Bild zum SVN-Repository hinzuzufügen. Dies erkennt man am
+      Fragezeichen-Symbol über dem Dateisymbol. In diesem Fall kann über das
+      Kontext-Menüs des Windows-Explorers die Funktion <guimenuitem>SVN Hinzufügen...</guimenuitem> die Datei hinzugefügt und anschließend
+      commited werden.</para>
+    </section>
+    <section>
+      <title>Die SVN-Revisionsangaben werden nicht aktualisiert</title>
+      <para>In der Draft-Ansicht enthalten die Dokumente Informationen zur
+      SVN-Revisionsnummer, zum Zeitpunkt der letzten Änderung (Zeitzone UTC)
+      und zum letzen Autor. Wenn diese Daten nach Änderungen am Dokument nicht
+      oder nicht mehr aktualisiert werden, hat das einen der folgenden
+      Gründe:</para>
+      <para>Die SVN-Properties (siehe <xref linkend="svneigenschaftenimportieren"/>) wurden für die XML-Quelldatei
+      des Dokuments nicht importiert. Dieser Schritt kann auch nachträglich wie
+      beschrieben durchgeführt werden.</para>
+      <para>Beim Speichern wurde wegen zu geringer Zeilenlänge die Markierung
+      auseinandergerissen. Diese Editor-Einstellung sollte wie unter <xref linkend="xmlmindlinelength"/> beschrieben vorgenommen werden.</para>
+    </section>
+    <section>
+    <title>Die Ausgabe von PDF/HTML/etc gefällt nicht</title>
+    <para>Wenden Sie sich mit Ihren Wünschen an <ulink url="mailto:mail@zpub.de">uns</ulink> - wir unterstützen Sie gerne.</para>
+    </section>
+  </appendix>
+  <appendix id="appendix_xmlmind">
+    <title>XMLmind XML-Editor</title>
+    <abstract>
+      <para>Für das Editieren der DocBook-XML-Dokumente können wie schon
+      erwähnt auch andere XML- oder Text-Editoren genutzt werden. In diesem
+      Anhang soll kurz der Umgang mit dem weit verbreiteten XMLmind-Editor
+      erläutert werden.</para>
+      <para>Eine ausführliche Dokumentation wird von Hersteller <ulink url="http://www.xmlmind.com/xmleditor/_distrib/doc/user/tutorial_basics.html">XMLmind</ulink>
+      gepflegt.</para>
+    </abstract>
+    <section>
+      <title>Installation XML-Editor</title>
+      <indexterm>
+        <primary>Installation</primary>
+        <secondary>Installation XML-Editor</secondary>
+      </indexterm>
+      <para>Für dieses Handbuch wird beispielhaft mit dem XML-Editor &quot;XMLmind
+      XML Editor&quot; gearbeitet. Das Installationspaket zum Download befindet
+      sich auf der Download-Seite der &quot;Personal Edition&quot; von <ulink url="http://www.xmlmind.com/xmleditor/download.shtml">XMLmind</ulink>.
+      Für unterschiedliche Betriebssysteme stehen jeweils eigene
+      Installationspakte zur Verfügung. Nutzer einer Windows-Version können
+      zwischen einem Bundle des Editors mit der JRE von Sun oder nur dem
+      Editor wählen. Die Installation - sofern man nicht die
+      selbstextrahierenden Installationspakte für Windows wählt - ist auf der
+      entsprechenden <ulink url="http://www.xmlmind.com/xmleditor/_distrib/doc/user/install.html">Dokumentationsseite</ulink>
+      erläutert.</para>
+      <para>Eine deutsche Lokalisierung der Software sowie eine deutsche
+      Rechtschreibprüfung muss separat installiert werden. Die Installation
+      ist im Folgenden kurz beschrieben:</para>
+      <para><orderedlist>
+          <listitem>
+            <para>Voraussetzung: der XML-Editor ist installiert und
+            geöffnet</para>
+          </listitem>
+          <listitem>
+            <para>Die Installation des Sprachpakets erfolgt über den
+            Add-on-Manager des Editor: &gt; Options &gt; Install
+            Add-ons...</para>
+            <figure>
+              <title>Aufruf des XML-Editor Add-on-Managers</title>
+              <screenshot>
+                <screeninfo/>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_installaddons_crop.png"/>
+                  </imageobject>
+                </mediaobject>
+              </screenshot>
+            </figure>
+          </listitem>
+          <listitem>
+            <para>Es öffnet sich der der Add-on-Manager, in welchem die
+            gewünschten Add-ons (hier: &quot;Translation German/Deutsch&quot; sowie
+            &quot;Dictionary German/Deutsch&quot; zu aktivieren sind. Wird der Dialog
+            über den &quot;OK&quot;-Button geschlossen, werden die Erweiterungen
+            installiert und stehen nach einem Neustart des Programms zur
+            Verfügung.<figure>
+                <title>Erweiterung &quot;Translation&quot; und &quot;Dictionary&quot; installieren</title>
+                <screenshot>
+                  <screeninfo/>
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="images/xxe_addon-germn.png"/>
+                    </imageobject>
+                  </mediaobject>
+                </screenshot>
+              </figure></para>
+          </listitem>
+          <listitem id="xmlmindlinelength" xreflabel="Max. Zeilenlänge">
+            <para>Um Probleme mit der im Dokument eingebetteten
+            Revisions-Angabe zu vermeiden, sollte unter <menuchoice>
+                <guimenu>Optionen</guimenu>
+                <guimenuitem>Optionen</guimenuitem>
+                <guimenuitem>Speichern</guimenuitem>
+              </menuchoice> die Einstellung <guilabel>Max. Zeilenlänge</guilabel> auf 100 gesetzt werden.</para>
+          </listitem>
+        </orderedlist></para>
+      <para/>
+    </section>
+    <section>
+      <title>Arbeiten mit XXE</title>
+      <para>Dokumente werden editiert, indem entweder der Inhalt von vorhanden
+      Tags bearbeitet wird, oder indem neue Tags mit neuem Inhalt dem Dokument
+      hinzugefügt werden. Die genannten &apos;Tags&apos; dienen dabei als Container -
+      entweder für tatsächlichen Inhalt oder für weitere Tags. Für ein
+      effizientes Bearbeiten von Dokumenten ist es unerlässlich zu wissen, wie
+      man sich im Tag-Baum eines Dokumentes navigiert. Im Standardfall wird
+      vorhandener Inhalt editiert und erweitert - hierzu kann man, wie von
+      anderen Textverarbeitungssystemen gewohnt, an die gewünschte Textstelle
+      klicken und tippen. Der Editor zeigt zu jedem Element, zu welchem
+      DocBook-Tag es in der Hierarchie befindet (der genannte Pfad bzw.
+      Ausschnitt aus dem Dokumentbaum ist rot unterlegt):</para>
+      <figure>
+        <title>XML-Node-Navigation</title>
+        <screenshot>
+          <screeninfo/>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_node-bar.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+      <para>Neben dem Anspringen von Elementen eines Dokuments über die
+      Editansicht, können Elemente auch über die oben dargestellte
+      XML-Node-Navigation angesprungen werden. Dazu ist lediglich auf eines
+      der angezeigten DocBook-Tags zu klicken und es wird der dazugehörige
+      Bereich in der Editansicht hervorgehoben bzw. umrahmt. Insbesondere zum
+      zielgenauen platzieren von neuen DocBook-Tags eignet sich dieses
+      Vorgehen.</para>
+      <para>Beim Einfügen eines neuen DocBook-Tags - beispielsweise
+      <sgmltag>para</sgmltag> - gilt es zu entscheiden, ob das neue Tag vor
+      bzw. nach oder innerhalb des aktuellen Tags eingefügt werden soll. Die
+      Funktionen zum Hinzufügen und Bearbeiten von DocBook-Tags ist in der
+      Seitenleiste des XXE als <command>Bearbeiten</command>
+      untergebracht:</para>
+      <figure>
+        <title>Bearbeiten-Reiter der Seitenleiste</title>
+        <screenshot>
+          <screeninfo/>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_sidebar-bearbeiten.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+      <para>Die Buttons sind im Folgenden kurz erläutert:</para>
+      <table>
+        <caption>Buttons zum Einfügen von Tags</caption>
+        <colgroup>
+          <col width="10%"/>
+          <col width="30%"/>
+          <col width="60%"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-ersetzen.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Ersetzen (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>R</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Löscht den aktuellen DocBook-Tag und ersetzt ihn durch
+            einen anderen DocBook-Tag. Dieser Knopf muss dann verwendet
+            werden, wenn man das Dokument zwischen Löschen des alten und
+            Einfügen des neuen Tags nicht gültig wäre.</para>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-davoreinfuegen.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Davor einfügen (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>H</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Fügt vor dem aktuellen DocBook-Tag ein DocBook-Tag ein.
+            </para>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-einfuegen.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Einfügen (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>I</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Fügt innerhalb des aktuellen DocBook-Tags ein
+            DocBook-Tag ein.</para>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-danacheinfuegen.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Danach einfügen (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>J</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Fügt nach dem aktuellen DocBook-Tag ein DocBook-Tag ein.
+            </para>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-umwandeln.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Umwandeln (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>T</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Ersetzt den aktuellen DocBook-Tag durch einen anderen
+            DocBook-Tag. Hilfreich, wenn beispielsweise eine geordnete Liste
+            durch eine ungeordnete Liste unter Beibehaltung der Inhalte
+            ersetzt werden soll</para>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <para> <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/xxe_sidebar-bearbeiten-umwandelneinbetten.png"/>
+                  </imageobject>
+                </inlinemediaobject> </para>
+            </td>
+            <td>
+              <para>Umwandeln [einbetten] (<keycombo>
+                  <keycap>Strg</keycap>
+                  <keycap>Umschalt</keycap>
+                  <keycap>R</keycap>
+                </keycombo>)</para>
+            </td>
+            <td>
+              <para>Umschließt das aktuelle DocBook-Tag mit einem anderen
+            DocBook-Tag. Hilfreich, wenn beispielsweise ein Absatz in einem
+            Tipp-Kasten gesetzt werden soll. </para>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <para>Nach Auswahl eines der Buttons erscheinen alle für diese Auswahl
+      validen DocBook-Tags als Liste (hier rot hervorgehoben):</para>
+      <figure>
+        <title>Liste valider DocBook-Tags</title>
+        <screenshot>
+          <screeninfo/>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_sidebar-bearbeiten-liste.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+    </section>
+    <section>
+      <title>Inhaltstypen</title>
+      <para>Im Folgenden werden unterschiedliche Inhaltstypen wie Screenshots,
+      Links oder Tabellen behandelt.</para>
+      <section>
+        <title>Screenshot oder Abbildung</title>
+        <para>Eine Abbildung wird über den DocBook-Tag
+        <sgmltag>figure</sgmltag> bzw. <sgmltag>screenshot</sgmltag>
+        eingefügt. Nach dem Einfügen des entsprechenden DocBook-Tags erscheint
+        in der Editieransicht ein Platzhalter für die Abbildung sowie den
+        Abbildungstitel:</para>
+        <screenshot>
+          <screeninfo>Platzhalter für Abbildung bzw. Screenshot</screeninfo>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_screenshot-platzhalter.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+        <para>Ein Doppelklick auf das Grafik-Symbol mit dem Titel &apos;Unbekanntes
+        Format&apos; öffnet einen Dateidialog über den die gewünschte Abbildung
+        eingegeben wird:</para>
+        <screenshot>
+          <screeninfo>Dateidialog zur Angabe des Abbildungs-Pfades</screeninfo>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_figure-pfadangabe.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+        <para>Der gepunktete Bereich oberhalb der Abbildung dient zur Eingabe
+        des Abbildungstitels, welcher bei der Abbildung und auch im
+        Abbildungsverzeichnis erscheint.</para>
+        <note>
+          <para>Screenshots oder sonstige Abbildungen sind bevorzugt im
+          PNG-Format mit 96dpi abzuspeichern. Das PNG-Format bietet
+          verlustfreie Kompression sowie Transparenz per Alphakanal.</para>
+        </note>
+      </section>
+      <section>
+        <title>Links</title>
+        <para>Interne Links (Links, die auf eine Stelle im aktuellen Dokument
+        verweisen) werden über den DocBook-Tag <sgmltag>link</sgmltag>,
+        externe Links (Links, die auf Webseiten oder sonstige Ressourcen
+        außerhalb des Dokuments verweisen) werden über den DocBook-Tag
+        <sgmltag>ulink</sgmltag> eingefügt. Die entsprechenden Linkziele sind
+        als Attribut dem Link zuzuordnen. Dies geschieht über die linke
+        <command>Attribute</command>-Box in der Seitenleiste des XXE:</para>
+        <screenshot>
+          <screeninfo>Linkziel eingeben</screeninfo>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_ulink-href.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+        <para>Die Abbildung zeigt das Linkziel eines externen
+        <sgmltag>ulink</sgmltag>-Verweises.</para>
+        <para>Bei internen Links wird das Linkziel als <sgmltag>id</sgmltag>
+        eingegeben. Die <sgmltag>id</sgmltag>, auf die verwiesen wird, muß
+        existieren.</para>
+      </section>
+      <section>
+        <title>Tabellen</title>
+        <para>Bein Einfügen von Tabellen ist darauf zu achten, dass nicht die
+        der <sgmltag>table</sgmltag>-Tag aus der Bearbeiten-Box der Sidebar
+        verwendet wird:</para>
+        <para><screenshot>
+            <screeninfo>Falscher table-Tag</screeninfo>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/xxe_cals-table.png"/>
+              </imageobject>
+            </mediaobject>
+          </screenshot></para>
+        <para>Es ist stattdessen das table(HTML)-Tag aus der Menüleiste aus
+        dem Button <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_button-table.png"/>
+            </imageobject>
+          </inlinemediaobject> zu verwenden. Wird eine Tabelle eingefügt, so
+        erscheint diese standardmäßig mit je zwei Spalten und Zeilen sowie
+        einem Platzhalter für die Tabellenüberschrift:<figure>
+            <title>Standard Tabellenlayout</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/xxe_default-table.png"/>
+              </imageobject>
+            </mediaobject>
+          </figure>Weitere Spalten oder Zeilen sowie sonstige Funktionen einer
+        Tabelle, wie beispielsweise das Zusammenfassen von Zellen, werden über
+        den Menüpunkt <guimenu>DocBook</guimenu> aus der Menüleiste
+        vorgenommen:</para>
+        <figure>
+          <title>Menü zur Bearbeitung von Tabellen</title>
+          <screenshot>
+            <screeninfo/>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/xxe_table-menue.png"/>
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </section>
+      <section>
+        <title>Kommentare</title>
+        <para>Kommentare im Sinne von XML-Kommentaren erscheinen nicht in den
+        Ausgabeformaten.</para>
+      </section>
+    </section>
+  </appendix>
+  <glossary>
+    <title>Glossar</title>
+    <para>Spezielle Begrifflichkeiten sind im Folgenden aufgeführt.</para>
+    <glossdiv>
+      <title>A bis Z</title>
+      <glossentry id="gloss_docbook">
+        <glossterm>DocBook</glossterm>
+        <glossdef>
+          <para>DocBook ist ein Dokumentenformat, das in einer für SGML und XML vorliegenden Dokumenttypdefinition (DTD) festgelegt ist. Es eignet sich besonders zur Erstellung von Büchern, Artikeln und Dokumentationen im technischen Umfeld (Hardware oder Software). DocBook ist ein offener Standard, der von der Organization for the Advancement of Structured Information Standards (OASIS) gepflegt wird.</para>
+        </glossdef>
+      </glossentry>
+
+
+      <glossentry>
+        <glossterm>Arbeitsversionen</glossterm>
+        <glossdef>
+          <para>Eine Arbeitsversion eines Dokuments ist vergleichbar mit einem
+          Entwurf, da es Änderungen enthält, die noch nicht freigegeben sind.
+          Diese Dokumente sind in den Ausgabeformaten immer mit genauen
+          technischen Angaben zur Revision sowie einem &quot;Draft&quot;-Wasserzeichen
+          gekennzeichnet und nur für den internen Gebrauch bestimmt. Erst wenn
+          eine Arbeitsversion freigegeben wird, ändert sie ihren Status in
+          eine &quot;finale Version&quot;, welche auch nicht mehr seitenweise (im Falle
+          des PDF-Ausgabeformats) die Revisionsangaben und das
+          &quot;Draft&quot;-Wasserzeichen enthält.</para>
+        </glossdef>
+      </glossentry>
+      <glossentry>
+        <glossterm>DocBook-Tag</glossterm>
+        <glosssee otherterm="tag">Tag</glosssee>
+      </glossentry>
+      <glossentry>
+        <glossterm>Repository</glossterm>
+        <glossdef>
+          <para>Bei SVN werden Quellcodedateien oder andere Dateien aus dem
+          Repository „ausgecheckt“, d. h. auf den Rechner eines Programmierers
+          geladen. Nach der Bearbeitung werden die geänderten Dateien wieder
+          in das Repository „eingecheckt“, wobei die Veränderung protokolliert
+          wird. Die Versionenverwaltung dient der Dokumentation der
+          Systementwicklung, erlaubt aber auch die jederzeitige Rekonstruktion
+          von früheren Zuständen der Systembeschreibung.</para>
+        </glossdef>
+      </glossentry>
+      <glossentry>
+        <glossterm>DTD</glossterm>
+        <glosssee otherterm="Dokumenttypdefinition"/>
+      </glossentry>
+      <glossentry id="Dokumenttypdefinition">
+        <glossterm>Dokumenttypdefinition</glossterm>
+        <glossdef>
+          <blockquote>
+            <attribution>
+              <ulink url="http://de.wikipedia.org/wiki/Dokumenttypdefinition">Wikipedia</ulink>
+            </attribution>
+            <para>Eine Dokumenttypdefinition (englisch Document Type Definition, DTD, auch Schema-Definition oder DOCTYPE) ist ein Satz an Regeln, der benutzt wird, um Dokumente eines bestimmten Typs zu deklarieren. Ein Dokumenttyp ist dabei eine Klasse ähnlicher Dokumente, wie beispielsweise Telefonbücher oder Inventurdatensätze. Die Dokumenttypdefinition besteht dabei aus Elementtypen, Attributen von Elementen, Entitäten und Notationen. Konkret heißt das, dass in einer DTD die Reihenfolge, die Verschachtelung der Elemente und die Art des Inhalts von Attributen festgelegt wird – kurz gesagt: die Struktur des Dokuments.</para>
+          </blockquote>
+        </glossdef>
+      </glossentry>
+      <glossentry id="tag">
+        <glossterm>Tag</glossterm>
+        <glossdef>
+          <para>&quot;In Auszeichnungssprachen (engl. mark-up languages) wie SGML,
+          XML oder HTML bezeichnen Tags die in Kleiner- und Größerzeichen
+          eingeschlossenen Kürzel, die beispielsweise in HTML dazu dienen,
+          Textelemente auszuzeichnen oder in XML Daten zu klassifizieren und
+          strukturieren. Dabei kommen sogenannte öffnende und schließende Tags
+          zum Einsatz. Letztere sind durch einen führenden Schrägstrich
+          gekennzeichnet. Tags können als benannte Klammern aufgefasst werden.
+          Analog zur korrekten Klammerung arithmetischer Ausdrücke dürfen
+          diese immer nur paarweise auftreten (in HTML existieren auch
+          Ausnahmen). Auf diese Weise erzeugen sie eine Baumstruktur.&quot; Siehe
+          Wikipedia-Artikel &apos;Tag (Informatik)&apos;.</para>
+        </glossdef>
+      </glossentry>
+      <glossentry>
+        <glossterm>XML</glossterm>
+        <glossdef>
+          <para>Die Extensible Markup Language (engl. für „erweiterbare
+          Auszeichnungssprache“), abgekürzt XML, ist eine Auszeichnungssprache
+          zur Darstellung hierarchisch strukturierter Daten in Form von
+          Textdaten.</para>
+        </glossdef>
+      </glossentry>
+    </glossdiv>
+  </glossary>
+  <index id="index"/>
+</book>

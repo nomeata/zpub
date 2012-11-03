@@ -77,5 +77,5 @@ do
 	svn propset svn:keywords Id "$co/$docname"/*.xml
 done
 
-svn ci -m "Importing zpub documentation for version $VERSION" $co
+svn ci -m "Importing zpub documentation for version $ZPUB_VERSION" $co
 rm -rf $co

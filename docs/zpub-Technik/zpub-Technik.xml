@@ -31,6 +31,70 @@
     <releaseinfo>$Id$</releaseinfo>
 
   </articleinfo>
+
+  <section>
+    <title>Versionshistorie</title>
+
+    <section>
+      <title>Version 0.5</title>
+      <para>Noch nicht veröffentlicht</para>
+      <itemizedlist>
+	<listitem><para>
+	  Dokumente, die nicht mehr im Subversion-Repository liegen, werden auch nicht mehr in der Web-Oberfläche angezeigt.
+	</para></listitem>
+	<listitem><para>
+	  Die &zpub;-Dokumentation wird jetzt mit installiert und kann mit <command>zpub-update-docs.sh</command> in eine Instanz eingefügt bzw. darin aktualisiert werden.
+	</para></listitem>
+	<listitem><para>
+	  Diese Versionshistorie.
+	</para></listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Version 0.4</title>
+      <para>Veröffentlicht am 10.2.2012</para>
+      <itemizedlist>
+	<listitem><para>
+	  Ab dieser Version kann man auch mehrere zpub-Instanzen auf dem selben virtuellen Host unterbringen, da eine Instanz auch in einem Unterverzeichnis des URL-Adressraumes eingerichtet werden kann.
+	</para></listitem>
+	<listitem><para>
+	  Es können mehere Ausgabevarianten („styles“) gleichzeitig konfiguriert werden.
+	</para></listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Version 0.3</title>
+      <para>Veröffentlicht am 2.1.2012</para>
+      <itemizedlist>
+	<listitem><para>
+	  Das Ausgabeformat epub für mobile Lesegeräte wird unterstützt.
+	</para></listitem>
+	<listitem><para>
+	  Die aktuelle Version der zpub-Installation wird im Web-Interface angezeigt.
+	</para></listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Version 0.2</title>
+      <para>Veröffentlicht am 6.12.2010</para>
+      <itemizedlist>
+	<listitem><para>
+	  Es gibt jetzt ein Installationsskript und eine Paketierung für Debian- und Ubuntu-Pakete.
+	</para></listitem>
+	<listitem><para>
+	  Die generierten Ausgabeformate sind jetzt konfigurierbar.
+	</para></listitem>
+	<listitem><para>
+	  Ein Backup der gesamten Dokumentquellen samt Historie kann über das Web-Interface heruntergeladen werden.
+	</para></listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
+
   <section>    
 	<title>Systemvoraussetzungen</title>
     <para>
@@ -81,6 +145,7 @@ $ bash ./htmlreg.sh</screen>
       <filename>/opt/zpub/tools</filename> gespeichert werden.
     </para>
 
+</section>
 
 <section> <title>zpub - für Debian paketiert</title>
 
@@ -188,8 +253,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 </note>
 
 
-
-</section>
   </section>
 
   <section>    <title>Verzeichnisstruktur</title>

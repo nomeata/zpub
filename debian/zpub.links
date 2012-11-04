@@ -1,2 +1,3 @@
 /etc/zpub/apache.conf /etc/apache2/sites-enabled/zpub-instances 
 /usr/share/zpub/bin/zpub-create-instance.sh /usr/sbin/zpub-create-instance 
+/usr/share/zpub/bin/zpub-update-docs.sh /usr/sbin/zpub-update-docs

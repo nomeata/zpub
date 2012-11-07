@@ -53,6 +53,9 @@ then
   exit 1
 fi
 
+HOSTNAME="$(cat $ZPUB_INSTANCES/$CUST/conf/hostname)"
+CUSTNAME="$(cat $ZPUB_INSTANCES/$CUST/conf/cust_name)"
+
 co="$ZPUB_INSTANCES/$CUST/repos/source-checkout" 
 
 if [ -d "$co" ]
@@ -73,6 +76,9 @@ do
 	fi
 
 	rsync -r "$docdir"/ "$co/$docname" 
+	sed -i 's/<!ENTITY custname "[^"]*">/<!ENTITY custname "'"$CUSTNAME"'">/' "$co/$docname"/*.xml
+	sed -i 's/<!ENTITY cust "[^"]*">/<!ENTITY cust "'"$CUST"'">/' "$co/$docname"/*.xml
+	sed -i 's/<!ENTITY hostname "[^"]*">/<!ENTITY hostname "'"$HOSTNAME"'">/' "$co/$docname"/*.xml
 	svn add "$co/$docname"
 	svn propset svn:keywords Id "$co/$docname"/*.xml
 done

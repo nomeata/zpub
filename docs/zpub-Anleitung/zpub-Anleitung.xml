@@ -3,7 +3,7 @@
                "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
 [ 
         <!ENTITY zpub "<application>zpub</application>">
-        <!ENTITY cust "DEMO">
+        <!ENTITY custname "DEMO">
         <!ENTITY hostname "demo.zpub.de">
         <!ENTITY admin-name "Max Mustermann">
         <!ENTITY admin-email "max.mustermann@demo.zpub.de">
@@ -188,7 +188,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
     <title>Systemvoraussetzungen</title>
     <para>Auf Redakteursseite wird lediglich eine SVN-Client-Anwendung sowie
     ein beliebiger Editor für Text- bzw. XML-Dateien benötigt.</para>
-    <para>Die Benutzerkennungen werden vom &cust;-zpub-Administrator
+    <para>Die Benutzerkennungen werden vom &custname;-zpub-Administrator
     erstellt.</para>
     <tip>
       <para>Dieses Handbuch geht von einer Installation des Subversion-Clients
@@ -526,11 +526,11 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       <orderedlist>
         <listitem>
           <para>Erstellen eines lokalen Ordners (hier:
-          <filename>&cust;-Quelldateien</filename>), welcher die &cust;-Dokumente
+          <filename>&custname;-Quelldateien</filename>), welcher die &custname;-Dokumente
           enthalten soll (einmalig)</para>
         </listitem>
         <listitem>
-          <para>Auschecken (einmalig) bzw. Updaten des zpub-&cust;-Repositories
+          <para>Auschecken (einmalig) bzw. Updaten des zpub-&custname;-Repositories
           in dem soeben erstellten Ordner</para>
         </listitem>
         <listitem>
@@ -541,10 +541,10 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Bearbeiten des Dokuments</para>
         </listitem>
         <listitem>
-          <para>Commiten/Übertragen der der Änderungen an das zpub-&cust;-Repository</para>
+          <para>Commiten/Übertragen der der Änderungen an das zpub-&custname;-Repository</para>
         </listitem>
         <listitem>
-          <para>Das zpub-&cust;-Webinterface [<ulink url="https://&hostname;/">https://&hostname;/</ulink>] generiert
+          <para>Das zpub-&custname;-Webinterface [<ulink url="https://&hostname;/">https://&hostname;/</ulink>] generiert
           die aktuellen Ausgabedokumente (pdf, chm, html) und bildet
           grundlegende Daten zur Historie des Dokuments sowie dessen
           Freigabe-Status ab.</para>
@@ -575,7 +575,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
             </figure></para>
         </listitem>
         <listitem>
-          <para>Im erscheinenden Dialog die URL zum &cust;-SVN-Repository
+          <para>Im erscheinenden Dialog die URL zum &custname;-SVN-Repository
           eintragen<figure>
               <title>Screenshot: Projektarchiv</title>
               <screenshot>
@@ -868,7 +868,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
     </section>
     <section>
       <title>DocBook-Struktur</title>
-      <para>Die Quelldateien der &cust;-zpub-Dokumente sind XML-Dateien, die dem
+      <para>Die Quelldateien der &custname;-zpub-Dokumente sind XML-Dateien, die dem
       DocBook-Standard entsprechen. Sie können mit jedem beliebigen,
       UTF-8-fähigen Texteditor bearbeitet werden. Ob die Bearbeitung mit einem
       einfachen Editor oder einem speziellen XML-Editor geschieht, ist dem
@@ -1245,7 +1245,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
 
       <para>
       Die im Folgenden aufgelisteten DocBook-Tags werden bisher in den
-        &cust;-Dokumentationen verwendet und für diese Tags sind entsprechende
+        &custname;-Dokumentationen verwendet und für diese Tags sind entsprechende
         Stylesheetangaben für die unterschiedlichen Ausgabeformat hinterlegt.
         Werden DocBook-Tags verwendet, für die noch keine Stylesheetangaben
         festgelegt sind, so erscheinen - bzw. dessen Inhalte - in den

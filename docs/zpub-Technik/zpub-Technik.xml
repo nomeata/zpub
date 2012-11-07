@@ -43,7 +43,10 @@
 	  Dokumente, die nicht mehr im Subversion-Repository liegen, werden auch nicht mehr in der Web-Oberfläche angezeigt.
 	</para></listitem>
 	<listitem><para>
-	  Die &zpub;-Dokumentation wird jetzt mit installiert und kann mit <command>zpub-update-docs.sh</command> in eine Instanz eingefügt bzw. darin aktualisiert werden.
+	  Die &zpub;-Dokumentation wird jetzt mit installiert und kann mit
+	  <command>zpub-update-docs.sh</command> in eine Instanz eingefügt bzw.
+	  darin aktualisiert werden. Dabei wird in der Dokumentations der zur
+	  Instanz gehörende Instanz- und Hostname eingefügt.
 	</para></listitem>
 	<listitem><para>
 	  Diese Versionshistorie.

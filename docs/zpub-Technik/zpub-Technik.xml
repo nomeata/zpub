@@ -36,6 +36,18 @@
     <title>Versionshistorie</title>
 
     <section>
+      <title>Version 0.5.1</title>
+      <para>Unveröffentlicht</para>
+      <itemizedlist>
+	<listitem><para>
+	  Bugfix: Die Datei <filename>/opt/zpub/&cust;/cache/documents</filename>
+	  spiegelt jetzt stets den neusten Revisionsstand wieder; nicht den der
+          zuletzt gebauten Dokumentrevision (welcher älter sein kann).
+	</para></listitem>
+      </itemizedlist>
+    </section>
+      
+    <section>
       <title>Version 0.5</title>
       <para>7.11.2012</para>
       <itemizedlist>

@@ -76,15 +76,16 @@ sub to_hash {
 
 # Returns a list of all documents of the customer
 sub collect_documents {
-    opendir(DIR, "$ZPUB_INSTANCES/$CUST/output/") || die "can't opendir $ZPUB_INSTANCES/$CUST/output/: $!";
-    my @files = grep { (not /^\./) && -d "$ZPUB_INSTANCES/$CUST/output/$_" } readdir(DIR);
-    closedir DIR;
+    my (@files) = read_file("$ZPUB_INSTANCES/$CUST/cache/documents");
+    chomp @files;
     return sort @files;
 }
 
 # Returns a list of all documents of the customer
 sub collect_revisions {
     my ($doc) = @_;
+
+    return unless -d "$ZPUB_INSTANCES/$CUST/output/$doc/archive";
     
     my @list;
     opendir(DIR, "$ZPUB_INSTANCES/$CUST/output/$doc/archive")

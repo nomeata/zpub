@@ -77,7 +77,7 @@ then
   exit 1
 fi
 
-mkdir -vp "$ZPUB_INSTANCES"/"$CUST"/{conf,output,repos,settings/{final_rev,subscribers},style}
+mkdir -vp "$ZPUB_INSTANCES"/"$CUST"/{conf,output,repos,cache,settings/{final_rev,subscribers},style}
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/conf/..."
 echo "$NAME" | tell_cat "$ZPUB_INSTANCES/$CUST"/conf/cust_name
@@ -98,6 +98,9 @@ ln -vs "$ZPUB_SHARED/styles/plain" "$ZPUB_INSTANCES/$CUST/style/plain"
 
 echo "Creating files in $ZPUB_INSTANCES/$CUST/settings/..."
 echo -n | tell_cat "$ZPUB_INSTANCES/$CUST"/settings/htpasswd
+
+echo "Creating files in $ZPUB_INSTANCES/$CUST/cache/..."
+echo -n | tell_cat "$ZPUB_INSTANCES/$CUST"/cache/documents
 
 tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__ 
 <VirtualHost *:80>
@@ -184,12 +187,18 @@ tell svnadmin create "$ZPUB_INSTANCES/$CUST/repos/source"
 mkdir -v "$ZPUB_INSTANCES/$CUST/repos/source/dav"
 ln -svf "$ZPUB_BIN/zpub-post-commit-hook.sh" "$ZPUB_INSTANCES/$CUST/repos/source/hooks/post-commit"
 
-echo "Making settings and output directories and svn repository owned by and"
+echo "Making cache, settings and output directories and svn repository owned by and"
 echo "writable for group $ZPUB_GROUP."
-chgrp -c -R "$ZPUB_GROUP" "$ZPUB_INSTANCES/$CUST/settings" "$ZPUB_INSTANCES/$CUST/output" \
+chgrp -c -R "$ZPUB_GROUP" \
+	    "$ZPUB_INSTANCES/$CUST/cache" \
+	    "$ZPUB_INSTANCES/$CUST/settings" \
+	    "$ZPUB_INSTANCES/$CUST/output" \
             "$ZPUB_INSTANCES/$CUST/repos/source/"{db,dav}
-chmod -c -R g+w "$ZPUB_INSTANCES/$CUST/settings" "$ZPUB_INSTANCES/$CUST/output" \
-                "$ZPUB_INSTANCES/$CUST/repos/source/"{db,dav}
+chmod -c -R g+w \
+	    "$ZPUB_INSTANCES/$CUST/cache" \
+	    "$ZPUB_INSTANCES/$CUST/settings" \
+	    "$ZPUB_INSTANCES/$CUST/output" \
+            "$ZPUB_INSTANCES/$CUST/repos/source/"{db,dav}
 
 echo
 echo \

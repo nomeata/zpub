@@ -262,7 +262,7 @@ if ($q->request_method() eq "POST") {
     } elsif (defined $q->url_param('doc')) {
 	my $doc = $q->url_param('doc');    
 	
-	unless (-d "$ZPUB_INSTANCES/$CUST/output/$doc") {
+        unless (grep {$doc eq $_} (collect_documents())) {
 	    die "Document $doc does not exist.\n";
 	}
 
@@ -338,7 +338,7 @@ if (defined $q->url_param('doc')) {
     # Show information about a specific document
     my $doc = $q->url_param('doc');    
     
-    unless (-d "$ZPUB_INSTANCES/$CUST/output/$doc") {
+    unless (grep {$doc eq $_} (collect_documents())) {
 	die "Document $doc does not exist.\n";
     }
 

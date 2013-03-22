@@ -54,7 +54,7 @@ echo "Installing zpub version $VERSION"
 cp -v bin/*.sh bin/*.pl -t "$DESTDIR""$ZPUB_BIN"
 chmod -c +x "$DESTDIR""$ZPUB_BIN"/*.sh "$DESTDIR""$ZPUB_BIN"/*.pl
 cp -rva bin/lib/* -t "$DESTDIR""$ZPUB_PERLLIB"
-cp -rva templates styles -t "$DESTDIR""$ZPUB_SHARED"
+cp -rva templates styles docs -t "$DESTDIR""$ZPUB_SHARED"
 mkdir -vp "$DESTDIR""$ZPUB_SPOOL"/{todo,wip,fail,new}
 
 # Create apache config
@@ -92,6 +92,7 @@ LoadModule cgi_module /usr/lib/apache2/modules/mod_cgi.so
 ServerRoot /tmp
 TypesConfig /etc/mime.types
 ErrorLog /tmp/zpub-apache-error.log
+PidFile /tmp/zpub-apache.pid
 ServerName localhost
 User www-data
 Group www-data
@@ -131,6 +132,8 @@ paths_perl="$ZPUB_SHARED/paths.pl"
 tell perl -i -p -e 's!^ZPUB_PATHS=.*!ZPUB_PATHS="'"$paths_shell"'"!;' "$DESTDIR""$ZPUB_BIN"/*.sh
 tell perl -i -p -e 's!^my \$paths=.*!my \$paths="'"$paths_perl"'";!;' "$DESTDIR""$ZPUB_BIN"/*.pl
 
+echo
+echo
 echo "Installation finished. Make sure that $ZPUB_SPOOL is writeable by both
 the webserver and the user $ZPUB_USER, e.g. by adding the webserver user to
 group $ZPUB_GROUP, let this group own $ZPUB_SPOOL and make its subdirectories

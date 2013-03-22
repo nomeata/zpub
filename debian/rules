@@ -27,6 +27,7 @@ install: build
 	dh_installdirs
 
 	DESTDIR=`pwd`/debian/zpub ./install.sh path-files/zpub-paths-system
+	./build-docs.sh `pwd`/debian/zpub/usr/share/doc/zpub/
 
 # Build architecture-independent files here.
 binary-indep: build install

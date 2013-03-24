@@ -141,6 +141,11 @@ tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__
 	        Require valid-user
 	</Directory>
 
+        # The logo; tansparent if not existant
+        RewriteCond /opt/zpub/$CUST/conf/logo.png -f
+        RewriteRule ^/logo.png$                 /opt/zpub/$CUST/conf/logo.png
+        RewriteRule ^/logo.png$                 /opt/zpub/templates/static/icons/empty-logo.png
+
 	Alias /static $ZPUB_SHARED/templates/static
 	<Directory $ZPUB_SHARED/templates/static>
 		Options FollowSymLinks

@@ -101,6 +101,8 @@ cd ..
 echo "Running xmllint on the document source..."
 xmllint --noout source/"$DOCNAME.xml"
 
+echo "xmllint test passed successfully."
+
 while read format 
 do
   if [ -n "$format" -a "${format:0:1}" != "#" ]

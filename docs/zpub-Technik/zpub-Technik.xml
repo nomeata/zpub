@@ -44,6 +44,9 @@
 	  spiegelt jetzt stets den neusten Revisionsstand wieder; nicht den der
           zuletzt gebauten Dokumentrevision (welcher älter sein kann).
 	</para></listitem>
+	<listitem><para>
+          In der Datei <filename>/opt/zpub/&cust;/conf/logo.png</filename> kann ein Logo hinterlegt werden. (Dazu muss die Apache-Konfiguration angepasst werden.)
+	</para></listitem>
       </itemizedlist>
     </section>
       
@@ -479,6 +482,14 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	</term>
 	<listitem><simpara>
 	  Der Name des Kunden, in menschenlesbarer Schreibweise.
+	</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>conf/logo.png</filename>
+	</term>
+	<listitem><simpara>
+	  Ein Kunden-spezifisches Logo im PNG-Format, Auflösung 136×42 Pixel.
 	</simpara></listitem>
       </varlistentry>
       <varlistentry>

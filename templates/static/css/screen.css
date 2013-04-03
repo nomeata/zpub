@@ -276,6 +276,9 @@ tr.bottom {
 	line-height: 4em; 
 	margin:0 0 0 24em; 
 	}
+#header > p {
+        background: url("../../logo.png") no-repeat 100% 10px;
+}
 
 
 #main {

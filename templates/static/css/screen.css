@@ -33,19 +33,6 @@ hr {
 	visibility: hidden;
 	}
 
-
-p, 
-ul, 
-ol {
-	outline: 0px solid blue; 
-	max-width: 50em; 
-	}
-pre {
-	max-width: 59.5em; 
-	}
-table {
-	max-width: 65em;
-	}
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 	
 .cite {
@@ -119,7 +106,6 @@ h2,
 h3 {
 	font-weight: bold; 	
 	margin-left: -40px;
-	margin-right: -40px;  
 	padding: 0.45em 0.5em 0.2em 40px; 
 	}
 
@@ -278,14 +264,15 @@ tr.bottom {
 	}
 #header > p {
         background: url("../../logo.png") no-repeat 100% 10px;
-}
+	}
 
 
 #main {
-	padding: 40px; 
+	padding: 40px 0 40px 40px; 
 	min-height: 10em;
+	max-width: 50em; 
 	margin-left: 22em; 
-	border-width: 1px 0 0 1px;
+	border-width: 1px 1px 0 1px;
 	border-style: solid;
 	border-color: silver; 
 	}

@@ -22,10 +22,17 @@ under the Licence.
 	show_remove = 0
 %]
 <table>
-<tbody>
+<thead>
 <tr>
-<th>Dokument</th><th>Rev.</th><th>Jobname</th><th>Autor</th><th>Datum</th>
+	<th>Dokument</th>
+	<th>Rev.</th>
+	<th>Jobname</th>
+	<th>Autor</th>
+	<th>Datum</th>
+	<th>Misc.</th>
 </tr>
+</thead>
+<tbody>
 [% FOREACH jobs %]
 <tr>
 <td>
@@ -45,26 +52,21 @@ under the Licence.
 [% info.date.relative %]
 </td>
 [% IF show_logfile %]
-<td>
-<a href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
-</td>
+	<a style="display: block;" href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
+	<br />
 [% END %]
 [% IF show_retry AND admin %]
-<td>
-<form action="#" method="post">
-<input type="hidden" name="jobname" value="[% jobname %]"/>
-<input type="submit" name="retry" value="Erneut versuchen"/>
-</form>
-</td>
+	<form action="#" method="post" style="display: block; ">
+	<input type="hidden" name="jobname" value="[% jobname %]"/>
+	<input type="submit" name="retry" value="Erneut versuchen"/>
+	</form>
 [% END %]
 [% IF show_remove AND admin %]
-<td>
-<form action="#" method="post">
-<input type="hidden" name="jobname" value="[% jobname %]"/>
-<input type="hidden" name="state" value="[% state %]"/>
-<input type="submit" name="remove" value="Auftrag löschen"/>
-</form>
-</td>
+	<form action="#" method="post" style="display: block; ">
+	<input type="hidden" name="jobname" value="[% jobname %]"/>
+	<input type="hidden" name="state" value="[% state %]"/>
+	<input type="submit" name="remove" value="Auftrag löschen"/>
+	</form>
 [% END %]
 </tr>
 [% END %]

@@ -35,39 +35,42 @@ under the Licence.
 <tbody>
 [% FOREACH jobs %]
 <tr>
-<td>
-[% doc %]
-</td>
-<td>
-[% revn %]
-</td>
-<td>
-[% # Muss vielleicht nicht angezeigt werden %]
-[% jobname %]
-</td>
-<td>
-[% info.author %]
-</td>
-<td>
-[% info.date.relative %]
-</td>
-[% IF show_logfile %]
-	<a style="display: block;" href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
-	<br />
-[% END %]
-[% IF show_retry AND admin %]
-	<form action="#" method="post" style="display: block; ">
-	<input type="hidden" name="jobname" value="[% jobname %]"/>
-	<input type="submit" name="retry" value="Erneut versuchen"/>
-	</form>
-[% END %]
-[% IF show_remove AND admin %]
-	<form action="#" method="post" style="display: block; ">
-	<input type="hidden" name="jobname" value="[% jobname %]"/>
-	<input type="hidden" name="state" value="[% state %]"/>
-	<input type="submit" name="remove" value="Auftrag löschen"/>
-	</form>
-[% END %]
+	<td>
+		[% doc %]
+	</td>
+	<td>
+		[% revn %]
+	</td>
+	<td>
+		[% # Muss vielleicht nicht angezeigt werden %]
+		[% jobname %]
+	</td>
+	<td>
+		[% info.author %]
+	</td>
+	<td>
+		[% info.date.relative %]
+	</td>
+	<td>
+		[% IF show_logfile %]
+			<a style="display: block;" href="[% settings.rootpath %]/[% doc %]/archive/[% revn %]/[% style %]/zpub-render.log">Logdatei</a>
+		[% END %]
+		
+		[% IF show_retry AND admin %]
+			<form action="#" method="post" style="display: block; ">
+			<input type="hidden" name="jobname" value="[% jobname %]"/>
+			<input type="submit" name="retry" value="Erneut versuchen"/>
+			</form>
+		[% END %]
+
+		[% IF show_remove AND admin %]
+			<form action="#" method="post" style="display: block; ">
+			<input type="hidden" name="jobname" value="[% jobname %]"/>
+			<input type="hidden" name="state" value="[% state %]"/>
+			<input type="submit" name="remove" value="Auftrag löschen"/>
+			</form>
+		[% END %]
+	</td>
 </tr>
 [% END %]
 </tbody>

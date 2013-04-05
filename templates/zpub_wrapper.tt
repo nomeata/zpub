@@ -77,8 +77,8 @@ under the Licence.
 
 <div  id="footer">
 <ul>
-	<!--	<li><a href="impressum.html">Impressum</a></li> /-->
-	<li><span>Instanz: [% settings.cust_name %]</span></li>
+	<!-- <li><a href="impressum.html">Impressum</a></li> /-->
+	<li>Instanz: [% settings.cust_name %]</li>
 </ul>
 
 <hr />

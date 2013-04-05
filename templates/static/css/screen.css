@@ -325,12 +325,15 @@ tr.bottom {
 	margin-bottom: 0; 
 	padding: 0 0 1em 0; 
 	list-style-type: none; 
-
 	}
 #footer li {
-	display: block;  
+	display: inline-block;  
+	border-color: silver;
+	border-style: solid;
+	border-width: 0 1px 1px;
+	margin-left: 21em;
+	padding: 2px 1em;
 	}
-#footer span, 
 #footer a {
 	text-decoration: none; 
 	margin-left: 21em;
@@ -341,7 +344,4 @@ tr.bottom {
 	border-color: silver; 
 	padding: 0 0.5em;
 	width: 8em; 
-	}
-#footer span {
-	width: auto; 
 	}

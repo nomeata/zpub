@@ -47,6 +47,10 @@
 	<listitem><para>
           In der Datei <filename>/opt/zpub/&cust;/conf/logo.png</filename> kann ein Logo hinterlegt werden. (Dazu muss die Apache-Konfiguration angepasst werden.)
 	</para></listitem>
+	<listitem><para>
+	  Bugfix: Dateien, die im Grundverzeichnis des SVN-Repositories
+	  angelegt werden, stoßen keine Dokumenten-Bau-Jobs an.
+	</para></listitem>
       </itemizedlist>
     </section>
       

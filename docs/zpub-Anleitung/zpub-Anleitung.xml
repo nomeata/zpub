@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. -->
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
 <!ENTITY zpub "<application>zpub</application>">
 <!ENTITY custname "DEMO">
@@ -8,37 +9,36 @@
 ]>
 <book lang="de">
   <title>zpub - Redakteurhandbuch</title>
-
-<bookinfo>
-  <title>zpub - Redakteurhandbuch</title>
-<corpname>zpub.de</corpname>
-
-<authorgroup>
-<author>
-	<firstname>Thomas</firstname><surname>Breitner</surname>
-
-<address>
-<street>Musterstrasse 18</street>
-<postcode>79876</postcode> <city>Musterstadt</city>
-<country>Germany</country>
-
-<phone>Tel ++49 (0) 78 90 / 23 34 - 0</phone>
-<fax>Fax ++49 (0) 78 90 / 23 34 - 99</fax>
-
-<email>mail@zpub.de</email>
-<otheraddr><ulink url="http://zpub.de">http://zpub.de</ulink></otheraddr>
-</address>
-</author>
-</authorgroup>
-<edition>Dokumentation zu zpub</edition>
-<productnumber>Art. Nr.: XX/XXXXXX/XXXXX</productnumber>
+  <bookinfo>
+    <title>zpub - Redakteurhandbuch</title>
+    <corpname>zpub.de</corpname>
+    <authorgroup>
+      <author>
+        <firstname>Thomas</firstname>
+        <surname>Breitner</surname>
+        <address>
+          <street>Musterstrasse 18</street>
+          <postcode>79876</postcode>
+          <city>Musterstadt</city>
+          <country>Germany</country>
+          <phone>Tel ++49 (0) 78 90 / 23 34 - 0</phone>
+          <fax>Fax ++49 (0) 78 90 / 23 34 - 99</fax>
+          <email>mail@zpub.de</email>
+          <otheraddr>
+            <ulink url="http://zpub.de">http://zpub.de</ulink>
+          </otheraddr>
+        </address>
+      </author>
+    </authorgroup>
+    <edition>Dokumentation zu zpub</edition>
+    <productnumber>Art. Nr.: XX/XXXXXX/XXXXX</productnumber>
     <pubdate>2010</pubdate>
     <copyright>
       <year>2010</year>
       <year>2009</year>
       <holder>zpub.de | Thomas und Joachim Breitner</holder>
     </copyright>
-    <releaseinfo>$Id$</releaseinfo>
+    <releaseinfo>$Id$ </releaseinfo>
   </bookinfo>
   <preface>
     <title>Über zpub, das zentrale Dokumentationssystem</title>
@@ -233,64 +233,53 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
     <para>Für dieses Handbuch wird clientseitig von der Installation des
     TortoiseSVN-Clients sowie des <ulink url="http://www.syntext.com/products/serna-free/">Syntext</ulink> Serna
     Free XML-Editors ausgegangen.</para>
-
-
-
     <section>
-    <title>Liste der Downloadlinks:</title>
- 
-    <itemizedlist>
-
-  
-<listitem>
-<para>
+      <title>Liste der Downloadlinks:</title>
+      <itemizedlist>
+        <listitem>
+          <para>
 <ulink url="http://java.com/de/download/index.jsp">Oracle Java JRE 6</ulink>  (wird vom XML-Editor Syntext Serna Free benötigt)
 </para>
-</listitem>
-<listitem>
-<para>
+        </listitem>
+        <listitem>
+          <para>
 <ulink url="http://www.syntext.com/downloads/serna-free/">Syntext Serna Free</ulink>  (benötigt Oracle Java JRE)
 </para>
-</listitem>
-<listitem>
-<para>
+        </listitem>
+        <listitem>
+          <para>
 <ulink url="http://tortoisesvn.net/downloads.html">TortoiseSVN</ulink>  (Installation erfordert Neustart)
 </para>
-</listitem>
-<listitem>
-<para>
-<ulink url="http://tortoisesvn.net/downloads.html">TortoiseSVN (<emphasis>dt. Sprachpaket ("Language Pack")</emphasis>)</ulink> (nach obigem Neustart zu installieren, optional)
+        </listitem>
+        <listitem>
+          <para>
+<ulink url="http://tortoisesvn.net/downloads.html">TortoiseSVN (<emphasis>dt. Sprachpaket (&quot;Language Pack&quot;)</emphasis>)</ulink> (nach obigem Neustart zu installieren, optional)
 </para>
-</listitem>
-<listitem>
-<para>
+        </listitem>
+        <listitem>
+          <para>
 <ulink url="http://notepad-plus-plus.org/download">Notepad++</ulink>  (<emphasis>Texteditor, optional</emphasis>)
 </para>
-</listitem>
-<listitem>
-<para>
+        </listitem>
+        <listitem>
+          <para>
 <ulink url="http://www.getpaint.net/download.html#download">Paint.NET</ulink>  (für das Bearbeiten von Abbildungen und Screenshots mit Ebenen; erfordert Microsoft .NET Framework 3.5,    <emphasis>einfache Grafikbearbeitung, optional</emphasis>)</para>
-</listitem>
-
-</itemizedlist>
-
-<note>
-<para>Es sollten immer die aktuellsten Versionen der Softwarepakete genutzt werden.</para>
-</note>
-
-<para>Sämtliche Downloads verlinken auf Versionen für das Betriebssystem <trademark>Windows</trademark> in der 32bit-Variante. Versionen für andere Betriebssysteme bzw. 64bit-Versionen existieren eventuell oder es existieren äquivalente Programme.</para>
-<para>Die genannten Programme sind entweder unter einer OpenSource-Lizenz veröffentlicht oder kostenfrei nutzbar.</para>
-
-</section>
- 
-<section>
+        </listitem>
+      </itemizedlist>
+      <note>
+        <para>Es sollten immer die aktuellsten Versionen der Softwarepakete genutzt werden.</para>
+      </note>
+      <para>Sämtliche Downloads verlinken auf Versionen für das Betriebssystem <trademark>Windows</trademark> in der 32bit-Variante. Versionen für andere Betriebssysteme bzw. 64bit-Versionen existieren eventuell oder es existieren äquivalente Programme.</para>
+      <para>Die genannten Programme sind entweder unter einer OpenSource-Lizenz veröffentlicht oder kostenfrei nutzbar.</para>
+    </section>
+    <section>
       <title>Installation Subversion Client</title>
       <indexterm>
         <primary>Installation</primary>
         <secondary>Installation Subversion Client</secondary>
       </indexterm>
       <para>Für dieses Handbuch wird beispielhaft mit dem Subversion Client
-      "TortoiseSVN" gearbeitet. Das Installationspaket zum Download befindet
+      &quot;TortoiseSVN&quot; gearbeitet. Das Installationspaket zum Download befindet
       sich auf der Projektseite <ulink url="http://tortoisesvn.net/downloads">http://tortoisesvn.net/downloads</ulink>.
       Nach der Installation des korrekten Pakets muß der Rechner neu gestartet
       werden. Der TortoiseSVN-Client wird als Windows Explorer-Erweiterung ins
@@ -306,14 +295,14 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Rechtsklick</para>
         </listitem>
         <listitem>
-          <para>Kontextmenüeintrag 'TortoiseSVN'</para>
+          <para>Kontextmenüeintrag &apos;TortoiseSVN&apos;</para>
         </listitem>
         <listitem>
-          <para>Kontextmenüeintrag 'Settings'</para>
+          <para>Kontextmenüeintrag &apos;Settings&apos;</para>
         </listitem>
         <listitem>
-          <para>Im erscheinenden Einstellungsdialog unter 'General' -&gt;
-          'Language' die gewünschte Sprache aus dem Dropdown-Menü
+          <para>Im erscheinenden Einstellungsdialog unter &apos;General&apos; -&gt;
+          &apos;Language&apos; die gewünschte Sprache aus dem Dropdown-Menü
           auswählen</para>
         </listitem>
       </itemizedlist>
@@ -366,11 +355,9 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       </tip>
       <para>Das Webinterface bietet Funktionen zu den einzelnen Dokumenten wie
       auch zur Administration des Systems.</para>
-
       <para>Das Menü ist hierarchisch mit zwei Ebenen aufgebaut, wobei zu
       jedem Dokument eine Unterebene existiert. Die Menüpunkte sind im
       Folgenden erläutert (Übersicht):</para>
-
       <itemizedlist>
         <listitem>
           <para>Dokumentübersicht</para>
@@ -393,11 +380,10 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Benutzer</para>
         </listitem>
       </itemizedlist>
-
-
-<section><title>Aufbau Webinterface</title>
       <section>
-        <title>Dokumentübersicht</title>
+        <title>Aufbau Webinterface</title>
+        <section>
+          <title>Dokumentübersicht</title>
           <para>In der Dokumentübersicht werden die verwalteten Dokumente
           aufgeführt. Die verwalteten Dokumente sind ebenfalls in der
           Navigation vorhanden.</para>
@@ -409,10 +395,9 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           Ausgabeformate. Existieren zu einem Dokument Änderungen, die
           aktueller sind als die letzte freigegebene Version, kann dieses
           Dokument freigegeben werden.</para>
-          
-			<section>
-              <title>Archiv</title>
-              <para>Zu jedem Dokument existiert ein Archiv, welches in
+          <section>
+            <title>Archiv</title>
+            <para>Zu jedem Dokument existiert ein Archiv, welches in
               tabellarischer Darstellung die Bearbeitungsschritte des Dokuments
               mit Angaben zum jeweiligen Redakteur, der inhaltlichen Änderung,
               des Änderungsdatums und des Freigabestatuses enthält. Die
@@ -420,47 +405,43 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               auch in den Arbeitsversionen der Dokumente eingefügt sind.
               Weiter können noch nicht freigegebene Revisionen hier
               freigegeben werden.</para>
-              <para>Das Archiv beinhaltet alle Revisionen seit der Verwaltung der Dokumente mit <application>zpub</application>. Revisionen werden nicht gelöscht, die gesamte Historie bleibt erhalten und wird lediglich vom Speicherplatz auf dem <application>zpub</application>-Server begrenzt.</para>
-              
-			      <tip><title>Versionierung</title>
-				      <para>Jede via SVN<indexterm><primary>SVN</primary></indexterm> übertragene Änderung stößt auf dem <application>zpub</application>-Server eine Neugenerierung sämtlicher Ausgabeformate an. Die zu einer Version bzw. Revision erstellten Ausgabeformate werden dauerhaft abgespeichert, wobei sie weiterhin  verlinkt und abrufbar sind. Die Links beinhalten die Revisionsangaben und sind wie folgt aufgebaut: 
-				      <programlisting>https://&hostname;/zpub-Technik/archive/13<co linkends="linkrev-co" id="linkrev-co"/>/handbuch/zpub-Technik.pdf</programlisting>
-				     <calloutlist>
-				        <callout arearefs="timeout-co">
-				          <para>Revisionsangabe</para>
-				        </callout>
-				      </calloutlist>
-				      </para>
-				      
-				      
-				      <para>Um immer auf die aktuellste Dokumentrevision zuzugreifen, existiert ein <emphasis>latest</emphasis>-Link zu jedem Ausgabeformat:
-				      <programlisting>https://&hostname;/zpub-Technik/<emphasis role="strong">latest</emphasis>/handbuch/zpub-Technik.pdf</programlisting> Die Revisionsangabe ist durch <emphasis role="strong">latest</emphasis> ersetzt. Dieser Link kann, da er sich nicht ändert, z.B. für Bookmarks etc. verwendet werden.
-				      </para>
-				      
-			      </tip>
-            </section>
-            
-            <section>
-              <title>Abonnenten</title>
-              <para>Dieser Punkt ist nur bei entsprechenden Rechten
+            <para>Das Archiv beinhaltet alle Revisionen seit der Verwaltung der Dokumente mit <application>zpub</application>. Revisionen werden nicht gelöscht, die gesamte Historie bleibt erhalten und wird lediglich vom Speicherplatz auf dem <application>zpub</application>-Server begrenzt.</para>
+            <tip>
+              <title>Versionierung</title>
+              <para>Jede via SVN<indexterm>
+                  <primary>SVN</primary>
+                </indexterm> übertragene Änderung stößt auf dem <application>zpub</application>-Server eine Neugenerierung sämtlicher Ausgabeformate an. Die zu einer Version bzw. Revision erstellten Ausgabeformate werden dauerhaft abgespeichert, wobei sie weiterhin  verlinkt und abrufbar sind. Die Links beinhalten die Revisionsangaben und sind wie folgt aufgebaut: 
+          <programlisting>https://&hostname;/zpub-Technik/archive/13<co linkends="linkrev-co" id="linkrev-co"/>/handbuch/zpub-Technik.pdf</programlisting>
+         <calloutlist>
+                  <callout arearefs="timeout-co">
+                    <para>Revisionsangabe</para>
+                  </callout>
+                </calloutlist>
+          </para>
+              <para>Um immer auf die aktuellste Dokumentrevision zuzugreifen, existiert ein <emphasis>latest</emphasis>-Link zu jedem Ausgabeformat:
+          <programlisting>https://&hostname;/zpub-Technik/<emphasis role="strong">latest</emphasis>/handbuch/zpub-Technik.pdf</programlisting> Die Revisionsangabe ist durch <emphasis role="strong">latest</emphasis> ersetzt. Dieser Link kann, da er sich nicht ändert, z.B. für Bookmarks etc. verwendet werden.
+          </para>
+            </tip>
+          </section>
+          <section>
+            <title>Abonnenten</title>
+            <para>Dieser Punkt ist nur bei entsprechenden Rechten
               sichtbar.</para>
-              <para>Unter "Abonnenten" sind die Email-Adressen der Redakteure
+            <para>Unter &quot;Abonnenten&quot; sind die Email-Adressen der Redakteure
               einzutragen, die bei neuen Versionen dieses Dokuments per Email benachrichtigt
               werden sollen. Die Benachrichtigungsemail enthält Angaben zum Redakteur, der die Änderung durchgeführt hat, den Zeitpunkt der Änderung sowie Links zu den generierten Ausgabeformaten.</para>
-            </section>
+          </section>
         </section>
-
         <section>
           <title>Status</title>
-          <para>"Status" fasst Systemmeldungen sowie Meldungen der
+          <para>&quot;Status&quot; fasst Systemmeldungen sowie Meldungen der
           automatischen Ausgabegenerierung zusammen. Die sogenannten
-          "job"-Angaben sind nach "Wartenden Aufträgen", "Aufträge in
-          Bearbeitung" sowie "Fehlgeschlagene Aufträge" eingeordnet. Sollte
+          &quot;job&quot;-Angaben sind nach &quot;Wartenden Aufträgen&quot;, &quot;Aufträge in
+          Bearbeitung&quot; sowie &quot;Fehlgeschlagene Aufträge&quot; eingeordnet. Sollte
           ein Auftrag fehlgeschlagen sein, so ist hier die Fehlermeldung
-          ("Logdatei") einsehbar und es es werden Optionen zu einem erneuten
+          (&quot;Logdatei&quot;) einsehbar und es es werden Optionen zu einem erneuten
           Versuch und des Löschens des Auftrages angeboten.</para>
         </section>
-
         <section id="wi_benutzer">
           <title>Benutzer</title>
           <para>Dieser Punkt ist nur bei entsprechenden Rechten sichtbar.</para>
@@ -471,10 +452,9 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           gültig.</para>
         </section>
       </section>
-
       <section>
         <title>Freigabe von Dokumenten</title>
-        <para>Dokumente werden standardmäßig mit einem "Draft"-Wasserzeichen sowie Revisions-, Redakteursangaben und Zeitstempel versehen. Während ein Dokument also von einem Redakteur oder einer Redakteursgruppe "in Bearbeitung" ist, wird dies durch das Wasserzeichen kenntlich gemacht. Diese Dokumente (Revisionen) sind nur für den internen Gebrauch bestimmt. Erreicht ein Dokument einen <emphasis>finalen</emphasis> Stand (Revision), kann diese Revision <emphasis>freigegeben</emphasis> werden. Dies geschieht über die entsprechenden Buttons (auf der Dokumentseite sowie der zugehörigen Archiv-Seite). Dabei generiert <emphasis>freigeben</emphasis> die entsprechende Revision des Dokuments erneut - jedoch ohne das Wasserzeichen und die Revisionsmarkierungen.</para>
+        <para>Dokumente werden standardmäßig mit einem &quot;Draft&quot;-Wasserzeichen sowie Revisions-, Redakteursangaben und Zeitstempel versehen. Während ein Dokument also von einem Redakteur oder einer Redakteursgruppe &quot;in Bearbeitung&quot; ist, wird dies durch das Wasserzeichen kenntlich gemacht. Diese Dokumente (Revisionen) sind nur für den internen Gebrauch bestimmt. Erreicht ein Dokument einen <emphasis>finalen</emphasis> Stand (Revision), kann diese Revision <emphasis>freigegeben</emphasis> werden. Dies geschieht über die entsprechenden Buttons (auf der Dokumentseite sowie der zugehörigen Archiv-Seite). Dabei generiert <emphasis>freigeben</emphasis> die entsprechende Revision des Dokuments erneut - jedoch ohne das Wasserzeichen und die Revisionsmarkierungen.</para>
       </section>
     </section>
   </chapter>
@@ -492,11 +472,11 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
     <para>Mit dem Subversion-Client greift ein Redakteur auf die zentral
     verwalteten Dokumente zu. Dabei wird mit lokalen Kopien der Dateien
     gearbeitet. Nach Änderungen bzw. dem Editieren der Dokumente werden diese
-    wieder in das zentrale Subversion-Repository '<emphasis>
+    wieder in das zentrale Subversion-Repository &apos;<emphasis>
         <foreignphrase>commited</foreignphrase>
-      </emphasis>' ("übergeben").
+      </emphasis>&apos; (&quot;übergeben&quot;).
     Arbeiten mehrere Redakteure an einem Dokument, so weißt der
-    Subversion-Client beim '<foreignphrase>commiten</foreignphrase>' des
+    Subversion-Client beim &apos;<foreignphrase>commiten</foreignphrase>&apos; des
     Dokuments auf eventuelle Konflikte hin.</para>
     <tip>
       <para>URL des Subversion-Repositories:</para>
@@ -517,8 +497,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       Ordner gegebenenfalls nicht angezeigt werden, dürfen nicht manuell
       verändert werden, da sie SVN-Verwaltungsdaten enthalten.</para>
     </warning>
-	<para><application>TortoiseSVN</application> bietet eine Reihe nützlicher Funktion zum Verwalten der Dokumente sowie der Rückverfolgung von Änderungen, die über das <application>TortoiseSVN</application>-Kontextmenü zugänglich sind. Insbesondere ist die Log-Funktion und die Vergleichsversion für unterschiedliche Revisionen genannt.</para>
-    
+    <para><application>TortoiseSVN</application> bietet eine Reihe nützlicher Funktion zum Verwalten der Dokumente sowie der Rückverfolgung von Änderungen, die über das <application>TortoiseSVN</application>-Kontextmenü zugänglich sind. Insbesondere ist die Log-Funktion und die Vergleichsversion für unterschiedliche Revisionen genannt.</para>
     <section>
       <title>Kurzdarstellung eines kompletten Editiervorgangs</title>
       <orderedlist>
@@ -559,8 +538,8 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Wechseln in den neuen Ordner</para>
         </listitem>
         <listitem>
-          <para>Rechtsklick, Auswahl des Kontextmenüpunkts "SVN
-          auschecken..."<figure>
+          <para>Rechtsklick, Auswahl des Kontextmenüpunkts &quot;SVN
+          auschecken...&quot;<figure>
               <title>Screenshot: SVN auschecken...</title>
               <screenshot>
                 <screeninfo>Screenshot: SVN auschecken...</screeninfo>
@@ -587,7 +566,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
             </figure></para>
         </listitem>
         <listitem>
-          <para>Zertifikatnachfrage mit "Permanent akzeptieren"
+          <para>Zertifikatnachfrage mit &quot;Permanent akzeptieren&quot;
           bestätigen<figure>
               <title>Screenshot: SVN Zertifikatsabfrage</title>
               <screenshot>
@@ -602,7 +581,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
         </listitem>
         <listitem>
           <para>Anmeldedaten eingeben und um spätere Nachfragen zu umgehen
-          Option "Anmeldedaten speichern" aktivieren. <figure>
+          Option &quot;Anmeldedaten speichern&quot; aktivieren. <figure>
               <title>Screenshot: SVN Anmeldedaten</title>
               <screenshot>
                 <screeninfo/>
@@ -616,7 +595,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <note>
             <para>Die Benutzer müssen zuvor im Webinterface unter dem Punkt <link linkend="wi_benutzer">Benutzer</link>  angelegt werden. </para>
           </note>
-          <para>Sobald der Anmeldedialog mit "Ok" bestätigt wird, beginnt das
+          <para>Sobald der Anmeldedialog mit &quot;Ok&quot; bestätigt wird, beginnt das
           Auschecken der Dateien im Repository in die lokale Kopie. Dies kann
           einige Minuten dauern, auch ohne dass sich der Fortschrittsdialog
           ändert.<figure>
@@ -642,7 +621,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           kleine Zusatzsymbole, die den aktuellen SVN-Status des
           entsprechenden Elements darstellen. Nach einer Aktualisierung (s.o.)
           sind die Dateien der lokalen Arbeitskopie und des SVN-Repositories
-          auf dem selben Stand, die lokale Kopie ist damit "aktuell" und wird
+          auf dem selben Stand, die lokale Kopie ist damit &quot;aktuell&quot; und wird
           mit einem grünen Häkchen versehen.<figure>
               <title>SVN-Symbol für aktuellen Ordner</title>
               <screenshot>
@@ -690,8 +669,8 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       <para>Das Aktualisieren eines Dokuments - bzw. der Abgleich des lokalen
       Dokuments mit dem Dokument auf dem SVN-Server - geschieht über einen
       Rechtsklick auf die entsprechende Datei. Das aufklappende Kontextmenü
-      beinhaltet direkt die beiden grundlegendsten SVN-Aktionen "SVN
-      aktualisieren" und "SVN übertragen...".</para>
+      beinhaltet direkt die beiden grundlegendsten SVN-Aktionen &quot;SVN
+      aktualisieren&quot; und &quot;SVN übertragen...&quot;.</para>
       <figure>
         <title>TortoiseSVN Kontextmenü - Aktualisieren</title>
         <screenshot>
@@ -703,11 +682,11 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           </mediaobject>
         </screenshot>
       </figure>
-      <para>Nach dem Ausführen des Befehls "SVN Aktualisieren" kann das
+      <para>Nach dem Ausführen des Befehls &quot;SVN Aktualisieren&quot; kann das
       Dokument editiert werden. Im Anschluß an das Editieren ist die lokale,
       aktuelle Version wieder auf den SVN-Server zu übertragen. Das Vorgehen
-      ist analog zum soeben beschriebenen "aktualisieren", es ist lediglich
-      der Punkt "SVN Übertragen..." auszuwählen. Vor der Übertragung kann und
+      ist analog zum soeben beschriebenen &quot;aktualisieren&quot;, es ist lediglich
+      der Punkt &quot;SVN Übertragen...&quot; auszuwählen. Vor der Übertragung kann und
       soll eine eigene, kurze Meldung zu den gemachten Änderungen angegeben
       werden. Diese Meldung wird über die zpub.de-Webseite den angeschlossenen
       Redakteuren veröffentlicht.</para>
@@ -723,8 +702,8 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
         </screenshot>
       </figure>
       <note>
-        <para>Es ist nützlich, "oft und ausführlich" zu übertragen, d.h. die eigenen Änderungen in kleinen, überschaubaren Einheiten zu übertragen und zu jeder Einheit eine gute, beschreibende Meldung anzugeben. Jede Übertragung von Änderungen erzeugt eine neue Revision, und das Versionsverwaltungssystem SVN operiert auf  Revisionen. Man kann zu alten Revisionen "zurückspringen", man kann sich Änderungen zwischen beliebigen Revisionen anzeigen lassen, man kann der Historie der Revisionen anhand der "sprechenden"  Meldungen folgen. </para>
-        <para>Neben diesen technischen Möglichkeiten ist jedoch die "zwischenmenschliche Nachvollziehbarkeit" von Änderungen innerhalb einer Projekt-/Redakteursgruppe hervorzuheben. <application>zpub</application> hilft durch die Archiv-Ansicht, einen Überblick über die Historie eines Dokuments zu behalten:</para>
+        <para>Es ist nützlich, &quot;oft und ausführlich&quot; zu übertragen, d.h. die eigenen Änderungen in kleinen, überschaubaren Einheiten zu übertragen und zu jeder Einheit eine gute, beschreibende Meldung anzugeben. Jede Übertragung von Änderungen erzeugt eine neue Revision, und das Versionsverwaltungssystem SVN operiert auf  Revisionen. Man kann zu alten Revisionen &quot;zurückspringen&quot;, man kann sich Änderungen zwischen beliebigen Revisionen anzeigen lassen, man kann der Historie der Revisionen anhand der &quot;sprechenden&quot;  Meldungen folgen. </para>
+        <para>Neben diesen technischen Möglichkeiten ist jedoch die &quot;zwischenmenschliche Nachvollziehbarkeit&quot; von Änderungen innerhalb einer Projekt-/Redakteursgruppe hervorzuheben. <application>zpub</application> hilft durch die Archiv-Ansicht, einen Überblick über die Historie eines Dokuments zu behalten:</para>
       </note>
       <figure>
         <title>zpub: Archiv</title>
@@ -746,7 +725,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           </listitem>
           <listitem>
             <para>Manuell aufzulösende Konflikte</para>
-            <para>Hinz editiert den Abbildungstitel von Abbildung fünf. Kunz - der nichts von den Editiervorgängen von Hinz weiß - editiert ebenfalls den Abbildungstitel von Abbildung fünf. Hinz und Kunz übertragen ihre Änderungen an das SVN-Projektarchiv. Derjenige, der als zweiter (hier: Kunz) seine Änderungen übertragen will, wird vom SVN aufgefordert, seine lokale Datei zuerst auf den aktuellen Stand zu bringen, da diese ja die Änderungen des zuerst übertragenden Redakteurs (hier: Hinz) noch nicht enthält. Aktualisiert nun Kunz seine Datei, erkennt das SVN die Änderungen beider Redakteure an "der selben Stelle". Dieser Konflikt kann nicht automatisch aufgelöst werden, hier muß ein intelligentes Wesen entscheiden, welcher Abbildungstitel denn nun der Richtige ist. Das SVN markiert die Datei als "in Konflikt" und überlässt das Auflösen des Konflikts Kunz. Allerdings unterstützt es Kunz, indem es ihm die entsprechende Stelle (Zeile) in der Datei sowie die beiden konkurrierenden Abbildungstitel anzeigt. Indem Kunz sich nun für einen der Abbildungstitel entscheidet, führt er die Dateien manuell zusammen. Die Datei ist nun nicht mehr "in Konflikt" und kann von Kunz an das SVN-Projektarchiv übertragen werden.</para>
+            <para>Hinz editiert den Abbildungstitel von Abbildung fünf. Kunz - der nichts von den Editiervorgängen von Hinz weiß - editiert ebenfalls den Abbildungstitel von Abbildung fünf. Hinz und Kunz übertragen ihre Änderungen an das SVN-Projektarchiv. Derjenige, der als zweiter (hier: Kunz) seine Änderungen übertragen will, wird vom SVN aufgefordert, seine lokale Datei zuerst auf den aktuellen Stand zu bringen, da diese ja die Änderungen des zuerst übertragenden Redakteurs (hier: Hinz) noch nicht enthält. Aktualisiert nun Kunz seine Datei, erkennt das SVN die Änderungen beider Redakteure an &quot;der selben Stelle&quot;. Dieser Konflikt kann nicht automatisch aufgelöst werden, hier muß ein intelligentes Wesen entscheiden, welcher Abbildungstitel denn nun der Richtige ist. Das SVN markiert die Datei als &quot;in Konflikt&quot; und überlässt das Auflösen des Konflikts Kunz. Allerdings unterstützt es Kunz, indem es ihm die entsprechende Stelle (Zeile) in der Datei sowie die beiden konkurrierenden Abbildungstitel anzeigt. Indem Kunz sich nun für einen der Abbildungstitel entscheidet, führt er die Dateien manuell zusammen. Die Datei ist nun nicht mehr &quot;in Konflikt&quot; und kann von Kunz an das SVN-Projektarchiv übertragen werden.</para>
           </listitem>
         </orderedlist></para>
       <note>
@@ -780,7 +759,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               </imageobject>
             </mediaobject>
           </figure></para>
-        <para>Die dreigeteilte Fensteransicht beinhaltet oben links den Bereich für "Deren" Datei, links oben für "Meine" Datei sowie unten das Ergebnis der zusammengeführten Datei. Die konfliktbehaftete Zeile ist in "Deren" wie in "Meiner" Datei rot hervorgehoben. Weder in "Deren" noch in "Meiner" Datei kann editiert werden - hier kann man sich über einen Rechtsklick auf die Konfliktzeile lediglich dafür entscheiden, welche Version der Zeile man als Lösung betrachtet. Kommt weder die Zeile aus "Deren" Datei, noch die korrespondierende Zeile aus "Meiner" Datei in Betracht, muß die Datei neu editiert/korrigiert werden. Dies geschieht im unteren Fensterteil "Zusammengeführt". Im Beispiel (siehe <xref linkend="abb_konfklikte_manuell_aufloesen"/>) ist die Zeile ebenfalls rot hervorgehoben und - da keine automatische Zusammenführung möglich ist - mit Fragezeichen gefüllt. Diese Zeile (sowie die gesamte Datei)  kann nun editiert werden. Ist kein Konflikt mehr vorhanden, ist auch keine Zeile in der unteren Fensterzeile mehr rot eingefärbt. Die Datei kann nun gespeichert und "als aufgelöst" markiert werden. Dies geschieht über den Button <inlinemediaobject>
+        <para>Die dreigeteilte Fensteransicht beinhaltet oben links den Bereich für &quot;Deren&quot; Datei, links oben für &quot;Meine&quot; Datei sowie unten das Ergebnis der zusammengeführten Datei. Die konfliktbehaftete Zeile ist in &quot;Deren&quot; wie in &quot;Meiner&quot; Datei rot hervorgehoben. Weder in &quot;Deren&quot; noch in &quot;Meiner&quot; Datei kann editiert werden - hier kann man sich über einen Rechtsklick auf die Konfliktzeile lediglich dafür entscheiden, welche Version der Zeile man als Lösung betrachtet. Kommt weder die Zeile aus &quot;Deren&quot; Datei, noch die korrespondierende Zeile aus &quot;Meiner&quot; Datei in Betracht, muß die Datei neu editiert/korrigiert werden. Dies geschieht im unteren Fensterteil &quot;Zusammengeführt&quot;. Im Beispiel (siehe <xref linkend="abb_konfklikte_manuell_aufloesen"/>) ist die Zeile ebenfalls rot hervorgehoben und - da keine automatische Zusammenführung möglich ist - mit Fragezeichen gefüllt. Diese Zeile (sowie die gesamte Datei)  kann nun editiert werden. Ist kein Konflikt mehr vorhanden, ist auch keine Zeile in der unteren Fensterzeile mehr rot eingefärbt. Die Datei kann nun gespeichert und &quot;als aufgelöst&quot; markiert werden. Dies geschieht über den Button <inlinemediaobject>
             <imageobject>
               <imagedata fileref="images/tsvn_button-konflikt-aufgeloest.png"/>
             </imageobject>
@@ -806,7 +785,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Exportieren des Vorlageordners:</para>
           <para>Der Vorlageordner (hier:
           <filename>Handbuch-Vorlage</filename>) wird über die SVN-Funktion
-          'SVN versionierte Objekte hierher exportieren' kopiert. Diese
+          &apos;SVN versionierte Objekte hierher exportieren&apos; kopiert. Diese
           Funktion steht beim klicken-und-ziehen mit der rechten Maustaste zur
           Verfügung:</para>
           <figure>
@@ -831,7 +810,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
         <listitem>
           <para>Verzeichnisse und Dateien via SVN dem zentralen Repository
           hinzufügen.</para>
-          <para>Dies geschieht über den Eintrag 'SVN hinzufügen' im
+          <para>Dies geschieht über den Eintrag &apos;SVN hinzufügen&apos; im
           Kontextmenü von TortoiseSVN beim Rechtsklick auf das neue Verzeichnis. Es werden automatisch rekursiv alle Dateien/Unterverzeichnisse des Verzeichnisses hinzugefügt.</para>
         </listitem>
         <listitem id="svneigenschaftenimportieren" xreflabel="SVN-Eigenschaften importieren">
@@ -844,7 +823,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               <guimenuitem>Eigenschaften</guimenuitem>
             </menuchoice>. In diesem Dialog ist über den Button
           <guibutton>Import...</guibutton> die Datei
-          '<filename>SVN-Eigenschaften für XML-Dateien.svnprops</filename>' zu
+          &apos;<filename>SVN-Eigenschaften für XML-Dateien.svnprops</filename>&apos; zu
           importieren, die sich im Oberverzeichnis der Handbücher
           befindet.</para>
           <figure>
@@ -859,7 +838,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
         <listitem>
           <para>Handbuch editieren und/oder Verzeichnisse/Dateien via SVN ins
           zentrale Repository übertragen.</para>
-          <para>Dies geschieht über den Eintrag 'SVN übertragen' im 
+          <para>Dies geschieht über den Eintrag &apos;SVN übertragen&apos; im 
           Kontextmenü des neuen Verzeichnisses.</para>
         </listitem>
       </orderedlist>
@@ -915,7 +894,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
             kann oder muß</para>
           </listitem>
           <listitem>
-            <para>Inhalte werden mit Tags "ausgezeichnet", welche den
+            <para>Inhalte werden mit Tags &quot;ausgezeichnet&quot;, welche den
             auszuzeichnenden Inhalt möglichst gut beschreiben.</para>
           </listitem>
           <listitem>
@@ -941,7 +920,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       valide Dokumente bearbeitet, und dem Benutzer bei der Auswahl eines
       passenden und validen DocBook-Tags unter die Arme greift, muß der
       Anwender kein DocBook-Experte sein. Existieren bei der Eingabe mehrere
-      Möglichkeiten, mit welchem Element (DocBook-Tag) es "weitergeht", so
+      Möglichkeiten, mit welchem Element (DocBook-Tag) es &quot;weitergeht&quot;, so
       stellt der Editor dem Benutzer auch nur die an dieser Stelle möglichen
       Elemente zur Auswahl. Ist an dieser Stelle zwingend ein bestimmtes
       Element nötig, so fordert der Editor offensiv zu einer Auswahl
@@ -955,7 +934,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
         </figure></para>
       <para>Dokumente werden editiert, indem entweder der Inhalt von vorhanden
       Tags bearbeitet wird, oder indem neue Tags mit neuem Inhalt dem Dokument
-      hinzugefügt werden. Die genannten 'Tags' dienen dabei als Container -
+      hinzugefügt werden. Die genannten &apos;Tags&apos; dienen dabei als Container -
       entweder für tatsächlichen Inhalt oder für weitere Tags. Für ein
       effizientes Bearbeiten von Dokumenten kann komfortabel im Tag-Baum eines
       Dokumentes navigiert werden. Im Standardfall wird vorhandener Inhalt
@@ -991,7 +970,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               </keycombo></para>
           </listitem>
           <listitem>
-            <para>Textfragment mit einem Element "ummanteln" (beispielsweise, um einen Begriff zu verlinken):  Text markieren und   <keysym>Strg + Enter</keysym> </para>
+            <para>Textfragment mit einem Element &quot;ummanteln&quot; (beispielsweise, um einen Begriff zu verlinken):  Text markieren und   <keysym>Strg + Enter</keysym> </para>
           </listitem>
           <listitem>
             <para>Navigieren in den Elementen in der Edit-Ansicht:
@@ -1003,7 +982,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
                 <keysym>Strg + I</keysym>
               </keycombo>. Kommentare werden nicht publiziert und können somit
             für eigene Anmerkungen oder Marker innerhalb des Dokuments genutzt
-            werden. Auch können durch Kommentare "Diskussionen" mit anderen
+            werden. Auch können durch Kommentare &quot;Diskussionen&quot; mit anderen
             Redakteuren geführt werden. Sind Kommentare vorhanden, werden
             diese mit einem Kommentar-Symbol <inlinemediaobject>
                 <imageobject>
@@ -1055,13 +1034,13 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
               <term>Größe/Dimensionen</term>
               <listitem>
                 <para>Grafiken sollten nicht breiter als 550 Pixel sein. Gegebenenfalls können passende Ausschnitte gewählt werden, oder die Abbildung in einer Grafikbearbeitungssoftware skaliert werden.</para>
-                <para>Ist die Abbildung größer als der dafür zur Verfügung stehende Raum, wird - in der PDF-Ausgabe - die Grafik rechts und/oder unten abgeschnitten. Sollen auch größere Abbildungen unbeschnitten dargestellt werden, müssen diese entweder im Vorfeld mit einer Grafikbearbeitung skaliert werden, oder es wird das Attribut <code>width="X%"</code> für das Element <code>&lt;imagedata&gt;</code> genutzt. Siehe auch <xref linkend="bsp_skalierungen"/></para>
+                <para>Ist die Abbildung größer als der dafür zur Verfügung stehende Raum, wird - in der PDF-Ausgabe - die Grafik rechts und/oder unten abgeschnitten. Sollen auch größere Abbildungen unbeschnitten dargestellt werden, müssen diese entweder im Vorfeld mit einer Grafikbearbeitung skaliert werden, oder es wird das Attribut <code>width=&quot;X%&quot;</code> für das Element <code>&lt;imagedata&gt;</code> genutzt. Siehe auch <xref linkend="bsp_skalierungen"/></para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>Dateiformat</term>
               <listitem>
-                <para>Bevorzugt wird das Dateiformat Portable Network Graphics (PNG) gewählt. Dies wird von dem von <application>zpub</application> genutzten fo-Formatierer <application>fop</application> nativ unterstützt, bietet "echte" Transparenz via Alphakanal und verlustfreie Kompression.</para>
+                <para>Bevorzugt wird das Dateiformat Portable Network Graphics (PNG) gewählt. Dies wird von dem von <application>zpub</application> genutzten fo-Formatierer <application>fop</application> nativ unterstützt, bietet &quot;echte&quot; Transparenz via Alphakanal und verlustfreie Kompression.</para>
                 <para>Weiter ist auch die gute Unterstützung von Scalable Vector Graphics (SVG, deutsch skalierbare Vektorgrafiken) zu nennen.</para>
               </listitem>
             </varlistentry>
@@ -1124,7 +1103,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
             <para>Ausgabebeispiel: <emphasis>Dieser Text ist &lt;emphasis&gt;.</emphasis></para>
           </listitem>
           <listitem>
-            <para>Für Text in Fettdruck kann &lt;emphasis role="strong"&gt; ...&lt;/emphasis&gt; verwendet werden.</para>
+            <para>Für Text in Fettdruck kann &lt;emphasis role=&quot;strong&quot;&gt; ...&lt;/emphasis&gt; verwendet werden.</para>
             <para>Ausgabebeispiel: <emphasis role="strong">Dieser Text ist fett gedruckt.</emphasis>.</para>
           </listitem>
           <listitem>
@@ -1180,16 +1159,16 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
           </listitem>
           <listitem>
             <para>Inline-Elemente</para>
-            <para>Inline-Elemente "fliessen mit dem Text" und erzwingen keinen Zeilenumbruch. Ein <code>xref</code> oder <code>link</code> gehört beispielsweise dazu.</para>
+            <para>Inline-Elemente &quot;fliessen mit dem Text&quot; und erzwingen keinen Zeilenumbruch. Ein <code>xref</code> oder <code>link</code> gehört beispielsweise dazu.</para>
           </listitem>
         </orderedlist></para>
-      <para>Beim Editieren muß der Redakteur den Text in adäquate DocBook-Elemente "verpacken" - dazu stehen eine fast unüberschaubare Menge an unterschiedlichen Elementen zur Verfügung. Eine Auflistung sämtlicher Elemente ist auf der <ulink url="http://www.docbook.org/tdg/en/html/part2.html">DocBook-Webseite</ulink>  untergebracht. </para>
+      <para>Beim Editieren muß der Redakteur den Text in adäquate DocBook-Elemente &quot;verpacken&quot; - dazu stehen eine fast unüberschaubare Menge an unterschiedlichen Elementen zur Verfügung. Eine Auflistung sämtlicher Elemente ist auf der <ulink url="http://www.docbook.org/tdg/en/html/part2.html">DocBook-Webseite</ulink>  untergebracht. </para>
       <para>Von den über 400 gelisteten Elementen werden jedoch meist nur eine sehr viel geringere Anzahl für die eigenen Dokumentationen benötigt. In <xref linkend="docbook_elemente"/> wird die Verwendung und Bedeutung der wichtigsten Elemente erläutert.</para>
       <section>
         <title>Markup <emphasis>escapen</emphasis></title>
         <note>
           <para>
- Soll DocBook- oder XML-Markup lediglich ausgegeben statt ausgewertet werden, so müssen Teile davon "escaped" werden. Beispielsweise die Zeichen, die ein DocBook-/XML-Element einleiten (<code>&lt;</code>) und beenden (<code>&gt;</code>), müssen als Entity notiert (<code>&lt;</code> sowie <code>&gt;</code>) werden, damit sie beim Generieren der Ausgabeformate auch "buchstäblich" ausgegeben werden.
+ Soll DocBook- oder XML-Markup lediglich ausgegeben statt ausgewertet werden, so müssen Teile davon &quot;escaped&quot; werden. Beispielsweise die Zeichen, die ein DocBook-/XML-Element einleiten (<code>&lt;</code>) und beenden (<code>&gt;</code>), müssen als Entity notiert (<code>&lt;</code> sowie <code>&gt;</code>) werden, damit sie beim Generieren der Ausgabeformate auch &quot;buchstäblich&quot; ausgegeben werden.
  </para>
           <para>
  Bei längeren Textpassagen, die eventuell XML-Markup enthalten, kann die gesamte Textpassage als <code>CDATA</code> markiert und escaped werden: 
@@ -1232,15 +1211,14 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
     </section>
   </chapter>
   <chapter>
-  <title>Ausgbeformate</title>
-  <para><application>zpub</application> generiert automatisch nach jedem SVN-commit die konfigurierten Ausgabeformat - z.B. PDF, XHTML, CHM und EPUB. Das Layout und Design der Ausgbeformate wird über Stylesheets bestimmt und kann individuell angepasst werden. So können die Dokumente beispielsweise mit dem eigenen Branding/Corporate Design versehen werden. Die Anpassungen werden im Verzeichnis <code>style/</code> der <application>zpub</application>-Instanz vorgenommen. </para>
+    <title>Ausgbeformate</title>
+    <para><application>zpub</application> generiert automatisch nach jedem SVN-commit die konfigurierten Ausgabeformat - z.B. PDF, XHTML, CHM und EPUB. Das Layout und Design der Ausgbeformate wird über Stylesheets bestimmt und kann individuell angepasst werden. So können die Dokumente beispielsweise mit dem eigenen Branding/Corporate Design versehen werden. Die Anpassungen werden im Verzeichnis <code>style/</code> der <application>zpub</application>-Instanz vorgenommen. </para>
   </chapter>
   <appendix id="docbook_elemente">
     <title>DocBook-Elemente</title>
-    <abstract><title>DocBook-Elemente: Übersicht</title>
-    	<para>Dieser Anhang stellt einige der gebräuchlichsten DocBook-Elemente sowie der Eingabe mit <application>Serna Free</application> und im Quelltext vor.</para>
-
-
+    <abstract>
+      <title>DocBook-Elemente: Übersicht</title>
+      <para>Dieser Anhang stellt einige der gebräuchlichsten DocBook-Elemente sowie der Eingabe mit <application>Serna Free</application> und im Quelltext vor.</para>
       <para>
       Die im Folgenden aufgelisteten DocBook-Tags werden bisher in den
         &custname;-Dokumentationen verwendet und für diese Tags sind entsprechende
@@ -1250,76 +1228,75 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
         Ausgabeformaten in einer Standardformatierung. Es handelt sich um eine
         Auswahl der wichtigsten Tags:
         </para>
-        <para>
+      <para>
         
       <itemizedlist>
-        <listitem>
-          <para><sgmltag>book</sgmltag> - Definiert ein Buch; hier: ein
+          <listitem>
+            <para><sgmltag>book</sgmltag> - Definiert ein Buch; hier: ein
             Dokument.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>preface</sgmltag> - Ein Vorwort. Kann nur direkt
+          </listitem>
+          <listitem>
+            <para><sgmltag>preface</sgmltag> - Ein Vorwort. Kann nur direkt
             für den <sgmltag>book</sgmltag>-Tag verwendet werden.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>chapter</sgmltag> - Ein Kapitel. Kapitel können
+          </listitem>
+          <listitem>
+            <para><sgmltag>chapter</sgmltag> - Ein Kapitel. Kapitel können
             nicht verschachtelt werden. Sollen Kapitel weiter untergliedert
             werden, so geschieht dies durch eine oder mehrere
             <sgmltag>section</sgmltag>s.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>section</sgmltag> - Eine Unterteilung eines
+          </listitem>
+          <listitem>
+            <para><sgmltag>section</sgmltag> - Eine Unterteilung eines
             Kapitels.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>title</sgmltag> - Ein Titel. Titel sind u.a. für
+          </listitem>
+          <listitem>
+            <para><sgmltag>title</sgmltag> - Ein Titel. Titel sind u.a. für
             <sgmltag>chapter</sgmltag> und <sgmltag>section</sgmltag> sowie
             Abbildungen, Tabellen etc. notwendig. Diese Titel erscheinen
             ebenfalls in den generierten Verzeichnissen.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>para</sgmltag> - Ein Absatz. Der Standard-Tag für
+          </listitem>
+          <listitem>
+            <para><sgmltag>para</sgmltag> - Ein Absatz. Der Standard-Tag für
             Fließtext.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>itemizedlist</sgmltag> - Eine ungeordnete
+          </listitem>
+          <listitem>
+            <para><sgmltag>itemizedlist</sgmltag> - Eine ungeordnete
             (Bullet-)Liste.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>orderedlist</sgmltag> - Eine geordnete
+          </listitem>
+          <listitem>
+            <para><sgmltag>orderedlist</sgmltag> - Eine geordnete
             (standardmäßig durchnummerierte) Liste.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>figure</sgmltag>, <sgmltag>screenshot</sgmltag>,
+          </listitem>
+          <listitem>
+            <para><sgmltag>figure</sgmltag>, <sgmltag>screenshot</sgmltag>,
             <sgmltag>figure</sgmltag>(<sgmltag>screenshot</sgmltag>) -
             Abbildungen, Fotos, Screenshots u.ä. Siehe unten.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>table</sgmltag> - Eine Tabelle. Siehe unten.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>keycap</sgmltag>, <sgmltag>keysym</sgmltag> - Eine Taste.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>keycombo</sgmltag> - Eine Tastenkombination,
+          </listitem>
+          <listitem>
+            <para><sgmltag>table</sgmltag> - Eine Tabelle. Siehe unten.</para>
+          </listitem>
+          <listitem>
+            <para><sgmltag>keycap</sgmltag>, <sgmltag>keysym</sgmltag> - Eine Taste.</para>
+          </listitem>
+          <listitem>
+            <para><sgmltag>keycombo</sgmltag> - Eine Tastenkombination,
             bestehend aus Tasten im <sgmltag>keycap</sgmltag> Tag.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>ulink</sgmltag> - Ein externer Link. Siehe
+          </listitem>
+          <listitem>
+            <para><sgmltag>ulink</sgmltag> - Ein externer Link. Siehe
             unten.</para>
-        </listitem>
-        <listitem>
-          <para><sgmltag>xref, link</sgmltag> - Ein interner Link. Siehe
+          </listitem>
+          <listitem>
+            <para><sgmltag>xref, link</sgmltag> - Ein interner Link. Siehe
             unten.</para>
-        </listitem>
-      </itemizedlist>
+          </listitem>
+        </itemizedlist>
 <!--<para>Eine komplette Auswahl aller Tags ist immer in der Seitenleiste
         des Editors im Reiter &apos;Bearbeiten&apos; untergebracht. Hier werden - nach
         Auswahl der Art des Bearbeitungs- bzw. Einfügungsmodus - die in dieser
         Situation gültigen Tags aufgelistet.</para>-->    
         </para>
-
-       </abstract>
+    </abstract>
     <section>
       <title>Kommentare</title>
       <para>Kommentare im Sinne von XML-Kommentaren erscheinen nicht in den
@@ -1410,7 +1387,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
         </varlistentry>
         <varlistentry>
           <term>
-            <code>&lt;glossentry id=""&gt;</code>
+            <code>&lt;glossentry id=&quot;&quot;&gt;</code>
           </term>
           <listitem>
             <para>Nimmt den eigentlichen Glossar-Begriff (<code>&lt;glossterm&gt;</code>) auf sowie die Beschreibung (<code>&lt;glossdef&gt;</code>) auf.</para>
@@ -1418,7 +1395,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
         </varlistentry>
         <varlistentry>
           <term>
-            <code>&lt;glossterm id=""&gt;</code>
+            <code>&lt;glossterm id=&quot;&quot;&gt;</code>
           </term>
           <listitem>
             <para>Verweist im Fließtext auf die Begriffserläuterung im Glossar. Über die <code>id</code> werden die Begriffe verlinkt.</para>
@@ -1426,22 +1403,23 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
         </varlistentry>
       </variablelist>
       <note>
-        <para>Um ein konsistentes Benennungsschema zu erhalten und mögliche Inferenzen mit anderen <code>id</code>s gering zu halten, können Glossar-<code>id</code>s mit einem Präfix wie <literal>"gloss-"</literal> versehen werden.</para>
+        <para>Um ein konsistentes Benennungsschema zu erhalten und mögliche Inferenzen mit anderen <code>id</code>s gering zu halten, können Glossar-<code>id</code>s mit einem Präfix wie <literal>&quot;gloss-&quot;</literal> versehen werden.</para>
       </note>
       <para>Das Glossar wird automatisch alphabetisch sortiert (dies kann über einen Stylesheet-Parameter definiert werden).</para>
-
       <example>
-      <title>Quelltext-Beispiel: Glossar</title>
-      <formalpara><title>Verweis innerhalb des Dokuments auf den Glossareintrag:</title>
-      <para>
+        <title>Quelltext-Beispiel: Glossar</title>
+        <formalpara>
+          <title>Verweis innerhalb des Dokuments auf den Glossareintrag:</title>
+          <para>
 <programlisting><![CDATA[<!-- ... -->
 <para>Grundlage bildet die <glossterm linkend="gloss_docbook">DocBook</glossterm>-Datei</para>
 <!-- ... -->]]></programlisting>
 
 </para>
-      </formalpara>
-      <formalpara><title>Definition des Glossareintrags im Glossar:</title>
-      <para>
+        </formalpara>
+        <formalpara>
+          <title>Definition des Glossareintrags im Glossar:</title>
+          <para>
 <programlisting><![CDATA[<!-- ... -->
 <glossary>
 <!-- ... -->
@@ -1456,7 +1434,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
 <!-- ... -->]]></programlisting>
 
 </para>
-      </formalpara>
+        </formalpara>
       </example>
       <para>Grundlage bildet die <glossterm linkend="gloss_docbook">DocBook</glossterm>-Datei</para>
     </section>
@@ -1470,7 +1448,7 @@ Wie schon erwähnt, dient DocBook der inhaltlichen Auszeichnung des Textes und n
    timeout=30 <co linkends="timeout-co" id="timeout-co"/> 
    default=multi(0)disk(0)rdisk(0)partition(1)\WINDOWS
 [operating systems] <co linkends="oslist-co" id="oslist-co"/> 
-   multi(0)disk(0)rdisk(0)partition(1)\WINDOWS="Microsoft Windows XP Professional" /fastdetect /NoExecute=OptIn
+   multi(0)disk(0)rdisk(0)partition(1)\WINDOWS=&quot;Microsoft Windows XP Professional&quot; /fastdetect /NoExecute=OptIn
 </programlisting>
       <calloutlist>
         <callout arearefs="timeout-co">
@@ -1506,69 +1484,60 @@ Definiert die möglichen zu startenden Betriebssysteme.
     </section>
     <section>
       <title>Indexterm <code>indexterm</code></title>
-      <para>Ein <code>Indexterm</code> defniniert einen Begriff, der im automatisch generierten Index am Ende des Dokuments ("Stichwortverzeichnis") aufgeführt werden soll. Es können dabei auch Indexterme verschachtelt werden, um Zusammengehörigkeiten von Begrifflichkeiten herauszuarbeiten. Es sind dabei drei Ebenen möglich. Der Indexterm selber wird im Ausgabeformat nicht gerendert, er dient lediglich als Anker für den Begriff im Stichwortverzeichnis. Der <sgmltag>indexterm</sgmltag> erzeugt keine Ausgabe an der Stelle, an der er eingefügt wird, er wird quasi an einen vorhandenen Begriff, ein vorhandenes Kaptitel o.ä. angehängt (siehe folgendes Quellcode-Beispiel):</para>
-      
-
-<example>
-<title>indexterm Textbeispiel</title>
-<para>
-GNU ist das im Rahmen des GNU-Projekts<indexterm><primary>GNU</primary></indexterm> in Entwicklung befindliche, vollständig freie Betriebssystem. Die Bezeichnung ist ein rekursives Akronym von GNU’s Not Unix. Es wird mit dem Ziel entwickelt, eine vollständig freie Alternative für Unix zu bieten, und steht unter der GNU General Public License (GPL). GNU ist POSIX-kompatibel. Es besteht aus dem Mach<indexterm><primary>GNU</primary><secondary>Kernel</secondary><tertiary>Mach</tertiary></indexterm> Microkernel<indexterm><primary>GNU</primary><secondary>Kernel</secondary></indexterm>, den Services GNU Hurd und der weiteren Software<indexterm><primary>GNU</primary><secondary>GNU-Tools</secondary></indexterm> des GNU-Projekts.
+      <para>Ein <code>Indexterm</code> defniniert einen Begriff, der im automatisch generierten Index am Ende des Dokuments (&quot;Stichwortverzeichnis&quot;) aufgeführt werden soll. Es können dabei auch Indexterme verschachtelt werden, um Zusammengehörigkeiten von Begrifflichkeiten herauszuarbeiten. Es sind dabei drei Ebenen möglich. Der Indexterm selber wird im Ausgabeformat nicht gerendert, er dient lediglich als Anker für den Begriff im Stichwortverzeichnis. Der <sgmltag>indexterm</sgmltag> erzeugt keine Ausgabe an der Stelle, an der er eingefügt wird, er wird quasi an einen vorhandenen Begriff, ein vorhandenes Kaptitel o.ä. angehängt (siehe folgendes Quellcode-Beispiel):</para>
+      <example>
+        <title>indexterm Textbeispiel</title>
+        <para>
+GNU ist das im Rahmen des GNU-Projekts<indexterm>
+            <primary>GNU</primary>
+          </indexterm> in Entwicklung befindliche, vollständig freie Betriebssystem. Die Bezeichnung ist ein rekursives Akronym von GNU’s Not Unix. Es wird mit dem Ziel entwickelt, eine vollständig freie Alternative für Unix zu bieten, und steht unter der GNU General Public License (GPL). GNU ist POSIX-kompatibel. Es besteht aus dem Mach<indexterm>
+            <primary>GNU</primary>
+            <secondary>Kernel</secondary>
+            <tertiary>Mach</tertiary>
+          </indexterm> Microkernel<indexterm>
+            <primary>GNU</primary>
+            <secondary>Kernel</secondary>
+          </indexterm>, den Services GNU Hurd und der weiteren Software<indexterm>
+            <primary>GNU</primary>
+            <secondary>GNU-Tools</secondary>
+          </indexterm> des GNU-Projekts.
 </para>
-</example>
-
-<example>
+      </example>
+      <example>
         <title>Indexterm Quellcodebeispiel</title>
         <para>
-	
+ 
 <programlisting>&lt;section&gt;
 &lt;title&gt;GNU&lt;/title&gt;
 &lt;para&gt;
 GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;/indexterm&gt;</emphasis> in Entwicklung befindliche, vollständig freie Betriebssystem. Die Bezeichnung ist ein rekursives Akronym von GNU’s Not Unix. Es wird mit dem Ziel entwickelt, eine vollständig freie Alternative für Unix zu bieten, und steht unter der GNU General Public License (GPL). GNU ist POSIX-kompatibel. Es besteht aus dem Mach<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;Kernel&lt;/secondary&gt;&lt;tertiary&gt;Mach&lt;/tertiary&gt;&lt;/indexterm&gt;</emphasis> Microkernel<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;Kernel&lt;/secondary&gt;&lt;/indexterm&gt;</emphasis>, den Services GNU Hurd und der weiteren Software<emphasis role="strong">&lt;indexterm&gt;&lt;primary&gt;GNU&lt;/primary&gt;&lt;secondary&gt;GNU-Tools&lt;/secondary&gt;&lt;/indexterm&gt;</emphasis> des GNU-Projekts.
-&lt;/para&gt;	
+&lt;/para&gt; 
 &lt;/section&gt;</programlisting>
-		
-		</para>
+  
+  </para>
       </example>
-
-
-
       <note>
-      <para>Für die Ausgabe siehe <xref linkend="index"/>.</para>
+        <para>Für die Ausgabe siehe <xref linkend="index"/>.</para>
       </note>
     </section>
-
-
-
-
-
     <section id="sec_screenshot">
       <title>Abbildung <code>figure</code></title>
       <abstract>
-        <para>Abbildungen können "generisch" via <code>figure</code> oder - in den meisten Fällen spezifischer - über <code>screenshot</code> eingebunden werden.</para>
+        <para>Abbildungen können &quot;generisch&quot; via <code>figure</code> oder - in den meisten Fällen spezifischer - über <code>screenshot</code> eingebunden werden.</para>
       </abstract>
-
-
-      
-
-
-<section>
-<title>Einbindung via <code>figure</code></title>
-
-
-<figure id="fig_bsp">
-  <title>Abbildung <code>figure</code></title>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="images/tortoise-msi.png"/>
-      </imageobject>
-    </mediaobject>
-</figure>
-
-
-
-<example>
-<title>Abbildung ohne Untertitel</title>
-<para>
+      <section>
+        <title>Einbindung via <code>figure</code></title>
+        <figure id="fig_bsp">
+          <title>Abbildung <code>figure</code></title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/tortoise-msi.png"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+        <example>
+          <title>Abbildung ohne Untertitel</title>
+          <para>
 <programlisting><![CDATA[<figure>
   <title>Abbildungstitel</title>
     <mediaobject>
@@ -1578,27 +1547,24 @@ GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&
     </mediaobject>
 </figure>]]></programlisting>
 </para>
-</example>
-</section>
-
-
-
-<section>
-<title>Einbindung via <code>figure</code> mit Untertitel (<code>caption</code>)</title>
-
-		<figure>
-                <title>Beispielabbildung mit Untertitel <code>figure</code> </title>
-                <mediaobject>
-                  <imageobject>
-                    <imagedata fileref="images/tortoise-msi.png"/>
-                  </imageobject>
-                  <caption><para>Untertitel des Abbildung - caption</para></caption>
-                </mediaobject>
-
-              </figure>
-
-<example><title>Abbildung mit Untertitel (<code>caption</code>)</title>
-<para>
+        </example>
+      </section>
+      <section>
+        <title>Einbindung via <code>figure</code> mit Untertitel (<code>caption</code>)</title>
+        <figure>
+          <title>Beispielabbildung mit Untertitel <code>figure</code></title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/tortoise-msi.png"/>
+            </imageobject>
+            <caption>
+              <para>Untertitel des Abbildung - caption</para>
+            </caption>
+          </mediaobject>
+        </figure>
+        <example>
+          <title>Abbildung mit Untertitel (<code>caption</code>)</title>
+          <para>
 <programlisting><![CDATA[<figure>
   <title>Abbildungstitel</title>
   <mediaobject>
@@ -1611,30 +1577,23 @@ GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&
   </mediaobject>
 </figure>]]></programlisting>
 </para>
-</example>
-
-</section>
-
-
-<section>
-<title>Einbindung via <code>screenshot</code></title>
-
-
-<figure id="fig-screenshot_bsp">
-<title>Screenshot-Titel</title>
-  <screenshot>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="images/tortoise-msi.png"/>
-      </imageobject>
-    </mediaobject>
-  </screenshot>
-</figure>
-
-
-
-<example><title>Screenshot</title>
-<para>
+        </example>
+      </section>
+      <section>
+        <title>Einbindung via <code>screenshot</code></title>
+        <figure id="fig-screenshot_bsp">
+          <title>Screenshot-Titel</title>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="images/tortoise-msi.png"/>
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+        <example>
+          <title>Screenshot</title>
+          <para>
 <programlisting><![CDATA[<figure>
 <title>Screenshot-Titel</title>
   <screenshot>
@@ -1646,16 +1605,17 @@ GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&
   </screenshot>
 </figure>]]></programlisting>
 </para>
-</example>
-
-</section>
-
-
+        </example>
+      </section>
     </section>
     <section>
       <title>Abbildung <code>inlinemediaobject</code></title>
       <abstract>
-        <para>Abbildungen und Grafiken können auch <emphasis>inline</emphasis> genutzt werden, beispielsweise um Schaltflächen im Fließtext unterzubringen. Beispielsweise, um einen Button <inlinemediaobject><imageobject><imagedata fileref="images/xxe_button-table.png"/></imageobject></inlinemediaobject> zu beschreiben.</para>
+        <para>Abbildungen und Grafiken können auch <emphasis>inline</emphasis> genutzt werden, beispielsweise um Schaltflächen im Fließtext unterzubringen. Beispielsweise, um einen Button <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="images/xxe_button-table.png"/>
+            </imageobject>
+          </inlinemediaobject> zu beschreiben.</para>
       </abstract>
       <para>Per <code>inlinemediaobject</code> eingebundene Grafiken erhalten keinen Titel und werden in Verzeichnissen nicht aufgeführt.</para>
       <example>
@@ -1671,85 +1631,77 @@ GNU ist das im Rahmen des GNU-Projekts<emphasis role="strong">&lt;indexterm&gt;&
      </para>
       </example>
     </section>
-
-
-
-
-
-  <section>
-    <title>Links</title>
-    <para>Für Verlinkungen in einem Docbook-Dokument stehen drei Möglichekiten zur Verfügung: 
-</para>
-    <orderedlist>
-      <listitem>
-        <para><code>xref</code>: dokumentinterne Verlinkung mit bei Bedarf automatisch generieretem Linktext</para>
-      </listitem>
-      <listitem>
-        <para><code>link</code>: Verlinkung</para>
-      </listitem>
-      <listitem>
-        <para><code>ulink</code>: Verlinkung auf externe URL</para>
-      </listitem>
-    </orderedlist>
-    <para>Für die Verlinkung auf andere Bereiche im selben Dokument ist der Zielbereich mit einer <code>id</code> zu identifizeren.</para>
-    <note>
-      <para>Die Verlinkung/Referenzierung hat sich in Docbook 5.0 gegenüber den bisherigen Docbook 4.5-Dokumenten (verwendet in zpub) geändert.</para>
-    </note>
     <section>
-      <title><code>ID</code>s</title>
-      <para>Mit einer <code>id</code> kann ein eindeutiger Identifizierer innerhalb eines Dokument für ein Element vergeben werden. Über Links wie <code>link</code> oder <code>xref</code> können diese identifizierbaren Elemente angesprungen werden. Im Folgenden ein Quelltext-Beispiel:</para>
-      <example>
-        <title><code>ID</code>-Vergabe/Verlinkung von Elementen</title>
-        <programlisting><![CDATA[<section id="anker">
+      <title>Links</title>
+      <para>Für Verlinkungen in einem Docbook-Dokument stehen drei Möglichekiten zur Verfügung: 
+</para>
+      <orderedlist>
+        <listitem>
+          <para><code>xref</code>: dokumentinterne Verlinkung mit bei Bedarf automatisch generieretem Linktext</para>
+        </listitem>
+        <listitem>
+          <para><code>link</code>: Verlinkung</para>
+        </listitem>
+        <listitem>
+          <para><code>ulink</code>: Verlinkung auf externe URL</para>
+        </listitem>
+      </orderedlist>
+      <para>Für die Verlinkung auf andere Bereiche im selben Dokument ist der Zielbereich mit einer <code>id</code> zu identifizeren.</para>
+      <note>
+        <para>Die Verlinkung/Referenzierung hat sich in Docbook 5.0 gegenüber den bisherigen Docbook 4.5-Dokumenten (verwendet in zpub) geändert.</para>
+      </note>
+      <section>
+        <title><code>ID</code>s</title>
+        <para>Mit einer <code>id</code> kann ein eindeutiger Identifizierer innerhalb eines Dokument für ein Element vergeben werden. Über Links wie <code>link</code> oder <code>xref</code> können diese identifizierbaren Elemente angesprungen werden. Im Folgenden ein Quelltext-Beispiel:</para>
+        <example>
+          <title><code>ID</code>-Vergabe/Verlinkung von Elementen</title>
+          <programlisting><![CDATA[<section id="anker">
   <title>Beispieltitel</title>
   <para>Nullam consequat. Phasellus iaculis.</para>
   <para> Nam accumsan tincidunt elit. Suspendisse rutrum luctus nisi. Siehe auch <link linkend="anker">Linkziel</link>.</para>
 </section>]]></programlisting>
-      </example>
-    </section>
-    <section>
-      <title>
-        <code>xref</code>
-      </title>
-      <para>Mit <code>xref</code> kann ohne die Angabe eines Linktexts auf einen mit einer <code>id</code> referenzierten Bereich verlinkt werden, wobei der Linktext aus dem Zielbereich (normalerweise dem <code>title</code>-Element generiert wird. Wird der Link für die PDF-Ausgabe generiert, wird dem Linktext noch die Seitenangabe der Zielseite hinten angestellt.</para>
-      <example>
-        <title><code>xref</code>-Vergabe/Verlinkung von Elementen</title>
-        <programlisting><![CDATA[<section id="anker">
+        </example>
+      </section>
+      <section>
+        <title>
+          <code>xref</code>
+        </title>
+        <para>Mit <code>xref</code> kann ohne die Angabe eines Linktexts auf einen mit einer <code>id</code> referenzierten Bereich verlinkt werden, wobei der Linktext aus dem Zielbereich (normalerweise dem <code>title</code>-Element generiert wird. Wird der Link für die PDF-Ausgabe generiert, wird dem Linktext noch die Seitenangabe der Zielseite hinten angestellt.</para>
+        <example>
+          <title><code>xref</code>-Vergabe/Verlinkung von Elementen</title>
+          <programlisting><![CDATA[<section id="anker">
   <title>Beispieltitel</title>
   <para>Nullam consequat. Phasellus iaculis.</para>
   <para> Nam accumsan tincidunt elit. Suspendisse rutrum luctus nisi. Siehe auch <xref linkend="anker"/>.</para>
 </section>]]></programlisting>
-      </example>
-      <para>Der folgende Link ist im Quellcode als <code><![CDATA[<xref linkend="docbook_elemente"/>]]></code> angegeben, die Ausgabe dagegen sieht wie folgt aus: <xref linkend="docbook_elemente"/>. Noch ein Beispiellink: siehe auch <xref linkend="verwaltung_der_dokumente"/>. </para>
-    </section>
-    <section>
-      <title>
-        <code>link</code>
-      </title>
-      <para>Soll der Linktext nicht automatisch generiert werden, bietet sich das Element <code>link</code>  an. Es erwartet die Angabe einer <code>id</code> für das Linkziel und umschließt den zu verlinkenden Text: <programlisting>&lt;link linkend='ziel-id'&gt;Linktext&lt;/link&gt;</programlisting></para>
-      <formalpara>
-        <title>Beispiel</title>
-        <para>Donec eu felis ac urna aliquam <link linkend="verwaltung_der_dokumente">ultrices pellentesque</link> non diam. Phasellus imperdiet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus auctor dui ac suscipit.</para>
-      </formalpara>
-    </section>
-    <section>
-      <title>
-        <code>ulink</code>
-      </title>
-      <para>Für die Verlinkung von externen Ressourcen wird mit <code>ulink</code> gearbeitet. <code>ulink</code> erwartet lediglich das Attribut <code>url</code> und umschließt den zu verlinkenden Text. Ist der zu verlinkende Text leer (<code>&lt;ulink url="..."/&gt;</code> oder <code>&lt;ulink url="..."&gt;&lt;/ulink&gt;</code>) wird die URL als Linktext ausgegeben.</para>
-      <formalpara>
-        <title>Beispiel</title>
-        <para>Donec eu felis ac <ulink url="http://www.zpub.de/de/">urna aliquam</ulink>  ultrices pellentesque non diam. Phasellus imper-
+        </example>
+        <para>Der folgende Link ist im Quellcode als <code><![CDATA[<xref linkend="docbook_elemente"/>]]></code> angegeben, die Ausgabe dagegen sieht wie folgt aus: <xref linkend="docbook_elemente"/>. Noch ein Beispiellink: siehe auch <xref linkend="verwaltung_der_dokumente"/>. </para>
+      </section>
+      <section>
+        <title>
+          <code>link</code>
+        </title>
+        <para>Soll der Linktext nicht automatisch generiert werden, bietet sich das Element <code>link</code>  an. Es erwartet die Angabe einer <code>id</code> für das Linkziel und umschließt den zu verlinkenden Text: <programlisting>&lt;link linkend=&apos;ziel-id&apos;&gt;Linktext&lt;/link&gt;</programlisting></para>
+        <formalpara>
+          <title>Beispiel</title>
+          <para>Donec eu felis ac urna aliquam <link linkend="verwaltung_der_dokumente">ultrices pellentesque</link> non diam. Phasellus imperdiet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus auctor dui ac suscipit.</para>
+        </formalpara>
+      </section>
+      <section>
+        <title>
+          <code>ulink</code>
+        </title>
+        <para>Für die Verlinkung von externen Ressourcen wird mit <code>ulink</code> gearbeitet. <code>ulink</code> erwartet lediglich das Attribut <code>url</code> und umschließt den zu verlinkenden Text. Ist der zu verlinkende Text leer (<code>&lt;ulink url=&quot;...&quot;/&gt;</code> oder <code>&lt;ulink url=&quot;...&quot;&gt;&lt;/ulink&gt;</code>) wird die URL als Linktext ausgegeben.</para>
+        <formalpara>
+          <title>Beispiel</title>
+          <para>Donec eu felis ac <ulink url="http://www.zpub.de/de/">urna aliquam</ulink>  ultrices pellentesque non diam. Phasellus imper-
 diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus 
 <ulink url="http://www.breitnerundbreitner.de/"/> auctor dui ac suscipit.
 </para>
-      </formalpara>
-      <para>Wird die Ausgabe der URL im Fließtext unterdrückt, da ein individueller Linktext angegeben ist, wird die verlinkte URL in der PDF-Ausgabe als Fußnote dargestellt.</para>
+        </formalpara>
+        <para>Wird die Ausgabe der URL im Fließtext unterdrückt, da ein individueller Linktext angegeben ist, wird die verlinkte URL in der PDF-Ausgabe als Fußnote dargestellt.</para>
+      </section>
     </section>
-  </section>
-
-
-
 <!--
     <section>
       <title>Externer Link <code>ulink</code></title>
@@ -1788,10 +1740,7 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
         nisi.</para>
       </formalpara>
     </section>
-/-->
-
-
-    <section>
+/-->    <section>
       <title>Geordnete Liste <code>orderedlist</code></title>
       <indexterm>
         <primary>Listen</primary>
@@ -1871,81 +1820,78 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
               <col width="40%"/>
               <col width="60%"/>
             </colgroup>
-              <thead>
-                <tr>
-                  <th>Spaltentitel</th>
-                  <th>Spaltentitel</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Test</td>
-                  <td>Test</td>
-                </tr>
-                <tr>
-                  <td>Test</td>
-                  <td>Test</td>
-                </tr>
-                <tr>
-                  <td>Test</td>
-                  <td>Test</td>
-                </tr>
-                <tr>
-                  <td>Test</td>
-                  <td>Test</td>
-                </tr>
-              </tbody>
+            <thead>
+              <tr>
+                <th>Spaltentitel</th>
+                <th>Spaltentitel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Test</td>
+                <td>Test</td>
+              </tr>
+              <tr>
+                <td>Test</td>
+                <td>Test</td>
+              </tr>
+              <tr>
+                <td>Test</td>
+                <td>Test</td>
+              </tr>
+              <tr>
+                <td>Test</td>
+                <td>Test</td>
+              </tr>
+            </tbody>
           </table>
 
           
       </para>
       </formalpara>
-
-  <tip>
-  <para>Sollen bei der PDF-Ausgabe alternierende Hintergrundfarben für die Tabellenzeilen ausgegeben werden, ist für das <code>table</code>-Element das Attribut <code>tabstyle="striped"</code> anzugeben. Die HTML-Ausgabe verwendet in jedem Fall alternierende Hintergrundfarben.</para>
-  </tip>
-  
-    <table tabstyle="striped">
-<caption>Beispieltabelle mit alternierenden Zeilehintergrundfarben</caption>
-      <thead>
-        <tr>
-          <th>Labelname im G20/G21/G22-Befehl</th>
-          <th>Registerwert bei Programmausführung</th>
-          <th>Programmfortsetzung bei / Aufruf von UP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>G20$TOOL-%R5%-TEST$</td>
-          <td>R5 = 18</td>
-          <td>$TOOL-18-TEST$</td>
-        </tr>
-        <tr>
-          <td>G20$TOOL-%R5%-TEST$</td>
-          <td>R5 = 1444</td>
-          <td>$TOOL-1444-TEST$</td>
-        </tr>
-        <tr>
-          <td>G22E5$TOOL-%R5%-TEST$</td>
-          <td>R5 = 333</td>
-          <td>G98$TOOL-333-TEST$</td>
-        </tr>
-        <tr>
-          <td>G20$%R1004%$</td>
-          <td>R1004 = 18</td>
-          <td>$18$</td>
-        </tr>
-        <tr>
-          <td>G22$%R163%$</td>
-          <td>R163 = 15</td>
-          <td>G98$15$</td>
-        </tr>
-      </tbody>
-    </table>
-    <note>
-     <para>Die CSS-Regeln für die Tabellendarstellung in der HTML-Ausgabe werden von allen modernen Browsern korrekt ausgeführt. Lediglich Microsoft Internet Explorer bis zu Version 8 ist nicht in der Lage, bestimmte Regeln zu interpretieren.</para>
-     </note>
-
+      <tip>
+        <para>Sollen bei der PDF-Ausgabe alternierende Hintergrundfarben für die Tabellenzeilen ausgegeben werden, ist für das <code>table</code>-Element das Attribut <code>tabstyle=&quot;striped&quot;</code> anzugeben. Die HTML-Ausgabe verwendet in jedem Fall alternierende Hintergrundfarben.</para>
+      </tip>
+      <table tabstyle="striped">
+        <caption>Beispieltabelle mit alternierenden Zeilehintergrundfarben</caption>
+        <thead>
+          <tr>
+            <th>Labelname im G20/G21/G22-Befehl</th>
+            <th>Registerwert bei Programmausführung</th>
+            <th>Programmfortsetzung bei / Aufruf von UP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>G20$TOOL-%R5%-TEST$</td>
+            <td>R5 = 18</td>
+            <td>$TOOL-18-TEST$</td>
+          </tr>
+          <tr>
+            <td>G20$TOOL-%R5%-TEST$</td>
+            <td>R5 = 1444</td>
+            <td>$TOOL-1444-TEST$</td>
+          </tr>
+          <tr>
+            <td>G22E5$TOOL-%R5%-TEST$</td>
+            <td>R5 = 333</td>
+            <td>G98$TOOL-333-TEST$</td>
+          </tr>
+          <tr>
+            <td>G20$%R1004%$</td>
+            <td>R1004 = 18</td>
+            <td>$18$</td>
+          </tr>
+          <tr>
+            <td>G22$%R163%$</td>
+            <td>R163 = 15</td>
+            <td>G98$15$</td>
+          </tr>
+        </tbody>
+      </table>
+      <note>
+        <para>Die CSS-Regeln für die Tabellendarstellung in der HTML-Ausgabe werden von allen modernen Browsern korrekt ausgeführt. Lediglich Microsoft Internet Explorer bis zu Version 8 ist nicht in der Lage, bestimmte Regeln zu interpretieren.</para>
+      </note>
       <formalpara>
         <title>CALS-Tabelle</title>
         <para>Tabellen nach dem CALS-Modell sind nach dem Schema <code>table - row - entry</code> aufgebaut:
@@ -1995,13 +1941,13 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
           <para>Rechtsklick</para>
         </listitem>
         <listitem>
-          <para>Kontextmenüeintrag 'TortoiseSVN'</para>
+          <para>Kontextmenüeintrag &apos;TortoiseSVN&apos;</para>
         </listitem>
         <listitem>
-          <para>Kontextmenüeintrag 'Settings'/'Einstellungen'</para>
+          <para>Kontextmenüeintrag &apos;Settings&apos;/&apos;Einstellungen&apos;</para>
         </listitem>
         <listitem>
-          <para>Im erscheinenden Einstellungsdialog unter 'Network'/'Netzwerk'
+          <para>Im erscheinenden Einstellungsdialog unter &apos;Network&apos;/&apos;Netzwerk&apos;
           die korrekten Proxy-Einstellungen für Ihr Netzwerk vornehmen. Diese
           Einstellungen erhalten Sie von Ihrem Netzwerk-Administrator/
           EDV-Ansprechpartner.</para>
@@ -2045,8 +1991,8 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
       auseinandergerissen. Diese Editor-Einstellung sollte wie unter <xref linkend="xmlmindlinelength"/> beschrieben vorgenommen werden.</para>
     </section>
     <section>
-    <title>Die Ausgabe von PDF/HTML/etc gefällt nicht</title>
-    <para>Wenden Sie sich mit Ihren Wünschen an <ulink url="mailto:mail@zpub.de">uns</ulink> - wir unterstützen Sie gerne.</para>
+      <title>Die Ausgabe von PDF/HTML/etc gefällt nicht</title>
+      <para>Wenden Sie sich mit Ihren Wünschen an <ulink url="mailto:mail@zpub.de">uns</ulink> - wir unterstützen Sie gerne.</para>
     </section>
   </appendix>
   <appendix id="appendix_xmlmind">
@@ -2065,9 +2011,9 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
         <primary>Installation</primary>
         <secondary>Installation XML-Editor</secondary>
       </indexterm>
-      <para>Für dieses Handbuch wird beispielhaft mit dem XML-Editor "XMLmind
-      XML Editor" gearbeitet. Das Installationspaket zum Download befindet
-      sich auf der Download-Seite der "Personal Edition" von <ulink url="http://www.xmlmind.com/xmleditor/download.shtml">XMLmind</ulink>.
+      <para>Für dieses Handbuch wird beispielhaft mit dem XML-Editor &quot;XMLmind
+      XML Editor&quot; gearbeitet. Das Installationspaket zum Download befindet
+      sich auf der Download-Seite der &quot;Personal Edition&quot; von <ulink url="http://www.xmlmind.com/xmleditor/download.shtml">XMLmind</ulink>.
       Für unterschiedliche Betriebssysteme stehen jeweils eigene
       Installationspakte zur Verfügung. Nutzer einer Windows-Version können
       zwischen einem Bundle des Editors mit der JRE von Sun oder nur dem
@@ -2101,12 +2047,12 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
           </listitem>
           <listitem>
             <para>Es öffnet sich der der Add-on-Manager, in welchem die
-            gewünschten Add-ons (hier: "Translation German/Deutsch" sowie
-            "Dictionary German/Deutsch" zu aktivieren sind. Wird der Dialog
-            über den "OK"-Button geschlossen, werden die Erweiterungen
+            gewünschten Add-ons (hier: &quot;Translation German/Deutsch&quot; sowie
+            &quot;Dictionary German/Deutsch&quot; zu aktivieren sind. Wird der Dialog
+            über den &quot;OK&quot;-Button geschlossen, werden die Erweiterungen
             installiert und stehen nach einem Neustart des Programms zur
             Verfügung.<figure>
-                <title>Erweiterung "Translation" und "Dictionary" installieren</title>
+                <title>Erweiterung &quot;Translation&quot; und &quot;Dictionary&quot; installieren</title>
                 <screenshot>
                   <screeninfo/>
                   <mediaobject>
@@ -2132,7 +2078,7 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
       <title>Arbeiten mit XXE</title>
       <para>Dokumente werden editiert, indem entweder der Inhalt von vorhanden
       Tags bearbeitet wird, oder indem neue Tags mit neuem Inhalt dem Dokument
-      hinzugefügt werden. Die genannten 'Tags' dienen dabei als Container -
+      hinzugefügt werden. Die genannten &apos;Tags&apos; dienen dabei als Container -
       entweder für tatsächlichen Inhalt oder für weitere Tags. Für ein
       effizientes Bearbeiten von Dokumenten ist es unerlässlich zu wissen, wie
       man sich im Tag-Baum eines Dokumentes navigiert. Im Standardfall wird
@@ -2340,8 +2286,8 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
             </imageobject>
           </mediaobject>
         </screenshot>
-        <para>Ein Doppelklick auf das Grafik-Symbol mit dem Titel 'Unbekanntes
-        Format' öffnet einen Dateidialog über den die gewünschte Abbildung
+        <para>Ein Doppelklick auf das Grafik-Symbol mit dem Titel &apos;Unbekanntes
+        Format&apos; öffnet einen Dateidialog über den die gewünschte Abbildung
         eingegeben wird:</para>
         <screenshot>
           <screeninfo>Dateidialog zur Angabe des Abbildungs-Pfades</screeninfo>
@@ -2444,20 +2390,18 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
           <para>DocBook ist ein Dokumentenformat, das in einer für SGML und XML vorliegenden Dokumenttypdefinition (DTD) festgelegt ist. Es eignet sich besonders zur Erstellung von Büchern, Artikeln und Dokumentationen im technischen Umfeld (Hardware oder Software). DocBook ist ein offener Standard, der von der Organization for the Advancement of Structured Information Standards (OASIS) gepflegt wird.</para>
         </glossdef>
       </glossentry>
-
-
       <glossentry>
         <glossterm>Arbeitsversionen</glossterm>
         <glossdef>
           <para>Eine Arbeitsversion eines Dokuments ist vergleichbar mit einem
           Entwurf, da es Änderungen enthält, die noch nicht freigegeben sind.
           Diese Dokumente sind in den Ausgabeformaten immer mit genauen
-          technischen Angaben zur Revision sowie einem "Draft"-Wasserzeichen
+          technischen Angaben zur Revision sowie einem &quot;Draft&quot;-Wasserzeichen
           gekennzeichnet und nur für den internen Gebrauch bestimmt. Erst wenn
           eine Arbeitsversion freigegeben wird, ändert sie ihren Status in
-          eine "finale Version", welche auch nicht mehr seitenweise (im Falle
+          eine &quot;finale Version&quot;, welche auch nicht mehr seitenweise (im Falle
           des PDF-Ausgabeformats) die Revisionsangaben und das
-          "Draft"-Wasserzeichen enthält.</para>
+          &quot;Draft&quot;-Wasserzeichen enthält.</para>
         </glossdef>
       </glossentry>
       <glossentry>
@@ -2494,7 +2438,7 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
       <glossentry id="tag">
         <glossterm>Tag</glossterm>
         <glossdef>
-          <para>"In Auszeichnungssprachen (engl. mark-up languages) wie SGML,
+          <para>&quot;In Auszeichnungssprachen (engl. mark-up languages) wie SGML,
           XML oder HTML bezeichnen Tags die in Kleiner- und Größerzeichen
           eingeschlossenen Kürzel, die beispielsweise in HTML dazu dienen,
           Textelemente auszuzeichnen oder in XML Daten zu klassifizieren und
@@ -2503,8 +2447,8 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
           gekennzeichnet. Tags können als benannte Klammern aufgefasst werden.
           Analog zur korrekten Klammerung arithmetischer Ausdrücke dürfen
           diese immer nur paarweise auftreten (in HTML existieren auch
-          Ausnahmen). Auf diese Weise erzeugen sie eine Baumstruktur." Siehe
-          Wikipedia-Artikel 'Tag (Informatik)'.</para>
+          Ausnahmen). Auf diese Weise erzeugen sie eine Baumstruktur.&quot; Siehe
+          Wikipedia-Artikel &apos;Tag (Informatik)&apos;.</para>
         </glossdef>
       </glossentry>
       <glossentry>

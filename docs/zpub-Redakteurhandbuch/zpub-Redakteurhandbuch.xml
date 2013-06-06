@@ -45,7 +45,7 @@
       </subject>
     </subjectset>
     <!-- <releaseinfo>$Id: zpub-Anleitung.xml 7 2013-04-15 13:55:40Z breitner $</releaseinfo> /-->
-    <releaseinfo>$Revision: 13 $</releaseinfo>
+    <releaseinfo>$Revision$</releaseinfo>
   </bookinfo>
   <preface>
     <title>Über zpub, das zentrale Dokumentationssystem</title>

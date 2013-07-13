@@ -43,7 +43,9 @@ do
   fi
 done
 
-while sleep 1
+REPEAT="sleep 1"
+
+while $REPEAT
 do
   FILE=$(cd $ZPUB_SPOOL/todo/; ls|head -n 1)
   if [ ! -z "$FILE" ]
@@ -75,5 +77,10 @@ do
     fi
     $ZPUB_BIN/zpub-send-mail.pl "$CUST" "$REV" "$DOC" "$STYLE"
     $ZPUB_BIN/zpub-link-latest.pl "$CUST" "$REV" "$DOC" "$STYLE"
+  else
+    if [ -n "$ZPUB_TEST" ]
+    then
+      REPEAT=false 
+    fi
   fi
 done

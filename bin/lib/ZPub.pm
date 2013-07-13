@@ -121,11 +121,25 @@ sub collect_revisions {
     return sort {$b->{revn} <=> $a->{revn}} @list;
 }
 
+# Collects all styles in these revisions
+sub collect_styles {
+    my @revs = @_;
+
+    my %styles;
+    for my $rev (@revs) {
+	for my $style (@{$rev->{styles}}) {
+	    $styles{$style->{style}} = 1;
+	}
+    }
+
+    return keys %styles;
+}
+
 # Filters out the revs with a given style
 sub select_with_style {
-    my ($style, @revs) = @_;	
+    my ($style,$revs) = @_;
 
-    return grep {$_->{"style"} eq $style} @_;
+    return grep {grep {$_->{"style"} eq $style} @{$_->{styles}}} @$revs;
 }
     
 

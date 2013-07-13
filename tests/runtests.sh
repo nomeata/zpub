@@ -120,11 +120,11 @@ runSpooler
 
 echo Checking that sensible things have been built
 assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
-assertOutput "readlink $ZPUB/test/output/zpub-Redakteurhandbuch/latest" \
-	$ZPUB/test/output/zpub-Redakteurhandbuch/archive/1 
+assertOutput "readlink $ZPUB/test/output/zpub-Redakteurhandbuch/latest/plain" \
+	$ZPUB/test/output/zpub-Redakteurhandbuch/archive/1/plain 
 assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink $ZPUB/test/output/zpub-Technik/latest" \
-      	$ZPUB/test/output/zpub-Technik/archive/1
+assertOutput "readlink $ZPUB/test/output/zpub-Technik/latest/plain" \
+      	$ZPUB/test/output/zpub-Technik/archive/1/plain
 assertOutputContains \
 	"pdftotext $ZPUB/test/output/zpub-Technik/latest/plain/zpub-Technik.pdf  -" \
 	"Zentrales Publikationssystem"
@@ -161,8 +161,8 @@ assertOutputContains 'web cust=test&doc=Testdokument' "Import 1"
 assertOutput "ls $ZPUB/test/output/Testdokument/archive/" 3
 assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
 assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
-	$ZPUB/test/output/Testdokument/archive/3
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/3/plain
 assertOutput "cat $ZPUB/test/cache/documents" "$(echo Testdokument;echo zpub-Technik)"
 
 echo "Changing document"
@@ -174,15 +174,15 @@ assertOutputContains 'web cust=test&doc=Testdokument' "Import 2"
 assertOutput "ls $ZPUB/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
 assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
 assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
-	$ZPUB/test/output/Testdokument/archive/4
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/4/plain
 
 echo "Manually triggering rebuild of version 3"
 echo -e 'test\n3\nTestdokument\nplain\n' > $ZPUB/spool/todo/todo
 runSpooler
 assertOutput "ls $ZPUB/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
-assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
-	$ZPUB/test/output/Testdokument/archive/4
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/4/plain
 
 echo "Verifying that releasing is only possible for the admin"
 echo admin > $ZPUB/test/conf/admins
@@ -204,6 +204,10 @@ assertOutputContains "web_admin cust=test&doc=Testdokument&archive=" '"/static/i
 assertOutputContains "web cust=test&doc=Testdokument" 'Diese Revision ist neuer als die letzte'
 assertOutputContainsNot "web cust=test&doc=Testdokument" 'Diese Version Freigeben'
 assertOutputContains "web_admin cust=test&doc=Testdokument" 'Diese Version Freigeben'
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/4/plain
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain_final" \
+	$ZPUB/test/output/Testdokument/archive/3/plain_final
 
 echo "Adding a file to the top level directory does not do anything."
 echo Foo > $CO/TopLevelFile.xml

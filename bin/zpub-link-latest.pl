@@ -45,25 +45,38 @@ use lib $ZPUB_PERLLIB;
 use ZPub;
 
 
-our ($CUST,$revn,$doc,$style) = @ARGV;
+our ($CUST,$revn,$doc,$argstyle) = @ARGV;
 
-if ( not $CUST or not $revn or not $doc or not $style )
+if ( not $CUST or not $revn or not $doc or not $argstyle )
 {
 	die "Parameter list to $0 not complete\n";
 }
 
+my $latestpath = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/latest", $doc;
+if (-l $latestpath) {
+	print "Removing old-style latest link\n";
+	unlink $latestpath;
+}
+unless (-d $latestpath) {
+	print "Creating directory $latestpath\n";
+	mkdir $latestpath;
+}
+
 my @revisions = collect_revisions($doc);
-my $rev = select_latest_ok(@revisions);
+my @styles = collect_styles(@revisions);
+for my $style (@styles) {
+	my @stylerevs = select_with_style($style, \@revisions);
+	my $rev = select_latest_ok(@stylerevs);
+	if ($rev) {
+		printf "Adding symlink to revision %d for style %s.\n", $rev->{revn}, $style;
+		my $to = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/archive/%d/%s", $doc,$rev->{revn}, $style;
+		my $from = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/latest/%s", $doc, $style;
 
-if ($rev) {
-	printf "Adding symlink to revision %d.\n", $rev->{revn};
-	my $to = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/archive/%d", $doc,$rev->{revn};
-	my $from = sprintf "$ZPUB_INSTANCES/$CUST/output/%s/latest", $doc,$rev->{revn};
-
-	if  (-l $from) {
-		unlink $from or die "Could not remove old symlink $from\n";
+		if  (-l $from) {
+			unlink $from or die "Could not remove old symlink $from\n";
+		}
+		symlink $to, $from or die "Could not symlink $from -> $to: $!\n";
+	} else {
+		printf "No good latest revision for style %s found\n", $style;
 	}
-	symlink $to, $from or die "Could not symlink $from -> $to: $!\n";
-} else {
-	print "No good latest revision found"
 }

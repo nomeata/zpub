@@ -1154,7 +1154,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       Stelle gepflegt werden soll. So kann beispielsweise ein Glossar
       verwaltet werden.</para>
       <para>In zpub existiert auf oberster Verzeichnisebene der lokalen Arbeitskopie dazu das Verzeichnis <code>common</code>, dieses und sein Inhalt wird von zpub nicht weiterverarbeitet, es dient lediglich als Dateiablage für Redakteure. Sollen bspw. Inhalte aus der Datei <code>common/glossar.xml</code> in einem Handbuch genutzt werden, so obliegt es dem Redakteur, die Inhalte von <code>glossar.xml</code> in sein Handbuch an die entsprechende Stelle zu kopieren. </para>
-      <para>Sollen Text-/Dokumentfragmente in mehreren zpub-Dokumenten eingebunden werden und die zpub-Dokumente bei Änderungen an gemeinsamen Textteilen aus &lt;code&gt;common&lt;/code&gt; neu generiert werden, kann diese Funktionalität von über ein Crowdfunding-Model finanziert und umgesetzt werden. Der aktuelle Stand ist unter <ulink url="http://www.zpub.de/de/crowdfunding.html"/> einsehbar. </para>
+      <para>Sollen Text-/Dokumentfragmente in mehreren zpub-Dokumenten eingebunden werden und die zpub-Dokumente bei Änderungen an gemeinsamen Textteilen aus <code>common</code> neu generiert werden, kann diese Funktionalität von über ein Crowdfunding-Model finanziert und umgesetzt werden. Der aktuelle Stand ist unter <ulink url="http://www.zpub.de/de/crowdfunding.html"/> einsehbar. </para>
     </section>
   </chapter>
   <chapter>

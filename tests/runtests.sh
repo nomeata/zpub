@@ -131,7 +131,7 @@ assertOutputContains \
 echo Checking the web page
 assertOutputContains 'web cust=test' '/zpub-Redakteurhandbuch/'
 assertOutputContains 'web cust=test' '/zpub-Technik/'
-assertOutputContains 'web cust=test&doc=zpub-Technik' "PDF-Datei, 34K"
+assertOutputContains 'web cust=test&doc=zpub-Technik' "PDF-Datei"
 assertOutputContains 'web cust=test&doc=zpub-Technik' "Layout plain"
 assertOutputContains 'web cust=test&doc=zpub-Technik' "Es wurde bisher keine Revision freigegeben."
 assertOutput 'cat /tmp/zpub/test/cache/documents' "$(echo zpub-Redakteurhandbuch; echo zpub-Technik)"

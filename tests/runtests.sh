@@ -39,6 +39,8 @@ $OUTPUT
 __END__
 	then
 		echo "Did not find expected output $2"
+		echo "Output was:"
+		echo "$OUTPUT"
 		exit 1;
 	fi
 }
@@ -52,6 +54,8 @@ $OUTPUT
 __END__
 	then
 		echo "Found unwanted output $2"
+		echo "Output was:"
+		echo "$OUTPUT"
 		exit 1;
 	fi
 }
@@ -62,6 +66,7 @@ function assertEmpty () {
 	if [ -n "$(ls "$1")" ]
 	then
 		echo "Directory $1 is not empty!"
+		ls "$1"
 		exit 1;
 	fi
 }

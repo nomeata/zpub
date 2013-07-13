@@ -204,6 +204,16 @@ assertOutputContains "web cust=test&doc=Testdokument" 'Diese Revision ist neuer 
 assertOutputContainsNot "web cust=test&doc=Testdokument" 'Diese Version Freigeben'
 assertOutputContains "web_admin cust=test&doc=Testdokument" 'Diese Version Freigeben'
 
+echo "Adding a file to the top level directory does not do anything."
+echo Foo > $CO/TopLevelFile.xml
+run svn add $CO/TopLevelFile.xml
+run svn commit -m 'Added top level file' $CO/TopLevelFile.xml
+assertEmpty /tmp/zpub/spool/todo
+assertEmpty /tmp/zpub/spool/fail
+assertEmpty /tmp/zpub/spool/wip
+assertOutputContainsNot "cat /tmp/zpub/test/cache/documents" 'TopLevelFile'
+
+
 
 echo "All tests passed successfully!"
 echo "Ran $cmds commands and checked $tests tests."

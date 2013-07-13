@@ -54,6 +54,12 @@
 	<listitem><para>
 	  Es gibt jetzt eine Testsuite für zpub.
 	</para></listitem>
+	<listitem><para>
+	  Der Pfad
+	  <filename>/opt/zpub/&cust;/output/archive/<replaceable>document</replaceable>/latest</filename>
+	  ist jetzt ein Verzeichnis, das pro Stil einen symbolischen Link auf
+	  die letzte Revision mit diesem Stil enthält.
+	</para></listitem>
       </itemizedlist>
     </section>
       
@@ -447,9 +453,10 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	  </simpara>
 	  <simpara>
 	  Auch gibt es, neben dem Verzeichnis <filename>archive/</filename>,
-	  pro Dokument einen symbolischen Link <filename>latest</filename>, der
-	  auf die jeweils aktuelle Revision zeigt. Er kann verwendet werden, um
-	  geeignete Bookmarks zu setzen.
+	  pro Dokument ein Verzeichnis <filename>latest</filename>. Dieses
+	  enthält pro Stil einen symbolischen Link auf die jeweils neuste
+	  Revision des Stils Er kann verwendet werden, um geeignete Bookmarks
+	  zu setzen.
 	  </simpara>
 	</listitem>
       </varlistentry>

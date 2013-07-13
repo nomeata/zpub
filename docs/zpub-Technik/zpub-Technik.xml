@@ -51,6 +51,9 @@
 	  Bugfix: Dateien, die im Grundverzeichnis des SVN-Repositories
 	  angelegt werden, stoßen keine Dokumenten-Bau-Jobs an.
 	</para></listitem>
+	<listitem><para>
+	  Es gibt jetzt eine Testsuite für zpub.
+	</para></listitem>
       </itemizedlist>
     </section>
       

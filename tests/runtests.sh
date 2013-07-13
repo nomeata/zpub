@@ -86,46 +86,47 @@ function assertNotEmpty () {
 #
 
 function web () {
-	QUERY_STRING="$1" REMOTE_USER=tester REQUEST_METHOD=GET /tmp/zpub/bin/zpub-cgi.pl
+	QUERY_STRING="$1" REMOTE_USER=tester REQUEST_METHOD=GET $ZPUB/bin/zpub-cgi.pl
 }
 function web_admin () {
-	QUERY_STRING="$1" REMOTE_USER=admin REQUEST_METHOD=GET /tmp/zpub/bin/zpub-cgi.pl
+	QUERY_STRING="$1" REMOTE_USER=admin REQUEST_METHOD=GET $ZPUB/bin/zpub-cgi.pl
 }
 
 function runSpooler () {
-	run /tmp/zpub/bin/zpub-spooler.sh
-	assertEmpty /tmp/zpub/spool/todo
-	assertEmpty /tmp/zpub/spool/fail
-	assertEmpty /tmp/zpub/spool/wip
+	run $ZPUB/bin/zpub-spooler.sh
+	assertEmpty $ZPUB/spool/todo
+	assertEmpty $ZPUB/spool/fail
+	assertEmpty $ZPUB/spool/wip
 }
 
 set -eu
 # set -x
 
 export ZPUB_TEST=yes
+ZPUB=/tmp/zpub
 
 cd "$(dirname $0)/.."
 
-run rm -rf /tmp/zpub
+run rm -rf $ZPUB
 
 echo Installing zpub
 run ./install.sh path-files/zpub-paths-test
 echo Creating instance
-run /tmp/zpub/bin/zpub-create-instance.sh test 'Test instance' test.zpub.de
+run $ZPUB/bin/zpub-create-instance.sh test 'Test instance' test.zpub.de
 
 echo Installing documentation
-run /tmp/zpub/bin/zpub-update-docs.sh test
+run $ZPUB/bin/zpub-update-docs.sh test
 runSpooler
 
 echo Checking that sensible things have been built
-assertOutput "ls /tmp/zpub/test/output/zpub-Redakteurhandbuch/archive/" 1
-assertOutput "readlink /tmp/zpub/test/output/zpub-Redakteurhandbuch/latest" \
-	/tmp/zpub/test/output/zpub-Redakteurhandbuch/archive/1 
-assertOutput "ls /tmp/zpub/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink /tmp/zpub/test/output/zpub-Technik/latest" \
-      	/tmp/zpub/test/output/zpub-Technik/archive/1
+assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
+assertOutput "readlink $ZPUB/test/output/zpub-Redakteurhandbuch/latest" \
+	$ZPUB/test/output/zpub-Redakteurhandbuch/archive/1 
+assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
+assertOutput "readlink $ZPUB/test/output/zpub-Technik/latest" \
+      	$ZPUB/test/output/zpub-Technik/archive/1
 assertOutputContains \
-	"pdftotext /tmp/zpub/test/output/zpub-Technik/latest/plain/zpub-Technik.pdf  -" \
+	"pdftotext $ZPUB/test/output/zpub-Technik/latest/plain/zpub-Technik.pdf  -" \
 	"Zentrales Publikationssystem"
 
 echo Checking the web page
@@ -134,20 +135,20 @@ assertOutputContains 'web cust=test' '/zpub-Technik/'
 assertOutputContains 'web cust=test&doc=zpub-Technik' "PDF-Datei"
 assertOutputContains 'web cust=test&doc=zpub-Technik' "Layout plain"
 assertOutputContains 'web cust=test&doc=zpub-Technik' "Es wurde bisher keine Revision freigegeben."
-assertOutput 'cat /tmp/zpub/test/cache/documents' "$(echo zpub-Redakteurhandbuch; echo zpub-Technik)"
+assertOutput "cat $ZPUB/test/cache/documents" "$(echo zpub-Redakteurhandbuch; echo zpub-Technik)"
 
 echo "Removing one document"
-run svn rm file:///tmp/zpub/test/repos/source/zpub-Redakteurhandbuch/ -m 'Removing Redakteurhandbuch'
+run svn rm file://$ZPUB/test/repos/source/zpub-Redakteurhandbuch/ -m 'Removing Redakteurhandbuch'
 runSpooler
 assertOutputContainsNot 'web cust=test' '/zpub-Redakteurhandbuch/'
 assertOutputContains    'web cust=test' '/zpub-Technik/'
-assertOutput "ls /tmp/zpub/test/output/zpub-Redakteurhandbuch/archive/" 1
-assertOutput "ls /tmp/zpub/test/output/zpub-Technik/archive/" 1
-assertOutput 'cat /tmp/zpub/test/cache/documents' "$(echo zpub-Technik)"
+assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
+assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
+assertOutput "cat $ZPUB/test/cache/documents" "$(echo zpub-Technik)"
 
 echo "Creating checkout"
-export CO=/tmp/zpub/test/co
-run svn co file:///tmp/zpub/test/repos/source $CO
+export CO=$ZPUB/test/co
+run svn co file://$ZPUB/test/repos/source $CO
 
 
 echo "Importing new document"
@@ -157,12 +158,12 @@ run svn commit -m 'Import 1' $CO
 runSpooler
 assertOutputContains 'web cust=test' '/Testdokument/'
 assertOutputContains 'web cust=test&doc=Testdokument' "Import 1"
-assertOutput "ls /tmp/zpub/test/output/Testdokument/archive/" 3
-assertOutput "ls /tmp/zpub/test/output/zpub-Redakteurhandbuch/archive/" 1
-assertOutput "ls /tmp/zpub/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink /tmp/zpub/test/output/Testdokument/latest" \
-	/tmp/zpub/test/output/Testdokument/archive/3
-assertOutput 'cat /tmp/zpub/test/cache/documents' "$(echo Testdokument;echo zpub-Technik)"
+assertOutput "ls $ZPUB/test/output/Testdokument/archive/" 3
+assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
+assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
+	$ZPUB/test/output/Testdokument/archive/3
+assertOutput "cat $ZPUB/test/cache/documents" "$(echo Testdokument;echo zpub-Technik)"
 
 echo "Changing document"
 run rsync -ri tests/testdoc2/ $CO/Testdokument/
@@ -170,21 +171,21 @@ run svn commit -m 'Import 2' $CO
 runSpooler
 assertOutputContains 'web cust=test' '/Testdokument/'
 assertOutputContains 'web cust=test&doc=Testdokument' "Import 2"
-assertOutput "ls /tmp/zpub/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
-assertOutput "ls /tmp/zpub/test/output/zpub-Redakteurhandbuch/archive/" 1
-assertOutput "ls /tmp/zpub/test/output/zpub-Technik/archive/" 1
-assertOutput "readlink /tmp/zpub/test/output/Testdokument/latest" \
-	/tmp/zpub/test/output/Testdokument/archive/4
+assertOutput "ls $ZPUB/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
+assertOutput "ls $ZPUB/test/output/zpub-Redakteurhandbuch/archive/" 1
+assertOutput "ls $ZPUB/test/output/zpub-Technik/archive/" 1
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
+	$ZPUB/test/output/Testdokument/archive/4
 
 echo "Manually triggering rebuild of version 3"
-echo -e 'test\n3\nTestdokument\nplain\n' > /tmp/zpub/spool/todo/todo
+echo -e 'test\n3\nTestdokument\nplain\n' > $ZPUB/spool/todo/todo
 runSpooler
-assertOutput "ls /tmp/zpub/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
-assertOutput "readlink /tmp/zpub/test/output/Testdokument/latest" \
-	/tmp/zpub/test/output/Testdokument/archive/4
+assertOutput "ls $ZPUB/test/output/Testdokument/archive/" "$(echo 3; echo 4)"
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest" \
+	$ZPUB/test/output/Testdokument/archive/4
 
 echo "Verifying that releasing is only possible for the admin"
-echo admin > /tmp/zpub/test/conf/admins
+echo admin > $ZPUB/test/conf/admins
 assertOutputContainsNot "web cust=test&doc=Testdokument&archive=" '"/static/icons/stock_mark.png"'
 assertOutputContainsNot "web cust=test&doc=Testdokument" 'Diese Version Freigeben'
 assertOutputContains "web_admin cust=test&doc=Testdokument" 'Diese Version Freigeben'
@@ -192,13 +193,13 @@ assertOutputContainsNot "web cust=test&doc=Testdokument&archive=" '<input type="
 assertOutputContains "web_admin cust=test&doc=Testdokument&archive=" '<input type="submit" name="approve" value="Freigeben"/>'
 
 
-ln -s plain /tmp/zpub/test/style/plain_final
-echo plain_final > /tmp/zpub/test/conf/final_style
+ln -s plain $ZPUB/test/style/plain_final
+echo plain_final > $ZPUB/test/conf/final_style
 echo "Releasing version 3 of the Testdokument"
-echo -n revn=3\&approve=Freigeben | CONTENT_LENGTH=100 QUERY_STRING=cust=test\&doc=Testdokument\&archive= REMOTE_USER=admin REQUEST_METHOD=POST /tmp/zpub/bin/zpub-cgi.pl
-assertNotEmpty /tmp/zpub/spool/todo
+echo -n revn=3\&approve=Freigeben | CONTENT_LENGTH=100 QUERY_STRING=cust=test\&doc=Testdokument\&archive= REMOTE_USER=admin REQUEST_METHOD=POST $ZPUB/bin/zpub-cgi.pl
+assertNotEmpty $ZPUB/spool/todo
 runSpooler
-assertNotEmpty /tmp/zpub/test/output/Testdokument/archive/3/plain_final/
+assertNotEmpty $ZPUB/test/output/Testdokument/archive/3/plain_final/
 assertOutputContains "web_admin cust=test&doc=Testdokument&archive=" '"/static/icons/stock_mark.png"'
 assertOutputContains "web cust=test&doc=Testdokument" 'Diese Revision ist neuer als die letzte'
 assertOutputContainsNot "web cust=test&doc=Testdokument" 'Diese Version Freigeben'
@@ -208,10 +209,10 @@ echo "Adding a file to the top level directory does not do anything."
 echo Foo > $CO/TopLevelFile.xml
 run svn add $CO/TopLevelFile.xml
 run svn commit -m 'Added top level file' $CO/TopLevelFile.xml
-assertEmpty /tmp/zpub/spool/todo
-assertEmpty /tmp/zpub/spool/fail
-assertEmpty /tmp/zpub/spool/wip
-assertOutputContainsNot "cat /tmp/zpub/test/cache/documents" 'TopLevelFile'
+assertEmpty $ZPUB/spool/todo
+assertEmpty $ZPUB/spool/fail
+assertEmpty $ZPUB/spool/wip
+assertOutputContainsNot "cat $ZPUB/test/cache/documents" 'TopLevelFile'
 
 
 

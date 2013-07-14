@@ -250,6 +250,9 @@ assertOutputContains \
 assertOutputContains \
 	"epub_dump $ZPUB/test/output/Testdokument/latest/plain/Testdokument.epub" \
 	"Also per xinclude"
+assertOutputContains \
+	"cat $ZPUB/test/cache/deps/Testdokument" \
+	"commonsection.xml"
 
 
 echo "All tests passed successfully!"

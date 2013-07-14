@@ -166,7 +166,7 @@
       wird, folgende Befehle aus:
 <screen>$ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
 $ wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
-$ bash ./htmlreg.sh</screen>
+$ bash ./htmlhelp.sh</screen>
     </para>
     <para>
       Für die korrekte Wortrennung von deutschen Texten muss von der Webseite

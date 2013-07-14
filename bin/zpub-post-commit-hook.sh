@@ -84,9 +84,13 @@ do
     find /tmp/zpub/test/cache/deps/ -type f -a -not -name \*.rev |
     while read deps
     do
-      if fgrep -qx "$filename" "$deps"
+      # Check if file still exists
+      if svn ls file://"$REPOS"/"$(basename "$deps")" >/dev/null 2>/dev/null
       then
-	echo "$(basename "$deps")"
+	if fgrep -qx "$filename" "$deps"
+	then
+	  echo "$(basename "$deps")"
+	fi
       fi
     done
   else

@@ -290,7 +290,27 @@ assertOutputContains \
 assertOutputContains \
 	"zipinfo $ZPUB/test/output/Testdokument/latest/plain/Testdokument_html.zip" \
 	"typ2.png"
+echo "Modifying unused common file"
+cp $CO/common/typ2.png $CO/common/typ3.png
+svn ci $CO -m 'Modifying unused file'
+runSpooler
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/8/plain
 
+echo "Removing document and then modifying common files used by it"
+run svn rm file://$ZPUB/test/repos/source/Testdokument/ -m 'Removing Testdokument'
+runSpooler
+assertOutputContainsNot 'web cust=test' '/Testdokument/'
+assertOutputContainsNot "cat $ZPUB/test/cache/documents" "Testdokument"
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/8/plain
+
+run rsync -ri tests/common5/ $CO/common/
+cp $CO/common/typ3.png $CO/common/typ2.png
+svn ci $CO -m 'Modifying used image'
+runSpooler
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/8/plain
 
 echo "All tests passed successfully!"
 echo "Ran $cmds commands and checked $tests tests."

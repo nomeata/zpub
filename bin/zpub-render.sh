@@ -110,6 +110,9 @@ xmllint --noout source/"$DOCNAME.xml"
 
 echo "xmllint test passed successfully."
 
+echo "Calling zpub-deps.sh"
+"$ZPUB_BIN/zpub-deps.sh" "$CUST" "$REV" "$DOC"
+
 while read format 
 do
   if [ -n "$format" -a "${format:0:1}" != "#" ]

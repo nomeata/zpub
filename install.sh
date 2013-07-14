@@ -46,7 +46,7 @@ if [ -r VERSION ]
 then
 	VERSION="$(cat VERSION)"
 else
-	VERSION="$(git describe --tags)"
+	VERSION="$(git describe --tags --always)"
 fi
 echo "Installing zpub version $VERSION"
 

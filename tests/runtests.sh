@@ -118,7 +118,7 @@ run ./install.sh path-files/zpub-paths-test
 echo Creating instance
 run $ZPUB/bin/zpub-create-instance.sh test 'Test instance' test.zpub.de
 
-echo -e "html\npdf\nhtmlhelp\nepub" > /tmp/zpub/test/conf/formats
+echo -e "html\npdf\n#htmlhelp\nepub" > /tmp/zpub/test/conf/formats
 
 echo Installing documentation
 run $ZPUB/bin/zpub-update-docs.sh test

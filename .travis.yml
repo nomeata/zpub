@@ -6,12 +6,12 @@ install:
  - sudo apt-get update
  - sudo apt-get install subversion xsltproc libxml2-utils docbook-xsl zip fop rsync poppler-utils dbtoepub
  - sudo apt-get install libipc-run-perl libtemplate-perl libfile-slurp-perl libsvn-svnlook-perl libdatetime-perl libdatetime-format-strptime-perl libfilesys-df-perl libsys-cpuload-perl libmime-lite-perl libhtml-parser-perl
- - sudo apt-get install wine cabextract xdotool
- - wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
- - wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
- - wget -N 'http://go.microsoft.com/fwlink/?LinkId=14188' -O htmlhelp.exe
- - wine htmlhelp.exe /Q & sleep 4; xdotool key Return
- - rm -f htmlhelp.exe
- - bash htmlhelp.sh
+ #- sudo apt-get install wine cabextract xdotool
+ #- wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.sh
+ #- wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
+ #- wget -N 'http://go.microsoft.com/fwlink/?LinkId=14188' -O htmlhelp.exe
+ #- wine htmlhelp.exe /Q & sleep 4; xdotool key Return
+ #- rm -f htmlhelp.exe
+ #- bash htmlhelp.sh
 script:
  - ./tests/runtests.sh

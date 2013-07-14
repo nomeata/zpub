@@ -76,6 +76,8 @@ cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
 test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
 test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
+echo "Drive C contains:"
+winepath C:
 HHC="$(find "$(winepath C:)" -name hhc.exe)"
 echo "Expecting hhc.exe at $HHC"
 test -e "$HHC"

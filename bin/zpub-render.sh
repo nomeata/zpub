@@ -87,6 +87,13 @@ test -d "source" && rm -rf "source"
 echo "Exporting sources to $OUTDIR/source"
 svn export -r $REV "file://$ZPUB_INSTANCES/$CUST/repos/source/$DOC" source
 
+test -d "common" && rm -rf "common"
+if svn ls file:///$ZPUB_INSTANCES/$CUST/repos/source/common >/dev/null  2>/dev/null
+then
+  echo "Exporting common files to $OUTDIR/common"
+  svn export -r $REV "file://$ZPUB_INSTANCES/$CUST/repos/source/common" common
+fi
+
 # Check file with xmllint before proceeding
 cd "source"
 DOCNAME="$(basename *.xml .xml)"

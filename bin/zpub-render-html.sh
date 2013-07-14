@@ -64,7 +64,7 @@ then
   exit 1
 fi
 
-xsltproc $STYLESHEET ../source/"$DOCNAME.xml"
+xsltproc --xinclude $STYLESHEET ../source/"$DOCNAME.xml"
 
 mkdir -p images style
 # cp -l would be more efficient, but breaks across file systems

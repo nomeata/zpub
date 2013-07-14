@@ -64,7 +64,8 @@ then
   exit 1
 fi
 
-xsltproc --stringparam htmlhelp.chm "$DOCNAME.chm"	\
+xsltproc --xinclude                                     \
+         --stringparam htmlhelp.chm "$DOCNAME.chm"	\
 	 --stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
 	 --stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
 	  $STYLESHEET ../source/"$DOCNAME.xml"

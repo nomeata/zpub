@@ -61,7 +61,7 @@ then
 fi
 
 
-xsltproc $STYLESHEET source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
+xsltproc --xinclude $STYLESHEET source/"$DOCNAME.xml" > source/"$DOCNAME.fo"
 fopopts=""
 test -e "style/fop.xconf" && fopopts="-c style/fop.xconf"
 test -e "style/pdf/fop.xconf" && fopopts="-c style/pdf/fop.xconf"

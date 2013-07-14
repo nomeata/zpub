@@ -24,7 +24,7 @@
 
 set -e
 
-ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+ZPUB_PATHS="${ZPUB_PATHS:=$(dirname $0)/../path-files/zpub-paths-tmp}"
 
 if ! [ -r "$ZPUB_PATHS" ]
 then

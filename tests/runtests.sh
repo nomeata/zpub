@@ -9,7 +9,8 @@ tests=0
 
 function run () {
 	let cmds++ || true
-	echo "$@"
+	printf "%q " "$@"
+	echo
 	"$@"
 }
 

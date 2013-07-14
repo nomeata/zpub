@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Minimaldokument Zweiter Bau</title>
+  <chapter>
+    <title>Sektion</title>
+
+    <section>
+      <title>Untersektion</title>
+      <para>Etwas Text.</para>
+    </section>
+  </chapter>
+   <chapter><title>Kapitel 2</title>
+    <section xml:base="parts/section1.xml">
+    <title>Sektion 1</title>
+
+<figure>
+  <title>Abbildungstitel</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../data/typ1.png"/>
+      </imageobject>
+    </mediaobject>
+</figure>
+
+    <para>Per xinclude</para>
+  </section>
+   </chapter>
+   <chapter><title>Kapitel 3</title>
+    <section xml:base="../common/commonsection.xml">
+    <title>Common and Modified Section</title>
+
+<figure>
+  <title>Abbildungstitel</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="typ2.png"/>
+      </imageobject>
+    </mediaobject>
+</figure>
+
+    <para>Also per xinclude</para>
+  </section>
+   </chapter>
+</book>

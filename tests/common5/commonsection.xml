@@ -1,0 +1,15 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<section>
+    <title>Common and Modified Section</title>
+
+<figure>
+  <title>Abbildungstitel</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="typ2.png"/>
+      </imageobject>
+    </mediaobject>
+</figure>
+
+    <para>Also per xinclude</para>
+  </section>

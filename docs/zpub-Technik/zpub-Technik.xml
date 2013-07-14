@@ -60,6 +60,14 @@
 	  ist jetzt ein Verzeichnis, das pro Stil einen symbolischen Link auf
 	  die letzte Revision mit diesem Stil enthält.
 	</para></listitem>
+	<listitem><para>
+	  Es ist jetzt möglich, im Verzeichnis <filename>common</filename> Dateien (Bilder und Dokumentfragmente) direkt in den Dokumenten zu verwenden. &zpub; erkennt bei Änderungen an diesen Dateien, welche Dokumente von der Änderung betroffen sind und baut nur jene Dokumente neu.
+	  <emphasis>Dieses Feature wurde per <ulink url="http://www.zpub.de/de/crowdfunding.html">Crowdfunding</ulink> finanziert.</emphasis>
+
+	</para></listitem>
+	<listitem><para>
+	  Bei der Erstellung der HTML-Ausgabe werden wirklich nur verwendete Bilder kopiert, und die Dokumenterstellung schlägt fehl, wenn nicht alle referenzierten Bilder gefunden werden können.
+	</para></listitem>
       </itemizedlist>
     </section>
       
@@ -142,17 +150,19 @@
       <member><package>docbook-xsl</package></member>
       <member><package>fop</package></member>
       <member><package>libapache2-svn</package></member>
-      <member><package>libdatetime-perl</package></member>
       <member><package>libdatetime-format-strptime-perl-perl</package></member>
+      <member><package>libdatetime-perl</package></member>
       <member><package>libfile-slurp-perl</package></member>
       <member><package>libfilesys-df-perl</package></member>
+      <member><package>libipc-run-perl</package></member>
       <member><package>libmime-lite-perl</package></member>
-      <member><package>libsys-cpuload-perl</package></member>
       <member><package>libpaper1</package></member>
       <member><package>libsaxon-java</package></member>
       <member><package>libsvn-svnlook-perl</package></member>
+      <member><package>libsys-cpuload-perl</package></member>
       <member><package>libtemplate-perl</package></member>
-      <member><package>libipc-run-perl</package></member>
+      <member><package>realpath</package></member>
+      <member><package>rsync</package></member>
       <member><package>subversion</package></member>
       <member><package>sun-java6-jre</package></member>
       <member><package>wine</package></member>

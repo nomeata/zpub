@@ -24,6 +24,17 @@
 
 set -e
 
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
+
+
 echo "Running $(basename $0)..."
 
 if [ ! -d style -o ! -d source ]
@@ -65,25 +76,27 @@ then
 fi
 
 xsltproc --xinclude                                     \
+	 --stringparam img.src.path images/             \
+	 --stringparam keep.relative.image.uris 0       \
          --stringparam htmlhelp.chm "$DOCNAME.chm"	\
 	 --stringparam htmlhelp.hpc "$DOCNAME.hpc"	\
 	 --stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
 	  $STYLESHEET ../source/"$DOCNAME.xml"
 
 mkdir -p images
-# cp -fl /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
-test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
-test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
-test -d ../source/images/ && rsync -r ../source/images/ images/
-echo "Drive C contains:"
-winepath C:
-find "$(winepath C:)"
+xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u | cut -d/ -f2- |
+while read imgpath
+do
+	mkdir -p "$(dirname "$(realpath -s "images/$imgpath")")"
+	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "images/$imgpath")"
+done
+
 HHC="$(find "$(winepath C:)" -name hhc.exe)"
-echo "Expecting hhc.exe at $HHC"
+echo -n "Expecting hhc.exe at $HHC "
 test -e "$HHC"
-echo "Found"
+echo "found."
 wine "$HHC" htmlhelp.hhp || true
+exit 1
 test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 mv "$DOCNAME.chm" ../
 cd ..

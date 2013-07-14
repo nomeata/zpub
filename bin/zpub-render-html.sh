@@ -24,6 +24,16 @@
 
 set -e
 
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
+
 echo "Running $(basename $0)..."
 
 if [ ! -d style -o ! -d source ]
@@ -64,14 +74,20 @@ then
   exit 1
 fi
 
-xsltproc --xinclude $STYLESHEET ../source/"$DOCNAME.xml"
+xsltproc --xinclude \
+	--stringparam img.src.path images/ \
+	--stringparam keep.relative.image.uris 0 \
+	$STYLESHEET ../source/"$DOCNAME.xml"
 
-mkdir -p images style
-# cp -l would be more efficient, but breaks across file systems
-cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.png style/
-test -d ../style/html-shared && rsync -r ../style/html-shared/ .
-test -d ../style/html/data && rsync -r ../style/html/data/ .
-test -d ../source/images/ && rsync -r ../source/images/ images/
+mkdir -p images
+
+xsltproc $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u | cut -d/ -f2- |
+while read imgpath
+do
+	mkdir -p "$(dirname "$(realpath -s "images/$imgpath")")"
+	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "images/$imgpath")"
+done
+
 rm -f ../${DOCNAME}_html.zip
 zip -r ../${DOCNAME}_html.zip .
 

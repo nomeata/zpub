@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2010 Joachim Breitner
+# Copyright 2010,2013 Joachim Breitner
 # 
 # Licensed under the EUPL, Version 1.1 or – as soon they will be approved
 # by the European Commission – subsequent versions of the EUPL (the
@@ -17,12 +17,23 @@
 # under the Licence.
 
 
-# Script to render the EPUB output of a zpub document
+# Script to render a the epub format of a zpub document
 
 # Expects to be run in an output directory containing subdirectories source and
 # style. 
 
 set -e
+
+ZPUB_PATHS="${ZPUB_PATHS:=path-files/zpub-paths-tmp}"
+
+if ! [ -r "$ZPUB_PATHS" ]
+then
+  echo "Cannot read file $ZPUB_PATHS in variable \$ZPUB_PATHS"
+  exit 1
+fi
+
+. $ZPUB_PATHS
+
 
 echo "Running $(basename $0)..."
 
@@ -43,8 +54,12 @@ then
 fi
 cd ..
 
+outdir="epub-temp"
+test -d "$outdir"|| mkdir -p "$outdir"
+cd "$outdir"
+
 STYLESHEET=""
-for path in style/epub/epub.xsl style/epub.xsl
+for path in ../style/epub/epub.xsl ../style/epub.xsl
 do
   if [ -e "$path" ]
   then
@@ -56,13 +71,33 @@ done
 
 if [ -z "$STYLESHEET" ]
 then
-  echo "No stylesheet found at style/epub/epub.xsl"
+  echo "No stylesheet found at ../style/epub/epub.xsl"
   exit 1
 fi
 
-opts=""
-test -e "style/epub.css" && opts="--css style/epub.css"
-test -e "style/epub/epub.css" && opts="--css style/epub/epub.css"
-dbtoepub $opts --verbose --stylesheet $STYLESHEET --output "$DOCNAME.epub" source/"$DOCNAME.xml"
+xsltproc --xinclude                                     \
+	 --stringparam img.src.path images/             \
+	 --stringparam keep.relative.image.uris 0       \
+	 --stringparam base.dir OEBPS/                  \
+	 --stringparam epub.metainf.dir META-INF/       \
+	 --stringparam epub.eobps.dir OEBPS/            \
+	 $STYLESHEET ../source/"$DOCNAME.xml"
+
+mkdir -p images
+xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl OEBPS/*.html |sort -u | cut -d/ -f2- |
+while read imgpath
+do
+	mkdir -p "$(dirname "$(realpath -s "OEBPS/images/$imgpath")")"
+	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "OEBPS/images/$imgpath")"
+done
+
+
+echo application/epub+zip > mimetype
+
+rm -f ../${DOCNAME}.epub
+zip -X -r ../${DOCNAME}.epub mimetype META-INF OEBPS
+
+cd ..
+rm -rf "$outdir"
 
 echo "$(basename $0) is done."

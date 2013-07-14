@@ -599,9 +599,7 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
           <para>Nach dem ersten Auschecken ist eine lokale Kopie der
           Quelldateien des entsprechenden Dokuments auf dem Redakteursrechner
           vorhanden. Die Quelldateien setzen sich aus der DocBook-XML-Datei
-          des Dokuments sowie dem Ordner <filename>
-              <filename>images</filename>
-            </filename> zusammen.</para>
+          des Dokuments sowie gegebenenfalls zugehörigen Bildern.</para>
           <para>TortoiseSVN ergänzt die Standard-Datei- und Ordner-Icons um
           kleine Zusatzsymbole, die den aktuellen SVN-Status des
           entsprechenden Elements darstellen. Nach einer Aktualisierung (s.o.)
@@ -1153,8 +1151,12 @@ Den aktuellsten Quellcode von zpub.de finden Sie im zpub-Git-Repository auf <uli
       Inhalt in mehreren Dokumenten vorkommen soll und nur zentral an einer
       Stelle gepflegt werden soll. So kann beispielsweise ein Glossar
       verwaltet werden.</para>
-      <para>In zpub existiert auf oberster Verzeichnisebene der lokalen Arbeitskopie dazu das Verzeichnis <code>common</code>, dieses und sein Inhalt wird von zpub nicht weiterverarbeitet, es dient lediglich als Dateiablage für Redakteure. Sollen bspw. Inhalte aus der Datei <code>common/glossar.xml</code> in einem Handbuch genutzt werden, so obliegt es dem Redakteur, die Inhalte von <code>glossar.xml</code> in sein Handbuch an die entsprechende Stelle zu kopieren. </para>
-      <para>Sollen Text-/Dokumentfragmente in mehreren zpub-Dokumenten eingebunden werden und die zpub-Dokumente bei Änderungen an gemeinsamen Textteilen aus <code>common</code> neu generiert werden, kann diese Funktionalität von über ein Crowdfunding-Model finanziert und umgesetzt werden. Der aktuelle Stand ist unter <ulink url="http://www.zpub.de/de/crowdfunding.html"/> einsehbar. </para>
+      <para>Dazu kann man auf oberster Verzeichnisebene der lokalen
+      Arbeitskopie ein Verzeichnis <filename>common</filename> anlegen. Inhalte daraus
+      können in den Handbüchern verwendet werden: Bilder wie gewohnt,
+      Dokumentfragmente per XInclude. Werden Dateien in
+      <filename>common</filename> geändert werden von &zpub; genau die
+      betroffenen Handbücher neu gebaut.</para>
     </section>
   </chapter>
   <chapter>
@@ -2369,9 +2371,7 @@ diet lacus non tortor elementum ornare. Ut aliquet semper rutrum. Cras dapibus
           </question>
           <answer>
             <para>Es wurde ein Bild in das Dokument eingefügt, welches dann aber
-  nicht in der Ausgabe auftaucht. Dies kann vorkommen, wenn das Bild nicht
-  im vorgesehenen Ordner <filename>images</filename> gespeichert
-  wurde.</para>
+  nicht in der Ausgabe auftaucht. Dies kann vorkommen, wenn der Dateiname des Bildes im Dokument nicht zum wirklichen Ort des Bildes passt. Ist beispielsweise das Bild <filename>bild.jpg</filename> im Ordner <filename>images</filename> gespeichert, so muss der Verweis <filename>images/bild.jpg</filename> heißen.</para>
             <para>Ein weiterer Grund für ein fehlendes Bild ist, wenn vergessen
   wurde, das Bild zum SVN-Repository hinzuzufügen. Dies erkennt man am
   Fragezeichen-Symbol über dem Dateisymbol. In diesem Fall kann über das

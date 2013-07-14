@@ -4,7 +4,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 install:
  - sudo apt-get update
- - sudo apt-get install subversion xsltproc libxml2-utils docbook-xsl zip fop rsync poppler-utils dbtoepub
+ - sudo apt-get install subversion xsltproc libxml2-utils docbook-xsl zip fop rsync poppler-utils w3c-sgml-lib realpath
  - sudo apt-get install libipc-run-perl libtemplate-perl libfile-slurp-perl libsvn-svnlook-perl libdatetime-perl libdatetime-format-strptime-perl libfilesys-df-perl libsys-cpuload-perl libmime-lite-perl libhtml-parser-perl
  - sudo apt-get install atool lynx
  #- sudo apt-get install wine cabextract xdotool
@@ -14,9 +14,5 @@ install:
  #- wine htmlhelp.exe /Q & sleep 4; xdotool key Return
  #- rm -f htmlhelp.exe
  #- bash htmlhelp.sh
- - echo yes | rvm implode
- - sudo rm /usr/local/bin/ruby
- - hash -r
- - ruby --version
 script:
  - ./tests/runtests.sh

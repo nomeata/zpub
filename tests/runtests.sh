@@ -268,6 +268,29 @@ assertOutputContains \
 assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
 	$ZPUB/test/output/Testdokument/archive/7/plain
 
+echo "Adding images"
+run rsync -ri tests/common5/ $CO/common/
+run rsync -ri tests/testdoc5/ $CO/Testdokument/
+svn add $CO/Testdokument --force
+svn add $CO/common --force
+svn ci $CO -m 'Adding images document'
+runSpooler
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/8/plain
+# typ1 ist nicht common, sollte nicht auftauchen
+assertOutputContainsNot \
+	"cat $ZPUB/test/cache/deps/Testdokument" \
+	"typ1.png"
+assertOutputContains \
+	"cat $ZPUB/test/cache/deps/Testdokument" \
+	"typ2.png"
+assertOutputContains \
+	"zipinfo $ZPUB/test/output/Testdokument/latest/plain/Testdokument_html.zip" \
+	"typ1.png"
+assertOutputContains \
+	"zipinfo $ZPUB/test/output/Testdokument/latest/plain/Testdokument_html.zip" \
+	"typ2.png"
+
 
 echo "All tests passed successfully!"
 echo "Ran $cmds commands and checked $tests tests."

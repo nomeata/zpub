@@ -1,0 +1,21 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+               "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+[]>
+<book  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Minimaldokument Zweiter Bau</title>
+  <chapter>
+    <title>Sektion</title>
+
+    <section>
+      <title>Untersektion</title>
+      <para>Etwas Text.</para>
+    </section>
+  </chapter>
+   <chapter><title>Kapitel 2</title>
+    <xi:include href="parts/section1.xml"/>
+   </chapter>
+   <chapter><title>Kapitel 3</title>
+    <xi:include href="../common/commonsection.xml"/>
+   </chapter>
+</book>

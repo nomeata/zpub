@@ -54,7 +54,7 @@ echo "Installing zpub version $VERSION"
 cp -v bin/*.sh bin/*.pl -t "$DESTDIR""$ZPUB_BIN"
 chmod -c +x "$DESTDIR""$ZPUB_BIN"/*.sh "$DESTDIR""$ZPUB_BIN"/*.pl
 cp -rva bin/lib/* -t "$DESTDIR""$ZPUB_PERLLIB"
-cp -rva templates styles docs -t "$DESTDIR""$ZPUB_SHARED"
+cp -rva templates styles docs data -t "$DESTDIR""$ZPUB_SHARED"
 mkdir -vp "$DESTDIR""$ZPUB_SPOOL"/{todo,wip,fail,new}
 
 # Create apache config

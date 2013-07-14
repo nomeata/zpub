@@ -92,6 +92,9 @@ function web () {
 function web_admin () {
 	QUERY_STRING="$1" REMOTE_USER=admin REQUEST_METHOD=GET $ZPUB/bin/zpub-cgi.pl
 }
+function epub_dump () {
+	acat -F zip "$1"  OEBPS/index.html|lynx -dump -stdin
+}
 
 function runSpooler () {
 	run $ZPUB/bin/zpub-spooler.sh
@@ -114,6 +117,8 @@ echo Installing zpub
 run ./install.sh path-files/zpub-paths-test
 echo Creating instance
 run $ZPUB/bin/zpub-create-instance.sh test 'Test instance' test.zpub.de
+
+echo -e "html\npdf\nhtmlhelp\nepub" > /tmp/zpub/test/conf/formats
 
 echo Installing documentation
 run $ZPUB/bin/zpub-update-docs.sh test
@@ -219,6 +224,32 @@ assertEmpty $ZPUB/spool/fail
 assertEmpty $ZPUB/spool/wip
 assertOutputContainsNot "cat $ZPUB/test/cache/documents" 'TopLevelFile'
 
+echo "Adding a document with XIncludes"
+run rsync -ri tests/testdoc3/ $CO/Testdokument/
+run rsync -ri tests/common3/ $CO/common/
+svn add $CO/Testdokument --force
+svn add $CO/common --force
+svn ci $CO -m 'Adding document with XIncludes'
+runSpooler
+assertOutputContainsNot "cat $ZPUB/test/cache/documents" 'common'
+assertOutputContains \
+	"pdftotext $ZPUB/test/output/Testdokument/latest/plain/Testdokument.pdf  -" \
+	"Sektion 1"
+assertOutputContains \
+	"pdftotext $ZPUB/test/output/Testdokument/latest/plain/Testdokument.pdf  -" \
+	"Per xinclude"
+assertOutputContains \
+	"pdftotext $ZPUB/test/output/Testdokument/latest/plain/Testdokument.pdf  -" \
+	"Also per xinclude"
+assertOutputContains \
+	"epub_dump $ZPUB/test/output/Testdokument/latest/plain/Testdokument.epub" \
+	"Sektion 1"
+assertOutputContains \
+	"epub_dump $ZPUB/test/output/Testdokument/latest/plain/Testdokument.epub" \
+	"Per xinclude"
+assertOutputContains \
+	"epub_dump $ZPUB/test/output/Testdokument/latest/plain/Testdokument.epub" \
+	"Also per xinclude"
 
 
 echo "All tests passed successfully!"

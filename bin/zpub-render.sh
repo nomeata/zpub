@@ -130,5 +130,6 @@ done < "$ZPUB_INSTANCES/$CUST/conf/formats"
 cd "$OUTDIR"
 echo "Successfully generated output, deleting source directory"
 rm -rf "$OUTDIR/source"
+rm -rf "$OUTDIR/common"
 rm -f  "$OUTDIR/style"
 rm -f zpub-render-in-progress

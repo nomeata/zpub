@@ -11,6 +11,7 @@ install:
  - wget http://htmlhelp.googlecode.com/svn/trunk/misc/htmlhelp.reg
  - wget -N 'http://go.microsoft.com/fwlink/?LinkId=14188' -O htmlhelp.exe
  - wine htmlhelp.exe /Q & sleep 4; xdotool key Return
+ - rm -f htmlhelp.exe
  - bash htmlhelp.sh
 script:
  - ./tests/runtests.sh

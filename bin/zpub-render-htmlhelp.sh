@@ -78,6 +78,7 @@ test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 echo "Drive C contains:"
 winepath C:
+find "$(winepath C:)"
 HHC="$(find "$(winepath C:)" -name hhc.exe)"
 echo "Expecting hhc.exe at $HHC"
 test -e "$HHC"

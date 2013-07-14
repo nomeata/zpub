@@ -76,7 +76,9 @@ cp -f /usr/share/xml/docbook/stylesheet/nwalsh/images/callouts/*.gif images/
 test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
 test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
-wine 'C:\Programme\HTML Help Workshop\hhc.exe' htmlhelp.hhp || true
+HHC="$(find "$(winepath C:)" -name hhc.exe)"
+test -e "$HHC"
+wine "$HHC" htmlhelp.hhp || true
 test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 mv "$DOCNAME.chm" ../
 cd ..

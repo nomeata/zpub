@@ -77,7 +77,9 @@ test -d ../style/htmlhelp-shared && rsync -r ../style/htmlhelp-shared/ .
 test -d ../style/htmlhelp/data && rsync -r ../style/htmlhelp/data/ .
 test -d ../source/images/ && rsync -r ../source/images/ images/
 HHC="$(find "$(winepath C:)" -name hhc.exe)"
+echo "Expecting hhc.exe at $HHC"
 test -e "$HHC"
+echo "Found"
 wine "$HHC" htmlhelp.hhp || true
 test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 mv "$DOCNAME.chm" ../

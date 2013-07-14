@@ -223,6 +223,8 @@ assertEmpty $ZPUB/spool/todo
 assertEmpty $ZPUB/spool/fail
 assertEmpty $ZPUB/spool/wip
 assertOutputContainsNot "cat $ZPUB/test/cache/documents" 'TopLevelFile'
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/4/plain
 
 echo "Adding a document with XIncludes"
 run rsync -ri tests/testdoc3/ $CO/Testdokument/
@@ -253,6 +255,18 @@ assertOutputContains \
 assertOutputContains \
 	"cat $ZPUB/test/cache/deps/Testdokument" \
 	"commonsection.xml"
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/6/plain
+
+echo "Modifying used common files"
+run rsync -ri tests/common4/ $CO/common/
+svn ci $CO -m 'Modfying used common file'
+runSpooler
+assertOutputContains \
+	"pdftotext $ZPUB/test/output/Testdokument/latest/plain/Testdokument.pdf  -" \
+	"Common and Modified Section"
+assertOutput "readlink $ZPUB/test/output/Testdokument/latest/plain" \
+	$ZPUB/test/output/Testdokument/archive/7/plain
 
 
 echo "All tests passed successfully!"

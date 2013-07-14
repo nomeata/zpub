@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2009,2010 Joachim Breitner
+# Copyright 2009,2010,2013 Joachim Breitner
 # 
 # Licensed under the EUPL, Version 1.1 or -- as soon they will be approved
 # by the European Commission -- subsequent versions of the EUPL (the
@@ -67,24 +67,43 @@ done
 
 # The cache directory was introduced later; gracefully create it here.
 mkdir -p $ZPUB_INSTANCES/$CUST/cache
+
 # Find out what documents exist in the latest revision of the repository 
 svn ls file://"$REPOS" | grep '/$' | cut -d/ -f1 | fgrep -x -v common > $ZPUB_INSTANCES/$CUST/cache/documents
 
-svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5-|cut -d/ -f1 --only-delimited|sort -u|
+svnlook -r $REV changed "$REPOS" |grep '^[AU]'|cut -c 5- |
+while read FILE
+do
+  # Ignore top level files
+  if ! fgrep -q / <<<"$FILE" ; then continue; fi
+
+  dir="$(cut -d/ -f1 <<<$FILE)"
+  if [ "$dir" = "common" ]
+  then
+    filename="$(cut -d/ -f2- <<<$FILE)"
+    find /tmp/zpub/test/cache/deps/ -type f -a -not -name \*.rev |
+    while read deps
+    do
+      if fgrep -qx "$filename" "$deps"
+      then
+	echo "$(basename "$deps")"
+      fi
+    done
+  else
+    echo "$dir"
+  fi
+done | sort -u |
 while read DOC
 do
-  if [ "$DOC" != common ]
-  then
-    for STYLE in $(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
-    do
-      JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC-$STYLE.job"|tr -c A-Za-z0-9_\\n- _)"
-      cat > $ZPUB_SPOOL/new/"$JOBNAME" <<__END__
+  for STYLE in $(cat $ZPUB_INSTANCES/$CUST/conf/default_style)
+  do
+    JOBNAME="$(date "+%Y%m%d-%H%M%S-$$-$DOC-$STYLE.job"|tr -c A-Za-z0-9_\\n- _)"
+    cat > $ZPUB_SPOOL/new/"$JOBNAME" <<__END__
 $CUST
 $REV
 $DOC
 $STYLE
 __END__
-      mv $ZPUB_SPOOL/new/"$JOBNAME" $ZPUB_SPOOL/todo/"$JOBNAME"
-    done
-  fi
+    mv $ZPUB_SPOOL/new/"$JOBNAME" $ZPUB_SPOOL/todo/"$JOBNAME"
+  done
 done

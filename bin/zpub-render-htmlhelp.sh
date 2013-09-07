@@ -83,12 +83,23 @@ xsltproc --xinclude                                     \
 	 --stringparam htmlhelp.hhk "$DOCNAME.hhk"	\
 	  $STYLESHEET ../source/"$DOCNAME.xml"
 
-mkdir -p images
-xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u | cut -d/ -f2- |
+if [ -d "../style/htmlhelp/static" ]
+then
+	echo "Copying style media files from ../style/htmlhelp/static"
+	cp -Lrv ../style/htmlhelp/static/. .
+fi
+
+echo "Copying document media files"
+xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u |
 while read imgpath
 do
-	mkdir -p "$(dirname "$(realpath -s "images/$imgpath")")"
-	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "images/$imgpath")"
+	if [ -e "$imgpath" ]; then  continue; fi
+	# first check if the file is already here (probably because it part of
+	# the style media files)
+
+	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
+	mkdir -p "$(dirname "$(realpath -s "$imgpath")")"
+	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "$imgpath")"
 done
 
 HHC="$(find "$(winepath C:)" -name hhc.exe)"
@@ -96,7 +107,7 @@ echo -n "Expecting hhc.exe at $HHC "
 test -e "$HHC"
 echo "found."
 wine "$HHC" htmlhelp.hhp || true
-exit 1
+
 test -e "$DOCNAME.chm" && find ! -name "$DOCNAME.chm" -delete
 mv "$DOCNAME.chm" ../
 cd ..

@@ -79,13 +79,25 @@ xsltproc --xinclude \
 	--stringparam keep.relative.image.uris 0 \
 	$STYLESHEET ../source/"$DOCNAME.xml"
 
+if [ -d "../style/html/static" ]
+then
+	echo "Copying style media files from ../style/html/static"
+	cp -Lrv ../style/html/static/. .
+fi
+
 mkdir -p images
 
-xsltproc $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u | cut -d/ -f2- |
+echo "Copying document media files"
+xsltproc $ZPUB_SHARED/data/htmldepend.xsl *.html |sort -u |
 while read imgpath
 do
-	mkdir -p "$(dirname "$(realpath -s "images/$imgpath")")"
-	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "images/$imgpath")"
+	if [ -e "$imgpath" ]; then  continue; fi
+	# first check if the file is already here (probably because it part of
+	# the style media files)
+
+	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
+	mkdir -p "$(dirname "$(realpath -s "$imgpath")")"
+	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "$imgpath")"
 done
 
 rm -f ../${DOCNAME}_html.zip

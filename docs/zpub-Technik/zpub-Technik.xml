@@ -420,10 +420,12 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	  <filename>/opt/zpub/&cust;/style</filename>
 	</term>
 	<listitem><simpara>
-	  Verfügbare Stylesheets, eines pro Unterverzeichnis. Es werden in
+	  Verfügbare Stylesheets, eines pro Unterverzeichnis, deren Inhalt in <xref linkend="zpub-styles"/> erläutert werden.
+	  <!-- >
+	  Es werden in
 	  diesen die Dateien
 	  <filename>fo.xsl</filename>, <filename>html.xsl</filename>, <filename>htmlhelp.xsl</filename>,
-	  und gegebenenfalls das Verzeichnis <filename>images/</filename> erwartet.
+	  und gegebenenfalls das Verzeichnis <filename>images/</filename> erwartet. -->
 	</simpara></listitem>
       </varlistentry>
       <varlistentry>
@@ -730,5 +732,87 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       </para>
 
     </section>
+  </section>
+  <section id="zpub-styles">
+    <title>Aufbau der Stile</title>
+    <para>
+       Das Verzeichnis <filename>/opt/zpub/&cust;/style</filename> enthält ein
+       Verzeichnis pro verfügbarem Stil (hier Beispielshaft
+       <filename>/opt/zpub/&cust;/style/plain</filename>, welches  die
+       XSLT-Dateien und zugehörigen Mediendateien enhalten. Folgende Dateien im
+       Verzeichnis <filename>plain</filename> haben besondere Bedeutung:
+    </para>
+    <variablelist>
+      <title>Stil-Dateien</title>
+      <varlistentry>
+	<term>
+	  <filename>pdf/fo.xsl</filename>
+	</term>
+	<listitem><simpara>XSLT-Stylesheet für die PDF-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>html/html.xsl</filename>
+	</term>
+	<listitem><simpara>XSLT-Stylesheet für die HTML-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>html/static/</filename>
+	</term>
+	<listitem><simpara>Zusätzliche Dateien für die HTML-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>htmlhelp/htmlhelp.xsl</filename>
+	</term>
+	<listitem><simpara>XSLT-Stylesheet für die Windows-Hilfe-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>htmlhelp/static/</filename>
+	</term>
+	<listitem><simpara>Zusätzliche Dateien für die Windows-Hilfe-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>epub/epub.xsl</filename>
+	</term>
+	<listitem><simpara>XSLT-Stylesheet für die epub-Ausgabe</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <filename>epub/static/</filename>
+	</term>
+	<listitem><simpara>Zusätzliche Dateien für die epub-Ausgabe</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      Ein Bild <filename>tip.png</filename>, das im Wurzelverzeichnis des Style-Verzeichnisses liegt, muss wie folgt in den Stylesheets referenziert werden:
+      <itemizedlist>
+        <listitem>
+	  Stylesheets für HTML, HtmlHelp und epub verwenden den Pfad <filename>images/../style/tip.png</filename>.
+	</listitem>
+        <listitem>
+	  Stylesheets für PDF verwenden den Pfad <filename>style/tip.png</filename>.
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      Beim erstellen der Zip-Archive für HTML, epub und Windows-Hilfe werden
+      nur jene Bilder mit aufgenommen, die in den Dokumenten auch referenziert
+      werden. Die Bilddateien oder die Unterverzeichnisse, in denen sie
+      liegen, dürfen dabei auch symbolische Links sein. So könnte etwa
+      <filename>xsl-images</filename> ein symbolischer Link auf
+      <filename>/usr/share/xml/docbook/stylesheet/docbook-xsl/images/</filename>
+      sein.
+    </para>
+    <para>
+      Zusätzliche Dateien wie CSS-Stile und JavaScript-Dateien werden nicht
+      automatisch kopiert; auch nicht darin referenzierte Dateien. Diese müssen
+      daher in dem jeweiligen <filename>static/</filename>-Unterverzeichnis
+      bereitgestellt werden. Eine Datei, die etwa im HTML-Stylesheet über einen
+      Pfad <filename>css/scree.css.</filename> referenziert wird, muss dazu in <filename>html/static/css/screen.css</filename> liegen.
+    </para>
   </section>
 </article>

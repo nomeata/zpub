@@ -83,14 +83,24 @@ xsltproc --xinclude                                     \
 	 --stringparam epub.eobps.dir OEBPS/            \
 	 $STYLESHEET ../source/"$DOCNAME.xml"
 
-mkdir -p images
-xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl OEBPS/*.html |sort -u | cut -d/ -f2- |
+if [ -d "../style/epub/static" ]
+then
+	echo "Copying style media files from ../style/epub/static"
+	cp -Lrv ../style/epub/static/. OEBPS/.
+fi
+
+echo "Copying document media files"
+xsltproc --html $ZPUB_SHARED/data/htmldepend.xsl OEBPS/*.html |sort -u |
 while read imgpath
 do
-	mkdir -p "$(dirname "$(realpath -s "OEBPS/images/$imgpath")")"
-	cp -v "$(realpath -s "../source/$imgpath")" "$(realpath -s "OEBPS/images/$imgpath")"
-done
+	if [ -e "$imgpath" ]; then  continue; fi
+	# first check if the file is already here (probably because it part of
+	# the style media files)
 
+	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
+	mkdir -p "$(dirname "$(realpath -s "OEBPS/$imgpath")")"
+	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "OEBPS/$imgpath")"
+done
 
 echo application/epub+zip > mimetype
 

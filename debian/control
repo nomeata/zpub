@@ -29,6 +29,7 @@ Depends: ${misc:Depends},
  rsync,
  fop,
  realpath,
+ w3c-sgml-lib,
 # Perl libraries:
  libipc-run-perl,
  libtemplate-perl,

@@ -37,7 +37,8 @@
 
     <section>
       <title>Version 0.6</title>
-      <para>Unveröffentlicht</para>
+      <!-- <para>Unveröffentlicht</para> -->
+      <para>Veröffentlicht am 7.9.2013</para>
       <itemizedlist>
 	<listitem><para>
 	  Bugfix: Die Datei <filename>/opt/zpub/&cust;/cache/documents</filename>

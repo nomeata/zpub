@@ -752,6 +752,12 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       </varlistentry>
       <varlistentry>
 	<term>
+	  <filename>pdf/fop.xconf</filename>
+	</term>
+	<listitem><simpara>fop-Konfigurationsdatei (optional)</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
 	  <filename>html/html.xsl</filename>
 	</term>
 	<listitem><simpara>XSLT-Stylesheet für die HTML-Ausgabe</simpara></listitem>

@@ -86,7 +86,7 @@ xsltproc --xinclude                                     \
 if [ -d "../style/epub/static" ]
 then
 	echo "Copying style media files from ../style/epub/static"
-	cp -Lrv ../style/epub/static/. OEBPS/.
+	rsync --copy-links --recursive --exclude='.*' --itemize-changes ../style/epub/static/ OEBPS/
 fi
 
 echo "Copying document media files"

@@ -86,7 +86,7 @@ xsltproc --xinclude                                     \
 if [ -d "../style/htmlhelp/static" ]
 then
 	echo "Copying style media files from ../style/htmlhelp/static"
-	cp -Lrv ../style/htmlhelp/static/. .
+	rsync --copy-links --recursive --exclude='.*' --itemize-changes ../style/htmlhelp/static/ .
 fi
 
 echo "Copying document media files"

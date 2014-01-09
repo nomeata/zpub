@@ -39,10 +39,6 @@ my $strp_absolute = new DateTime::Format::Strptime(
 			pattern     => '%e. %B %Y um %H:%M',
 			time_zone   => 'Europe/Berlin',
 		);
-my $strp_ctime = new DateTime::Format::Strptime(
-			pattern     => '%a %b %d %T %Y',
-			time_zone   => 'Europe/Berlin',
-		);
 my $strp_svn = new DateTime::Format::Strptime(
 			pattern     => '%F %T %z',
 #			on_error    => 'croak'
@@ -233,9 +229,10 @@ sub collect_output {
 	if (-d $file) {$size = 'directory';}
         else          {$size = format_bytes(-s $file);}
 
-	my $date = $strp_ctime->parse_datetime(ctime(stat($file)->mtime));
+	my $date = DateTime->from_epoch( epoch => stat($file)->mtime);
 	$date->set_formatter($strp_absolute);
 	$date->set_locale('de_DE');
+	$date->set_time_zone('Europe/Berlin');
 
 	my $url = sprintf "%s/%s/archive/%d/%s/%s", $SETTINGS{rootpath}, $doc,$revn,$style,$filename;
 	

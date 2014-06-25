@@ -819,7 +819,10 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       automatisch kopiert; auch nicht darin referenzierte Dateien. Diese müssen
       daher in dem jeweiligen <filename>static/</filename>-Unterverzeichnis
       bereitgestellt werden. Eine Datei, die etwa im HTML-Stylesheet über einen
-      Pfad <filename>css/scree.css.</filename> referenziert wird, muss dazu in <filename>html/static/css/screen.css</filename> liegen.
+      Pfad <filename>css/screen.css.</filename> referenziert wird, muss dazu in
+      <filename>html/static/css/screen.css</filename> liegen. Auch müssen
+      Bilder, die via CSS oder JavaScript geladen werden, im Verzeichnis
+      <filename>static/</filename> liegen.
     </para>
   </section>
 </article>

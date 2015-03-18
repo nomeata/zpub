@@ -99,7 +99,7 @@
 	  Ab dieser Version kann man auch mehrere zpub-Instanzen auf dem selben virtuellen Host unterbringen, da eine Instanz auch in einem Unterverzeichnis des URL-Adressraumes eingerichtet werden kann.
 	</para></listitem>
 	<listitem><para>
-	  Es können mehere Ausgabevarianten („styles“) gleichzeitig konfiguriert werden.
+	  Es können mehrere Ausgabevarianten („styles“) gleichzeitig konfiguriert werden.
 	</para></listitem>
       </itemizedlist>
     </section>

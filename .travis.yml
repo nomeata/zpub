@@ -2,9 +2,11 @@ language: perl
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+
 install:
+ - sudo add-apt-repository ppa:nomeata/travis-backports -y
  - sudo apt-get update
- - sudo apt-get install subversion xsltproc libxml2-utils docbook-xsl zip fop rsync poppler-utils w3c-sgml-lib realpath
+ - sudo apt-get install subversion xsltproc libxml2-utils docbook-xsl zip fop rsync poppler-utils w3c-sgml-lib realpath coreutils
  - sudo apt-get install libipc-run-perl libtemplate-perl libfile-slurp-perl libsvn-svnlook-perl libdatetime-perl libdatetime-format-strptime-perl libfilesys-df-perl libsys-cpuload-perl libmime-lite-perl libhtml-parser-perl
  - sudo apt-get install atool lynx
  #- sudo apt-get install wine cabextract xdotool

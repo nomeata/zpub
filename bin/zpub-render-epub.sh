@@ -98,8 +98,8 @@ do
 	# the style media files)
 
 	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
-	mkdir -p "$(dirname "$(realpath -s "OEBPS/$imgpath")")"
-	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "OEBPS/$imgpath")"
+	mkdir -p "$(dirname "$(realpath -m -s "OEBPS/$imgpath")")"
+	cp -v "$(realpath -m -s "../source/$origpath")" "$(realpath -m -s "OEBPS/$imgpath")"
 done
 
 echo application/epub+zip > mimetype

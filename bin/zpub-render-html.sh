@@ -97,8 +97,8 @@ do
 
 	# Once realpath comes with coreutils, add "-m" to the command line
 	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
-	mkdir -p "$(dirname "$(realpath -s "$imgpath")")"
-	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "$imgpath")"
+	mkdir -p "$(dirname "$(realpath -m -s "$imgpath")")"
+	cp -v "$(realpath -m -s "../source/$origpath")" "$(realpath -m -s "$imgpath")"
 done
 
 rm -f ../${DOCNAME}_html.zip

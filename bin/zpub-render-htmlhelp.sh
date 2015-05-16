@@ -98,8 +98,8 @@ do
 	# the style media files)
 
 	origpath="$(echo "$imgpath" | cut -d/ -f2-)"
-	mkdir -p "$(dirname "$(realpath -s "$imgpath")")"
-	cp -v "$(realpath -s "../source/$origpath")" "$(realpath -s "$imgpath")"
+	mkdir -p "$(dirname "$(realpath -m -s "$imgpath")")"
+	cp -v "$(realpath -m -s "../source/$origpath")" "$(realpath -m -s "$imgpath")"
 done
 
 HHC="$(find "$(winepath C:)" -name hhc.exe)"

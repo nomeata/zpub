@@ -28,7 +28,7 @@ Depends: ${misc:Depends},
 # Other tools
  rsync,
  fop,
- realpath,
+ realpath (>= 8.23),
  w3c-sgml-lib,
 # Perl libraries:
  libipc-run-perl,

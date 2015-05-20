@@ -1,3 +1,9 @@
+zpub (0.6.1-1) UNRELEASED; urgency=medium
+
+  * Compatibility with Debian jessie 
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 20 May 2015 10:20:08 +0200
+
 zpub (0.6-1) UNRELEASED; urgency=low
 
   * New upstream release:

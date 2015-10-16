@@ -40,6 +40,8 @@ zpubdir=$PWD
 rm -f "$destdir/style"
 ln -s $zpubdir/styles/plain "$destdir/style"
 
+./install.sh path-files/zpub-paths-tmp
+
 for doc in docs/*
 do
 	[ -d "$doc" ] || continue;

@@ -1569,7 +1569,7 @@ Definiert die möglichen zu startenden Betriebssysteme.
                   </imageobject>
                 </mediaobject>
               </figure>
-              <para id="figure_dpi">Eine Verdoppelung der DPI - bei gleichbleibenden Dimensionen - führt zu kompakteren Grafiken, die im Ausdruck in Größe und Schärfe/Lesbarkeit als passender empfunden werden. Alternativ können auch - sollte die Dimensionen der Ausgabe zu klein geraten - geringere Erhöhungen der DPI genutzt werden. Die geänderte Auflösung muß auch im Dateiformat gepeichert werden, was je nach Bildbearbeitungssoftware und Format unterschiedlich zu erreichen ist. Beim Speichern ist darauf zu achten, dass als Format &quot;PNG&quot; und &quot;Auflösung speichern&quot; gewählt ist:</para>
+              <para id="figure_dpi">Eine Verdoppelung der DPI - bei gleichbleibenden Dimensionen - führt zu kompakteren Grafiken, die im Ausdruck in Größe und Schärfe/Lesbarkeit als passender empfunden werden. Alternativ können auch - sollte die Dimensionen der Ausgabe zu klein geraten - geringere Erhöhungen der DPI genutzt werden. Die geänderte Auflösung muß auch im Dateiformat gespeichert werden, was je nach Bildbearbeitungssoftware und Format unterschiedlich zu erreichen ist. Beim Speichern ist darauf zu achten, dass als Format &quot;PNG&quot; und &quot;Auflösung speichern&quot; gewählt ist:</para>
 <!--
               <figure>
                 <title>GIMP: Bild skalieren</title>

@@ -154,7 +154,7 @@ tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__
 		allow from all
 
 		AuthType Basic
-		AuthName "Demo zpub-Installation"
+		AuthName "zpub-Installation $NAME"
 		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
 	        Require valid-user
 	</Directory>
@@ -166,7 +166,7 @@ tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__
 		allow from all
 
 		AuthType Basic
-		AuthName "Demo zpub-Installation"
+		AuthName "zpub-Installation $NAME"
 		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
 	        Require valid-user
 	</Directory>
@@ -176,7 +176,7 @@ tell_cat "$ZPUB_INSTANCES/$CUST/conf/apache.conf" <<__END__
  		SVNPath $ZPUB_INSTANCES/$CUST/repos/source
  
  		AuthType Basic
- 		AuthName "Demo zpub-Installation"
+		AuthName "zpub-Installation $NAME"
  		AuthUserFile $ZPUB_INSTANCES/$CUST/settings/htpasswd
 		Require valid-user
  	</Location>

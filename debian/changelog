@@ -1,6 +1,14 @@
+zpub (0.6.2-1) UNRELEASED; urgency=medium
+
+  * Fix path to apache config (needs .conf suffix)
+  * Also enable mod_cgi
+  * Replace the init script with a systemd service file
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 07 Feb 2016 13:41:48 +0100
+
 zpub (0.6.1-1) UNRELEASED; urgency=medium
 
-  * Compatibility with Debian jessie 
+  * Compatibility with Debian jessie
 
  -- Joachim Breitner <nomeata@debian.org>  Wed, 20 May 2015 10:20:08 +0200
 

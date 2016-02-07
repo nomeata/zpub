@@ -2,7 +2,19 @@ Source: zpub
 Section: text
 Priority: extra
 Maintainer: Joachim Breitner <nomeata@debian.org>
-Build-Depends: debhelper (>= 7)
+Build-Depends:
+ debhelper (>= 7),
+ dh-systemd,
+# DocBook stuff:
+ xsltproc,
+ libxml2-utils,
+ docbook-xsl,
+ zip,
+# Other tools
+ rsync,
+ fop,
+ realpath (>= 8.23),
+ w3c-sgml-lib,
 Standards-version: 3.9.1
 
 Package: zpub

@@ -1,0 +1,10 @@
+[Unit]
+Description=zpub spooler
+
+[Service]
+ExecStart=/usr/share/zpub/bin/zpub-spooler.sh
+User=zpub
+Group=zpub
+
+[Install]
+WantedBy=multi-user.target

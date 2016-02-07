@@ -17,7 +17,7 @@ case "$1" in
     chown zpub: /var/lib/zpub/.fop
 
     echo 'Enabling apache modules required for zpub'
-    a2enmod ssl dav rewrite
+    a2enmod cgi ssl dav rewrite
 
   ;;
 esac

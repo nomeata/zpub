@@ -67,7 +67,7 @@ __END__
 
 tell_cat "$DESTDIR""$ZPUB_ETC/apache.conf" <<__END__
 # Includes all zpub apache configuration files
-Include $ZPUB_ETC/apache.conf.d/*.conf
+IncludeOptional $ZPUB_ETC/apache.conf.d/*.conf
 __END__
 
 tell_cat "$DESTDIR""$ZPUB_ETC/apache-standalone.conf" <<__END__
@@ -97,7 +97,7 @@ ServerName localhost
 User www-data
 Group www-data
 
-Include $ZPUB_ETC/apache.conf.d/*.conf
+IncludeOptional $ZPUB_ETC/apache.conf.d/*.conf
 __END__
 
 tell_cat "$DESTDIR""$ZPUB_ETC/apache-ssl.conf" <<__END__

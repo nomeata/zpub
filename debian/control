@@ -24,7 +24,7 @@ Depends: ${misc:Depends},
 # Create zpub user:
  adduser,
 # Apache files
- apache2,
+ apache2 (>= 2.4),
  libapache2-svn,
 # Snakeoil certificate:
  ssl-cert,

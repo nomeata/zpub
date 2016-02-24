@@ -22,9 +22,10 @@
       </author>
     </authorgroup>
 
-    <pubdate>2009</pubdate>
+    <pubdate>2016</pubdate>
 
     <copyright>
+      <year>2016</year>
       <year>2009</year>
     </copyright>
 
@@ -34,6 +35,24 @@
 
   <section>
     <title>Versionshistorie</title>
+
+    <note><para>Siehe auch <ulink href="https://github.com/nomeata/zpub/releases"/></para></note>
+
+    <section>
+      <title>Version 0.6.2</title>
+      <para>Veröffentlicht am 7.2.2016</para>
+      <itemizedlist>
+        <listitem><para>Packaging improvements</para></listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Version 0.6.1</title>
+      <para>Veröffentlicht am 20.5.2015</para>
+      <itemizedlist>
+        <listitem><para>Compatibility with Debian jessie</para></listitem>
+      </itemizedlist>
+    </section>
 
     <section>
       <title>Version 0.6</title>
@@ -824,5 +843,29 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       Bilder, die via CSS oder JavaScript geladen werden, im Verzeichnis
       <filename>static/</filename> liegen.
     </para>
+  </section>
+  <section>
+    <title>Authentifizierung und Authentisierung</title>
+    <para>Authentifizierung und Authentisierung erfolgen primär über die vorgestellte zpub-eigene Benutzerverwaltung. Es ist jedoch auch möglich, die in zpub verwendeten Komponenten (hier: apache und subversion) z.B. gegen einen LDAP-Verzeichnisdienst authentifizeren zu lassen oder via Single Sign-On einzurichten.</para>
+
+    <section>LDAP</section>
+      <programmlisting>a2enmod authnz_ldap ldap</programmlisting>
+
+      <para><filename>/etc/apache2/mods-enabled/ldap.conf</filename> eventuell ergänzen um:</para>
+      <programmlisting>LDAPVerifyServerCert Off</programmlisting>
+
+      <programmlisting>AuthType Basic
+AuthBasicProvider ldap file
+
+AuthLDAPURL ldaps://dc.tld:636/dc=dc,dc=tld?sAMAccountName?sub?(objectClass=*)
+AuthLDAPBindDN apacheconnect@dc.tld
+AuthLDAPBindPassword geheim
+Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programmlisting>
+
+      <para>Die LDAP-Abfragen können mit <userinput>ldapsearch</userinput> aus dem Debian-Paket 'ldap-utils' getestet werden:</para>
+      <programmlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)"  dn</programmlisting>
+    </section>
+    <section>Single sign-on</section>
+    <para>...</para>
   </section>
 </article>

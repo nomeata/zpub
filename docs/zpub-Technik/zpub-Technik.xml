@@ -865,7 +865,8 @@ Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programmlisting>
       <para>Die LDAP-Abfragen können mit <userinput>ldapsearch</userinput> aus dem Debian-Paket 'ldap-utils' getestet werden:</para>
       <programmlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)" dn</programmlisting>
     </section>
-    <section>Single sign-on</section>
+    <section>
+      <title>Single sign-on</title>
     <programmlisting>apt-get install libapache2-mod-auth-kerb</programmlisting>
     
     <para>...</para>

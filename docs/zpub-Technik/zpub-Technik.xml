@@ -848,27 +848,28 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
     <title>Authentifizierung und Authentisierung</title>
     <para>Authentifizierung und Authentisierung erfolgen primär über die vorgestellte zpub-eigene Benutzerverwaltung. Es ist jedoch auch möglich, die in zpub verwendeten Komponenten (hier: apache und subversion) z.B. gegen einen LDAP-Verzeichnisdienst authentifizeren zu lassen oder Single Sign-On einzurichten.</para>
 
-    <section>LDAP</section>
+    <section>
+      <title>LDAP</title>
       <para>Auf dem Verzeichnisdienst muss ein Abfrage-User (hier: <code>apacheconnect</code> eingerichtet sein.</para>
-      <programmlisting>a2enmod authnz_ldap ldap</programmlisting>
+      <programlisting>a2enmod authnz_ldap ldap</programlisting>
 
       <para><filename>/etc/apache2/mods-enabled/ldap.conf</filename> eventuell ergänzen um:</para>
-      <programmlisting>LDAPVerifyServerCert Off</programmlisting>
+      <programlisting>LDAPVerifyServerCert Off</programlisting>
 
-      <programmlisting>AuthType Basic
+      <programlisting>AuthType Basic
 AuthBasicProvider ldap file
 AuthLDAPURL ldaps://dc.tld:636/dc=dc,dc=tld?sAMAccountName?sub?(objectClass=*)
 AuthLDAPBindDN apacheconnect@dc.tld
 AuthLDAPBindPassword geheim
-Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programmlisting>
+Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programlisting>
 
       <para>Die LDAP-Abfragen können mit <userinput>ldapsearch</userinput> aus dem Debian-Paket 'ldap-utils' getestet werden:</para>
-      <programmlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)" dn</programmlisting>
+      <programlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)" dn</programlisting>
     </section>
     <section>
       <title>Single sign-on</title>
-    <programmlisting>apt-get install libapache2-mod-auth-kerb</programmlisting>
-    
-    <para>...</para>
+      <programlisting>apt-get install libapache2-mod-auth-kerb</programlisting>
+      <para>...</para>
+    </section>
   </section>
 </article>

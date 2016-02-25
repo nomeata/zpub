@@ -850,18 +850,27 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 
     <section>
       <title>LDAP</title>
-      <para>Auf dem Verzeichnisdienst muss ein Abfrage-User (hier: <code>apacheconnect</code> eingerichtet sein.</para>
-      <programlisting>a2enmod authnz_ldap ldap</programlisting>
+      <para>Auf dem Verzeichnisdienst muss ein Abfrage-User (hier: <code>apacheconnect</code>) eingerichtet sein.</para>
 
-      <para><filename>/etc/apache2/mods-enabled/ldap.conf</filename> eventuell ergänzen um:</para>
-      <programlisting>LDAPVerifyServerCert Off</programlisting>
+      <para>Aapche-Module:</para>
+      <userinput>a2enmod authnz_ldap ldap</userinput>
 
+      <example>
+        <title><filename>/etc/apache2/mods-enabled/ldap.conf</filename></title>
+        <programlisting>LDAPVerifyServerCert Off|On</programlisting>
+      </example>
+      
+      <example>
+        <title><filename>vhost.conf</filename> (Ausschnitt)</title>
       <programlisting>AuthType Basic
 AuthBasicProvider ldap file
 AuthLDAPURL ldaps://dc.tld:636/dc=dc,dc=tld?sAMAccountName?sub?(objectClass=*)
 AuthLDAPBindDN apacheconnect@dc.tld
 AuthLDAPBindPassword geheim
 Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programlisting>
+      </example>      
+
+
 
       <para>Die LDAP-Abfragen können mit <userinput>ldapsearch</userinput> aus dem Debian-Paket 'ldap-utils' getestet werden:</para>
       <programlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)" dn</programlisting>

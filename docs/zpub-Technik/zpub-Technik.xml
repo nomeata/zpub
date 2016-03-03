@@ -1,161 +1,184 @@
-<?xml version="1.0"  encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-               "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
-[ 
-	<!ENTITY zpub "<application>zpub</application>">
-	<!ENTITY cust "demo">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY zpub "<application>zpub</application>">
+<!ENTITY cust "demo">
 ]>
 <article lang="de">
   <title>zpub – Zentrales Publikationssystem</title>
   <subtitle>Technische Dokumentation</subtitle>
-
   <articleinfo>
     <title>zpub – Zentrales Publikationssystem</title>
     <subtitle>Technische Dokumentation</subtitle>
-
     <authorgroup>
       <author>
-        <firstname>Joachim</firstname><surname>Breitner</surname>
+        <firstname>Joachim</firstname>
+        <surname>Breitner</surname>
       </author>
       <author>
-        <firstname>Thomas</firstname><surname>Breitner</surname>
+        <firstname>Thomas</firstname>
+        <surname>Breitner</surname>
       </author>
     </authorgroup>
-
     <pubdate>2016</pubdate>
-
     <copyright>
       <year>2016</year>
       <year>2009</year>
     </copyright>
-
     <releaseinfo>$Id$</releaseinfo>
-
   </articleinfo>
-
   <section>
     <title>Versionshistorie</title>
-
-    <note><para>Siehe auch <ulink href="https://github.com/nomeata/zpub/releases"/></para></note>
-
+    <note>
+      <para>Siehe auch <ulink href="https://github.com/nomeata/zpub/releases"/></para>
+    </note>
     <section>
       <title>Version 0.6.2</title>
       <para>Veröffentlicht am 7.2.2016</para>
       <itemizedlist>
-        <listitem><para>Packaging improvements</para></listitem>
+        <listitem>
+          <para>Packaging improvements</para>
+        </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>Version 0.6.1</title>
       <para>Veröffentlicht am 20.5.2015</para>
       <itemizedlist>
-        <listitem><para>Compatibility with Debian jessie</para></listitem>
+        <listitem>
+          <para>Compatibility with Debian jessie</para>
+        </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>Version 0.6</title>
       <!-- <para>Unveröffentlicht</para> -->
       <para>Veröffentlicht am 7.9.2013</para>
       <itemizedlist>
-	<listitem><para>
+        <listitem>
+          <para>
 	  Bugfix: Die Datei <filename>/opt/zpub/&cust;/cache/documents</filename>
 	  spiegelt jetzt stets den neusten Revisionsstand wieder; nicht den der
           zuletzt gebauten Dokumentrevision (welcher älter sein kann).
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
           In der Datei <filename>/opt/zpub/&cust;/conf/logo.png</filename> kann ein Logo hinterlegt werden. (Dazu muss die Apache-Konfiguration angepasst werden.)
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Bugfix: Dateien, die im Grundverzeichnis des SVN-Repositories
 	  angelegt werden, stoßen keine Dokumenten-Bau-Jobs an.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Es gibt jetzt eine Testsuite für zpub.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Der Pfad
 	  <filename>/opt/zpub/&cust;/output/archive/<replaceable>document</replaceable>/latest</filename>
 	  ist jetzt ein Verzeichnis, das pro Stil einen symbolischen Link auf
 	  die letzte Revision mit diesem Stil enthält.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Es ist jetzt möglich, im Verzeichnis <filename>common</filename> Dateien (Bilder und Dokumentfragmente) direkt in den Dokumenten zu verwenden. &zpub; erkennt bei Änderungen an diesen Dateien, welche Dokumente von der Änderung betroffen sind und baut nur jene Dokumente neu.
 	  <emphasis>Dieses Feature wurde per <ulink url="http://www.zpub.de/de/crowdfunding.html">Crowdfunding</ulink> finanziert.</emphasis>
 
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Bei der Erstellung der HTML-Ausgabe werden wirklich nur verwendete Bilder kopiert, und die Dokumenterstellung schlägt fehl, wenn nicht alle referenzierten Bilder gefunden werden können.
-	</para></listitem>
+	</para>
+        </listitem>
       </itemizedlist>
     </section>
-      
     <section>
       <title>Version 0.5</title>
       <para>7.11.2012</para>
       <itemizedlist>
-	<listitem><para>
+        <listitem>
+          <para>
 	  Dokumente, die nicht mehr im Subversion-Repository liegen, werden auch nicht mehr in der Web-Oberfläche angezeigt.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Die &zpub;-Dokumentation wird jetzt mit installiert und kann mit
 	  <command>zpub-update-docs.sh</command> in eine Instanz eingefügt bzw.
 	  darin aktualisiert werden. Dabei wird in der Dokumentations der zur
 	  Instanz gehörende Instanz- und Hostname eingefügt.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Diese Versionshistorie.
-	</para></listitem>
+	</para>
+        </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>Version 0.4</title>
       <para>Veröffentlicht am 10.2.2012</para>
       <itemizedlist>
-	<listitem><para>
+        <listitem>
+          <para>
 	  Ab dieser Version kann man auch mehrere zpub-Instanzen auf dem selben virtuellen Host unterbringen, da eine Instanz auch in einem Unterverzeichnis des URL-Adressraumes eingerichtet werden kann.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Es können mehrere Ausgabevarianten („styles“) gleichzeitig konfiguriert werden.
-	</para></listitem>
+	</para>
+        </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>Version 0.3</title>
       <para>Veröffentlicht am 2.1.2012</para>
       <itemizedlist>
-	<listitem><para>
+        <listitem>
+          <para>
 	  Das Ausgabeformat epub für mobile Lesegeräte wird unterstützt.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Die aktuelle Version der zpub-Installation wird im Web-Interface angezeigt.
-	</para></listitem>
+	</para>
+        </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>Version 0.2</title>
       <para>Veröffentlicht am 6.12.2010</para>
       <itemizedlist>
-	<listitem><para>
+        <listitem>
+          <para>
 	  Es gibt jetzt ein Installationsskript und eine Paketierung für Debian- und Ubuntu-Pakete.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Die generierten Ausgabeformate sind jetzt konfigurierbar.
-	</para></listitem>
-	<listitem><para>
+	</para>
+        </listitem>
+        <listitem>
+          <para>
 	  Ein Backup der gesamten Dokumentquellen samt Historie kann über das Web-Interface heruntergeladen werden.
-	</para></listitem>
+	</para>
+        </listitem>
       </itemizedlist>
     </section>
-
   </section>
-
-  <section>    
-	<title>Systemvoraussetzungen</title>
+  <section>
+    <title>Systemvoraussetzungen</title>
     <para>
       &zpub; ist, technisch gesehen, eine Sammlung von Bash- und
       Perl-Skripten, die im Zusammenspiel mit
@@ -165,29 +188,75 @@
       “Lenny”, installiert sein:
     </para>
     <simplelist type="horiz" columns="4">
-      <member><package>apache2</package></member>
-      <member><package>cabextract</package></member>
-      <member><package>docbook-xsl</package></member>
-      <member><package>fop</package></member>
-      <member><package>libapache2-svn</package></member>
-      <member><package>libdatetime-format-strptime-perl-perl</package></member>
-      <member><package>libdatetime-perl</package></member>
-      <member><package>libfile-slurp-perl</package></member>
-      <member><package>libfilesys-df-perl</package></member>
-      <member><package>libipc-run-perl</package></member>
-      <member><package>libmime-lite-perl</package></member>
-      <member><package>libpaper1</package></member>
-      <member><package>libsaxon-java</package></member>
-      <member><package>libsvn-svnlook-perl</package></member>
-      <member><package>libsys-cpuload-perl</package></member>
-      <member><package>libtemplate-perl</package></member>
-      <member><package>realpath</package></member>
-      <member><package>rsync</package></member>
-      <member><package>subversion</package></member>
-      <member><package>sun-java6-jre</package></member>
-      <member><package>wine</package></member>
-      <member><package>xsltproc</package></member>
-      <member><package>zip</package></member>
+      <member>
+        <package>apache2</package>
+      </member>
+      <member>
+        <package>cabextract</package>
+      </member>
+      <member>
+        <package>docbook-xsl</package>
+      </member>
+      <member>
+        <package>fop</package>
+      </member>
+      <member>
+        <package>libapache2-svn</package>
+      </member>
+      <member>
+        <package>libdatetime-format-strptime-perl-perl</package>
+      </member>
+      <member>
+        <package>libdatetime-perl</package>
+      </member>
+      <member>
+        <package>libfile-slurp-perl</package>
+      </member>
+      <member>
+        <package>libfilesys-df-perl</package>
+      </member>
+      <member>
+        <package>libipc-run-perl</package>
+      </member>
+      <member>
+        <package>libmime-lite-perl</package>
+      </member>
+      <member>
+        <package>libpaper1</package>
+      </member>
+      <member>
+        <package>libsaxon-java</package>
+      </member>
+      <member>
+        <package>libsvn-svnlook-perl</package>
+      </member>
+      <member>
+        <package>libsys-cpuload-perl</package>
+      </member>
+      <member>
+        <package>libtemplate-perl</package>
+      </member>
+      <member>
+        <package>realpath</package>
+      </member>
+      <member>
+        <package>rsync</package>
+      </member>
+      <member>
+        <package>subversion</package>
+      </member>
+      <member>
+        <package>sun-java6-jre</package>
+      </member>
+      <member>
+        <package>wine</package>
+      </member>
+      <member>
+        <package>xsltproc</package>
+      </member>
+      <member>
+        <package>zip</package>
+      </member>
     </simplelist>
     <para>
       Weiter muss für die Erstellung von Windows-Hilfedateien der
@@ -205,33 +274,29 @@ $ bash ./htmlhelp.sh</screen>
       enthaltene Datei <filename>fop-hyph.jar</filename> im Verzeichnis
       <filename>/opt/zpub/tools</filename> gespeichert werden.
     </para>
-
-</section>
-
-<section> <title>zpub - für Debian paketiert</title>
-
-
-<para>zpub ist als Debian-Paket verfügbar, welches die Installation und Ersteinrichtung stark vereinfacht bzw. automatisiert. Ein Installationsskript für zpub-Instanzen (<code>zpub-create-instance</code>) ist ebenfalls vorhanden. </para>
-
-<para>Einrichtung über das zpub-Debian-Paket: </para>
-<orderedlist>
-<listitem>
-<para>Erweiterung der <code>/etc/apt/sources.list</code> um das private zpub-Repository:</para>
-<screen>deb http://zpub.de/debian/ ./</screen>
-</listitem>
-<listitem>
-<para><code>$ apt-get install zpub</code>:</para>
-<itemizedlist>
-<listitem>
-<para>neuer Benutzer "zpub" wird erstellt und der Gruppe "<code>www-data</code>" hinzugefügt</para>
-</listitem>
-<listitem>
-<para>ein vorhandener Apache-Webserver wird für zpub konfiguriert (ein neuer vhost wird erstellt)</para>
-</listitem>
-</itemizedlist>
-</listitem>
-<listitem>
-<screen>$ zpub-create-instance
+  </section>
+  <section>
+    <title>zpub - für Debian paketiert</title>
+    <para>zpub ist als Debian-Paket verfügbar, welches die Installation und Ersteinrichtung stark vereinfacht bzw. automatisiert. Ein Installationsskript für zpub-Instanzen (<code>zpub-create-instance</code>) ist ebenfalls vorhanden. </para>
+    <para>Einrichtung über das zpub-Debian-Paket: </para>
+    <orderedlist>
+      <listitem>
+        <para>Erweiterung der <code>/etc/apt/sources.list</code> um das private zpub-Repository:</para>
+        <screen>deb http://zpub.de/debian/ ./</screen>
+      </listitem>
+      <listitem>
+        <para><code>$ apt-get install zpub</code>:</para>
+        <itemizedlist>
+          <listitem>
+            <para>neuer Benutzer "zpub" wird erstellt und der Gruppe "<code>www-data</code>" hinzugefügt</para>
+          </listitem>
+          <listitem>
+            <para>ein vorhandener Apache-Webserver wird für zpub konfiguriert (ein neuer vhost wird erstellt)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <screen>$ zpub-create-instance
 Usage:
 
 /usr/sbin/zpub-create-instance name 'Full Name' zpub.domain.com
@@ -243,81 +308,74 @@ where
 
 $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 </screen>
-<para>Die neue zpub-Instanz "<code>testzpublocal</code>" ist nun angelegt.</para>
-<para>Weitere Schritte sind beispielsweise:</para>
-<itemizedlist>
-<listitem>
-<para><code>style</code>-Verzeichnis anpassen bzw. eigene Stylesheets hinterlegen</para>
-</listitem>
-<listitem>
-<para>via <code>htpasswd</code> neue zpub-Benutzer anlegen</para>
-</listitem>
-<listitem>
-<para>zpub-admin Benutzer anlegen</para>
-</listitem>
-<listitem>
-<para>eventuell <code>/etc/hosts</code> anpassen</para>
-</listitem>
-<listitem>
-<para>Apache neu starten, um die neue zpub-Instanz zu erreichen</para>
-</listitem>
-</itemizedlist>
-</listitem>
-<listitem>
-<para>zpub ist über den Browser erreichbar: </para>
-<para>bspw.: <code>https://zpub.localhost/</code> (Hostname wie bei <code>zpub-create-instance</code> (s.o.) angegeben)</para>
-</listitem>
-<listitem>
-<para>zpub-Benutzer anlegen (hier: <code>test</code>):</para>
-<para><code>htpasswd -b /var/lib/zpub/testzpublocal/settings/htpasswd test test</code></para>
-</listitem>
-<listitem>
-<para>Datenverzeichnis anlegen</para>
-</listitem>
-<listitem>
-<para>Datenverzeichnis mit Dokument-Verzeichnis(sen) füllen</para>
-</listitem>
-<listitem>
-<para>svn: neues Dokumentverzeichnis dem SVN-Repository hinzufügen (<code>svn add</code>), Änderungen übertragen (<code>svn ci</code>)</para>
-</listitem>
-<listitem>
-<para>zpub-Dokumente werden generiert und sind über das Webinterface, welche unter der oben definierten Domain läuft, abrufbar</para>
-</listitem>
-</orderedlist>
-
-<note>
-<itemizedlist>
-
-<listitem>
-<para>
-<code>/var/lib/zpub/</code>  <symbol role="symbolfont">→</symbol> enthält ein Verzeichnis je instanz
+        <para>Die neue zpub-Instanz "<code>testzpublocal</code>" ist nun angelegt.</para>
+        <para>Weitere Schritte sind beispielsweise:</para>
+        <itemizedlist>
+          <listitem>
+            <para><code>style</code>-Verzeichnis anpassen bzw. eigene Stylesheets hinterlegen</para>
+          </listitem>
+          <listitem>
+            <para>via <code>htpasswd</code> neue zpub-Benutzer anlegen</para>
+          </listitem>
+          <listitem>
+            <para>zpub-admin Benutzer anlegen</para>
+          </listitem>
+          <listitem>
+            <para>eventuell <code>/etc/hosts</code> anpassen</para>
+          </listitem>
+          <listitem>
+            <para>Apache neu starten, um die neue zpub-Instanz zu erreichen</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>zpub ist über den Browser erreichbar: </para>
+        <para>bspw.: <code>https://zpub.localhost/</code> (Hostname wie bei <code>zpub-create-instance</code> (s.o.) angegeben)</para>
+      </listitem>
+      <listitem>
+        <para>zpub-Benutzer anlegen (hier: <code>test</code>):</para>
+        <para>
+          <code>htpasswd -b /var/lib/zpub/testzpublocal/settings/htpasswd test test</code>
+        </para>
+      </listitem>
+      <listitem>
+        <para>Datenverzeichnis anlegen</para>
+      </listitem>
+      <listitem>
+        <para>Datenverzeichnis mit Dokument-Verzeichnis(sen) füllen</para>
+      </listitem>
+      <listitem>
+        <para>svn: neues Dokumentverzeichnis dem SVN-Repository hinzufügen (<code>svn add</code>), Änderungen übertragen (<code>svn ci</code>)</para>
+      </listitem>
+      <listitem>
+        <para>zpub-Dokumente werden generiert und sind über das Webinterface, welche unter der oben definierten Domain läuft, abrufbar</para>
+      </listitem>
+    </orderedlist>
+    <note>
+      <itemizedlist>
+        <listitem>
+          <para><code>/var/lib/zpub/</code><symbol role="symbolfont">→</symbol> enthält ein Verzeichnis je instanz
 </para>
-</listitem>
-<listitem>
-<para>
-<code>/var/lib/zpub/testzpublocal/conf/formats</code>  <symbol role="symbolfont">→</symbol>  Aktivierung/Deaktivierung der gewünschten Ausgabeformate
+        </listitem>
+        <listitem>
+          <para><code>/var/lib/zpub/testzpublocal/conf/formats</code><symbol role="symbolfont">→</symbol>  Aktivierung/Deaktivierung der gewünschten Ausgabeformate
 </para>
-</listitem>
-<listitem>
-<para>
-<code>/var/lib/zpub/testzpublocal/conf/default_style</code>   <symbol role="symbolfont">→</symbol>  Standard-Stil (z.B.
+        </listitem>
+        <listitem>
+          <para><code>/var/lib/zpub/testzpublocal/conf/default_style</code><symbol role="symbolfont">→</symbol>  Standard-Stil (z.B.
 <code>draft</code>)
 </para>
-</listitem>
-<listitem>
-<para>
-<code>/var/lib/zpub/testzpublocal/conf/final_style</code>  <symbol role="symbolfont">→</symbol>  Alternativ-Stil (z.b.
+        </listitem>
+        <listitem>
+          <para><code>/var/lib/zpub/testzpublocal/conf/final_style</code><symbol role="symbolfont">→</symbol>  Alternativ-Stil (z.b.
 <code>final</code>)
 </para>
-</listitem>
-</itemizedlist>
-</note>
-
-
+        </listitem>
+      </itemizedlist>
+    </note>
   </section>
-
-  <section>    <title>Verzeichnisstruktur</title>
-
+  <section>
+    <title>Verzeichnisstruktur</title>
     <para>
       &zpub; erwartet eine bestimme Verzeichnisstruktur für seine Daten, seine
       Konfiguration, die Skripte und die Ausgabe. Es geht davon aus, dass all
@@ -325,157 +383,182 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       Verzeichnissen darin gibt es auch ein Verzeichnis pro Kunde, im
       folgenden exemplarisch <filename>/opt/zpub/&cust;</filename> benannt.
     </para>
-
     <variablelist>
       <title>&zpub;-Verzeichnisse</title>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/bin</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/bin</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  ausführbare Skripte, etwa der SVN-Post-Commit-Hook, das
 	  DocBook-Render-Skript oder das CGI-Skript.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/bin/lib</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/bin/lib</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  gemeinsam genutzte Programmteile, etwa Perl-Module
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/templates</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/templates</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Template-Toolkit-Vorlagen für das Web-Frontend und die
 	  Benachrichtigungs-e-Mail
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/templates/static</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/templates/static</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Statische Dateien, etwa CSS-Style-Sheets, die unter
 	  <filename>/static</filename> in das Web-Interface eingebunden
 	  werden.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/tools</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/tools</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Werkzeuge, die weder selbst entwickelt wurden (und demnach
 	  <filename>/opt/zpub/bin</filename> liegen), noch als Debian-Paket
 	  zur Verfügungen stehen; etwa der Worttrenner für
 	  <application>fop</application>.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/spool</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/spool</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  In diesem Verzeichnis werden die Render-Aufträge verwaltet. Es gibt
 	  die folgenden Unterverzeichnisse:
 	  </simpara>
-	  <simpara>In <filename>new/</filename> werden neue Aufträge, etwa nach
+          <simpara>In <filename>new/</filename> werden neue Aufträge, etwa nach
 	  einem SVN-Commit, angelegt und dann nach <filename>todo/</filename>
 	  verschoben. Der Spooler findet sie dort und schiebt sie nach
 	  <filename>wip/</filename> (für „work in process“), während sie
 	  bearbeitet und gelöst werden. Im Fehlerfalle werden sie nach
 	  <filename>fail/</filename> verschoben.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/repos/zpub</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/repos/zpub</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  enthält das SVN-Repository für alle nicht-benutzerspezifischen,
 	  selbst entwickelten Dateien. Für den produktiven Betrieb wird dieses
 	  nicht benötigt.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Verzeichnisbaum für alle benutzer-spezifischen Dateien, hier am
 	  Beispiel &cust;.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/conf</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/conf</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Konfigurationsdateien, die der Benutzer nicht selbst bearbeiten
 	  darf. Enthält neben der Apache-Konfiguration
 	  <filename>apache2.conf</filename> auch verschiedene Dateien, die das
 	  &zpub;-Verhalten selbst steuern. Diese sind weiter unten, in der
 	  Liste „<xref linkend="zpub-settings"/>“ erklärt.
 
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/settings</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/settings</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Konfigurationsdateien, die der Benutzer selbst einstellen darf,
 	  etwa per Web-Frontend. Enthält neben der Apache-Benutzerdatenbank
 	  <filename>htpasswd</filename> auch weitere Dateien, die das
 	  &zpub;-Verhalten steuern. Diese sind weiter unten, in der Liste
 	  „<xref linkend="zpub-settings"/>“ erklärt.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/style</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/style</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Verfügbare Stylesheets, eines pro Unterverzeichnis, deren Inhalt in <xref linkend="zpub-styles"/> erläutert werden.
 	  <!-- >
 	  Es werden in
 	  diesen die Dateien
 	  <filename>fo.xsl</filename>, <filename>html.xsl</filename>, <filename>htmlhelp.xsl</filename>,
 	  und gegebenenfalls das Verzeichnis <filename>images/</filename> erwartet. -->
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/repos/style</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/repos/style</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Ein SVN-Repository, dass das oben genannte Verzeichnis verwaltet.
 	  Für den produktiven Betrieb wird dieses nicht benötigt.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/repos/source</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/repos/source</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Das SVN-Repository mit den eigentlichen XML-Quellen der Dokumente.
 	  Im Repository existiert für jedes Dokument ein Verzeichnis mit
 	  <emphasis>genau einer</emphasis> XML-Datei. Weitere Dateien, wie etwa
 	  Bilder, können in Unterverzeichnissen gespeichert sein.
 	  Für den produktiven Betrieb wird dieses Repository direkt verwendet,
 	  es gibt keine dauerhaft ausgecheckte Arbeitskopie.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/output</filename>
-	</term>
-	<listitem>
-	  <simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/output</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Hier werden die generierten Dokumente abgelegt. Es gibt ein
 	  Unterverzeichnis pro Dokument, das wiederum das Verzeichnis
 	  <filename>archive/</filename> enthält. Darin wird für jede
@@ -483,29 +566,28 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	  Verzeichnis angelegt. Diese können gefahrlos gelöscht werden, wenn
 	  Festplattenspeicher frei gemacht werden soll. 
 	  </simpara>
-	  <simpara>
+          <simpara>
 	  Auch gibt es, neben dem Verzeichnis <filename>archive/</filename>,
 	  pro Dokument ein Verzeichnis <filename>latest</filename>. Dieses
 	  enthält pro Stil einen symbolischen Link auf die jeweils neuste
 	  Revision des Stils Er kann verwendet werden, um geeignete Bookmarks
 	  zu setzen.
 	  </simpara>
-	</listitem>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>/opt/zpub/&cust;/cache</filename>
-	</term>
-	<listitem>
-	  <simpara>
+        <term>
+          <filename>/opt/zpub/&cust;/cache</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  In diesem Verzeichnis legt &zpub; diverse interne Dateien ab. Diese
 	  müssen nicht von Hand bearbeitet werden, dürfen aber auch nicht
 	  gelöscht werden.
 	  </simpara>
-	</listitem>
+        </listitem>
       </varlistentry>
     </variablelist>
-
     <para>
       Wie bereits oben erwähnt wird &zpub; über die Dateien in den
       Verzeichnissen <filename>/opt/zpub/&cust;/conf</filename> und
@@ -519,38 +601,44 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       dokumenten-spezifisch und sind selbst Verzeichnisse, die pro Dokument je eine wie das
       Dokument benannte Datei enthalten.
     </para>
-
     <variablelist id="zpub-settings">
       <title>&zpub;-Einstellungen</title>
       <varlistentry>
-	<term>
-	  <filename>conf/cust_name</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/cust_name</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Der Name des Kunden, in menschenlesbarer Schreibweise.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/logo.png</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/logo.png</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  Ein Kunden-spezifisches Logo im PNG-Format, Auflösung 136×42 Pixel.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/hostname</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/hostname</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  (Optional) Der Name des virtuellen Hosts, standardmäßig &cust;.zpub.de.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/rootpath</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/rootpath</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  (Optional) Der Pfad der URL der &zpub;-Instanz, wenn etwa mehrere
 	  &zpub;-Instanzen auf einem virtuellen Host laufen sollen.
 	  Standardmäßig leehr, das heißt dass &zpub; im Wurzelverzeichnis der
@@ -558,22 +646,26 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	  ohne Slash enden, etwa „<filename>/zpub-instance</filename>“. Diese
 	  Einstellung ist unabhängig von den Pfaden der Dateien im
 	  Dateisystem!
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/admins</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/admins</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  eine zeilenweise Aufzählung der Benutzer, die in der Web-Oberfläche
 	  Admin-Rechte haben.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/features</filename>
-	</term>
-	<listitem><para>
+        <term>
+          <filename>conf/features</filename>
+        </term>
+        <listitem>
+          <para>
 	  Eine zeilenweise Aufzählung aller für diesen Kunden aktivieren Features.
 	  Momentan definierte Features sind:
 	  <!--
@@ -589,93 +681,100 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	  </variablelist>
 	  -->
 	  </para>
-	  <itemizedlist>
-	    <listitem><para>
-	      <literal>final_approve</literal>:
+          <itemizedlist>
+            <listitem>
+              <para><literal>final_approve</literal>:
 	      Ein Admin-Benutzter kann eine Revision eines
 	      Dokuments als final freigeben, dieses wird dann mit einem
 	      speziellen Stil erzeugt (etwa ohne den Vermerkt „draft“).
-	    </para></listitem>
-	    <listitem><para>
-	      <literal>online_backup</literal>:
+	    </para>
+            </listitem>
+            <listitem>
+              <para><literal>online_backup</literal>:
 	      Ein Admin-Benutzter kann auf der Status-Seite das komplette
 	      Dokumenten-Quellarchiv als SVN-Dump herunterladen.
-	    </para></listitem>
-	  </itemizedlist>
-	</listitem>
+	    </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/default_style</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/default_style</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  das standardmäßig zu verwendende XSLT-Stylesheet, spezifiziert über
 	  den Verzeichnisnamen in
 	  <filename>/opt/zpub/&cust;/style/</filename>.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/final_style</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/final_style</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  falls das Feature <literal>final_approve</literal> aktiv ist: Welcher
 	  Stil für freigegebene Dokumente verwendet werden soll.
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>conf/formats</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>conf/formats</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  enthält eine Zeile pro Format (<literal>html</literal>,
 	  <literal>pdf</literal> oder <literal>pdfhelp</literal>), in dem das
 	  Dokument erstellt werden soll. (Ab version 0.2)
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>settings/final_rev/</filename>
-	</term>
-	<listitem><simpara>
+        <term>
+          <filename>settings/final_rev/</filename>
+        </term>
+        <listitem>
+          <simpara>
 	  falls das Feature <literal>final_approve</literal> aktiv ist:
 	  Welche Revision des Dokuments die aktuell freigegebene ist.
 	  (dokumenten-spezifisch)
-	</simpara></listitem>
+	</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>settings/subscribers/</filename>
-	</term>
-	<listitem>
-	  <simpara>
+        <term>
+          <filename>settings/subscribers/</filename>
+        </term>
+        <listitem>
+          <simpara>
 	    Eine komma-separierte Liste der bei Änderungen am Dokument zu
 	    benachrichtigenden Benutzer. (dokumenten-spezifisch)
 	  </simpara>
-	  <para>
+          <para>
 	    Beispiel:
 	  </para>
-	  <para>
-	    <literal>
+          <para>
+            <literal>
 	    Max Mustermann &lt;max.mustermann@web.de&gt;, Petra Musterfrau
 	    &lt;petra@musterfrau.de&gt;
 	    </literal>
-	  </para>
-	</listitem>
+          </para>
+        </listitem>
       </varlistentry>
-
     </variablelist>
   </section>
-
-  <section>    <title>Zusammenspiel der Komponenten</title>
-
+  <section>
+    <title>Zusammenspiel der Komponenten</title>
     <para>
       Die Skripte im Verzeichnis <filename>/opt/zpub/bin</filename> 
       führen jeweils spezifische Ausgaben aus, so dass im Zusammenspiel die
       gewünschte Funktionalität geboten wird. In diesem Kapitel wird der
       Programmablauf für verschiedene Anwendungsfälle beschreiben.
     </para>
-
     <section>
       <title>Erstellung einer neuen Dokumenten-Revsion</title>
       <para>
@@ -685,7 +784,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	gibt es eine neue Revision des Dokuments, die über die von SVN
 	vergebenen Nummer identifiziert wird.
       </para>
-
       <para>
 	SVN startet direkt nach dem Commit das Skript
 	<filename>zpub-post-commit-hook.sh</filename>. Dieses untersucht die
@@ -694,19 +792,12 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	mehrere Dokumente zu ändern. Für jedes geänderte Dokumement legt es
 	einen Auftrag in <filename>/opt/zpub/spool/todo</filename> an, welches
 	Angaben zu
-	<itemizedlist spacing="compact">
-	  <listitem><simpara>Kunde</simpara></listitem>
-	  <listitem><simpara>Dokument</simpara></listitem>
-	  <listitem><simpara>Revision</simpara></listitem>
-	  <listitem><simpara>zu verwendenter Stil</simpara></listitem>
-	  <listitem><simpara>und Ausgabeverzeichnis</simpara></listitem>
-	</itemizedlist>
+	<itemizedlist spacing="compact"><listitem><simpara>Kunde</simpara></listitem><listitem><simpara>Dokument</simpara></listitem><listitem><simpara>Revision</simpara></listitem><listitem><simpara>zu verwendenter Stil</simpara></listitem><listitem><simpara>und Ausgabeverzeichnis</simpara></listitem></itemizedlist>
 	enthält. Dabei wird der zu verwendente Stil aus
 	<filename>conf/default_style</filename> gelesen, und das
 	Ausgabeverzeichnis in <filename>/opt/zpub/&cust;/output</filename> nach
 	dem oben beschriebenen Schema erstellt.
       </para>
-
       <para>
 	Außerdem aktualisiert <filename>zpub-post-commit-hook.sh</filename> die
 	Datei <filename>/opt/zpub/&cust;/cache/documents</filename>, die die
@@ -715,7 +806,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	Die generierten Dokumente sind aber weiterhin vorhanden und müssen ggf.
 	vom Systemadministrator gelöscht werden.
       </para>
-
       <para>
 	Das Skript <filename>zpub-spooler.sh</filename>, welches permanent
 	läuft, schaut regelmäßig in <filename>/opt/zpub/spool/todo</filename>
@@ -724,7 +814,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	<filename>zpub-render.sh</filename> mit den Parametern aus der
 	Auftrgs-Datei auf.
       </para>
-      
       <para>
 	Das Render-Skript erstellt darauf das Ausgabeverzeichnis, falls es nicht
 	schon existiert. Es extrahiert die gewünschte Revision des Dokumentes
@@ -737,7 +826,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	zum Einsatz, sowie die Werkzeuge xslt und fop. Bei jeder Art von Fehler
 	bricht dieses Skript ab.
       </para>
-
       <para>
 	Je nach dem, ob das Render-Skript erfolgreich war oder nicht, wird die
 	Auftragsdatei vom Spooler gelöscht oder nach
@@ -750,7 +838,6 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 	symbolischen Link anlegt. Danach wartet der Spooler wieder auf neue
 	Aufträge.
       </para>
-
     </section>
   </section>
   <section id="zpub-styles">
@@ -765,64 +852,77 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
     <variablelist>
       <title>Stil-Dateien</title>
       <varlistentry>
-	<term>
-	  <filename>pdf/fo.xsl</filename>
-	</term>
-	<listitem><simpara>XSLT-Stylesheet für die PDF-Ausgabe</simpara></listitem>
+        <term>
+          <filename>pdf/fo.xsl</filename>
+        </term>
+        <listitem>
+          <simpara>XSLT-Stylesheet für die PDF-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>pdf/fop.xconf</filename>
-	</term>
-	<listitem><simpara>fop-Konfigurationsdatei (optional)</simpara></listitem>
+        <term>
+          <filename>pdf/fop.xconf</filename>
+        </term>
+        <listitem>
+          <simpara>fop-Konfigurationsdatei (optional)</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>html/html.xsl</filename>
-	</term>
-	<listitem><simpara>XSLT-Stylesheet für die HTML-Ausgabe</simpara></listitem>
+        <term>
+          <filename>html/html.xsl</filename>
+        </term>
+        <listitem>
+          <simpara>XSLT-Stylesheet für die HTML-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>html/static/</filename>
-	</term>
-	<listitem><simpara>Zusätzliche Dateien für die HTML-Ausgabe</simpara></listitem>
+        <term>
+          <filename>html/static/</filename>
+        </term>
+        <listitem>
+          <simpara>Zusätzliche Dateien für die HTML-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>htmlhelp/htmlhelp.xsl</filename>
-	</term>
-	<listitem><simpara>XSLT-Stylesheet für die Windows-Hilfe-Ausgabe</simpara></listitem>
+        <term>
+          <filename>htmlhelp/htmlhelp.xsl</filename>
+        </term>
+        <listitem>
+          <simpara>XSLT-Stylesheet für die Windows-Hilfe-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>htmlhelp/static/</filename>
-	</term>
-	<listitem><simpara>Zusätzliche Dateien für die Windows-Hilfe-Ausgabe</simpara></listitem>
+        <term>
+          <filename>htmlhelp/static/</filename>
+        </term>
+        <listitem>
+          <simpara>Zusätzliche Dateien für die Windows-Hilfe-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>epub/epub.xsl</filename>
-	</term>
-	<listitem><simpara>XSLT-Stylesheet für die epub-Ausgabe</simpara></listitem>
+        <term>
+          <filename>epub/epub.xsl</filename>
+        </term>
+        <listitem>
+          <simpara>XSLT-Stylesheet für die epub-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>
-	  <filename>epub/static/</filename>
-	</term>
-	<listitem><simpara>Zusätzliche Dateien für die epub-Ausgabe</simpara></listitem>
+        <term>
+          <filename>epub/static/</filename>
+        </term>
+        <listitem>
+          <simpara>Zusätzliche Dateien für die epub-Ausgabe</simpara>
+        </listitem>
       </varlistentry>
     </variablelist>
     <para>
       Ein Bild <filename>tip.png</filename>, das im Wurzelverzeichnis des Style-Verzeichnisses liegt, muss wie folgt in den Stylesheets referenziert werden:
-      <itemizedlist>
-        <listitem>
+      <itemizedlist><listitem>
 	  Stylesheets für HTML, HtmlHelp und epub verwenden den Pfad <filename>images/../style/tip.png</filename>.
-	</listitem>
-        <listitem>
+	</listitem><listitem>
 	  Stylesheets für PDF verwenden den Pfad <filename>style/tip.png</filename>.
-	</listitem>
-      </itemizedlist>
+	</listitem></itemizedlist>
     </para>
     <para>
       Beim erstellen der Zip-Archive für HTML, epub und Windows-Hilfe werden
@@ -847,38 +947,175 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
   <section>
     <title>Authentifizierung und Authentisierung</title>
     <para>Authentifizierung und Authentisierung erfolgen primär über die vorgestellte zpub-eigene Benutzerverwaltung. Es ist jedoch auch möglich, die in zpub verwendeten Komponenten (hier: apache und subversion) z.B. gegen einen LDAP-Verzeichnisdienst authentifizeren zu lassen oder Single Sign-On einzurichten.</para>
-
     <section>
       <title>LDAP</title>
       <para>Auf dem Verzeichnisdienst muss ein Abfrage-User (hier: <code>apacheconnect</code>) eingerichtet sein.</para>
-
       <para>Aapche-Module:</para>
       <userinput>a2enmod authnz_ldap ldap</userinput>
-
       <example>
-        <title><filename>/etc/apache2/mods-enabled/ldap.conf</filename></title>
+        <title>
+          <filename>/etc/apache2/mods-enabled/ldap.conf</filename>
+        </title>
         <programlisting>LDAPVerifyServerCert Off|On</programlisting>
       </example>
-      
       <example>
         <title><filename>vhost.conf</filename> (Ausschnitt)</title>
-      <programlisting>AuthType Basic
+        <programlisting>AuthType Basic
 AuthBasicProvider ldap file
-AuthLDAPURL ldaps://dc.tld:636/dc=dc,dc=tld?sAMAccountName?sub?(objectClass=*)
-AuthLDAPBindDN apacheconnect@dc.tld
+AuthLDAPURL ldaps://dc1.domain.tld:636/dc=domain,dc=tld\
+    ?sAMAccountName?sub?(objectClass=*)
+AuthLDAPBindDN apacheconnect@domain.tld
 AuthLDAPBindPassword geheim
-Require ldap-group ou=zpubgruppe,DC=dc,DC=tld</programlisting>
-      </example>      
-
-
-
+Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
+      </example>
       <para>Die LDAP-Abfragen können mit <userinput>ldapsearch</userinput> aus dem Debian-Paket 'ldap-utils' getestet werden:</para>
-      <programlisting>ldapsearch -x -D "apacheconnect@dc.tld" -w geheim -b "dc=dc,dc=tld" -H "ldaps://dc.tld:636" "(sn=apacheconnect)" dn</programlisting>
+      <programlisting>$ ldapsearch -x -D "apacheconnect@domain.tld" -w geheim -b "dc=domain,dc=tld" \
+    -H "ldaps://dc1.domain.tld:636" "(sn=apacheconnect)" dn</programlisting>
     </section>
     <section>
-      <title>Single sign-on</title>
-      <programlisting>apt-get install libapache2-mod-auth-kerb</programlisting>
-      <para>...</para>
+      <title>Single sign-on (Kerberos)</title>
+      <note>
+        <para>Die Zeit muss auf allen beteiligten Hosts korrekt gestellt sein.</para>
+      </note>
+      <note>
+        <para>Alle Angaben beziehen sich auf die Realisierung der Authentifizierung und Authentisierung gegen ein <trademark>Microsoft Active Directory</trademark>.</para>
+      </note>
+      <note>
+        <para>Bei der Nutzung von Kerberos ist keine "fallback"-Authentifizierung durch andere Authentifizierungs-Provider (z.B. <code>file</code>) möglich.</para>
+      </note>
+      <note>
+        <para>Diese Umsetzung bezieht sich auf folgende Umgebung:</para>
+        <itemizedlist>
+          <listitem>
+            <para>Domain Controller: <trademark>Windows Server 2012R2</trademark></para>
+          </listitem>
+          <listitem>
+            <para>HTTP Service: Apache 2.4/Debian 8.x</para>
+          </listitem>
+          <listitem>
+            <para>Client: <trademark>Microsoft Windows 7</trademark></para>
+          </listitem>
+        </itemizedlist>
+      </note>
+      <orderedlist>
+        <listitem>
+          <para>Host AD: Erstellen eines Service Principals im Active Directory: Neuer Benutzer anlegen</para>
+          <variablelist>
+            <varlistentry>
+              <term>Anzeigename</term>
+              <listitem>Kerberos Service Principal</listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Benutzeranmeldename</term>
+              <listitem>
+                <code>HTTP/zpub.domain.tld</code>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Kontooption</term>
+              <listitem>Kennwort läuft nie ab</listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Kontooption</term>
+              <listitem>Dieses Konto unterstützt Kerberos-AES-256-Bit-Verschlüsselung</listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+        <listitem>
+          <para>Host AD: <code>keytab</code> für diesen Service Principal erstellen</para>
+          <programlisting>C:\&gt;ktpass -princ HTTP/$hostname.domain.tld@DOMAIN.TLD \
+  -mapuser kerberosprinc@DOMAIN.TLD \
+  -crypto AES256-SHA1 -ptype KRB5_NT_PRINCIPAL \
+  -pass not_be_guessable -out c:\keyfile</programlisting>
+        </listitem>
+        <listitem>
+          <para>Host zpub: <code>keytab</code>-Datei auf zpub-Host übertragen und Dateisystemberechtigungen anpassen:</para>
+          <programlisting>$ chown www-data http_zpub.krb5keytab
+$ chmod  400 http_zpub.krb5keytab </programlisting>
+        </listitem>
+        <listitem>
+          <para>Host zpub: LDAP-Konfiguration</para>
+          <para><filename>/etc/ldap/ldap.conf</filename>:</para>
+          <programlisting>BASE    dc=domain,dc=tld
+URI     ldap://dc1.domain.tld</programlisting>
+        </listitem>
+        <listitem>
+          <para>Host zpub: Kerberos-Konfiguration</para>
+          <para><filename>/etc/krb5.conf</filename>:</para>
+          <programlisting>[libdefaults]
+    default_realm = DOMAIN.TLD
+
+[realms]
+    DOMAIN.TLD = {
+        kdc = dc1.domain.tld
+        admin_server = dc1.domain.tld
+        default_domain = domain.tld
+     }
+ 
+[domain_realm]
+    .domain.tld = DOMAIN.TLD
+    domain.tld = DOMAIN.TLD</programlisting>
+        </listitem>
+        <listitem>
+          <para>Host zpub: Testen von Ticket und Keytab-Datei:</para>
+          <programlisting>$ kinit -k -t http_zpub.krb5keytab  HTTP/zpub.domain.tld
+$ kvno  HTTP/zpub-manuals.sm.net@SM.NET
+$ klist -e
+$ klist -e -k -t http_zpub.krb5keytab</programlisting>
+          <para>Drei Angaben müssen jeweils übereinstimmen:</para>
+          <orderedlist>
+            <listitem>
+              <para>
+                <code>kvno</code>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <code>principal name</code>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <code>encryption type</code>
+              </para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+        <listitem>
+          <para>Host zpub: apache-Module aktivieren:</para>
+          <programlisting>$ a2enmod auth_kerb ldap authnz_ldap</programlisting>
+        </listitem>
+        <listitem>
+          <para>Host zpub: apache konfigurieren:</para>
+          <programlisting>AuthName "zpub single Sign On"
+AuthType Kerberos
+KrbAuthRealms DOMAIN.TLD
+KrbServiceName HTTP/zpub.domain.tld@DOMAIN.TLD
+Krb5Keytab /etc/apache2/http_zpub.krb5keytab
+KrbMethodNegotiate on
+KrbMethodK5Passwd off
+KrbAuthoritative off
+KrbLocalUserMapping on
+#KrbVerifyKDC off
+#KrbSaveCredentials on
+
+AuthBasicProvider ldap
+AuthLDAPURL ldap://dc1.domain.tld:3268/dc=domain,dc=tld?\
+    sAMAccountName?sub?(objectClass=*)
+AuthLDAPBindDN kerberosprinc@DOMAIN.TLD
+AuthLDAPBindPassword not_be_guessable
+
+&lt;RequireAll&gt;
+    Require ldap-group CN=zpub,OU=ourunit,DC=domain,DC=tld
+&lt;/RequireAll&gt;
+</programlisting>
+        </listitem>
+        <listitem>
+          <para>Client: Webbrowser für SSO konfigurieren: </para>
+          <para>Firefox: <code>network.negotiate-auth.trusted-uris</code>: domain.tld</para>
+          <para>IE: Host zu <code>Trusted Sites</code> hinzufügen</para>
+        </listitem>
+      </orderedlist>
     </section>
   </section>
 </article>

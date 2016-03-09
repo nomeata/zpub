@@ -29,7 +29,7 @@
   <section>
     <title>Versionshistorie</title>
     <note>
-      <para>Siehe auch <ulink href="https://github.com/nomeata/zpub/releases"/></para>
+      <para>Siehe auch <ulink url="https://github.com/nomeata/zpub/releases"/></para>
     </note>
     <section>
       <title>Version 0.6.2</title>
@@ -87,10 +87,11 @@
         </listitem>
         <listitem>
           <para>
-	  Es ist jetzt möglich, im Verzeichnis <filename>common</filename> Dateien (Bilder und Dokumentfragmente) direkt in den Dokumenten zu verwenden. &zpub; erkennt bei Änderungen an diesen Dateien, welche Dokumente von der Änderung betroffen sind und baut nur jene Dokumente neu.
-	  <emphasis>Dieses Feature wurde per <ulink url="http://www.zpub.de/de/crowdfunding.html">Crowdfunding</ulink> finanziert.</emphasis>
-
+	  Es ist jetzt möglich, im Verzeichnis <filename>common</filename> Dateien (Bilder und Dokumentfragmente) direkt in den Dokumenten zu verwenden. &zpub; erkennt bei Änderungen an diesen Dateien, welche Dokumente von der Änderung betroffen sind und baut nur jene Dokumente neu. 
+	  <emphasis>Dieses Feature wurde per <ulink url="http://www.zpub.de/de/crowdfunding.html">Crowdfunding</ulink> finanziert</emphasis>: 
 	</para>
+  <programlisting><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" \
+    href="../common/fragment.xml" />]]></programlisting>
         </listitem>
         <listitem>
           <para>
@@ -962,6 +963,7 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
         <title><filename>vhost.conf</filename> (Ausschnitt)</title>
         <programlisting>AuthType Basic
 AuthBasicProvider ldap file
+AuthUserFile /var/lib/zpub/${instance-name}/settings/htpasswd
 AuthLDAPURL ldaps://dc1.domain.tld:636/dc=domain,dc=tld\
     ?sAMAccountName?sub?(objectClass=*)
 AuthLDAPBindDN apacheconnect@domain.tld
@@ -978,13 +980,7 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
         <para>Die Zeit muss auf allen beteiligten Hosts korrekt gestellt sein.</para>
       </note>
       <note>
-        <para>Alle Angaben beziehen sich auf die Realisierung der Authentifizierung und Authentisierung gegen ein <trademark>Microsoft Active Directory</trademark>.</para>
-      </note>
-      <note>
-        <para>Bei der Nutzung von Kerberos ist keine "fallback"-Authentifizierung durch andere Authentifizierungs-Provider (z.B. <code>file</code>) möglich.</para>
-      </note>
-      <note>
-        <para>Diese Umsetzung bezieht sich auf folgende Umgebung:</para>
+        <para>Alle Angaben beziehen sich auf die Realisierung der Authentifizierung und Authentisierung gegen ein <trademark>Microsoft Active Directory</trademark> bzw. folgende Umgebung:</para>
         <itemizedlist>
           <listitem>
             <para>Domain Controller: <trademark>Windows Server 2012R2</trademark></para>
@@ -997,6 +993,9 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
           </listitem>
         </itemizedlist>
       </note>
+      <note>
+        <para>Bei der Nutzung von Kerberos ist keine "fallback"-Authentifizierung durch andere Authentifizierungs-Provider (z.B. <code>file</code>) möglich.</para>
+      </note>
       <orderedlist>
         <listitem>
           <para>Host AD: Erstellen eines Service Principals im Active Directory: Neuer Benutzer anlegen</para>
@@ -1008,7 +1007,7 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
             <varlistentry>
               <term>Benutzeranmeldename</term>
               <listitem>
-                <code>HTTP/zpub.domain.tld</code>
+                <code>HTTP/$zpub-instance-name.domain.tld</code>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1023,7 +1022,7 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
         </listitem>
         <listitem>
           <para>Host AD: <code>keytab</code> für diesen Service Principal erstellen</para>
-          <programlisting>C:\&gt;ktpass -princ HTTP/$hostname.domain.tld@DOMAIN.TLD \
+          <programlisting>C:\&gt;ktpass -princ HTTP/$zpub-instance-name.domain.tld@DOMAIN.TLD \
   -mapuser kerberosprinc@DOMAIN.TLD \
   -crypto AES256-SHA1 -ptype KRB5_NT_PRINCIPAL \
   -pass not_be_guessable -out c:\keyfile</programlisting>
@@ -1058,8 +1057,8 @@ URI     ldap://dc1.domain.tld</programlisting>
         </listitem>
         <listitem>
           <para>Host zpub: Testen von Ticket und Keytab-Datei:</para>
-          <programlisting>$ kinit -k -t http_zpub.krb5keytab  HTTP/zpub.domain.tld
-$ kvno  HTTP/zpub-manuals.sm.net@SM.NET
+          <programlisting>$ kinit -k -t http_zpub.krb5keytab  HTTP/$zpub-instance-name.domain.tld
+$ kvno  HTTP/$zpub-instance-name.domain.tld@DOMAIN.TLD
 $ klist -e
 $ klist -e -k -t http_zpub.krb5keytab</programlisting>
           <para>Drei Angaben müssen jeweils übereinstimmen:</para>
@@ -1090,8 +1089,8 @@ $ klist -e -k -t http_zpub.krb5keytab</programlisting>
           <programlisting>AuthName "zpub single Sign On"
 AuthType Kerberos
 KrbAuthRealms DOMAIN.TLD
-KrbServiceName HTTP/zpub.domain.tld@DOMAIN.TLD
-Krb5Keytab /etc/apache2/http_zpub.krb5keytab
+KrbServiceName HTTP/${zpub-instance-hostname}.domain.tld@DOMAIN.TLD
+Krb5Keytab /etc/apache2/http_${zpub-instance-hostname}.krb5keytab
 KrbMethodNegotiate on
 KrbMethodK5Passwd off
 KrbAuthoritative off
@@ -1102,11 +1101,11 @@ KrbLocalUserMapping on
 AuthBasicProvider ldap
 AuthLDAPURL ldap://dc1.domain.tld:3268/dc=domain,dc=tld?\
     sAMAccountName?sub?(objectClass=*)
-AuthLDAPBindDN kerberosprinc@DOMAIN.TLD
+AuthLDAPBindDN apacheconnect@DOMAIN.TLD
 AuthLDAPBindPassword not_be_guessable
 
 &lt;RequireAll&gt;
-    Require ldap-group CN=zpub,OU=ourunit,DC=domain,DC=tld
+    Require ldap-group CN=zpub,DC=domain,DC=tld
 &lt;/RequireAll&gt;
 </programlisting>
         </listitem>

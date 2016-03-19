@@ -977,7 +977,7 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
     <section>
       <title>Single sign-on (Kerberos)</title>
       <note>
-        <para>Die Zeit muss auf allen beteiligten Hosts korrekt gestellt sein.</para>
+        <para>Die Zeit muss auf allen beteiligten Hosts korrekt gestellt sein. Weiter ist auf eine korrekte Namensauflösung (DNS-Lookup wie auch Reverse-DNS-Lookup) sowie auf die korrekte Klein- und Großschreibung für die Kerberos-Konfiguration zu achten.</para>
       </note>
       <note>
         <para>Alle Angaben beziehen sich auf die Realisierung der Authentifizierung und Authentisierung gegen ein <trademark>Microsoft Active Directory</trademark> bzw. folgende Umgebung:</para>
@@ -1026,6 +1026,7 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
   -mapuser kerberosprinc@DOMAIN.TLD \
   -crypto AES256-SHA1 -ptype KRB5_NT_PRINCIPAL \
   -pass not_be_guessable -out c:\keyfile</programlisting>
+            <note><para>Der Name Service Principal, sprich der Teil zwischen dem <code>HTTP/</code> und dem <code>@DOMAIN.TLD</code>, muss exakt auf den FQDN des zu "kerberisierenden" Hosts lauten.</para></note>
         </listitem>
         <listitem>
           <para>Host zpub: <code>keytab</code>-Datei auf zpub-Host übertragen und Dateisystemberechtigungen anpassen:</para>
@@ -1079,6 +1080,8 @@ $ klist -e -k -t http_zpub.krb5keytab</programlisting>
               </para>
             </listitem>
           </orderedlist>
+          <para>Die zum Testen erstellen Tickets sollten wieder gelöscht werden:</para>
+          <programlisting>$ kdestroy</programlisting>
         </listitem>
         <listitem>
           <para>Host zpub: apache-Module aktivieren:</para>

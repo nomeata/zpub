@@ -90,7 +90,7 @@
 	  Es ist jetzt möglich, im Verzeichnis <filename>common</filename> Dateien (Bilder und Dokumentfragmente) direkt in den Dokumenten zu verwenden. &zpub; erkennt bei Änderungen an diesen Dateien, welche Dokumente von der Änderung betroffen sind und baut nur jene Dokumente neu. 
 	  <emphasis>Dieses Feature wurde per <ulink url="http://www.zpub.de/de/crowdfunding.html">Crowdfunding</ulink> finanziert</emphasis>: 
 	</para>
-  <programlisting><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" \
+          <programlisting><![CDATA[<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" \
     href="../common/fragment.xml" />]]></programlisting>
         </listitem>
         <listitem>
@@ -946,6 +946,52 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
     </para>
   </section>
   <section>
+    <title>Übersetzung</title>
+    <para/>
+    <example>
+      <title>Repository Verzeichnisstruktur vor der Übersetzung</title>
+      <programlisting>zpub-repository/
+|-- handbuch_de
+|   |-- i18n
+|   `-- zpub-Technik.xml
+`-- manual_en</programlisting>
+    </example>
+    <orderedlist>
+      <listitem>
+        <para>Erzeugen der <code>pot</code>Template Datei: <programlisting>$ xml2po -o handbuch_de/i18n/zpub-Technik.pot \
+    handbuch_de/zpub-Technik.xml</programlisting></para>
+      </listitem>
+      <listitem id="trans_trans">
+        <para>Die erzeugte Datei <code>zpub-Technik.pot</code> wird übersetzt. Eventuell hilfreich sind Software-Lösungen, die das Übersetzen unterstützen (z.B. <ulink url="https://poedit.net/">poedit.net</ulink>). Die Übersetzung wird als <code>LANG.po</code>-Datei im Verzeichnis <code>i18n</code> gespeichert (z.B.: <code>i18n/en_GB.po</code>).</para>
+      </listitem>
+      <listitem id="trans_merge_po">
+        <para>Aus dem Quelldokument <code>zpub-Technik.xml</code> und der Übersetzungsdatei <code>en_GB.po</code> wird das (übersetzte) DocBook-Dokument erzeugt: <programlisting>$ xml2po -p handbuch_de/i18n/en_GB.po \
+    -o manual_en/zpub-manual.xml \
+    handbuch_de/zpub-Technik.xml</programlisting></para>
+      </listitem>
+      <listitem id="trans_zpub_generate">
+        <para>Das neue zpub-Dokument <code>zpub-manual.xml</code> wird via SVN commited und zpub generiert die definierten Ausgabeformate für das übersetzte Dokument.</para>
+      </listitem>
+    </orderedlist>
+    <note>
+      <title>Übersetzung aktualisieren</title>
+      <para>Werden am Ursprungsdokument inhaltliche Änderungen vorgenommen, muss die Übersetzungsdatei <code>LANG.po</code> aktualisiert werden:<programlisting>$ xml2po -u handbuch_de/i18n/en_GB.po handbuch_de/zpub-Technik.xml</programlisting></para>
+      <para>Die neuen/geänderten Übersetzungen werden wie oben in <link linkend="trans_merge_po">Schritt 3</link> eingearbeitet und das zu übersetzende Dokument neu generiert (siehe <link linkend="trans_zpub_generate">Schritt 4</link>).</para>
+    </note>
+    <example>
+      <title>Repository Verzeichnisstruktur nach der Übersetzung</title>
+      <programlisting>zpub-repository/
+|-- handbuch_de
+|   |-- i18n
+|   |   |-- en_GB.mo
+|   |   |-- en_GB.po
+|   |   `-- zpub-Technik.pot
+|   `-- zpub-Technik.xml
+`-- manual_en
+    `-- zpub-manual.xml</programlisting>
+    </example>
+  </section>
+  <section>
     <title>Authentifizierung und Authentisierung</title>
     <para>Authentifizierung und Authentisierung erfolgen primär über die vorgestellte zpub-eigene Benutzerverwaltung. Es ist jedoch auch möglich, die in zpub verwendeten Komponenten (hier: apache und subversion) z.B. gegen einen LDAP-Verzeichnisdienst authentifizeren zu lassen oder Single Sign-On einzurichten.</para>
     <section>
@@ -1026,7 +1072,9 @@ Require ldap-group ou=zpubgruppe,DC=domain,DC=tld</programlisting>
   -mapuser kerberosprinc@DOMAIN.TLD \
   -crypto AES256-SHA1 -ptype KRB5_NT_PRINCIPAL \
   -pass not_be_guessable -out c:\keyfile</programlisting>
-            <note><para>Der Name Service Principal, sprich der Teil zwischen dem <code>HTTP/</code> und dem <code>@DOMAIN.TLD</code>, muss exakt auf den FQDN des zu "kerberisierenden" Hosts lauten.</para></note>
+          <note>
+            <para>Der Name Service Principal, sprich der Teil zwischen dem <code>HTTP/</code> und dem <code>@DOMAIN.TLD</code>, muss exakt auf den FQDN des zu "kerberisierenden" Hosts lauten.</para>
+          </note>
         </listitem>
         <listitem>
           <para>Host zpub: <code>keytab</code>-Datei auf zpub-Host übertragen und Dateisystemberechtigungen anpassen:</para>

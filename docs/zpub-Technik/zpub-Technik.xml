@@ -947,8 +947,11 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
   </section>
   <section>
     <title>Übersetzung</title>
-    <para/>
+    <note>
+      <para>In zpub ist bisher kein Übersetzungsworkflow integriert. Übersetzungen können jedoch im ausgecheckten zpub-Repository sowie der Software <code>xml2po</code> vorgenommen werden. Dieser Abschnitt behandelt den Übersetzungsworkflow anhand des Beispieldokuments <code>handbuch_de/zpub-Technik.xml</code>. </para>
+    </note>
     <example>
+      <?dbfo keep-together="always" ?>
       <title>Repository Verzeichnisstruktur vor der Übersetzung</title>
       <programlisting>zpub-repository/
 |-- handbuch_de
@@ -957,6 +960,11 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
 `-- manual_en</programlisting>
     </example>
     <orderedlist>
+      <listitem>
+        <para>
+          <programlisting>$ apt-get install xml2po</programlisting>
+        </para>
+      </listitem>
       <listitem>
         <para>Erzeugen der <code>pot</code>Template Datei: <programlisting>$ xml2po -o handbuch_de/i18n/zpub-Technik.pot \
     handbuch_de/zpub-Technik.xml</programlisting></para>
@@ -979,11 +987,11 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       <para>Die neuen/geänderten Übersetzungen werden wie oben in <link linkend="trans_merge_po">Schritt 3</link> eingearbeitet und das zu übersetzende Dokument neu generiert (siehe <link linkend="trans_zpub_generate">Schritt 4</link>).</para>
     </note>
     <example>
+      <?dbfo keep-together="always" ?>
       <title>Repository Verzeichnisstruktur nach der Übersetzung</title>
       <programlisting>zpub-repository/
 |-- handbuch_de
 |   |-- i18n
-|   |   |-- en_GB.mo
 |   |   |-- en_GB.po
 |   |   `-- zpub-Technik.pot
 |   `-- zpub-Technik.xml
@@ -1006,6 +1014,7 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
         <programlisting>LDAPVerifyServerCert Off|On</programlisting>
       </example>
       <example>
+        <?dbfo keep-together="always" ?>
         <title><filename>vhost.conf</filename> (Ausschnitt)</title>
         <programlisting>AuthType Basic
 AuthBasicProvider ldap file
@@ -1090,7 +1099,7 @@ URI     ldap://dc1.domain.tld</programlisting>
         <listitem>
           <para>Host zpub: Kerberos-Konfiguration</para>
           <para><filename>/etc/krb5.conf</filename>:</para>
-          <programlisting>[libdefaults]
+          <programlisting><?dbfo keep-together="always" ?>[libdefaults]
     default_realm = DOMAIN.TLD
 
 [realms]

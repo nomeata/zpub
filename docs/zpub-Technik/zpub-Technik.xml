@@ -972,19 +972,19 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
       <listitem id="trans_trans">
         <para>Die erzeugte Datei <code>zpub-Technik.pot</code> wird übersetzt. Eventuell hilfreich sind Software-Lösungen, die das Übersetzen unterstützen (z.B. <ulink url="https://poedit.net/">poedit.net</ulink>). Die Übersetzung wird als <code>LANG.po</code>-Datei im Verzeichnis <code>i18n</code> gespeichert (z.B.: <code>i18n/en_GB.po</code>).</para>
       </listitem>
-      <listitem id="trans_merge_po">
+      <listitem id="trans_merge_po" xreflabel="Merge po-Datei">
         <para>Aus dem Quelldokument <code>zpub-Technik.xml</code> und der Übersetzungsdatei <code>en_GB.po</code> wird das (übersetzte) DocBook-Dokument erzeugt: <programlisting>$ xml2po -p handbuch_de/i18n/en_GB.po \
     -o manual_en/zpub-manual.xml \
     handbuch_de/zpub-Technik.xml</programlisting></para>
       </listitem>
-      <listitem id="trans_zpub_generate">
+      <listitem id="trans_zpub_generate" xreflabel="Ausgabeformate generieren">
         <para>Das neue zpub-Dokument <code>zpub-manual.xml</code> wird via SVN commited und zpub generiert die definierten Ausgabeformate für das übersetzte Dokument.</para>
       </listitem>
     </orderedlist>
     <note>
       <title>Übersetzung aktualisieren</title>
       <para>Werden am Ursprungsdokument inhaltliche Änderungen vorgenommen, muss die Übersetzungsdatei <code>LANG.po</code> aktualisiert werden:<programlisting>$ xml2po -u handbuch_de/i18n/en_GB.po handbuch_de/zpub-Technik.xml</programlisting></para>
-      <para>Die neuen/geänderten Übersetzungen werden wie oben in <link linkend="trans_merge_po">Schritt 3</link> eingearbeitet und das zu übersetzende Dokument neu generiert (siehe <link linkend="trans_zpub_generate">Schritt 4</link>).</para>
+      <para>Die neuen/geänderten Übersetzungen werden wie oben in <xref linkend="trans_merge_po" /> eingearbeitet und das zu übersetzende Dokument neu generiert (siehe <xref linkend="trans_zpub_generate" />).</para>
     </note>
     <example>
       <?dbfo keep-together="always" ?>

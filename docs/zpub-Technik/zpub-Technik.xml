@@ -948,7 +948,7 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
   <section>
     <title>Übersetzung</title>
     <note>
-      <para>In zpub ist bisher kein Übersetzungsworkflow integriert. Übersetzungen können jedoch im ausgecheckten zpub-Repository sowie der Software <code>xml2po</code> vorgenommen werden. Dieser Abschnitt behandelt den Übersetzungsworkflow anhand des Beispieldokuments <code>handbuch_de/zpub-Technik.xml</code>. </para>
+      <para>In zpub ist bisher kein Übersetzungsworkflow integriert. Übersetzungen können jedoch im ausgecheckten zpub-Repository mit Hilfe der Software <code>xml2po</code> vorgenommen werden. Dieser Abschnitt behandelt den Übersetzungsworkflow anhand des Beispieldokuments <code>handbuch_de/zpub-Technik.xml</code>. </para>
     </note>
     <example>
       <?dbfo keep-together="always" ?>
@@ -966,7 +966,7 @@ $ zpub-create-instance testzpublocal "test-zpub auf Localhost"  zpub.localhost
         </para>
       </listitem>
       <listitem>
-        <para>Erzeugen der <code>pot</code>Template Datei: <programlisting>$ xml2po -o handbuch_de/i18n/zpub-Technik.pot \
+        <para>Erzeugen der <code>pot</code>-Template Datei: <programlisting>$ xml2po -o handbuch_de/i18n/zpub-Technik.pot \
     handbuch_de/zpub-Technik.xml</programlisting></para>
       </listitem>
       <listitem id="trans_trans">
